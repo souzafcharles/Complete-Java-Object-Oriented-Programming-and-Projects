@@ -14,7 +14,7 @@
 
 ## Course Session
 
-- Session A1. [Introduction to the Java language](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Session_A1_Introduction_to_the_Java_Language)
+- Session A1. [Introduction to the Java language](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_A1_Introduction_to_the_Java_Language)
 - Session B2. [Sequential Structure]
 - Session C3. Conditional Structure
 - Session D4. Repetitive Structure
