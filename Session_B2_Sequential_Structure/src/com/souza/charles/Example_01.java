@@ -28,7 +28,5 @@ public class Example_01 {
         double income = 4000.0;
         System.out.printf("%s is %d years old and received \u00A3 %.2f pounds%n", name, age, income);
     
-		
 	};
-
 }
