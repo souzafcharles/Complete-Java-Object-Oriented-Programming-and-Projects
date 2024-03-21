@@ -26,7 +26,7 @@ public class ProposedExercise03 {
 		int DIFFERENCE = (A * B) - (C * D);
 		System.out.println("DIFFERENCE: " + DIFFERENCE);
 		scanner.close();
+	
 	}
-
 	
 }
