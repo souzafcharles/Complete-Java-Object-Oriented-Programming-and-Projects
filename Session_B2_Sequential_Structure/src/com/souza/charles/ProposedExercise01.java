@@ -23,7 +23,6 @@ public class ProposedExercise01 {
 		int sum = number01 + number02;
 		System.out.println("SUM = " + sum);
 		scanner.close();
+		
 	}
-
-	
 }
