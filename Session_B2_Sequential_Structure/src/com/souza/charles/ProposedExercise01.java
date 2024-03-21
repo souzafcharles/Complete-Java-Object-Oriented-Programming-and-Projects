@@ -7,9 +7,8 @@ Exercise done by: Charles Fernandes de Souza
 Date: March 21, 2024
 */
 /**
-Exercise 01: Write a program to read two integer values, 
-and then display on the screen the sum of these numbers 
-with an explanatory message.
+Exercise 01: Write a program to read two integer values, and then display 
+on the screen the sum of these numbers with an explanatory message.
 */
 import java.util.Scanner;
 
