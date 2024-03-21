@@ -25,7 +25,7 @@ public class ProposedExercise04 {
 		double employeeSalary = numberOfHoursWorked * hourlyRate;
 		System.out.printf("The employee's number is %d and salary is $ %.2f", employeeNumber, employeeSalary);
 		scanner.close();
+	
 	}
-
 	
 }
