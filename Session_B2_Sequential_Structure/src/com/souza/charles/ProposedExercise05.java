@@ -30,6 +30,4 @@ public class ProposedExercise05 {
 		scanner.close();
 
 	}
-
-	
 }
