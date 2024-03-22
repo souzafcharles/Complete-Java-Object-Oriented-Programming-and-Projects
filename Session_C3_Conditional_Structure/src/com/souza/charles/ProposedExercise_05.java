@@ -27,7 +27,6 @@ public class ProposedExercise_05 {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		String specification;
 		double itemPrice, amountPayable;
 		int itemCode = scanner.nextInt();
 		int itemQuantity = scanner.nextInt();
@@ -45,5 +44,5 @@ public class ProposedExercise_05 {
 		System.out.printf("The amount payable is $ %.2f", amountPayable);
 		scanner.close();
 	}
-
+	
 }
