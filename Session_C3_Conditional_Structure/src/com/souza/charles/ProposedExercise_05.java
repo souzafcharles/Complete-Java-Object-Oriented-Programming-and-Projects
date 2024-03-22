@@ -27,7 +27,7 @@ public class ProposedExercise_05 {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		double itemPrice, amountPayable;
+		double amountPayable;
 		int itemCode = scanner.nextInt();
 		int itemQuantity = scanner.nextInt();
 		if (itemCode == 1) {
