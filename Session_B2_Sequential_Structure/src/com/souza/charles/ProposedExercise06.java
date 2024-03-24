@@ -36,6 +36,6 @@ public class ProposedExercise06 {
 		System.out.printf("\nArea of the square: %.3f ", areaSquare);
 		System.out.printf("\nArea of the rectangle: %.3f ", areaRectangle);
 		scanner.close();
-	
+		
 	}	
 }
