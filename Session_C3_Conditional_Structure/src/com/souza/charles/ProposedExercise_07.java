@@ -9,10 +9,12 @@ Date: March 25, 2024
 /**
 Exercise 07: Read 2 values with one decimal place (x and y), 
 which should represent the coordinates of a point on a plane. 
-Then, determine which quadrant the point belongs to, 
-or if it is on one of the Cartesian axes or at the origin (x = y = 0). 
+Then, determine which quadrant the point belongs to, or if 
+it is on one of the Cartesian axes or at the origin (x = y = 0). 
 If the point is at the origin, write the message "Origin". 
-If the point is on one of the axes write "Axis X" or "Axis Y", depending on the situation.
+If the point is on one of the axes write "Axis X" or "Axis Y", 
+depending on the situation.
+
     |y
  Q2 | Q1
 ---------x
