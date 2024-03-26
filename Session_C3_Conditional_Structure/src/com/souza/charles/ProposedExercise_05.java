@@ -41,8 +41,9 @@ public class ProposedExercise_05 {
 		} else {
 			amountPayable = itemQuantity * 1.50;
 		}
-		System.out.printf("The amount payable is $ %.2f", amountPayable);
+		System.out.printf("The amount payable is $%.2f", amountPayable);
 		scanner.close();
+	
 	}
 	
 }
