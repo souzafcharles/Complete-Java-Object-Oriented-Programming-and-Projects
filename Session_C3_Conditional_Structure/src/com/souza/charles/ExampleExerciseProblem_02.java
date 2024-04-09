@@ -25,11 +25,10 @@ import java.util.Scanner;
 public class ExampleExerciseProblem_02 {
 
 	public static void main(String[] args) {
-
+		
 		Scanner scanner = new Scanner(System.in);
 		String dayOfTheWeek;
 		int numberOfTheWeek = scanner.nextInt();
-
 		switch (numberOfTheWeek) {
 		case 1:
 			dayOfTheWeek = "Sunday";
@@ -57,6 +56,6 @@ public class ExampleExerciseProblem_02 {
 		}
 		System.out.printf("Day of the week: %s", dayOfTheWeek);
 		scanner.close();
-
+		
 	}
 }
