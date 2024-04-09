@@ -10,6 +10,8 @@
 
 :waxing_crescent_moon: IDE used: Eclipse
 
+:coffee: Java version: :one::eight:
+
 
 ## Course Session
 
