@@ -30,6 +30,11 @@ public class ExampleExerciseProblem_01_Refactored {
 		double basicPlanCost = 50.00;
 		int minutesConsumed = scanner.nextInt();
 		double amountToBePaid = basicPlanCost + Math.max(0, (minutesConsumed - 100) * 2);
+		/** The Math.max() function returns the largest value between two numbers. 
+		 * In this case, it is used to ensure that the calculated value above is not negative. 
+		 * If the result is negative, it means that the user has not exceeded 100 minutes, 
+		 * so the maximum between that value and 0 is 0.
+		 */
 		System.out.printf("$ %.2f", amountToBePaid);
 		scanner.close();
 	}
