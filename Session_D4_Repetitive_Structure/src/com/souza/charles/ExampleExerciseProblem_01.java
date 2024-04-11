@@ -7,8 +7,8 @@ Exercise done by: Charles Fernandes de Souza
 Date: April 10, 2024
 */
 /**
-Example Exercise Problem 01: Create a program that reads integer numbers 
-until a zero is encountered. Upon completion, display the sum of the numbers read.
+Example Exercise Problem 01: Create a program that reads integer numbers until 
+a zero is encountered. Upon completion, display the sum of the numbers read.
 
 Examples:
 ________________________
