@@ -22,7 +22,7 @@ ________________________
 */
 import java.util.Scanner;
 
-public class ExampleExerciseProblem_01 {
+public class ExampleExerciseProblemWithWhileLoop_01 {
 
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in);

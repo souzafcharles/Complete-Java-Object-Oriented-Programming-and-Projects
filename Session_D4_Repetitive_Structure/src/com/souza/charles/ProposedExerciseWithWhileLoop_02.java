@@ -34,7 +34,7 @@ _____________________________________
 */
 import java.util.Scanner;
 
-public class ProposedExercise_02 {
+public class ProposedExerciseWithWhileLoop_02 {
 
   public static void main(String[] args) {
 

@@ -30,7 +30,7 @@ _____________________________________
 
 import java.util.Scanner;
 
-public class ProposedExercise_03 {
+public class ProposedExerciseWithWhileLoop_03 {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
