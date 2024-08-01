@@ -22,25 +22,28 @@ __________________________
   8.0 9.0 10.0        
 __________________________
 */
+import java.util.Locale;
 import java.util.Scanner;
+
 public class ProposedExerciseWithForLoop_03 {
 
-	public static void main(String[] args) {
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		int N = scanner.nextInt();
-		
-		for (int i = 0; i < N; i++) {
-			double number01 = scanner.nextDouble(); 
-			double number02 = scanner.nextDouble();
-			double number03 = scanner.nextDouble();
-			double weightedAverage = ( number01*2 + number02*3 + number03*5) / (2+3+5);
-			System.out.printf("%.1f", weightedAverage);
-		}
-		
-		scanner.close();
+  public static void main(String[] args) {
 
-	}
+	Locale.setDefault(Locale.UK);
+    Scanner scanner = new Scanner(System.in);
+
+    int N = scanner.nextInt();
+
+    for (int i = 0; i < N; i++) {
+      double firstNumber = scanner.nextDouble();
+      double secondNumber = scanner.nextDouble();
+      double thirdNumber = scanner.nextDouble();
+      double weightedAverage = (firstNumber * 2.0 + secondNumber * 3.0 + thirdNumber * 5.0) / (2.0 + 3.0 + 5.0);
+      System.out.printf("%.1f", weightedAverage);
+    }
+
+    scanner.close();
+
+  }
 
 }
