@@ -21,7 +21,7 @@ ______________
 */
 import java.util.Scanner;
 
-public class ProposedExerciseWithForLoop_03 {
+public class ProposedExerciseWithForLoop_01 {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
