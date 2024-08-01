@@ -35,7 +35,6 @@ public class ProposedExerciseWithForLoop_04 {
     for (int i = 0; i < N; i++) {
       double numerator = scanner.nextDouble();
       double denominator = scanner.nextDouble();
-
       if (denominator == 0) {
         System.out.println("impossible division");
       } else {
