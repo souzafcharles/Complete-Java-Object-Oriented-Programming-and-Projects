@@ -29,7 +29,7 @@ public class ExampleExerciseProblemWithForLoop_01 {
     Scanner scanner = new Scanner(System.in);
     int N = scanner.nextInt();
     int sum = 0;
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N; i ++) {
       int number = scanner.nextInt();
       sum += number;
     }
