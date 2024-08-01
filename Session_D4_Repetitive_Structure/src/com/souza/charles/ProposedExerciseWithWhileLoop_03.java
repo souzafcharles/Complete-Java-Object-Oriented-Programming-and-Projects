@@ -7,7 +7,7 @@ Exercise done by: Charles Fernandes de Souza
 Date: July 31, 2024
 */
 /**
-Exercise 02: A petrol station wishes to determine which of its products is 
+Exercise 03: A petrol station wishes to determine which of its products is 
 preferred by its customers. Write an algorithm to read the type of fuel supplied 
 (coded as follows: 1. Alcohol 2. Petrol 3. Diesel 4. End). If the user enters an 
 invalid code (outside the range of 1 to 4), a new code should be requested 
@@ -16,16 +16,16 @@ The message "THANK YOU VERY MUCH" and the quantity of customers who filled up ea
 type of fuel should be written, as in the example:
 
 Examples:
-_____________________________________
+_______________________
 Input         Output
-_____________________________________
+_______________________
   8         THANK YOU         
   1         Alcohol: 1         
-  7         Petrol: 2        
-  2         Diesel: 0        
+  7          Petrol: 2        
+  2          Diesel: 0        
   2              
   4       
-_____________________________________
+_______________________
 */
 
 import java.util.Scanner;
