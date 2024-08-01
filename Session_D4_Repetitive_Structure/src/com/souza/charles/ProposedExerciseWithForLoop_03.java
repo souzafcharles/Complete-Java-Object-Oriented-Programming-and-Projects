@@ -1,5 +1,4 @@
 package com.souza.charles;
-
 /**
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
@@ -20,20 +19,15 @@ _______________
            7  
 ______________
 */
-
 import java.util.Scanner;
 
 public class ProposedExerciseWithForLoop_03 {
 
   public static void main(String[] args) {
-
     Scanner scanner = new Scanner(System.in);
-
     int X = scanner.nextInt();
-
     if (X >= 1 && X <= 1000) {
       for (int i = 1; i <= X; i++) {
-    	  
         if (i % 2 != 0) {
           System.out.println(i);
         }
@@ -41,7 +35,7 @@ public class ProposedExerciseWithForLoop_03 {
 
     }
     scanner.close();
-
+    
   }
 
 }
