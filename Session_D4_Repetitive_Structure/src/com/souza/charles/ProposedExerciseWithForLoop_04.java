@@ -27,7 +27,7 @@ public class ProposedExerciseWithForLoop_04 {
 
   public static void main(String[] args) {
 
-	Locale.setDefault(Locale.UK);
+    Locale.setDefault(Locale.UK);
     Scanner scanner = new Scanner(System.in);
 
     int N = scanner.nextInt();
