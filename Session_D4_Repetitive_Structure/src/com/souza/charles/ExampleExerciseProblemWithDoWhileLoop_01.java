@@ -1,5 +1,4 @@
 package com.souza.charles;
-
 /**
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
@@ -26,7 +25,6 @@ Would you like to repeat (y/n)? y
 Enter the temperature in Celsius: -10.5
 Equivalent in Fahrenheit:13.1
 Would you like to repeat (y/n)? n
-
 */
 import java.util.Scanner;
 public class ExampleExerciseProblemWithDoWhileLoop_01 {
