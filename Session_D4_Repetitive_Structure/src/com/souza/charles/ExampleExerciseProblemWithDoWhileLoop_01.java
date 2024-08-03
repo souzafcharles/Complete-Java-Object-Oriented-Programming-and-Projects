@@ -3,7 +3,8 @@ package com.souza.charles;
 /**
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
-ExerciAugust 01, 2024
+Exercise done by: Charles Fernandes de Souza
+Date: August 01, 2024
 */
 /**
 Example Exercise Problem 01: Develop a program to read a temperature 
@@ -26,27 +27,27 @@ Enter the temperature in Celsius: -10.5
 Equivalent in Fahrenheit:13.1
 Would you like to repeat (y/n)? n
 
-
 */
 import java.util.Scanner;
 public class ExampleExerciseProblemWithDoWhileLoop_01 {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in); 
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
 
-        char repeat;
+    char repeat;
 
-        do {
-            System.out.print("Enter the temperature in Celsius: ");
-            double celsius = scanner.nextDouble();
+    do {
+      System.out.print("Enter the temperature in Celsius: ");
+      double celsius = scanner.nextDouble();
 
-            double fahrenheit = (9 * celsius / 5) + 32;
+      double fahrenheit = (9 * celsius / 5) + 32;
 
-            System.out.printf("Equivalent in Fahrenheit: %.1f", fahrenheit);
+      System.out.printf("Equivalent in Fahrenheit: %.1f", fahrenheit);
 
-            System.out.println("Would you like to repeat (y/n)? ");
-            repeat = scanner.next().charAt(0);
-        } while (repeat == 'y');
-    }
+      System.out.print("\nWould you like to repeat (y/n)? ");
+      repeat = scanner.next().charAt(0);
+    } while (repeat == 'y');
+    scanner.close();
+  }
 
 }
