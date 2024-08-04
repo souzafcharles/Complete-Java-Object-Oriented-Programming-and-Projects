@@ -1,5 +1,10 @@
 package com.souza.charles.app;
-
+/**
+Course title: Complete Java - Object-Oriented Programming + Projects
+Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+Example adapted by: Charles Fernandes de Souza
+Date: August 02, 2024
+*/
 public class Example_04 {
 
 	public static void main(String[] args) {
