@@ -5,13 +5,12 @@ Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
 Example adapted by: Charles Fernandes de Souza
 Date: August 03, 2024
 */
-import java.util.Locale;
-import java.util.Scanner;
-
 /*
 This programme calculates the roots of a quadratic equation
 The coefficient values should be entered one per line
 */
+import java.util.Locale;
+import java.util.Scanner;
 public class Example_05 {
 	public static void main(String[] args) {
         Locale.setDefault(Locale.UK);
