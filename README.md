@@ -4,7 +4,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
 
 
-# :coffee: Udemy Course: Complete Java | Object-Oriented Programming + Projects
+# :coffee: Course: Complete Java | Object-Oriented Programming + Projects
 
 :triangular_flag_on_post: Prof. Dr. Nelio Alves - [Udemy, Inc.](https://www.udemy.com/)
 
