@@ -17,17 +17,16 @@ import java.util.Scanner;
 public class ProposedExercise05 {
 
 	public static void main(String[] args) {
-
-		Scanner scanner = new Scanner(System.in);
-		int item01 = scanner.nextInt();
-		int quantityOfItem01 = scanner.nextInt();
-		double unitValueEachItem01 = scanner.nextDouble();
-		int item02 = scanner.nextInt();
-		int quantityOfItem02 = scanner.nextInt();
-		double unitValueEachItem02 = scanner.nextDouble();
-		double totalAmount = (quantityOfItem01 * unitValueEachItem01) + (quantityOfItem02 * unitValueEachItem02);
-		System.out.printf("The total amount to be paid $: %.2f", totalAmount);
-		scanner.close();
-
-	}
+        Scanner scanner = new Scanner(System.in);
+        double totalAmount = 0.0;
+        for (int i = 0; i < 2; i++) {
+            int componentCode = scanner.nextInt();
+            int componentQuantity = scanner.nextInt();
+            double unitPrice = scanner.nextDouble();
+            double componentCost = componentQuantity * unitPrice;
+            totalAmount += componentCost;
+        }
+        System.out.printf("TOTAL AMOUNT: £ %.2f%n", totalAmount);
+        scanner.close();
+    }
 }
