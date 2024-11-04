@@ -20,28 +20,27 @@ ______________________________
 2200         Invalid password  
 1020         Invalid password  
 2022         Invalid password
-2002         Access granted
+2002         Access allowed
 ______________________________
 */
 import java.util.Scanner;
 
 public class ProposedExerciseWithWhileLoop_01 {
 
-	public static void main(String[] args) {
-		
-        Scanner scanner = new Scanner(System.in);
-        final String correctPassword = "2002"; // Use a String for password comparison
-        while (true) {
-            String enteredPassword = scanner.nextLine(); 
-            if (enteredPassword.equals(correctPassword)) {
-                System.out.println("Access granted");
-                break;
-            } else {
-                System.out.println("Invalid password");
-            }
-        }
-
-        scanner.close(); 
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    final String correctPassword = "2002"; // Use a String for password comparison
+    while (true) {
+      String enteredPassword = scanner.nextLine();
+      if (enteredPassword.equals(correctPassword)) {
+        System.out.println("Access allowed");
+        break;
+      } else {
+        System.out.println("Invalid password");
+      }
     }
+
+    scanner.close();
+  }
 
 }
