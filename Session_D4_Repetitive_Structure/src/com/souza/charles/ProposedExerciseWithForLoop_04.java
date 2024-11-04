@@ -24,28 +24,19 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class ProposedExerciseWithForLoop_04 {
-
-  public static void main(String[] args) {
-
-    Locale.setDefault(Locale.UK);
-    Scanner scanner = new Scanner(System.in);
-
-    int N = scanner.nextInt();
-
-    for (int i = 0; i < N; i++) {
-      double numerator = scanner.nextDouble();
-      double denominator = scanner.nextDouble();
-      if (denominator == 0) {
-        System.out.println("impossible division");
-      } else {
-        double division = numerator / denominator;
-        System.out.printf("%.1f", division);
-      }
-
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int limit = scanner.nextInt();
+        for (int i = 0; i < limit; i++) {
+            int numerator = scanner.nextInt();
+            int denominator = scanner.nextInt();
+            if (denominator == 0) {
+                System.out.println("impossible division");
+            } else {
+                double division = (double) numerator / denominator;
+                System.out.printf("%.1f%n", division);
+            }
+        }
+        scanner.close();
     }
-
-    scanner.close();
-
-  }
-
 }
