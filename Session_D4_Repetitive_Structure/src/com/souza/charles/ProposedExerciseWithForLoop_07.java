@@ -23,23 +23,13 @@ ________________________
 ________________________
 */
 import java.util.Scanner;
-
 public class ProposedExerciseWithForLoop_07 {
-
   public static void main(String[] args) {
-
     Scanner scanner = new Scanner(System.in);
-
-    int N = scanner.nextInt();
-
-    for (int i = 1; i <= N; i++) {
-      int square = i * i;
-      int cube = i * i * i;
-      System.out.println(i + " " + square + " " + cube);
+    int limit = scanner.nextInt();
+    for (int i = 1; i <= limit; i++) {
+      System.out.printf("%d %.0f %.0f%n", i, Math.pow(i, 2), Math.pow(i, 3));
     }
-
     scanner.close();
-
   }
-
 }
