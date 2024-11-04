@@ -27,26 +27,19 @@ _______________
 import java.util.Scanner;
 
 public class ProposedExerciseWithForLoop_02 {
-
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-
-    int N = scanner.nextInt();
-    int countIn = 0, countOut = 0;
-
-    for (int i = 0; i < N; i++) {
-      int X = scanner.nextInt();
-      if (X >= 10 && X <= 20) {
-        countIn++; // Increment count for values within the interval
+    int limit = scanner.nextInt();
+    int contIn = 0, contOut = 0;
+    for (int i = 0; i < limit; i++) {
+      int number = scanner.nextInt();
+      if (number >= 10 && number <= 20) {
+        contIn++;
       } else {
-        countOut++; // Increment count for values outside the interval
+        contOut++;
       }
     }
-
-    System.out.println(countIn + " in");
-    System.out.println(countOut + " out");
-
+    System.out.printf("In: %d\nOut: %d%n", contIn, contOut);
     scanner.close();
   }
-
 }
