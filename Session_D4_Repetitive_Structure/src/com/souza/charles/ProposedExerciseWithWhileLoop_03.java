@@ -49,7 +49,7 @@ public class ProposedExerciseWithWhileLoop_03 {
         System.out.println("Type a valid code: 1. Alcohol; 2. Gasoline; 3. Diesel; 4. End");
       }
     }
-    System.out.printf("THANK YOU\nAlcohol: %2d\nGasoline: %2d\nDiesel: %2d%n", contAlcohol++, contGasoline++, contDiesel++);
+    System.out.printf("THANK YOU\nAlcohol: %2d\nGasoline: %2d\nDiesel: %2d%n", contAlcohol, contGasoline, contDiesel);
     scanner.close();
   }
 }
