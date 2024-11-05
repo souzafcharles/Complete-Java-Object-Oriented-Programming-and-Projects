@@ -39,9 +39,7 @@ package com.souza.charles.application;
  * to be removed from stock: 3
  * __________________________________________________________________________________________
  */
-
 import com.souza.charles.entities.Product;
-
 import java.util.Scanner;
 
 public class App {
