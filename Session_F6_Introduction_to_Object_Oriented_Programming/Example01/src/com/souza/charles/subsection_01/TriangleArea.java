@@ -27,12 +27,10 @@ Enter the measures of triangle Y:
 4.02
 ______________________________________________________________________
 */
-import java.util.Locale;
 import java.util.Scanner;
 
 public class TriangleArea {
     public static void main(String[] args) {
-    	Locale.setDefault(Locale.UK);
         Scanner scanner = new Scanner(System.in);
         // Reading the measurements of triangle X
         System.out.println("Enter the measurements of triangle X:");
