@@ -1,5 +1,4 @@
 package com.souza.charles.subsection_01;
-
 /**
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
@@ -28,41 +27,32 @@ Enter the measures of triangle Y:
 4.02
 ______________________________________________________________________
 */
-
 import java.util.Locale;
 import java.util.Scanner;
 
 public class TriangleArea {
-
     public static void main(String[] args) {
-    	
     	Locale.setDefault(Locale.UK);
         Scanner scanner = new Scanner(System.in);
-
         // Reading the measurements of triangle X
         System.out.println("Enter the measurements of triangle X:");
         double xA = scanner.nextDouble();
         double xB = scanner.nextDouble();
         double xC = scanner.nextDouble();
-
         // Reading the measurements of triangle Y
         System.out.println("Enter the measurements of triangle Y:");
         double yA = scanner.nextDouble();
         double yB = scanner.nextDouble();
         double yC = scanner.nextDouble();
-
         // Calculating the area of triangle X
         double pX = (xA + xB + xC) / 2.0;
         double areaX = Math.sqrt(pX * (pX - xA) * (pX - xB) * (pX - xC));
-
         // Calculating the area of triangle Y
         double pY = (yA + yB + yC) / 2.0;
         double areaY = Math.sqrt(pY * (pY - yA) * (pY - yB) * (pY - yC));
-
         // Displaying the areas of the triangles
         System.out.printf("Triangle X area: %.4f\n", areaX);
         System.out.printf("Triangle Y area: %.4f\n", areaY);
-
         // Determining which triangle has the larger area or if they are equal
         if (areaX > areaY) {
             System.out.println("Larger area: X");
@@ -71,7 +61,6 @@ public class TriangleArea {
         } else {
             System.out.println("Both triangles have equal area.");
         }
-
         scanner.close();
     }
 }
