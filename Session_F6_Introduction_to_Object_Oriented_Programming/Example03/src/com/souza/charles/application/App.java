@@ -28,37 +28,33 @@ package com.souza.charles.application;
  ______________________________________________________________________
  */
 import com.souza.charles.entities.Triangle;
-
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Triangle X = new Triangle();
         // Reading the measurements of triangle X
+        Triangle X = new Triangle();
         System.out.println("Enter the measurements of triangle X:");
         X.sideA = scanner.nextDouble();
         X.sideB = scanner.nextDouble();
         X.sideC = scanner.nextDouble();
-        Triangle Y = new Triangle();
+
         // Reading the measurements of triangle Y
+        Triangle Y = new Triangle();
         System.out.println("Enter the measurements of triangle Y:");
         Y.sideA = scanner.nextDouble();
         Y.sideB = scanner.nextDouble();
         Y.sideC = scanner.nextDouble();
-        // Calculating the area of triangle X
-        double perimeterX = (X.sideA + X.sideB + X.sideC) / 2.0;
-        double areaX = Math.sqrt(perimeterX * (perimeterX- X.sideA) * (perimeterX - X.sideB) * (perimeterX - X.sideC));
-        // Calculating the area of triangle Y
-        double perimeterY = (Y.sideA + Y.sideB + Y.sideC) / 2.0;
-        double areaY = Math.sqrt(perimeterY * (perimeterY - Y.sideA) * (perimeterY - Y.sideB) * (perimeterY - Y.sideC));
+
         // Displaying the areas of the triangles
-        System.out.printf("Triangle X area: %.4f\n", areaX);
-        System.out.printf("Triangle Y area: %.4f\n", areaY);
+        System.out.printf("Triangle X area: %.4f\n", X.calculateAreaTriangle());
+        System.out.printf("Triangle Y area: %.4f\n", Y.calculateAreaTriangle());
+
         // Determining which triangle has the larger area or if they are equal
-        if (areaX > areaY) {
+        if (X.calculateAreaTriangle() > Y.calculateAreaTriangle()) {
             System.out.println("Larger area: X");
-        } else if (areaY > areaX) {
+        } else if (Y.calculateAreaTriangle()> X.calculateAreaTriangle()) {
             System.out.println("Larger area: Y");
         } else {
             System.out.println("Both triangles have equal area.");
