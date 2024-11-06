@@ -20,7 +20,7 @@
 - Session C3. [Conditional Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_C3_Conditional_Structure)
 - Session D4. [Repetitive Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_D4_Repetitive_Structure)
 - Session E5. [Other Java Basic Topics](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_E5_Other_Java_Basic_Topics)
-- Session F6. Introduction to Object Oriented Programming
+- Session F6. [Introduction to Object Oriented Programming](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_F6_Introduction_to_Object_Oriented_Programming)
 - Session G7. Constructors, this word, overload, encapsulation
 - Session H8. Memory behavior, arrays, lists
 - Session I9. Special Topics in Java
