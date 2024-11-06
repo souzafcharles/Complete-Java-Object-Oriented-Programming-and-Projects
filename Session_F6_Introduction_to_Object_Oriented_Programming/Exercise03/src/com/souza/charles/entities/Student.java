@@ -1,5 +1,10 @@
 package com.souza.charles.entities;
-
+/**
+ Course title: Complete Java - Object-Oriented Programming + Projects
+ Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+ Exercise done by: Charles Fernandes de Souza
+ Date: November 06, 2024
+ */
 public class Student {
 
     public String name;
@@ -7,15 +12,19 @@ public class Student {
     public double grade02;
     public double grade03;
 
-    public Double calculateFinalGrade() {
-        return  (grade01 * 0.3) + (grade02 * 0.35) + (grade03 * 0.35);
+    public double calculateFinalGrade() {
+        return grade01 + grade02 + grade03;
     }
 
-    public Boolean isPassed() {
-        return calculateFinalGrade() >= 60;
+    public boolean isPassed() {
+        return calculateFinalGrade() >= 60.00;
     }
 
-    public Double pointsMissing() {
-        return 60 - calculateFinalGrade();
+    public double pointsMissing() {
+        if (isPassed()) {
+            return 0.00;
+        } else {
+            return 60.00 - calculateFinalGrade();
+        }
     }
 }
