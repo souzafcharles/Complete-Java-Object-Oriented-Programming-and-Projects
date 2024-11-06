@@ -6,16 +6,16 @@ public class Employee {
     public double grossSalary;
     public double tax;
 
-    public Double NetSalary() {
+    public Double netSalary() {
         return grossSalary - tax;
     }
 
-    public void IncreaseSalary(double percentage) {
-        grossSalary *= percentage;
+    public void increaseSalary(double percentage) {
+        grossSalary += grossSalary * percentage / 100.0;
     }
 
     @Override
     public String toString() {
-        return String.format("%s, $ %.2f", name, NetSalary());
+        return String.format("%s, $ %.2f", name, netSalary());
     }
 }
