@@ -23,7 +23,9 @@ Create a program to read the name of a student and the three grades they obtaine
 | 27.00             | PASS               |
 | 31.00             |                    |
 |  32.00            |                    |
-|-------------------|--------------------|
+
+| **Input**         | **Output**         |
+|-------------------|------------------- |
 | Alex Green        | FINAL GRADE = 52.00|
 | 17.00             | FAILED             |
 | 20.00             | MISSING 8.00 POINTS|
