@@ -7,8 +7,8 @@ Note: within a static method, you cannot call instance members of the same class
 
 ### Example Inputs and Outputs
 
-| **Input**          | **Output**            |
-|--------------------|-----------------------|
-| `Enter radius`:    | `Circumference`: 18.84|
-| 3.00               | `Volume`: 113.04      |
-|                    | `PI value`: 3.14      |
+| **Input**       | **Output**             |
+|-----------------|------------------------|
+| `Enter radius`: | `Circumference`: 18.84 |
+| 3.00            | `Volume`: 113.04       |
+|                 | `PI value`: 3.14       |
