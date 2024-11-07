@@ -7,12 +7,12 @@ package com.souza.charles.utils;
  */
 public class Calculator {
 
-    public final double PI = 3.14159;
+    public static final double PI = 3.14159;
 
-    public Double calculateCircumference(double radius){
+    public static Double calculateCircumference(double radius){
         return 2 * PI * radius;
     }
-    public Double calculateVolume(double radius){
+    public static Double calculateVolume(double radius){
         return (4.00/3.00) * PI * Math.pow(radius, 3.00);
     }
 }
