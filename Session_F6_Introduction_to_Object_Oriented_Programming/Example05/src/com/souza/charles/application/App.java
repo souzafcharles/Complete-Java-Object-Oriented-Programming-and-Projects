@@ -2,8 +2,8 @@ package com.souza.charles.application;
 /**
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
-  Example done by: Charles Fernandes de Souza
-  Date: November 05, 2024
+  Example adapted by: Charles Fernandes de Souza
+  Date: November 07, 2024
  */
 import java.util.Scanner;
 
