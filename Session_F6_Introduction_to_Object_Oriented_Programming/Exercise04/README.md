@@ -1,4 +1,4 @@
-# Exercise 01
+# Exercise 04
 **Instructions**:
 Write a program to read the dollar exchange rate and then the amount in dollars to be purchased by a person in reais. Display the amount in reais that the person will pay for the dollars, considering that the person will have to pay a 6% IOF on the dollar amount. Create a `CurrencyConverter` class to be responsible for the calculations.
 ## Class Structure
