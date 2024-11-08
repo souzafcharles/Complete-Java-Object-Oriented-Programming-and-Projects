@@ -21,7 +21,7 @@
 - Session D4. [Repetitive Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_D4_Repetitive_Structure)
 - Session E5. [Other Java Basic Topics](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_E5_Other_Java_Basic_Topics)
 - Session F6. [Introduction to Object Oriented Programming](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_F6_Introduction_to_Object_Oriented_Programming)
-- Session G7. Constructors, this keyword, overloading, encapsulation
+- Session G7. [Constructors, this keyword, overloading, encapsulation](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_G7_Constructors_This_keyword_Overloading_Encapsulation)
 - Session H8. Memory behavior, arrays, lists
 - Session I9. Special Topics in Java
 - Session J10. Enumerations, Composition
