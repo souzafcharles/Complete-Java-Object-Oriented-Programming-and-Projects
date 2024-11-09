@@ -1,4 +1,4 @@
-# Example Problem 02
+# Example Problem 03
 **Instructions**:
 Write a program to read the data of a product in stock (name, price and quantity in stock).
 
@@ -6,12 +6,6 @@ Then:
 - Display the product data (name, price, quantity in stock, total value in stock)
 - Perform a stock entry and display the product data again
 - Perform a stock exit and display the product data again
-
-### Proposal to improve the program's project for reading product data in stock:
-
-We will create an optional constructor, which only receives the product's name and price. The quantity in stock of this new product should then be initialized with the value zero by default.
-
-**Note**: it is also possible to include a default constructor.
 
 To solve this problem, you should create a CLASS according to the project alongside:
 
@@ -36,5 +30,3 @@ To solve this problem, you should create a CLASS according to the project alongs
 | Quantity in stock: 10                                    |                                                      |                                                        |                                                      |
 | Enter the number of products to be added in stock: 5     |                                                      |
 | Enter the number of products to be removed from stock: 3 |                                                      |
-
-****
