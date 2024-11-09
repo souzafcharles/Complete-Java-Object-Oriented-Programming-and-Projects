@@ -16,12 +16,10 @@ public class App {
         String name = scanner.nextLine();
         System.out.println("Price: ");
         double price = scanner.nextDouble();
-        System.out.println("Quantity: ");
-        int quantity = scanner.nextInt();
-        Product product = new Product(name, price, quantity);
+        Product product = new Product(name, price);
         System.out.println("Product data:" + product);
         System.out.println("Enter the number of products to be added in stock: ");
-        quantity = scanner.nextInt();
+        int quantity = scanner.nextInt();
         product.addProducts(quantity);
         System.out.println("Update data:" + product);
         System.out.println("Enter the number of products to be removed from stock: ");
