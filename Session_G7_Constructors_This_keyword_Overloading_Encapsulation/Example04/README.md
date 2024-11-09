@@ -22,6 +22,14 @@ To solve this problem, you should create a CLASS according to the project alongs
 | + `AddProducts(quantity: int)`: `void`    |
 | + `RemoveProducts(quantity: int)`: `void` |
 
+***
+| **Order**                                 |
+|-------------------------------------------|
+| - Date: `Date`                            |
+| - Product: `Product`                      |
+| ========================================= |
+|                                           |
+
 ### Example Inputs and Outputs
 
 | **Input**                                                | **Output**                                           |
@@ -33,3 +41,4 @@ To solve this problem, you should create a CLASS according to the project alongs
 | Enter the number of products to be added in stock: 5     |                                                      |
 | Enter the number of products to be removed from stock: 3 |                                                      |
 
+***
