@@ -10,22 +10,24 @@ public class Account {
     private Integer number;
     private String holder;
     private Double balance;
+    public final Double WITHDRAW_RATE = 5.00;
 
     public Account() {
     }
 
-    public Account(Integer number, String holder, Double balance) {
+    public Account(Integer number, String holder) {
         this.number = number;
         this.holder = holder;
-        this.balance = balance;
+    }
+
+    public Account(Integer number, String holder, Double initialDeposit) {
+        this.number = number;
+        this.holder = holder;
+        this.balance = (initialDeposit != null) ? initialDeposit : 0.0;
     }
 
     public Integer getNumber() {
         return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
     }
 
     public String getHolder() {
@@ -41,11 +43,15 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        this.balance += amount;
+        if (amount > 0) {
+            balance += amount;
+        }
     }
 
     public void withdraw(double amount) {
-        this.balance -= amount;
+        if (amount > 0) {
+            balance -= (amount + (1 * WITHDRAW_RATE));
+        }
     }
 
     @Override

@@ -42,7 +42,7 @@ You must create a program that performs the registration of an account, giving t
 | `Enter account holder`: Maria Brown     | `Updated account data`: Account 7801, Holder: Maria Brown, Balance: $ 200.00 |
 | `Is there an initial deposit (y/n)?`: n | `Updated account data`: Account 7801, Holder: Maria Brown, Balance: $ -3.00  |
 | `Enter a deposit value`: 200.00         |                                                                              |
-| `Enter a deposit value`: 198.00         |                                                                              |
+| `Enter a withdraw value`: 198.00        |                                                                              |
 |                                         |                                                                              |
 
 
