@@ -7,6 +7,8 @@ Then:
 - Perform a stock entry and display the product data again
 - Perform a stock exit and display the product data again
 
+## Version 03: Updating getters and setters for Encapsulation.
+
 To solve this problem, you should create a CLASS according to the project alongside:
 
 | **Product**                               |

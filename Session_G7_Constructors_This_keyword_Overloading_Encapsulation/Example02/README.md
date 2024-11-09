@@ -13,6 +13,8 @@ We will create an optional constructor, which only receives the product's name a
 
 **Note**: it is also possible to include a default constructor.
 
+## Version 02: Understanding the This Keyword and Overloading.
+
 To solve this problem, you should create a CLASS according to the project alongside:
 
 | **Product**                               |

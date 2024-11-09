@@ -1,13 +1,13 @@
-# Example Problem 01
+# Example Problem 04
 **Instructions**:
 Write a program to read the data of a product in stock (name, price and quantity in stock).
 
 Then:
- - Display the product data (name, price, quantity in stock, total value in stock)
- - Perform a stock entry and display the product data again
- - Perform a stock exit and display the product data again
+- Display the product data (name, price, quantity in stock, total value in stock)
+- Perform a stock entry and display the product data again
+- Perform a stock exit and display the product data again
 
-## Version 01: Usage of Constructors.
+## Version 04: Updating access modifiers for Encapsulation.
 
 To solve this problem, you should create a CLASS according to the project alongside:
 
@@ -32,3 +32,4 @@ To solve this problem, you should create a CLASS according to the project alongs
 | Quantity in stock: 10                                    |                                                      |                                                        |                                                      |
 | Enter the number of products to be added in stock: 5     |                                                      |
 | Enter the number of products to be removed from stock: 3 |                                                      |
+
