@@ -44,5 +44,3 @@ You must create a program that performs the registration of an account, giving t
 | `Enter a deposit value`: 200.00         |                                                                              |
 | `Enter a withdraw value`: 198.00        |                                                                              |
 |                                         |                                                                              |
-
-

@@ -21,23 +21,23 @@
 - Session D4. [Repetitive Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_D4_Repetitive_Structure)
 - Session E5. [Other Java Basic Topics](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_E5_Other_Java_Basic_Topics)
 - Session F6. [Introduction to Object Oriented Programming](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_F6_Introduction_to_Object_Oriented_Programming)
-- Session G7. [Constructors, this keyword, overloading, encapsulation](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_G7_Constructors_This_keyword_Overloading_Encapsulation)
-- Session H8. Memory behavior, arrays, lists
+- Session G7. [Constructors, this Keyword, Overloading and Encapsulation](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_G7_Constructors_This_keyword_Overloading_Encapsulation)
+- Session H8. [Memory Management, Arrays and Lists](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists)
 - Session I9. Special Topics in Java
-- Session J10. Enumerations, Composition
+- Session J10. Enumerations and Composition
 - Session K11. Inheritance and Polymorphism
 - Session L12. Handling Exceptions
 - Session M13. Project: Chess game system
 - Session N14. Working with files
 - Session O15. Interfaces
-- Session P16. Generics, Set, Map
-- Session Q17. Functional programming and lambda expressions
-- Session R18. Database access with JDBC
-- Session S19. Graphical interface with JavaFX
-- Session T20. Project: Desktop applications with JavaFX and MySQL database with JDBC
-- Session U21. Java EE - Object-relational mapping with JPA/Hibernate
-- Session V22. Project: Web services with Spring Boot and JPA/Hibernate
-- Session W23. Project: Restful API with Spring Boot and MongoDB database (web services + NoSQL)
+- Session P16. Generics, Set and Map
+- Session Q17. Functional Programming and Lambda Expressions
+- Session R18. Database Access with JDBC
+- Session S19. Graphical Interface with JavaFX
+- Session T20. Project: Desktop Applications with JavaFX and MySQL Database with JDBC
+- Session U21. Java EE - Object-relational Mapping with JPA/Hibernate
+- Session V22. Project: Web Services with Spring Boot and JPA/Hibernate
+- Session W23. Project: Restful API with Spring Boot and MongoDB Database (web services + NoSQL)
 
 ### :link: [Course Access](https://www.udemy.com/course/java-curso-completo/)
 
