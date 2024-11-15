@@ -6,6 +6,7 @@ package com.souza.charles.entities;
  Date: November 15, 2024
  */
 
+
 public class Person {
     private String name;
     private int age;
