@@ -27,5 +27,6 @@ public class Exercise02 {
         }
         System.out.printf("\nSUM = %.2f\n", sum);
         System.out.printf("AVERAGE = %.2f ", average = (sum / realNumbers.length));
+        scanner.close();
     }
 }
