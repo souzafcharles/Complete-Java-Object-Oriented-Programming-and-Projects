@@ -5,7 +5,6 @@ package com.souza.charles;
  * Exercise done by: Charles Fernandes de Souza
  * Date: November 15, 2024
  */
-
 import java.util.Scanner;
 
 public class Exercise01 {
