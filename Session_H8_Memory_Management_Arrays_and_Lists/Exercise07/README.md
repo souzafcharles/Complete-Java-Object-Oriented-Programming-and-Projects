@@ -6,7 +6,7 @@
 | **Input**                                  | **Output**                              |
 |--------------------------------------------|-----------------------------------------|
 | `How many elements will the array have?` 4 | `ARRAY AVERAGE ` = 12.125               |
-| `Enter a number`: 8                        | `ELEMENTS BELOW THE AVERAGE` = 10.0 9.8 |
-| `Enter a number`:2                         |                                         |
-| `Enter a number`:11                        |                                         |
-| `Enter a number`:14                        |                                         |
+| `Enter a number`: 8                        | `ELEMENTS BELOW THE AVERAGE`:           |
+| `Enter a number`: 2                        |  10.0                                   |
+| `Enter a number`: 11                       |  9.8                                    |
+| `Enter a number`: 14                       |                                         |
