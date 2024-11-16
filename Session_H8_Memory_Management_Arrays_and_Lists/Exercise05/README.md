@@ -5,7 +5,7 @@
 
 | **Input**                                     | **Output**                          |
 |-----------------------------------------------|-------------------------------------|
-| `How many numbers are you going to enter? ` 6 | `LARGEST VALUE` = 14.0              |
+| `How many elements will the array have?` 6    | `LARGEST VALUE` = 14.0              |
 | `Enter a number`: 8.0                         | `POSITION OF THE LARGEST VALUE` = 3 |
 | `Enter a number`: 4.0                         |                                     |
 | `Enter a number`: 10.0                        |                                     |
