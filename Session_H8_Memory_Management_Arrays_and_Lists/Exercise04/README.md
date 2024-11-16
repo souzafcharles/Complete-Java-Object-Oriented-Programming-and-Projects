@@ -5,7 +5,7 @@
 
 | **Input**                                    | **Output**                     |
 |----------------------------------------------|--------------------------------|
-| `How many numbers are you going to enter?` 6 | `EVEN NUMBERS`:                |
+| `How many elements will the array have?` 6   | `EVEN NUMBERS`:                |
 | `Enter a number`: 8                          | 8 2 14 20                      |
 | `Enter a number`: 2                          | `QUANTITY OF EVEN NUMBERS` = 4 |
 | `Enter a number`: 11                         |                                |
