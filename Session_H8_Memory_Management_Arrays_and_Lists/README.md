@@ -21,3 +21,7 @@
 | `Exercise Problem` "oldest"           | [9](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise09)  |
 | `Exercise Problem` "approved"         | [10](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise10) |
 | `Exercise Problem` "people_data"      | [11](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise11) |
+| `Exercise Problem` "room_rental"      | [12](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise12) |
+
+
+
