@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("How many people will you enter? ");
+        System.out.print("How many elements will you enter? ");
         int N = scanner.nextInt();
         Person[] person = new Person[N];
         for (int i = 0; i < person.length; i++) {
