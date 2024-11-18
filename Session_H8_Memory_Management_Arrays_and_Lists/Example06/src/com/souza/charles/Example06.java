@@ -37,7 +37,10 @@ public class Example06 {
         }
         System.out.println(list.size());
         System.out.println("---------------------");
-        String name = list.stream().filter(x -> x.charAt(0) == 'J').findFirst().orElse(null);
+        String name = list.stream().filter(x -> x.charAt(0) == 'A').findFirst().orElse(null);
+        System.out.println(name);
+        System.out.println("---------------------");
+        name = list.stream().filter(x -> x.charAt(0) == 'J').findFirst().orElse(null);
         System.out.println(name);
         System.out.println(list.size());
     }
