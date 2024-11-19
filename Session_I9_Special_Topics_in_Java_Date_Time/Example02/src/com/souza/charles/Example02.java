@@ -13,9 +13,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Example02 {
     public static void main(String[] args) {
-        LocalDate date04 = LocalDate.parse("2022-07-20");
-        LocalDateTime date05 = LocalDateTime.parse("2022-07-20T01:30:26");
-        Instant date06 = Instant.parse("2022-07-20T01:30:26Z");
+        LocalDate date04 = LocalDate.parse("2024-11-19");
+        LocalDateTime date05 = LocalDateTime.parse("2024-11-19T01:30:26");
+        Instant date06 = Instant.parse("2024-11-19T01:30:26Z");
         // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html
         DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
