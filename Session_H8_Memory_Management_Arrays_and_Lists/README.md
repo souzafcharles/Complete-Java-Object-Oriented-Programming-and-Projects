@@ -5,9 +5,13 @@
 - Manipulation of Reference-Type Array Elements (Classes);
 - Element Access;
 - Length Property;
-- List concept
-- List type - Declaration and Instantiation
-- Demo
+- List concept;
+- List type - Declaration and Instantiation;
+- Demo;
+- Review of the matrix concept;
+- Declaration and instantiation;
+- Element access and traversal;
+- Length property;
 - Exercise Solutions:
   
 
@@ -26,5 +30,5 @@
 | `Exercise Problem` "people_data"      | [11](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise11) |
 | `Exercise Problem` "room_rental"      | [12](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise12) |
 | `Exercise Problem` "employee_list"    | [13](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise13) |
-
+| `Exercise Problem`matrix_position     | [14](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists/Exercise14) | 
 
