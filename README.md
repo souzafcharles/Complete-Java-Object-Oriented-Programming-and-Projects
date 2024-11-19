@@ -23,7 +23,7 @@
 - Session F6. [Introduction to Object Oriented Programming](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_F6_Introduction_to_Object_Oriented_Programming)
 - Session G7. [Constructors, this Keyword, Overloading and Encapsulation](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_G7_Constructors_This_keyword_Overloading_Encapsulation)
 - Session H8. [Memory Management, Arrays and Lists](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists)
-- Session I9. Special Topics in Java
+- Session I9. Special Topics in Java: Date-Time
 - Session J10. Enumerations and Composition
 - Session K11. Inheritance and Polymorphism
 - Session L12. Handling Exceptions
