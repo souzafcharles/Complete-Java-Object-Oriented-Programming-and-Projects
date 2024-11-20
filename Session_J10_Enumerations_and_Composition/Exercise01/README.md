@@ -2,7 +2,9 @@
 **Instructions**: Read the data of a worker with N contracts (N provided by the user). Then, prompt the user for a month and display the worker's salary for that month, as shown in the example.
 
 ### Worker Model
-![Worker Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_J10_Enumerations_and_Composition/Exercise01/worker-model.png)
+![Worker Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_J10_Enumerations_and_Composition/Exercise01/worker-model.png)
+
+
 ### Example Inputs and Outputs
 
 | **Input**                                                     | **Output**                    |
