@@ -1,12 +1,14 @@
 package com.souza.charles.application;
 /**
- Course title: Complete Java - Object-Oriented Programming + Projects
- Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
- Exercise done by: Charles Fernandes de Souza
- Date: November 21, 2024
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Exercise done by: Charles Fernandes de Souza
+  Date: November 21, 2024
  */
+
 import com.souza.charles.entities.Comment;
 import com.souza.charles.entities.Post;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
