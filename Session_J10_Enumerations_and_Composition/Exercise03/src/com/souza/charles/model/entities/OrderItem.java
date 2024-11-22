@@ -1,6 +1,12 @@
-package com.souza.charles.entities;
-
+package com.souza.charles.model.entities;
+/**
+ Course title: Complete Java - Object-Oriented Programming + Projects
+ Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+ Exercise done by: Charles Fernandes de Souza
+ Date: November 22, 2024
+ */
 public class OrderItem {
+
     private Integer quantityOrderItem;
     private Double priceOrderItem;
     private Product product;
@@ -39,6 +45,11 @@ public class OrderItem {
     }
 
     public Double subTotal(){
-        return quantityOrderItem * product.getPriceProduct();
+        return priceOrderItem * quantityOrderItem;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, $%.2f, Quantity: %d, Subtotal: $%.2f", product.getNameProduct(), product.getPriceProduct(), quantityOrderItem, subTotal());
     }
 }
