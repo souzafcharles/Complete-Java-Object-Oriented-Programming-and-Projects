@@ -27,7 +27,7 @@
 
 ### You should instantiate objects in memory as follows:
 
-### Objects in memory:
+### Objects in memory
 ![Objects in Memory Order](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_J10_Enumerations_and_Composition/Exercise03/objects-in-memory-order.png)
 
 
