@@ -1,11 +1,13 @@
 package com.souza.charles.model.entities;
 /**
- Course title: Complete Java - Object-Oriented Programming + Projects
- Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
- Exercise done by: Charles Fernandes de Souza
- Date: November 22, 2024
+ * Course title: Complete Java - Object-Oriented Programming + Projects
+ * Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+ * Exercise done by: Charles Fernandes de Souza
+ * Date: November 22, 2024
  */
+
 import com.souza.charles.model.enums.OrderStatus;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -52,10 +54,6 @@ public class Order {
         this.client = client;
     }
 
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
     public void addItem(OrderItem item) {
         items.add(item);
     }
@@ -63,13 +61,17 @@ public class Order {
     public void removeItem(OrderItem item) {
         items.remove(item);
     }
-
+    /**
     public Double total() {
         double sum = 0.0;
         for (OrderItem item : items) {
             sum += item.subTotal();
         }
         return sum;
+    }
+    */
+    public Double total() {
+        return items.stream().mapToDouble(OrderItem::subTotal).sum();
     }
 
     @Override
