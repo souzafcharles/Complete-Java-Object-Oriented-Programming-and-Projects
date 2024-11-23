@@ -16,3 +16,8 @@ public void loan(double amount) {
     }
 }
 ```
+Change the access modifier to protected:
+
+```java
+protected Double balance;
+```
