@@ -17,7 +17,7 @@ public class App {
         Account account01 = businessAccount;
         Account account02 = new BusinessAccount(1003, "Epaminondas Astolpho", 0.0, 200.0);
         Account account03 = new SavingsAccount(1004, "Sibila Sebastiana", 0.0, 0.01);
-        
+
 
         // DOWNCASTING
 
