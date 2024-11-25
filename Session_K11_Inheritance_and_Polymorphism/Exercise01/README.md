@@ -9,7 +9,7 @@ order they were entered. Build the program according to the project on the bello
 
 ### Employee Model
 
-![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise05/employee-model.png)
+![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise01/employee-model.png)
 
 ### Example Inputs and Outputs
 
@@ -35,6 +35,6 @@ order they were entered. Build the program according to the project on the bello
 
 ### Employee Local Memory Management:
 
-![Employee Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise05/employee-local-memory-management.png)
+![Employee Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise01/employee-local-memory-management.png)
 
 
