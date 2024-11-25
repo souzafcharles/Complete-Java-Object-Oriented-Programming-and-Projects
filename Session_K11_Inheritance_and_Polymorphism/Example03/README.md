@@ -1,7 +1,8 @@
 # Example03
 
-**Instructions**: Consider a banking business that has a standard account and a business account. The business account
-includes all members from the standard account, along with a loan limit and a function to issue loans.
+**Instructions**: Consider a banking business that has a standard account, business account and savings account. The
+business account and savings account includes all members from the standard account, along with a loan limit and a
+function to issue loans.
 
 ### Step 01:
 
