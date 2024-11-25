@@ -3,6 +3,8 @@
 **Instructions**: Consider a banking business that has a standard account and a business account. The business account
 includes all members from the standard account, along with a loan limit and a function to issue loans.
 
+### Step 01:
+
 Assume that a withdrawal operation has a fee of 5.0. However, if the account is of the savings type, this fee should not
 be charged.
 
@@ -29,5 +31,21 @@ public void withdraw(double amount) {
 @Override
 public void withdraw(double amount) {
     balance -= amount;
+}
+```
+
+### Step 02:
+
+Assume that, in the BusinessAccount class, the withdrawal rule is to perform the withdrawal normally as in the
+superclass, and subtract an additional 2.0.
+
+### BusinessAccount:
+
+```java
+
+@Override
+public void withdraw(double amount) {
+    super.withdraw(amount);
+    balance -= 2.0;
 }
 ```
