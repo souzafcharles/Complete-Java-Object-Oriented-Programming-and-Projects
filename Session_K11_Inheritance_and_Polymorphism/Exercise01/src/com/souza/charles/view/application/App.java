@@ -1,4 +1,4 @@
-package com.souza.charles.application;
+package com.souza.charles.view.application;
 
 import com.souza.charles.model.entities.Employee;
 import com.souza.charles.model.entities.OutsoursedEmployee;
