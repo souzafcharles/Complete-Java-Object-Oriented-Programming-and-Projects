@@ -1,7 +1,5 @@
 # Example05
-**Instructions**: Assume that in a banking-related business, only savings accounts and business accounts are allowed. There is no standard account.
-
-To ensure that standard accounts cannot be instantiated, simply add the word "abstract" in the class declaration.
+**Instructions**: Assume that in a banking-related business, only savings accounts and business accounts are allowed. There is no standard account. To ensure that standard accounts cannot be instantiated, simply add the word "abstract" in the class declaration.
 
 ### Account
 ```java

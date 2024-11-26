@@ -1,6 +1,6 @@
 package com.souza.charles.model.entities;
 
-public class Account {
+public abstract class Account {
 
     private Integer number;
     private String holder;
@@ -35,11 +35,11 @@ public class Account {
         return balance;
     }
 
-    public void withdraw(Double amount){
+    public void withdraw(Double amount) {
         balance -= amount + 5.0;
     }
 
-    public void deposit(Double amount){
+    public void deposit(Double amount) {
         balance += amount;
     }
 }

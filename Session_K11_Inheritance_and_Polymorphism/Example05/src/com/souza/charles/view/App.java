@@ -4,20 +4,33 @@ import com.souza.charles.model.entities.Account;
 import com.souza.charles.model.entities.BusinessAccount;
 import com.souza.charles.model.entities.SavingsAccount;
 
+import java.util.ArrayList;
+
+
+import java.util.List;
+
 public class App {
 
     public static void main(String[] args) {
 
-        Account account01 = new Account(1001, "Ivaneide Benedita", 1000.00);
-        account01.withdraw(200.0);
-        System.out.printf("$ %.2f%n", account01.getBalance());
-        Account account02 = new SavingsAccount(1002, "Guerino Crispim", 1000.00, 0.01);
-        account02.withdraw(200.0);
-        System.out.printf("$ %.2f%n", account02.getBalance());
-        Account account03 = new BusinessAccount(1003, "Ludovico Vitalino", 1000.00, 500.0);
-        account03.withdraw(200.0);
-        System.out.printf("$ %.2f%n", account03.getBalance());
+        List<Account> accounts = new ArrayList<>();
+        accounts.add(new SavingsAccount(1001, "Ivaneide Benedita", 500.00, 0.01));
+        accounts.add(new BusinessAccount(1002, "Ludovico Vitalino", 1000.00, 400.0));
+        accounts.add(new SavingsAccount(1003, "Lucinda Sebastiana", 300.00, 0.01));
+        accounts.add(new BusinessAccount(1002, "Guerino Crispim", 500.00, 500.0));
+
+        double sum = 0.0;
+        for (Account account : accounts) {
+            sum += account.getBalance();
+        }
+        System.out.printf("The total balance of all accounts: $ %.2f%n", sum);
+
+        for (Account account : accounts) {
+            account.deposit(10.00);
+        }
+
+        for (Account account : accounts) {
+            System.out.printf("Updated balance for account %d: $ %.2f%n", account.getNumber(), account.getBalance());
+        }
     }
 }
-
-
