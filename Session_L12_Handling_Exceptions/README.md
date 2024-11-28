@@ -5,7 +5,10 @@
 - Try-catch Structure;
 - Method Call Stack;
 - Finally Block;
-- Creating Custom Exceptions.
+- Creating Custom Exceptions;
+- Throws Clause.
+
+
 - Exercise Solutions:
 
 
