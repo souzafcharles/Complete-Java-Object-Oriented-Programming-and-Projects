@@ -28,7 +28,7 @@ public class Company extends TaxPayer {
     public void setNumberOfEmployees(Integer numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
-    
+
     @Override
     public Double tax() {
         return getAnnualIncome() * ((getNumberOfEmployees() > 10) ? TaxConstants.TAX_RATE_14 : TaxConstants.TAX_RATE_16);

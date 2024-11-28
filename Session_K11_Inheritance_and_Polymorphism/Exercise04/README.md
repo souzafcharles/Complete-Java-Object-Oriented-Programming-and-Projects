@@ -37,3 +37,9 @@ income, and number of employees. The rules for calculating taxes are as follows:
 | `Name:`: Bob                        |                           |
 | `Anual income`:  120000.00          |                           |
 | `Health expenditures:` 1000.00      |                           |
+
+### TaxPayer Local Memory Management:
+
+![Tax Payer Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise04/tax-payer-local-memory-management.png)
+
+
