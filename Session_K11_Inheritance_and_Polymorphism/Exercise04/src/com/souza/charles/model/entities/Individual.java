@@ -5,6 +5,7 @@ package com.souza.charles.model.entities;
  Exercise done by: Charles Fernandes de Souza
  Date: November 27, 2024
  */
+
 import com.souza.charles.model.utils.TaxConstants;
 
 public class Individual extends TaxPayer {

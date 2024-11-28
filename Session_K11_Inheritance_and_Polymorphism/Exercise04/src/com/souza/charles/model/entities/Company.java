@@ -5,6 +5,7 @@ package com.souza.charles.model.entities;
  Exercise done by: Charles Fernandes de Souza
  Date: November 27, 2024
  */
+
 import com.souza.charles.model.utils.TaxConstants;
 
 public class Company extends TaxPayer {
@@ -27,15 +28,9 @@ public class Company extends TaxPayer {
     public void setNumberOfEmployees(Integer numberOfEmployees) {
         this.numberOfEmployees = numberOfEmployees;
     }
-
+    
     @Override
     public Double tax() {
-        double taxToPay = 0.00;
-        if (getNumberOfEmployees() > 10) {
-            taxToPay = getAnnualIncome() * TaxConstants.TAX_RATE_14;
-        } else {
-            taxToPay = getAnnualIncome() * TaxConstants.TAX_RATE_16;
-        }
-        return taxToPay;
+        return getAnnualIncome() * ((getNumberOfEmployees() > 10) ? TaxConstants.TAX_RATE_14 : TaxConstants.TAX_RATE_16);
     }
 }
