@@ -26,7 +26,7 @@
 - Session I9. [Special Topics in Java: Date-Time](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_I9_Special_Topics_in_Java_Date_Time)
 - Session J10. [Enumerations and Composition](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_J10_Enumerations_and_Composition)
 - Session K11. [Inheritance and Polymorphism](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_K11_Inheritance_and_Polymorphism)
-- Session L12. Handling Exceptions
+- Session L12. [Handling Exceptions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_L12_Handling_Exceptions)
 - Session M13. Project: Chess game system
 - Session N14. Working with files
 - Session O15. Interfaces
