@@ -8,9 +8,9 @@
 
 :triangular_flag_on_post: Prof. Dr. Nelio Alves - [Udemy, Inc.](https://www.udemy.com/)
 
-:waxing_crescent_moon: IDE used: Eclipse and IntelliJ IDEA
+:black_nib: IDE used: `Eclipse` and `IntelliJ IDEA`
 
-:coffee: Java version: :one::eight: and :two::one:
+:coffee: Java | version: `18` and `21`
 
 
 ## Course Session
