@@ -1,4 +1,10 @@
 package com.souza.charles.model.entities;
+/*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Exercise done by: Charles Fernandes de Souza
+  Date: December 02, 2024
+ */
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,11 +43,11 @@ public class Reservation {
         return checkOut;
     }
 
-    public long duration(){
+    public long duration() {
         return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
 
-    public void updateDates(LocalDate checkIn, LocalDate checkOut){
+    public void updateDates(LocalDate checkIn, LocalDate checkOut) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
