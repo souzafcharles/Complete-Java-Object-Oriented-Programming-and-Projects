@@ -6,6 +6,8 @@ package com.souza.charles.model.entities;
   Date: December 03, 2024
  */
 
+import com.souza.charles.model.exceptions.DomainException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -21,7 +23,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Integer roomNumber, LocalDate checkIn, LocalDate checkOut) {
+    public Reservation(Integer roomNumber, LocalDate checkIn, LocalDate checkOut) throws DomainException {
+        if (!checkOut.isAfter(checkIn)) {
+            throw new DomainException("Error in reservation: Check-out date must be after check-in date\n");
+        }
         this.roomNumber = roomNumber;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -47,16 +52,15 @@ public class Reservation {
         return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
 
-    public String updateDates(LocalDate checkIn, LocalDate checkOut) {
+    public void updateDates(LocalDate checkIn, LocalDate checkOut) throws DomainException {
         if (checkIn.isBefore(LocalDate.now()) || checkOut.isBefore(LocalDate.now())) {
-            return "Error in reservation: Reservation dates for update must be future dates\n";
+            throw new DomainException("Error in reservation: Reservation dates for update must be future dates\n");
         }
         if (!checkOut.isAfter(checkIn)) {
-            return "Error in reservation: Check-out date must be after check-in date\n";
+            throw new DomainException("Error in reservation: Check-out date must be after check-in date\n");
         }
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        return null;
     }
 
     @Override

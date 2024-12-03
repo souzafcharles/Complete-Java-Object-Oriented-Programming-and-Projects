@@ -18,6 +18,8 @@ invalid data for the reservation, according to the following rules:
 
 ### Solution 3 (good): Exception Handling.
 
+ - Class Exception
+
 ### Example Inputs and Outputs
 
 #### Example 01:
