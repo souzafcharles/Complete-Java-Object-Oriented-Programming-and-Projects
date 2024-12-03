@@ -1,4 +1,10 @@
 package com.souza.charles.view.application;
+/*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Exercise done by: Charles Fernandes de Souza
+  Date: December 03, 2024
+ */
 
 import com.souza.charles.model.entities.Account;
 import com.souza.charles.model.exceptions.DomainException;
