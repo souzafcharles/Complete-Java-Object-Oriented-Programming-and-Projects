@@ -16,9 +16,9 @@ invalid data for the reservation, according to the following rules:
 
 ---
 
-### Solution 1 (very poor) | Validation logic in the main program:
+### Solution 1 (very poor) | Validation logic in the main program (App):
 
-- Validation logic not delegated to the reservation.
+- Validation logic not delegated to the Reservation class.
 
 ### Example Inputs and Outputs
 
