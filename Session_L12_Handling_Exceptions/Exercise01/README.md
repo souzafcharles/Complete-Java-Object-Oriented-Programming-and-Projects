@@ -8,9 +8,17 @@ invalid data for the reservation, according to the following rules:
 - Reservation changes can only occur for future dates;
 - The1 check-out date must be greater than the check-in date.
 
+---
+
 ### Reservation Model
 
 ![Reservation Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_L12_Handling_Exceptions/Exercise01/reservation-model.png)
+
+---
+
+### Solution 1 (very poor) | Validation logic in the main program:
+
+- Validation logic not delegated to the reservation.
 
 ### Example Inputs and Outputs
 
@@ -18,7 +26,7 @@ invalid data for the reservation, according to the following rules:
 
 | **Input**                                 | **Output**                                                                          |
 |-------------------------------------------|-------------------------------------------------------------------------------------|
-| `Room number:`: 8021                      | `Reservation`: Room 8021, `check-in`: 23/09/2019, `check-out`: 26/09/2019, 3 nights |
+| `Room number`: 8021                       | `Reservation`: Room 8021, `check-in`: 23/09/2019, `check-out`: 26/09/2019, 3 nights |
 | `Check-in date (dd/MM/yyyy)`: 23/09/2024  | `Reservation`: Room 8021, `check-in`: 24/09/2019, `check-out`: 29/09/2019, 5 night  |
 | `Check-out date (dd/MM/yyyy)`: 26/09/2024 |                                                                                     |
 | `Enter data to update the reservation`:   |                                                                                     |
@@ -29,7 +37,7 @@ invalid data for the reservation, according to the following rules:
 
 | **Input**                                 | **Output**                                                         |
 |-------------------------------------------|--------------------------------------------------------------------|
-| `Room number:`: 8021                      | `Error in reservation`: Check-out date must be after check-in date |
+| `Room number`: 8021                       | `Error in reservation`: Check-out date must be after check-in date |
 | `Check-in date (dd/MM/yyyy)`: 23/09/2024  |                                                                    |
 | `Check-out date (dd/MM/yyyy)`: 21/09/2024 |                                                                    |
 
@@ -37,7 +45,7 @@ invalid data for the reservation, according to the following rules:
 
 | **Input**                                 | **Output**                                                                          |
 |-------------------------------------------|-------------------------------------------------------------------------------------|
-| `Room number:`: 8021                      | `Reservation`: Room 8021, `check-in`: 23/09/2019, `check-out`: 26/09/2019, 3 nights |
+| `Room number`: 8021                       | `Reservation`: Room 8021, `check-in`: 23/09/2019, `check-out`: 26/09/2019, 3 nights |
 | `Check-in date (dd/MM/yyyy)`: 23/09/2024  | `Error in reservation`: Reservation dates for update must be future dates           |
 | `Check-out date (dd/MM/yyyy)`: 26/09/2024 |                                                                                     |
 | `Enter data to update the reservation`:   |                                                                                     |
@@ -48,7 +56,7 @@ invalid data for the reservation, according to the following rules:
 
 | **Input**                                 | **Output**                                                                          |
 |-------------------------------------------|-------------------------------------------------------------------------------------|
-| `Room number:`: 8021                      | `Reservation`: Room 8021, `check-in`: 23/09/2019, `check-out`: 26/09/2019, 3 nights |
+| `Room number`: 8021                       | `Reservation`: Room 8021, `check-in`: 23/09/2019, `check-out`: 26/09/2019, 3 nights |
 | `Check-in date (dd/MM/yyyy)`: 23/09/2024  | `Error in reservation`: Check-out date must be after check-in date                  |
 | `Check-out date (dd/MM/yyyy)`: 26/09/2024 |                                                                                     |
 | `Enter data to update the reservation`:   |                                                                                     |
