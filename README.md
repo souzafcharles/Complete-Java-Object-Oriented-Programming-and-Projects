@@ -27,15 +27,15 @@
 - Section J10. [Enumerations and Composition](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_J10_Enumerations_and_Composition)
 - Section K11. [Inheritance and Polymorphism](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_K11_Inheritance_and_Polymorphism)
 - Section L12. [Handling Exceptions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_L12_Handling_Exceptions)
-- Section M14. Working with files
+- Section M14. Working with Files
 - Sectionn N15. Interfaces
 - Section O16. Generics, Set and Map
 - Section P17. Functional Programming and Lambda Expressions
 - Section Q18. Database Access with JDBC
 - Section R21. Java EE - Object-relational Mapping with JPA/Hibernate
 - Section S22. Project: Web Services with Spring Boot and JPA/Hibernate
-- Section T13. Project: Chess game system
-- Section U23. Spring Boot Project and MongoDB Database (web services + NoSQL)
+- Section T13. Project: Chess Game System
+- Section U23. Spring Boot Project and MongoDB Database (Web Services + NoSQL)
 - Section V19. Graphical Interface with JavaFX
 
 
