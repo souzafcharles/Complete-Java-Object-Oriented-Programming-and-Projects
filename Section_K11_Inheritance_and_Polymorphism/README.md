@@ -7,8 +7,9 @@
 - Final Classes and Methods;
 - Introduction to Polymorphism;
 - Abstract Classes;
-- Abstract Methods;
-- Exercise Solutions:
+- Abstract Methods.
+
+### Exercise Solutions:
 
 | **Exercise**                                   | **Solution**                                                                                                                                                 |
 |------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
