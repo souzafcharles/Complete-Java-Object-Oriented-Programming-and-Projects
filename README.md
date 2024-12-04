@@ -15,7 +15,7 @@
 
 ## Course Sections
 
-- Section 01 | [Introduction to the Java language](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_A1_Introduction_to_the_Java_Language)
+- Section 01 | [Introduction to the Java Language](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_A1_Introduction_to_the_Java_Language)
 - Section 02 | [Sequential Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_B2_Sequential_Structure)
 - Section 03 | [Conditional Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_C3_Conditional_Structure)
 - Section 04 | [Repetitive Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_D4_Repetitive_Structure)
