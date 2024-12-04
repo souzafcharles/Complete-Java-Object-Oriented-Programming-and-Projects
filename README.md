@@ -1,6 +1,6 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
 ![GitHub top language](https://img.shields.io/github/languages/top/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
-![GitHub](https://img.shields.io/github/license/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
+![GitHub license](https://img.shields.io/github/license/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
 ![GitHub last commit](https://img.shields.io/github/last-commit/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
 
 
@@ -37,7 +37,6 @@
 - Section 20 | Project: Chess Game System
 - Section 21 | Spring Boot Project and MongoDB Database (Web Services + NoSQL)
 - Section 22 | Graphical Interface with JavaFX
-
 
 
 ### :link: [Course Access](https://www.udemy.com/course/java-curso-completo/)
