@@ -15,7 +15,7 @@ How to solve this?
 
 ### Account Model
 
-![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Example03/account-model.png)
+![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Example03/account-model.png)
 
 ### Account:
 

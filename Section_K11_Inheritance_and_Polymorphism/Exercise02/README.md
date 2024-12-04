@@ -4,7 +4,7 @@
 
 ### Product Model
 
-![Product Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise02/product-model.png)
+![Product Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Exercise02/product-model.png)
 
 ### Example Inputs and Outputs
 

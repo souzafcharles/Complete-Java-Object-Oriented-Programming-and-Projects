@@ -6,5 +6,5 @@ function to issue loans.
 Implement the classes Account, BusinessAccount and SavingsAccount and conduct some tests.
 
 ### Account Model
-![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Example02/account-model.png)
+![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Example02/account-model.png)
 

@@ -19,7 +19,7 @@ public final class SavingsAccount {
 
 ### Account Model
 
-![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Example04/account-model.png)
+![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Example04/account-model.png)
 
 ## Step 02:
 

@@ -15,7 +15,7 @@ income, and number of employees. The rules for calculating taxes are as follows:
 
 ### TaxPayer Model
 
-![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise04/tax-payer-model.png)
+![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Exercise04/tax-payer-model.png)
 
 ### Example Inputs and Outputs
 
@@ -40,4 +40,4 @@ income, and number of employees. The rules for calculating taxes are as follows:
 
 ### TaxPayer Local Memory Management:
 
-![Tax Payer Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Exercise04/tax-payer-local-memory-management.png)
+![Tax Payer Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Exercise04/tax-payer-local-memory-management.png)

@@ -9,7 +9,7 @@ public abstract class Account {
 UML notation: $italic$
 
 ### Account Model
-![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_K11_Inheritance_and_Polymorphism/Example05/account-model.png)
+![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Example05/account-model.png)
 
 #### Suppose you want to:
 - Calculate the total balance of all accounts;
