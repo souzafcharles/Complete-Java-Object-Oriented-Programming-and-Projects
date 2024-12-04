@@ -1,7 +1,7 @@
 # Exercise 03
 **Instructions**: Read the data of an order with N items (N provided by the user). Then, display an order summary as shown in the example. Note: the order timestamp must be the system timestamp: new Date().
 ### Order Model
-![Order Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_J10_Enumerations_and_Composition/Exercise03/order-model.png)
+![Order Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_J10_Enumerations_and_Composition/Exercise03/order-model.png)
 
 
 ### Example Inputs and Outputs
@@ -28,7 +28,7 @@
 ### You should instantiate objects in memory as follows:
 
 ### Objects in memory
-![Objects in Memory Order](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Session_J10_Enumerations_and_Composition/Exercise03/objects-in-memory-order.png)
+![Objects in Memory Order](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_J10_Enumerations_and_Composition/Exercise03/objects-in-memory-order.png)
 
 
 
