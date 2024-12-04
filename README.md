@@ -15,19 +15,19 @@
 
 ## Course Sections
 
-- Section 01 | [Introduction to the Java language](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_A1_Introduction_to_the_Java_Language)
-- Section 02 | [Sequential Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_B2_Sequential_Structure)
-- Section 03 | [Conditional Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_C3_Conditional_Structure)
-- Section 04 | [Repetitive Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_D4_Repetitive_Structure)
-- Section 05 | [Other Java Basic Topics](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_E5_Other_Java_Basic_Topics)
-- Section 06 | [Introduction to Object Oriented Programming](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_F6_Introduction_to_Object_Oriented_Programming)
-- Section 07 | [Constructors, this Keyword, Overloading and Encapsulation](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_G7_Constructors_This_keyword_Overloading_Encapsulation)
-- Section 08 | [Memory Management, Arrays and Lists](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_H8_Memory_Management_Arrays_and_Lists)
-- Section 09 | [Special Topics in Java: Date-Time](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_I9_Special_Topics_in_Java_Date_Time)
-- Section 10 | [Enumerations and Composition](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_J10_Enumerations_and_Composition)
-- Section 11 | [Inheritance and Polymorphism](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_K11_Inheritance_and_Polymorphism)
-- Section 12 | [Handling Exceptions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Session_L12_Handling_Exceptions)
-- Section 13 | Working with Files
+- Section 01 | [Introduction to the Java language](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_A1_Introduction_to_the_Java_Language)
+- Section 02 | [Sequential Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_B2_Sequential_Structure)
+- Section 03 | [Conditional Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_C3_Conditional_Structure)
+- Section 04 | [Repetitive Structure](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_D4_Repetitive_Structure)
+- Section 05 | [Other Java Basic Topics](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_E5_Other_Java_Basic_Topics)
+- Section 06 | [Introduction to Object Oriented Programming](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_F6_Introduction_to_Object_Oriented_Programming)
+- Section 07 | [Constructors, this Keyword, Overloading and Encapsulation](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_G7_Constructors_This_keyword_Overloading_Encapsulation)
+- Section 08 | [Memory Management, Arrays and Lists](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_H8_Memory_Management_Arrays_and_Lists)
+- Section 09 | [Special Topics in Java: Date-Time](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_I9_Special_Topics_in_Java_Date_Time)
+- Section 10 | [Enumerations and Composition](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_J10_Enumerations_and_Composition)
+- Section 11 | [Inheritance and Polymorphism](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_K11_Inheritance_and_Polymorphism)
+- Section 12 | [Handling Exceptions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_L12_Handling_Exceptions)
+- Section 13 | [Working with Files](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_M13_Working_with_Files)
 - Section 14 | Interfaces
 - Section 15 | Generics, Set and Map
 - Section 16 | Functional Programming and Lambda Expressions
