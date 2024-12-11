@@ -1,10 +1,17 @@
 package com.souza.charles.model.entities;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Example adapted by: Charles Fernandes de Souza
+  Date: December 11, 2024
+ */
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CarRental {
-    private LocalDate start;
-    private LocalDate finish;
+
+    private LocalDateTime start;
+    private LocalDateTime finish;
 
     private Vehicle vehicle;
     private Invoice invoice;
@@ -12,25 +19,25 @@ public class CarRental {
     public CarRental() {
     }
 
-    public CarRental(LocalDate start, LocalDate finish, Vehicle vehicle) {
+    public CarRental(LocalDateTime start, LocalDateTime finish, Vehicle vehicle) {
         this.start = start;
         this.finish = finish;
         this.vehicle = vehicle;
     }
 
-    public LocalDate getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(LocalDate start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public LocalDate getFinish() {
+    public LocalDateTime getFinish() {
         return finish;
     }
 
-    public void setFinish(LocalDate finish) {
+    public void setFinish(LocalDateTime finish) {
         this.finish = finish;
     }
 
