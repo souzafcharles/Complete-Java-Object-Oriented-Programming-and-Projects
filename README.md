@@ -28,7 +28,7 @@
 - Section 11 | [Inheritance and Polymorphism](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_K11_Inheritance_and_Polymorphism)
 - Section 12 | [Handling Exceptions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_L12_Handling_Exceptions)
 - Section 13 | [Working with Files](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_M13_Working_with_Files)
-- Section 14 | Interfaces
+- Section 14 | [Interfaces](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_N14_Interfaces)
 - Section 15 | Generics, Set and Map
 - Section 16 | Functional Programming and Lambda Expressions
 - Section 17 | Database Access with JDBC
