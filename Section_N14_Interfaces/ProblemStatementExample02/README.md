@@ -50,8 +50,6 @@ Tax = 390 × 15% = 390 × 0.15 = 58.50
 
 ![Objects in Memory Car Rental](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample02/objects-in-memory-car-rental.png)
 
-### Service Layer Design 
+### Service Layer Design
 
 ![Service Layer Design Car Rental](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample02/service-layer-design-car-rental.png)
-
-
