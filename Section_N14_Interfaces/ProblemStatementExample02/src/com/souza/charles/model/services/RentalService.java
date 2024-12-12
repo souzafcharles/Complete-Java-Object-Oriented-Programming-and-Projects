@@ -3,7 +3,7 @@ package com.souza.charles.model.services;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Example adapted by: Charles Fernandes de Souza
-  Date: December 11, 2024
+  Date: December 12, 2024
  */
 
 import com.souza.charles.model.entities.CarRental;
@@ -16,9 +16,9 @@ public class RentalService {
     private Double pricePerDay;
     private Double pricePerHour;
 
-    private BrazilTaxService taxService;
+    private TaxService taxService;
 
-    public RentalService(Double pricePerDay, Double pricePerHour, BrazilTaxService taxService) {
+    public RentalService(Double pricePerDay, Double pricePerHour, TaxService taxService) {
         this.pricePerDay = pricePerDay;
         this.pricePerHour = pricePerHour;
         this.taxService = taxService;

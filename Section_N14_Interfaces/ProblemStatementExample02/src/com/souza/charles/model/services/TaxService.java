@@ -5,9 +5,6 @@ package com.souza.charles.model.services;
  Example adapted by: Charles Fernandes de Souza
  Date: December 12, 2024
 */
-
-public class BrazilTaxService implements TaxService{
-    public double tax(double amount) {
-        return amount <= 100.0 ? amount * 0.2 : amount * 0.15;
-    }
+public interface TaxService {
+    double tax(double amount);
 }
