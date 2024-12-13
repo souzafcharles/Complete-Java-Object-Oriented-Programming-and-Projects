@@ -30,7 +30,7 @@ public class App {
         int numberOfInstalments = scanner.nextInt();
         ContractService contractService = new ContractService(new PaypalService());
         contractService.processContract(contract, numberOfInstalments);
-        System.out.println("Installment: ");
+        System.out.println("Installments: ");
         for (Installment installment : contract.getInstallments()) {
             System.out.println(installment);
         }
