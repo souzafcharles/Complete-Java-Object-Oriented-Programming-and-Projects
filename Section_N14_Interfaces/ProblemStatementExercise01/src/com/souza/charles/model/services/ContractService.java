@@ -3,7 +3,7 @@ package com.souza.charles.model.services;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Exercise done by: Charles Fernandes de Souza
-  Date: December 13, 2024
+  Date: December 15, 2024
  */
 
 import com.souza.charles.model.entities.Contract;
@@ -24,8 +24,7 @@ public class ContractService {
             LocalDate dueDate = contract.getDate().plusMonths(i);
             double interest = onlinePaymentService.interest(basicQuota, i);
             double fee = onlinePaymentService.paymentFee(basicQuota + interest);
-            double quota = basicQuota + interest + fee;
-            contract.getInstallments().add(new Installment(dueDate, quota));
+            contract.getInstallments().add(new Installment(dueDate, basicQuota + interest + fee));
         }
     }
 }
