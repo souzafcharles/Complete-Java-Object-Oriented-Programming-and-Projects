@@ -2,7 +2,7 @@ package com.souza.charles.model.entities;
 
 import com.souza.charles.model.enums.Color;
 
-public class Rectangle extends Shape {
+public class Rectangle extends AbstractShape {
 
     private Double width;
     private Double height;

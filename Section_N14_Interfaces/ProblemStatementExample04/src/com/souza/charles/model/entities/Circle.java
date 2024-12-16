@@ -2,7 +2,7 @@ package com.souza.charles.model.entities;
 
 import com.souza.charles.model.enums.Color;
 
-public class Circle extends Shape{
+public class Circle extends AbstractShape {
 
     private Double radius;
 
@@ -22,6 +22,6 @@ public class Circle extends Shape{
 
     @Override
     public double area() {
-        return Math.PI * Math.pow(getRadius(),2);
+        return Math.PI * Math.pow(getRadius(), 2);
     }
 }
