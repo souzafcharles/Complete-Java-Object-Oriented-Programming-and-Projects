@@ -2,9 +2,9 @@
 
 **Instructions**: Write a program to read the instructions of a device and then display the functions of those devices.
 
-### Shape Model
+### Device Model
 
-![Shape Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample04/device-model.png)
+![Device Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample05/device-model.png)
 
 ### Example Inputs and Outputs
 
