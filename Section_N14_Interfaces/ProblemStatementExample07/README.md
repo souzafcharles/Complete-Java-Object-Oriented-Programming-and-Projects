@@ -1,4 +1,4 @@
-# Problem Example 06
+# Problem Example 07
 
 **Instructions**: Write a program to read a file containing a list of employee names (one name per line), store them in
 a list, sort the list, and display the sorted names on the console. Note: the file path can be hardcoded.
