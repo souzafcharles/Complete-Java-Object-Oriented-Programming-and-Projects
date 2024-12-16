@@ -11,7 +11,29 @@ per month.
 
 ### Example Inputs and Outputs
 
+**Brazilian interest**:
+
 | **Input**        | **Output**                |
 |------------------|---------------------------|
 | `Amount`: 200.00 | `Payment after 3 months`: |
 | `Months`: 3      | 212.24                    |
+
+```
+Calculation: 
+Payment = 200 * 1.02 * 1.02 * 1.02 = 200 * 1.023 = 212.2416
+Payment = amount * (1 + interestRate / 100)^N
+```
+
+**USA interest**:
+
+| **Input**        | **Output**                |
+|------------------|---------------------------|
+| `Amount`: 200.00 | `Payment after 3 months`: |
+| `Months`: 3      | 206.06                    |
+
+```
+Calculation: 
+Payment = 200 * 1.01 * 1.01 * 1.01 = 200 * 1.013 = 206.0602
+Payment = amount * (1 + interestRate / 100)^N
+```
+
