@@ -1,4 +1,4 @@
-# Problem Example 05
+# Problem Example 06
 
 **Instructions**: Write a program to read the instructions of a device and then display the functions of those devices.
 
