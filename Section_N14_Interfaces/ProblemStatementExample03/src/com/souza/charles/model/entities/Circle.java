@@ -1,8 +1,14 @@
 package com.souza.charles.model.entities;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Example adapted by: Charles Fernandes de Souza
+  Date: December 15, 2024
+ */
 
 import com.souza.charles.model.enums.Color;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
 
     private Double radius;
 
@@ -22,6 +28,6 @@ public class Circle extends Shape{
 
     @Override
     public double area() {
-        return Math.PI * Math.pow(getRadius(),2);
+        return Math.PI * Math.pow(getRadius(), 2);
     }
 }
