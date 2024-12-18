@@ -1,6 +1,6 @@
 # Problem Statement Example 01
 
-## Motivating Problem 1 (Reuse)
+## Motivating Problem 01 (Reuse)
 
 **Instructions**: Write a program that reads an integer N, followed by N integer numbers. Print the numbers in a
 formatted list as shown in the example. Finally, output the first number entered.
