@@ -14,7 +14,7 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        PrintService printService = new PrintService();
+        PrintService <Integer> printService = new PrintService<>();
         System.out.print("How many values? ");
         int N = scanner.nextInt();
         for (int i = 0; i < N; i++) {

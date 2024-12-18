@@ -9,15 +9,15 @@ package com.souza.charles.model.services;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintService {
+public class PrintService <T>{
 
-    List<Object> list = new ArrayList<>();
+    List<T> list = new ArrayList<>();
 
-    public void addValue(Object value) {
+    public void addValue(T value) {
         list.add(value);
     }
 
-    public Object first() {
+    public T first() {
         if (list.isEmpty()) {
             throw new IllegalStateException("List is empty!");
         }
