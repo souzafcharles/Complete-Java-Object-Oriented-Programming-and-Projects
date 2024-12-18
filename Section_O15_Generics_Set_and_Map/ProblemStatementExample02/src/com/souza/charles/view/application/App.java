@@ -22,7 +22,7 @@ public class App {
             printService.addValue(value);
         }
         printService.print();
-        System.out.printf("\nFirst: %d", printService.first());
+        System.out.print("\nFirst: " + printService.first());
         scanner.close();
     }
 }
