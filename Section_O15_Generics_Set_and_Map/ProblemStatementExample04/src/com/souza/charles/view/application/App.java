@@ -14,11 +14,11 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        PrintService <Integer> printService = new PrintService<>();
+        PrintService <String> printService = new PrintService<>();
         System.out.print("How many values? ");
         int N = scanner.nextInt();
         for (int i = 0; i < N; i++) {
-            int value = scanner.nextInt();
+            String value = scanner.next();
             printService.addValue(value);
         }
         printService.print();
