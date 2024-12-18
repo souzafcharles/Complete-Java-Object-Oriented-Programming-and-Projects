@@ -17,3 +17,8 @@ formatted list as shown in the example. Finally, output the first number entered
 | 10                   | `First`: 10 |
 | 8                    |             |
 | 23                   |             |
+| **Problem Statement Examples** | **Perspective**                                  | **Solution**                                                                                                                                                                         |
+|--------------------------------|--------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ProblemStatementExample01`    | Motivating Problem 1 (reuse)                     | <center>[1](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample01)</center> |
+| `ProblemStatementExample02`    | Motivating problem 1 (type safety & performance) | <center>[2](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample02)</center> |
+| `ProblemStatementExample03`    | Solution with Generics                           | <center>[3](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample03)</center> |
