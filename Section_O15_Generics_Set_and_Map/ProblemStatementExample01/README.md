@@ -11,9 +11,9 @@ formatted list as shown in the example. Finally, output the first number entered
 
 ### Example Inputs and Outputs
 
-| **Input**            | **Output**    |
-|----------------------|---------------|
-| `How many values?` 3 | [`10, 8, 23`] |
-| 10                   | `First`: 10   |
-| 8                    |               |
-| 23                   |               |
+| **Input**            | **Output**  |
+|----------------------|-------------|
+| `How many values?` 3 | [10, 8, 23] |
+| 10                   | `First`: 10 |
+| 8                    |             |
+| 23                   |             |
