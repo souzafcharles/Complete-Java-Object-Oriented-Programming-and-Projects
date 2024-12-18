@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ecdebe-22f6-4624-a7ae-9e88a26a07df" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProblemStatementExample01/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ProblemStatementExample01/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProblemStatementExample01/print-service-model.png" beforeDir="false" afterPath="$PROJECT_DIR$/ProblemStatementExample01/print-service-model.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +31,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Charles/OneDrive/Documentos/Cursos_Livres/Udemy/Udemy-JAVA-Language/Section_O15_Generics_Set_and_Map"
+    "last_opened_file_path": "C:/Users/Charles/OneDrive/Documentos/Cursos_Livres/Udemy/Udemy-JAVA-Language/Section_O15_Generics_Set_and_Map/ProblemStatementExample01"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
