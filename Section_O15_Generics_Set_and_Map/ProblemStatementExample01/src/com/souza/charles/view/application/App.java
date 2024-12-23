@@ -7,7 +7,6 @@ package com.souza.charles.view.application;
  */
 
 import com.souza.charles.model.services.PrintService;
-
 import java.util.Scanner;
 
 public class App {
