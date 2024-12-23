@@ -1,4 +1,10 @@
 package com.souza.charles.view.application;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Example adapted by: Charles Fernandes de Souza
+  Date: December 23, 2024
+ */
 
 import com.souza.charles.model.entities.Product;
 import com.souza.charles.model.services.CalculationService;
@@ -10,13 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class App {
-
     public static void main(String[] args) {
-
         List<Product> list = new ArrayList<>();
-
         String path = "C:\\tmp\\in.txt";
-
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line = bufferedReader.readLine();
             while (line != null) {
@@ -27,7 +29,6 @@ public class App {
             Product product = CalculationService.max(list);
             System.out.println("Most expensive:");
             System.out.println(product);
-
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
