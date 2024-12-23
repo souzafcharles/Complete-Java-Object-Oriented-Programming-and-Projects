@@ -5,6 +5,7 @@ package com.souza.charles.model.entities;
  Example adapted by: Charles Fernandes de Souza
  Date: December 23, 2024
 */
+
 public class Product implements Comparable<Product> {
 
     private String name;
