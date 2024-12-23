@@ -34,13 +34,13 @@ public class Product implements Comparable<Product> {
         this.price = price;
     }
 
+   @Override
+    public int compareTo(Product other) {
+        return price.compareTo(other.getPrice());
+    }
+ 
     @Override
     public String toString() {
         return String.format("%s, %.2f", name, price);
-    }
-
-    @Override
-    public int compareTo(Product other) {
-        return price.compareTo(other.getPrice());
     }
 }
