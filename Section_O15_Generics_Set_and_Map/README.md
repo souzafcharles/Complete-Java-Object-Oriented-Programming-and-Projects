@@ -7,4 +7,6 @@
 | `ProblemStatementExample02`    | Motivating Problem 02 (Type Safety & Performance) | <center>[2](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample02)</center> |
 | `ProblemStatementExample03`    | Solution with Generics  (Integer)                 | <center>[3](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample03)</center> |
 | `ProblemStatementExample04`    | Solution with Generics  (String)                  | <center>[4](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample04)</center> |
+| `ProblemStatementExample05`    | Bounded Generics                                  | <center>[5](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample05)</center> |
+| `ProblemStatementExample06`    | Bounded Generics (Alternative Complete Version)   | <center>[6](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample06)</center> |
 ****
