@@ -1,0 +1,36 @@
+package com.souza.charles.view.application;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Example adapted by: Charles Fernandes de Souza
+  Date: December 24, 2024
+ */
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class App {
+    public static void main(String[] args) {
+        List<Integer> myInts = Arrays.asList(1, 2, 3, 4);
+        List<Double> myDoubles = Arrays.asList(3.14, 6.28);
+        List<Object> myObjs = new ArrayList<Object>();
+        copy(myInts, myObjs);
+        printList(myObjs);
+        copy(myDoubles, myObjs);
+        printList(myObjs);
+    }
+
+    public static void copy(List<? extends Number> source, List<? super Number> destiny) {
+        for (Number number : source) {
+            destiny.add(number);
+        }
+    }
+
+    public static void printList(List<?> list) {
+        for (Object obj : list) {
+            System.out.print(obj + " ");
+        }
+        System.out.println();
+    }
+}
