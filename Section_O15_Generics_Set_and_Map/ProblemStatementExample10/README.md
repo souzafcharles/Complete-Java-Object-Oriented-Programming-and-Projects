@@ -4,11 +4,15 @@
 
 ### Example Inputs and Outputs
 
-| **Input**   | **Output** |
-|-------------|------------|
-| `Computer`  | Smartphone |
-| `Smatphone` | Tablet     |
-| `Tablet`    | Computer   |   
+| **Input**                    | **Output** |
+|------------------------------|------------|
+| `Computer`                   | Smartphone |
+| `Smatphone`                  | Tablet     |
+| `Tablet`                     | Computer   |   
+| `set.contains("Notebook")`   | false      |
+| `set.contains("Smartphone")` | true       |
+
+### HashSet O(1) operations on Hash Table:
 
 ```java
 Set<String> set = new HashSet<>();
