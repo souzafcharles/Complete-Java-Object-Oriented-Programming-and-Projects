@@ -11,5 +11,5 @@
 | `ProblemStatementExample06`    | Bounded Generics (Alternative Complete Version)   | <center>[6](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample06)</center> |
 | `ProblemStatementExample07`    | Bounded Wildcards                                 | <center>[7](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample07)</center> |
 | `ProblemStatementExample08`    | Get/Put Principle - Covariance & Contravariance   | <center>[8](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample08)</center> |
-
+| `ProblemStatementExample09`    | HashCode & Equals                                 | <center>[9](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample09)</center> |
 ****
