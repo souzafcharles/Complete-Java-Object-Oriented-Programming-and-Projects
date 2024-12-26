@@ -1,6 +1,6 @@
 # Problem Statement Example 11
 
-**Instructions**: Make a program that reads the names of 3 items and performs `HashSet` operations.
+**Instructions**: Make a program that reads the names of 3 items and performs `TreeSet` operations.
 
 ### Example Inputs and Outputs
 
