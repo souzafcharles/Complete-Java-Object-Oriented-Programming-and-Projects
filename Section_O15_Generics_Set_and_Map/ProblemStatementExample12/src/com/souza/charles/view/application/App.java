@@ -6,13 +6,13 @@ package com.souza.charles.view.application;
   Date: December 25, 2024
  */
 
+import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class App {
 
     public static void main(String[] args) {
-        Set<String> set = new TreeSet<>();
+        Set<String> set = new LinkedHashSet<>();
 
         set.add("Computer");
         set.add("Smartphone");

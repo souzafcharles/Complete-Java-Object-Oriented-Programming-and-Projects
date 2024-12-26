@@ -12,8 +12,8 @@
 | `set.contains("Notebook")`   | false      |
 | `set.contains("Smartphone")` | true       |
 
-### TreeSet O(log (n)) operations on Red-Black Tree:
+### LinkedHashSet Operations (add, remove, contains): O(1) and Iteration: O(n):
 
 ```java
-Set<String> set = new TreeSet<>();
+Set<String> set = new LinkedHashSet<>();
 ```
