@@ -1,6 +1,6 @@
 # Problem Statement Example 14
 
-**Instructions**: Write a program that uses a HashSet implementation to read data from a Product (name and price) and
+**Instructions**: Write a program that uses a `HashSet` implementation to read data from a Product (name and price) and
 then check the equality of one of the items.
 
 ### Example Inputs and Outputs
