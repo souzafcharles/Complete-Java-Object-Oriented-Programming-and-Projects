@@ -3,7 +3,7 @@ package com.souza.charles.view.application;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Example adapted by: Charles Fernandes de Souza
-  Date: December 25, 2024
+  Date: December 26, 2024
  */
 
 import java.util.Arrays;
@@ -26,5 +26,9 @@ public class App {
         Set<Integer> E = new TreeSet<>(A);
         E.removeAll(B);
         System.out.println(E);
+        //difference
+        Set<Integer> F = new TreeSet<>(B);
+        F.removeAll(A);
+        System.out.println(F);
     }
 }
