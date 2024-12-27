@@ -19,3 +19,9 @@
 | `ProblemStatementExample15`    | Set: How does TreeSet compare elements?                                       | <center>[15](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample15)</center> |
 
 ****
+
+### Exercise Solutions:
+
+| **Problem Statement Exercise** | **Perspective**            | **Solution**                                                                                                                                                                           |
+|--------------------------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ExerciseProblem01`            | Count log of user accesses | <center>[01](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExercise01)</center> |
