@@ -1,4 +1,10 @@
 package com.souza.charles.view.application;
+/*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Exercise done by: Charles Fernandes de Souza
+  Date: December 26, 2024
+ */
 
 import com.souza.charles.model.entities.LogAccess;
 
@@ -28,14 +34,15 @@ public class Main {
                 }
                 logName = bufferedReader.readLine();
             }
+            /*
             int count = 0;
             for (LogAccess logAccess : logAccesses) {
-                if (logAccesses.contains(logAccess)){
+                if (logAccesses.contains(logAccess)) {
                     count++;
                 }
             }
             System.out.println("Total users: " + count);
-
+            */
             System.out.println("Total users: " + logAccesses.size());
 
         } catch (IOException e) {
