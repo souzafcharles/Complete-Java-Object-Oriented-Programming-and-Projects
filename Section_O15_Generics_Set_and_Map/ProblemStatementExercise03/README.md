@@ -20,8 +20,8 @@ voting records from a file, and then generate a consolidated report with the tot
 
 ### Example Inputs and Outputs:
 
-| **Input**                              | **Output**                |
-|----------------------------------------|---------------------------|
-| Enter file full path: `c:\temp\in.txt` | Balthazar de Bigode: `76` |
-|                                        | Ophelia Birrenta: `71`    |
-|                                        | Ludovico Crispim: `61`    |    
+| **Input**                             | **Output**                |
+|---------------------------------------|---------------------------|
+| Enter file full path: `c:\tmp\in.txt` | Balthazar de Bigode: `76` |
+|                                       | Ophelia Birrenta: `71`    |
+|                                       | Ludovico Crispim: `61`    |    
