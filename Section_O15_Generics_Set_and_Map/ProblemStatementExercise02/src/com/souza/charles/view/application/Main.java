@@ -1,5 +1,10 @@
 package com.souza.charles.view.application;
-
+/*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Exercise done by: Charles Fernandes de Souza
+  Date: December 27, 2024
+ */
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
