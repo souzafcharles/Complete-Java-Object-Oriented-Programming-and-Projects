@@ -6,7 +6,7 @@ package com.souza.charles.view.applications;
   Date: January 01, 2025
  */
 import com.souza.charles.model.entities.Product;
-import com.souza.charles.model.utils.MyComparator;
+import com.souza.charles.model.utils.MyComparatorProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class App {
         productList.add(new Product("Computer", 1200.00));
         productList.add(new Product("Tablet", 450.00));
 
-        productList.sort(new MyComparator());
+        productList.sort(new MyComparatorProduct());
 
         for (Product product : productList) {
             System.out.println(product);
