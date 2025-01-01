@@ -15,7 +15,9 @@ public class App {
         productList.add(new Product("TV", 900.00));
         productList.add(new Product("Computer", 1200.00));
         productList.add(new Product("Tablet", 450.00));
+        
         productList.sort((product01, product02) -> product01.getName().toUpperCase().compareTo(product02.getName().toUpperCase()));
+        
         for (Product product : productList) {
             System.out.println(product);
         }
