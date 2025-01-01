@@ -5,7 +5,6 @@ package com.souza.charles.model.entities;
  Example adapted by: Charles Fernandes de Souza
  Date: January 01, 2025
 */
-
 public class Product {
 
     private String name;
