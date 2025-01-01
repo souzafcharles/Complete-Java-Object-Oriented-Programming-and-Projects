@@ -30,7 +30,7 @@
 - Section 13 | [Working with Files](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_M13_Working_with_Files)
 - Section 14 | [Interfaces](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_N14_Interfaces)
 - Section 15 | [Generics, Set and Map](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_O15_Generics_Set_and_Map)
-- Section 16 | Functional Programming and Lambda Expressions
+- Section 16 | [Functional Programming and Lambda Expressions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_P16_Functional_Programming_and_Lambda_Expressions)
 - Section 17 | Database Access with JDBC
 - Section 18 | Java EE - Object-relational Mapping with JPA/Hibernate
 - Section 19 | Project: Web Services with Spring Boot and JPA/Hibernate
