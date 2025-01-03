@@ -11,7 +11,7 @@
 | `ProblemStatementExample07`    | Functional Interface Predicate: `Reference Method with Static Method`     | <center>[07](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample07)</center>  |
 | `ProblemStatementExample08`    | Functional Interface Predicate: `Reference Method with Non-static Method` | <center>[08](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample08)</center>  |
 | `ProblemStatementExample09`    | Functional Interface Predicate: `Declared Lambda Expression`              | <center>[09](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample09)</center>  |
-| `ProblemStatementExample10`    | Functional Interface Predicate: `Inline Lambda Expression`                | <center>[010](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample10)</center> |
+| `ProblemStatementExample10`    | Functional Interface Predicate: `Inline Lambda Expression`                | <center>[10](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample10)</center> |
 
 ****
 
