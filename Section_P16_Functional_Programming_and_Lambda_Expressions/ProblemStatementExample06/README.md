@@ -1,7 +1,6 @@
 # Problem Statement Example 06 - Interface Implementation.
 
-**Instructions**: Assume a Product class with name and price attributes. Perform operations with Interface Funcional
-using Predicate (example with removeIf).
+**Instructions**: Assume a Product class with name and price attributes. From a list of products, removes from the list only those whose minimum price is 100. Perform operations with Interface Functional using Predicate (example with removeIf).
 
 ### Product Model
 
@@ -9,8 +8,20 @@ using Predicate (example with removeIf).
 
 ### Example Inputs and Outputs:
 
-| **Input**             | **Output**        |
-|-----------------------|-------------------|
-| `TV`, `900.00`        | Computer, 1200.00 |
-| `Computer`, `1200.00` | Tablet, 450.00    |
-| `Tablet`, `450.00`    | TV, 900.00        |
+| **Input**          | **Output**       |
+|--------------------|------------------|
+| `TV`, `900.00`     | Mouse - $50.00   |
+| `Mouse`, `50.00`   | HD Case - $80.90 |
+| `Tablet`, `450.00` |                  |
+| `HD Case`, `80.90` |                  |
+
+
+### Interface Functional - Predicate
+```java
+public class ProductPredicate implements Predicate<Product> {
+    @Override
+    public boolean test(Product product) {
+        return product.getPrice() >= 100.0;
+    }
+}
+```
