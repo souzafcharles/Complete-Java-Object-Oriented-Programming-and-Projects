@@ -17,7 +17,7 @@ public class App {
         productList.add(new Product("TV", 900.00));
         productList.add(new Product("Mouse", 50.00));
         productList.add(new Product("Tablet", 450.00));
-        productList.add(new Product("TaHD Case", 80.90));
+        productList.add(new Product("HD Case", 80.90));
 
         productList.removeIf(new ProductPredicate());
         
