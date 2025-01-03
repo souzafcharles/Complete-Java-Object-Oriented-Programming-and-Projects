@@ -1,4 +1,4 @@
-# Problem Statement Example 08 - Reference Method with Static Method.
+# Problem Statement Example 08 - Reference Method with Non-Static Method.
 
 **Instructions**: Assume a Product class with name and price attributes. From a list of products, removes from the list only those whose minimum price is 100. Perform operations with Interface Functional using Predicate (example with removeIf).
 
