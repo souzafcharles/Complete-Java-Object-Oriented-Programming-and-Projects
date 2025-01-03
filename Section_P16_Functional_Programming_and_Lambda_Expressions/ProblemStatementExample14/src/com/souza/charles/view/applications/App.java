@@ -22,9 +22,6 @@ public class App {
 
         Consumer<Product> consumer = product -> product.setPrice(product.getPrice() * 1.1);
         productList.forEach(consumer);
-
-        for (Product product : productList) {
-            System.out.println(product);
-        }
+	productList.forEach(System.out::println);
     }
 }
