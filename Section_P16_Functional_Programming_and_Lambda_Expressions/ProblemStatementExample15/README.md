@@ -19,5 +19,5 @@ the products by `10%`. Perform operations with Interface Functional using Consum
 ### Inline Lambda Expression
 
 ```java
-Consumer<Product> consumer = product -> product.setPrice(product.getPrice() * 1.1);
+productList.forEach(product -> product.setPrice(product.getPrice() * 1.1));
 ```
