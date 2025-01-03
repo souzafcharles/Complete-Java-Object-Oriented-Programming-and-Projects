@@ -20,9 +20,6 @@ public class App {
         productList.add(new Product("HD Case", 80.90));
 
         productList.forEach(new ProductConsumer());
-        
-        for (Product product : productList) {
-            System.out.println(product);
-        }
+     	productList.forEach(System.out::println);
     }
 }
