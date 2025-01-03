@@ -34,7 +34,7 @@ public class Product {
         this.price = price;
     }
 
-    public boolean StaticProductPredicate () {
+    public boolean nonStaticProductPredicate () {
         return price >= 100.0;
     }
 
