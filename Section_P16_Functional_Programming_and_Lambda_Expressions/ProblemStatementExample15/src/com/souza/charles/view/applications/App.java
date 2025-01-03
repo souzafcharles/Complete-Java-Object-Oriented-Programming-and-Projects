@@ -10,7 +10,6 @@ import com.souza.charles.model.entities.Product;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class App {
     public static void main(String[] args) {
