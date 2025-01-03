@@ -1,6 +1,7 @@
-# Problem Statement Example 06 - Interface Implementation. 
+# Problem Statement Example 06 - Interface Implementation.
 
-**Instructions**: Assume a Product class with name and price attributes. Perform operations with Interface Funcional using Predicate (example with removeIf). 
+**Instructions**: Assume a Product class with name and price attributes. Perform operations with Interface Funcional
+using Predicate (example with removeIf).
 
 ### Product Model
 
