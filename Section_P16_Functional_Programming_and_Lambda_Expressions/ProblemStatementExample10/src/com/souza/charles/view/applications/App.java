@@ -5,8 +5,8 @@ package com.souza.charles.view.applications;
   Example adapted by: Charles Fernandes de Souza
   Date: January 03, 2025
  */
-import com.souza.charles.model.entities.Product;
 
+import com.souza.charles.model.entities.Product;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +17,7 @@ public class App {
         productList.add(new Product("Mouse", 50.00));
         productList.add(new Product("Tablet", 450.00));
         productList.add(new Product("HD Case", 80.90));
-
         productList.removeIf(product -> product.getPrice() >= 100.0);
-        
         for (Product product : productList) {
             System.out.println(product);
         }
