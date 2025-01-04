@@ -20,5 +20,5 @@ map).
 ### Inline Lambda Expression
 
 ```java
-
+List<String> namesList = productList.stream().map(product -> product.getName().toUpperCase()).toList();
 ```
