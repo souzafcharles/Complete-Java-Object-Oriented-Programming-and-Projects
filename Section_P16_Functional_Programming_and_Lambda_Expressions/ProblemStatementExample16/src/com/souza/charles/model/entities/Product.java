@@ -3,7 +3,7 @@ package com.souza.charles.model.entities;
  Course title: Complete Java - Object-Oriented Programming + Projects
  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
  Example adapted by: Charles Fernandes de Souza
- Date: January 03, 2025
+ Date: January 04, 2025
 */
 public class Product {
 

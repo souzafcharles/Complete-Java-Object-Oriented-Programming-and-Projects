@@ -17,7 +17,7 @@ map).
 | `Tablet`, `450.00` | TABLET     |
 | `HD Case`, `80.90` | HD CASE    |
 
-### Interface implementation - Consumer
+### Interface implementation - Function
 
 ```java
 
