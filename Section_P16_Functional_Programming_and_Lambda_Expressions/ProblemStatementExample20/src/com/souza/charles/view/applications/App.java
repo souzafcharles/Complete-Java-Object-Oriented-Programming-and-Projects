@@ -17,7 +17,7 @@ public class App {
         productList.add(new Product("Mouse", 50.00));
         productList.add(new Product("Tablet", 450.00));
         productList.add(new Product("HD Case", 80.90));
-        List<String> namesList = productList.stream().map(product -> product.getName().toUpperCase()).collect(Collectors.toList());
+        List<String> namesList = productList.stream().map(product -> product.getName().toUpperCase()).toList();
      	namesList.forEach(System.out::println);
     }
 }
