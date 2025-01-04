@@ -1,4 +1,4 @@
-# Problem Statement Example 20- Inline Lambda Expression.
+# Problem Statement Example 20 - Inline Lambda Expression.
 
 **Instructions**: Assume a Product class with name and price attributes. From a list of products, generate a new list
 containing the product names in `uppercase`. Perform operations with Interface Functional using Function (example with
