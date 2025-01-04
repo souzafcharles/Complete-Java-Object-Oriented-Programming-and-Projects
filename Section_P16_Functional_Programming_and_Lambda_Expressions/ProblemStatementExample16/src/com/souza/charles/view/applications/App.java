@@ -5,12 +5,12 @@ package com.souza.charles.view.applications;
   Example adapted by: Charles Fernandes de Souza
   Date: January 03, 2025
  */
-
-
 import com.souza.charles.model.entities.Product;
+import com.souza.charles.model.utils.ProductFunction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class App {
         productList.add(new Product("Tablet", 450.00));
         productList.add(new Product("HD Case", 80.90));
 
-        productList.forEach(product -> product.setPrice(product.getPrice() * 1.1));
-        productList.forEach(System.out::println);
+        List<String> namesList = productList.stream().map(new ProductFunction()).collect(Collectors.toList());
+     	namesList.forEach(System.out::println);
     }
 }
