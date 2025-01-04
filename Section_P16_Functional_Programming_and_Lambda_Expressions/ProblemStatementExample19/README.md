@@ -20,5 +20,5 @@ map).
 ### Lambda Expression
 
 ```java
-
+Function<Product, String> function = product -> product.getName().toUpperCase();
 ```
