@@ -20,6 +20,7 @@ map).
 ### Static Method - Product
 
 ```java
-
-
+public static String functionStaticMethod(Product product) {
+    return product.getName().toUpperCase();
+}
 ```

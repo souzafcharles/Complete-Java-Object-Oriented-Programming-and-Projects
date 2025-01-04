@@ -1,4 +1,5 @@
 package com.souza.charles.model.entities;
+
 /*
  Course title: Complete Java - Object-Oriented Programming + Projects
  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
@@ -32,6 +33,10 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public static String functionStaticMethod(Product product) {
+        return product.getName().toUpperCase();
     }
 
     @Override
