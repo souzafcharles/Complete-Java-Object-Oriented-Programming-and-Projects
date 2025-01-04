@@ -8,7 +8,6 @@ package com.souza.charles.view.applications;
 import com.souza.charles.model.entities.Product;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class App {
@@ -18,9 +17,7 @@ public class App {
         productList.add(new Product("Mouse", 50.00));
         productList.add(new Product("Tablet", 450.00));
         productList.add(new Product("HD Case", 80.90));
-
-        Function<Product, String> function = product -> product.getName().toUpperCase();
-        List<String> namesList = productList.stream().map(function).collect(Collectors.toList());
+        List<String> namesList = productList.stream().map(product -> product.getName().toUpperCase()).collect(Collectors.toList());
      	namesList.forEach(System.out::println);
     }
 }
