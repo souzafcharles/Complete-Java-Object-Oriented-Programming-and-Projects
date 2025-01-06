@@ -22,6 +22,6 @@
 | `ProblemStatementExample18`    | Functional Interface Function: `Reference Method with Non-static Method`  | <center>[18](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample18)</center>  |
 | `ProblemStatementExample19`    | Functional Interface Function: `Declared Lambda Expression`               | <center>[19](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample19)</center>  |
 | `ProblemStatementExample20`    | Functional Interface Function: `Inline Lambda Expression`                 | <center>[20](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample20)</center>  |
-
+| `ProblemStatementExample21`    | Passing Functions as Arguments to other Functions                         | <center>[21](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample21)</center>  |
 ****
 
