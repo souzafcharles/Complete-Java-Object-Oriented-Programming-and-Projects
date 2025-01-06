@@ -13,7 +13,7 @@ sum of the prices of only those products whose name begins with “T”.
 |--------------------|------------|
 | `TV`, `900.00`     | $1250.50   |
 | `Mouse`, `50.00`   |            |
-| `Tablet`, `350.00` |            |
+| `Tablet`, `350.50` |            |
 | `HD Case`, `80.90` |            |
 
 ### Functions as Arguments
