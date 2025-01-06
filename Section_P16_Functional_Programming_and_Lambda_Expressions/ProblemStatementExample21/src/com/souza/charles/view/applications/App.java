@@ -5,6 +5,7 @@ package com.souza.charles.view.applications;
   Example adapted by: Charles Fernandes de Souza
   Date: January 06, 2025
  */
+
 import com.souza.charles.model.entities.Product;
 import com.souza.charles.model.services.ProductService;
 
@@ -20,7 +21,8 @@ public class App {
         productList.add(new Product("HD Case", 80.90));
 
         ProductService productService = new ProductService();
-        double filterValueSum = productService.filterSum(productList);
+
+        double filterValueSum = productService.filterSum(productList, product -> product.getName().charAt(0) == 'T');
         System.out.printf("$%.2f", filterValueSum);
     }
 }

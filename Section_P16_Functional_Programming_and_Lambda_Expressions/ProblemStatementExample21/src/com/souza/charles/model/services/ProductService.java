@@ -7,15 +7,15 @@ package com.souza.charles.model.services;
  */
 
 import com.souza.charles.model.entities.Product;
-
 import java.util.List;
+import java.util.function.Predicate;
 
 public class ProductService {
 
-    public double filterSum(List<Product> productList) {
+    public double filterSum(List<Product> productList, Predicate<Product> parameter) {
         double sum = 0.0;
         for (Product products : productList) {
-            if (products.getName().charAt(0) == 'T') {
+            if (parameter.test(products)) {
                 sum += products.getPrice();
             }
         }

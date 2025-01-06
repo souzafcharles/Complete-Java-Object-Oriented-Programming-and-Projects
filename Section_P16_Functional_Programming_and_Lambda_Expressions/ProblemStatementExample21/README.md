@@ -19,5 +19,13 @@ sum of the prices of only those products whose name begins with “T”.
 ### Functions as Arguments
 
 ```java
-
+public double filterSum(List<Product> productList, Predicate<Product> parameter) {
+    double sum = 0.0;
+    for (Product products : productList) {
+        if (parameter.test(products)) {
+            sum += products.getPrice();
+        }
+    }
+    return sum;
+}
 ```
