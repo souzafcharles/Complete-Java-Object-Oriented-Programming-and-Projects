@@ -23,5 +23,8 @@
 | `ProblemStatementExample19`    | Functional Interface Function: `Declared Lambda Expression`               | <center>[19](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample19)</center>  |
 | `ProblemStatementExample20`    | Functional Interface Function: `Inline Lambda Expression`                 | <center>[20](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample20)</center>  |
 | `ProblemStatementExample21`    | Passing Functions as Arguments to other Functions                         | <center>[21](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample21)</center>  |
+| `ProblemStatementExample22`    | API Stream: Operations                                                    | <center>[22](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample22)</center>  |
+| `ProblemStatementExample23`    | API Stream: Pipiline                                                      | <center>[23](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample23)</center>  |
+
 ****
 
