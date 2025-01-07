@@ -18,9 +18,6 @@ public class App {
         Stream<Integer> stream01 = list.stream();
         System.out.println(Arrays.toString(stream01.toArray()));
 
-        Stream<Integer> stream02 = list.stream().map(x -> x * 10);
-        System.out.println(Arrays.toString(stream02.toArray()));
-
         Stream<String> stream03 = Stream.of("Balthazar", "Ophelia", "Ludovico");
         System.out.println(Arrays.toString(stream03.toArray()));
 
