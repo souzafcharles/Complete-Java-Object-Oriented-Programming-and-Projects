@@ -10,8 +10,8 @@
 
 | **Input**             | **Output**                          |
 |-----------------------|-------------------------------------|
-| `Tv,900.00`           | Enter full file path: c:\tmp\in.txt |
-| `Mouse,50.00`         | Average price:  `420.23 `           |
+| `Tv,900.00`           | Enter full file path: C:\tmp\in.txt |
+| `Mouse,50.00`         | Average price:  `$420.23 `          |
 | `Tablet,350.50`       | Tablet                              |
 | `HD Case,80.90`       | Mouse                               |
 | `Computer,850.00`     | Monitor                             |
