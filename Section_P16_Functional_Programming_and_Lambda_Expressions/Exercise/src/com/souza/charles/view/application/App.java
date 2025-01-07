@@ -1,17 +1,14 @@
 package com.souza.charles.view.application;
-/*
-  Course title: Complete Java - Object-Oriented Programming + Projects
-  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
-  Exercise done by: Charles Fernandes de Souza
-  Date: January 07, 2025
- */
 
 import com.souza.charles.model.entities.Product;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
