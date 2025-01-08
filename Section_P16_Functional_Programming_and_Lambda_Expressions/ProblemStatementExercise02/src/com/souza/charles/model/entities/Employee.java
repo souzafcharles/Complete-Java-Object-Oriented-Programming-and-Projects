@@ -1,4 +1,8 @@
 package com.souza.charles.model.entities;
+
+import java.util.List;
+import java.util.function.Predicate;
+
 /*
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
