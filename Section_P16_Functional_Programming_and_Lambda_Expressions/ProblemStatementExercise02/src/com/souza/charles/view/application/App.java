@@ -45,7 +45,6 @@ public class App {
             System.out.printf("Sum of salary of people whose name starts with 'B': $%.2f%n", sumSalary);
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
-            ;
         }
         scanner.close();
     }

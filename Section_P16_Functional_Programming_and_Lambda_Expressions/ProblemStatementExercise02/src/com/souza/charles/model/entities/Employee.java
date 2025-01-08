@@ -1,14 +1,11 @@
 package com.souza.charles.model.entities;
-
-import java.util.List;
-import java.util.function.Predicate;
-
 /*
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Exercise done by: Charles Fernandes de Souza
   Date: January 07, 2025
  */
+
 public class Employee {
 
     private String name;
