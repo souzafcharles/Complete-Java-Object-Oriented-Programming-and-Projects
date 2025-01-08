@@ -1,0 +1,5 @@
+Balthazar,balthazar@mail.com,3200.00
+Ophelia,ophelia@gmail.com,1900.00
+Bartholomew,bartholomew@gmail.com,1700.00
+Margaret,margaret@gmail.com,3500.00
+Abigail,abigail@gmail.com,2800.00
