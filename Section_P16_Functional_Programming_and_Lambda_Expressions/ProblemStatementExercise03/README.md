@@ -1,12 +1,26 @@
-# Problem Statement Exercise 02
+# Problem Statement Exercise 03
 
 **Instructions**: Write a program to read the data (name, email, and salary) of employees from a `.csv` file. Then,
 display in alphabetical order the email of employees whose salary is greater than a given value provided by the user.
 Also, display the sum of the salaries of employees whose name starts with the letter `'B'`.
 
-### Employee Model
+### Employee Class
+````java
+package com.souza.charles.model.entities;
+````
+![Employee Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employee-entities.png)
 
-![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise02/employee-model.png)
+### EmployeeFile Class
+````java
+package com.souza.charles.model.utils;
+````
+![EmployeeFile Utils](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employeeFile-utils.png)
+
+### EmployeeService Class
+````java
+package com.souza.charles.model.services;
+````
+![EmployeeFile Services](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employeeService-services.png)
 
 ### Example Inputs and Outputs:
 
