@@ -38,11 +38,11 @@ public class App {
                     .toList();
             System.out.printf("Email of people whose salary is more than $%.2f: %n", salary);
             emailList.forEach(System.out::println);
-            double sum = employees.stream()
+            double sumSalary = employees.stream()
                     .filter(employee -> employee.getName().charAt(0) == 'B')
                     .map(Employee::getSalary)
                     .reduce(0.0, Double::sum);
-            System.out.printf("Sum of salary of people whose name starts with 'B': $%.2f%n", sum);
+            System.out.printf("Sum of salary of people whose name starts with 'B': $%.2f%n", sumSalary);
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
             ;
