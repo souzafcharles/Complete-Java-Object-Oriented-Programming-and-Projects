@@ -27,4 +27,10 @@
 | `ProblemStatementExample23`    | API Stream: Pipiline                                                      | <center>[23](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExample23)</center>  |
 
 ****
+### Exercise Solutions:
+
+| **Problem Statement Exercise** | **Perspective**                  | **Solution**                                                                                                                                                                                                   |
+|--------------------------------|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ExerciseProblem01`            | API Stream: Pipiline - Products  | <center>[1](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise01)</center> |
+| `ExerciseProblem02`            | API Stream: Pipiline - Employees | <center>[2](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise02)</center> |
 
