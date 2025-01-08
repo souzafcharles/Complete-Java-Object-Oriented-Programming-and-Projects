@@ -20,13 +20,10 @@ public class App {
         String path = scanner.nextLine();
         System.out.print("Enter salary: ");
         Double salary = scanner.nextDouble();
-
         List<Employee> employees = EmployeeFile.readEmployeesFromFile(path);
         List<String> emails = EmployeeService.getEmailsOfHighSalaryEmployees(employees, salary);
-
         System.out.printf("Email of people whose salary is more than $%.2f: %n", salary);
         emails.forEach(System.out::println);
-
         double sumSalary = EmployeeService.getSumSalariesWithNamesStatingWithB(employees);
         System.out.printf("Sum of salary of people whose name starts with 'B': $%.2f%n", sumSalary);
         scanner.close();

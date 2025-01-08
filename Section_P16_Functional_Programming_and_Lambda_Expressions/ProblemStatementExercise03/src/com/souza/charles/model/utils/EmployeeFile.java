@@ -28,7 +28,6 @@ public class EmployeeFile {
             }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
-            ;
         }
         return employees;
     }

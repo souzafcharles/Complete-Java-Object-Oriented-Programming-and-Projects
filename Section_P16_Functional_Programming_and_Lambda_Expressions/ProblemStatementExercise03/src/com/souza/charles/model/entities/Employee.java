@@ -3,7 +3,7 @@ package com.souza.charles.model.entities;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Exercise done by: Charles Fernandes de Souza
-  Date: January 07, 2025
+  Date: January 08, 2025
  */
 
 public class Employee {
@@ -43,10 +43,5 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s - %s - $%.2f", name, email, salary);
     }
 }
