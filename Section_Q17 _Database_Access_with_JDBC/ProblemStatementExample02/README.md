@@ -1,4 +1,4 @@
-# Problem Statement Example 02
+# Problem Statement Example 01
 
 **Instructions**: 
 - Establish a database named `"coursejdbc"` using MySQL Workbench;
