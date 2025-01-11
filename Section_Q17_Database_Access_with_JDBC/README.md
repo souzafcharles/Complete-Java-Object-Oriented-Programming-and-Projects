@@ -7,6 +7,6 @@
 | `ProblemStatementExample03`    | JDBC: `Insert Data - PreparedStatement`           | <center>[03](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample03)</center>  |
 | `ProblemStatementExample04`    | JDBC: `Update Data - PreparedStatement`           | <center>[04](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample04)</center>  |
 | `ProblemStatementExample05`    | JDBC: `Delete Data - PreparedStatement`           | <center>[05](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample05)</center>  |
-| `ProblemStatementExample06`    | JDBC: `Transactions - Statement;`                 | <center>[06](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample06)</center>  |
+| `ProblemStatementExample06`    | JDBC: `Transactions - Statement`                  | <center>[06](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample06)</center>  |
 
 ****
