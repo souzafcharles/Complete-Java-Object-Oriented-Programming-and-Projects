@@ -5,7 +5,7 @@
 - Use API:
 	- `setAutoCommit(false)`, `commit()` and `rollback()`.
 
-### SQL PreparedStatement:
+### SQL Statement:
 
 ```sql
 conn = DB.getConnection();
@@ -14,6 +14,14 @@ st = conn.createStatement();
 int rows01 = st.executeUpdate("UPDATE seller SET BaseSalary = 2090 WHERE DepartmentId = 1");
 int rows02 = st.executeUpdate("UPDATE seller SET BaseSalary = 3090 WHERE DepartmentId = 2");
 conn.commit();
+
+catch (SQLException e) {
+	try {
+		conn.rollback();
+		throw new DbException("Transaction rolled back! Caused by: " + e.getMessage());
+} catch (SQLException ex) {
+		throw new DbException("Error trying to rollback! Caused by: " + ex.getMessage());
+}
 
 ```
 ### Database Preliminary:
@@ -24,6 +32,6 @@ conn.commit();
 
 ### Output Example:
 ```txt
-rows01 =
-rows02 =
+rows01 = 2
+rows02 = 2
 ```
