@@ -28,17 +28,17 @@ public class App {
 		try {
 			conn = DB.getConnection();
 			ps = conn.prepareStatement(
-					"INSERT INTO seller "
+					"INSERT INTO seller " 
 					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
 					+ "VALUES " 
 					+ "(?, ?, ?, ?, ?)", 
 					Statement.RETURN_GENERATED_KEYS);
-			
-			ps.setString(1, "Zuleica Serafina");
-			ps.setString(2, "zuleica@emil.com");
-			ps.setDate(3, new Date(sdf.parse("10/02/1985").getTime()));
-			ps.setDouble(4, 3000.0);
-			ps.setInt(5, 4);
+
+			ps.setString(1, "Vitalino Simplicio");
+			ps.setString(2, "vitalino@emil.com");
+			ps.setDate(3, new Date(sdf.parse("23/10/1995").getTime()));
+			ps.setDouble(4, 4000.0);
+			ps.setInt(5, 3);
 
 			int rowsAffected = ps.executeUpdate();
 
@@ -53,12 +53,11 @@ public class App {
 			}
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-		} 
-		catch (ParseException e) {
+		} catch (ParseException e) {
 			e.printStackTrace();
-		}finally {
-
+		} finally {
 			DB.closeStatement(ps);
+			DB.closePreparedStatement(ps);
 			DB.closeConnection();
 		}
 
