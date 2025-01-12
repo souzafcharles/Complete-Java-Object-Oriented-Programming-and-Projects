@@ -76,7 +76,7 @@ ON DUPLICATE KEY UPDATE
 ### 3. Entities Classes:
 - Create the `Seller` and `Department` classes;
 
-![Seller Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample06/seller-entities.png)
+![Seller Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/seller-entities.png)
 
 #### Entities classes checklist:
 - Attributes;
@@ -134,9 +134,9 @@ WHERE DepartmentId = ?
 ORDER BY Name
 ```
 #### ResultSet Table:
-![ResultSet Table](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample06/resultSet-table.png)
+![ResultSet Table](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/resultSet-table.png)
 #### Associated Objects: 
-![Department Associated Objects](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExample06/department-associated-objects.png)
+![Department Associated Objects](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/department-associated-objects.png)
 
 - **findAll:** Implement the search for `all` records:
 
