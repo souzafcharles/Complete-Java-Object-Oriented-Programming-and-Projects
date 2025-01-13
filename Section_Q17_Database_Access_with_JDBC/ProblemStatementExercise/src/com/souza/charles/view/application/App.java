@@ -24,9 +24,14 @@ public class App {
 		System.out.println(seller);
 
 		System.out.println("\n********** TEST 02: Seller findByDepartment **********");
-		Department department = new Department(2, null);
+		Department department = new Department(3, null);
 		List<Seller> listSeller = sellerDao.findByDepartment(department);
+		for (Seller s : listSeller) {
+			System.out.println(s);
+		}
 
+		System.out.println("\n********** TEST 03: Seller findAll **********");
+		listSeller = sellerDao.findAll();
 		for (Seller s : listSeller) {
 			System.out.println(s);
 		}
