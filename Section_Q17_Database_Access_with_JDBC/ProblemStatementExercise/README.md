@@ -1,4 +1,4 @@
-# Problem Statement Exercise 01
+# Problem Statement Exercise - DAO Pattern (Data Access Object)
 
 **Instructions**: Develop a Java application that connects to a database using `JDBC` and interfaces following the `DAO pattern`, featuring entity classes for `Seller` and `Department`. The target database is `coursejdbc`.
 
@@ -76,7 +76,7 @@ ON DUPLICATE KEY UPDATE
 ### 3. Entities Classes:
 - Create the `Seller` and `Department` classes;
 
-![Seller Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/seller-entities.png)
+![Seller and Department Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/seller-department-entities.png)
 
 #### Entities classes checklist:
 - Attributes;
@@ -91,9 +91,17 @@ ON DUPLICATE KEY UPDATE
    - Create the `DepartmentDao` and `SellerDao` interfaces following the DAO pattern.
    - Implement the classes `SellerDaoJDBC` and `DepartmentDaoJDBC`.
    - Create the `DaoFactory` to instantiate DAO objects.
+   
+![DaoFactory](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/daoFactory.png)
 
 ### 5. CRUD Operations Implementation:
 - **findById:** Implement the search by `ID`:
+
+```java
+SellerDao sellerDao = DaoFactory.createSellerDao();
+Seller seller = sellerDao.findById(3);
+System.out.println(seller);
+```
 
 ```sql
 SELECT seller.*, department.Name as DepName
@@ -177,5 +185,5 @@ WHERE Id = ?
 - Ensure all implemented operations are thoroughly tested.
 
 ### 5. **DepartmentDao Implementation Checklist:**
-- DepartmentDaoJDBC
-- DaoFactory
+- Create DepartmentDaoJDBC
+- Implements DaoFactory

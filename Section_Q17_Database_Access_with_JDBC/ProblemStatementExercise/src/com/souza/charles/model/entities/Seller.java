@@ -3,7 +3,7 @@ package com.souza.charles.model.entities;
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
 Exercise done by: Charles Fernandes de Souza
-Date: January 12, 2025
+Date: January 13, 2025
 */
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +18,8 @@ public class Seller implements Serializable {
 	private String email;
 	private Date birthDate;
 	private Double baseSalary;
+	
+	private Department department;
 
 	public Seller() {
 
@@ -31,7 +33,17 @@ public class Seller implements Serializable {
 		this.birthDate = birthDate;
 		this.baseSalary = baseSalary;
 	}
-
+	
+	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.birthDate = birthDate;
+		this.baseSalary = baseSalary;
+		this.department = department;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -70,6 +82,15 @@ public class Seller implements Serializable {
 
 	public void setBaseSalary(Double baseSalary) {
 		this.baseSalary = baseSalary;
+	}
+	
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override

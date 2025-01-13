@@ -6,10 +6,11 @@ Exercise done by: Charles Fernandes de Souza
 Date: January 12, 2025
 */
 import com.souza.charles.model.dao.impl.SellerDaoJDBC;
+import com.souza.charles.model.db.DB;
 
 public class DaoFactory {
 
 	public static SellerDao createSellerDao() {
-		return new SellerDaoJDBC();
+		return new SellerDaoJDBC(DB.getConnection());
 	}
 }
