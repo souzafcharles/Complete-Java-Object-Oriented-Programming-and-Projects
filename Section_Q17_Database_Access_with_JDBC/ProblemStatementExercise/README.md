@@ -132,8 +132,8 @@ private Seller instantiateSeller(ResultSet resultSet, Department department) thr
      
 private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
 	Department department = new Department();
-	dep.setId(resultSet.getInt("DepartmentId"));
-	dep.setName(resultSet.getString("DepName"));
+	department.setId(resultSet.getInt("DepartmentId"));
+	depepartment.setName(resultSet.getString("DepName"));
 	return department;
 }
 ```
