@@ -97,12 +97,13 @@ ON DUPLICATE KEY UPDATE
 ### 5. CRUD Operations Implementation:
 - **findById:** Implement the search by `ID`:
 
+#### App Class: 
 ```java
 SellerDao sellerDao = DaoFactory.createSellerDao();
 Seller seller = sellerDao.findById(3);
 System.out.println(seller);
 ```
-
+#### SQL Query: 
 ```sql
 SELECT seller.*, department.Name as DepName
 FROM seller
