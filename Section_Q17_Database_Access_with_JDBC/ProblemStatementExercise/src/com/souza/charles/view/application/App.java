@@ -6,6 +6,7 @@ Exercise done by: Charles Fernandes de Souza
 Date: January 14, 2025
 */
 
+import java.util.List;
 //import java.util.Date;
 //import java.util.List;
 import java.util.Scanner;
@@ -28,6 +29,12 @@ public class App {
 		System.out.println("********** TEST 01: Department findByid **********");
 		Department department = departmentDao.findById(1);
 		System.out.println(department);
+		
+		System.out.println("\n********** TEST 03: Department findAll **********");		
+		List<Department> listDepartment = departmentDao.findAll();
+		for (Department d : listDepartment) {
+		    System.out.println(d);
+		}
 
 /*
  		SellerDao sellerDao = DaoFactory.createSellerDao();

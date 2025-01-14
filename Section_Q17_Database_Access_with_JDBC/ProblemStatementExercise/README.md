@@ -95,7 +95,7 @@ ON DUPLICATE KEY UPDATE
 ![DaoFactory](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/daoFactory.png)
 
 ### 5. CRUD Operations Implementation:
-- **findById:** Implement the search by `ID`:
+#### 5.1 **findById:** Implement the search by `ID`:
 
 #### App Class: 
 ```java
@@ -128,7 +128,9 @@ WHERE Id = ?
 #### Associated Objects: 
 ![Seller Associated Objects](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/seller-associated-objects.png)
   
-- **Reusing Instantiation:** Create methods to instantiate `Seller` and `Department` objects from a `ResultSet`:
+#### 5.1.1 **Reusing Instantiation:** Create methods to instantiate `Seller` and `Department` objects from a `ResultSet`:
+
+##### SellerDaoJDBC Class:
 
 ```java
 private Seller instantiateSeller(ResultSet resultSet, Department department) throws SQLException {
@@ -149,8 +151,17 @@ private Department instantiateDepartment(ResultSet resultSet) throws SQLExceptio
 	return department;
 }
 ```
+##### DepartmentDaoJDBC Class:
+```java
+private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
+	Department department = new Department();
+	department.setId(resultSet.getInt("Id"));
+	department.setName(resultSet.getString("Name"));
+	return department;
+	}
+```
 
-- **findByDepartment:** Implement the search by Department:
+#### 5.2 **findByDepartment:** Implement the search by Department:
 
 #### App Class: 
 ```java
@@ -172,13 +183,18 @@ ORDER BY Name
 #### Associated Objects: 
 ![Department Associated Objects](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/department-associated-objects.png)
 
-- **findAll:** Implement the search for `all` records:
+#### 5.3 **findAll:** Implement the search for `all` records:
 
 #### App Class: 
 ```java
 listSeller = sellerDao.findAll();
 for (Seller s : listSeller) {
  System.out.println(s);
+}
+
+List<Department> listDepartment = departmentDao.findAll();
+for (Department d : listDepartment) {
+	System.out.println(d);
 }
 ```
 #### Seller SQL Query: 
@@ -188,8 +204,14 @@ FROM seller
 INNER JOIN department ON seller.DepartmentId = department.Id
 ORDER BY Name
 ```
-     
-- **insert:** Implement the `insertion` of new records:
+#### Department SQL Query: 
+```SQL
+SELECT * 
+FROM department 
+ORDER BY Name
+```
+  
+#### 5.4 **insert:** Implement the `insertion` of new records:
 
 #### App Class: 
 ```java
@@ -203,7 +225,7 @@ INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId)
 VALUES (?, ?, ?, ?, ?)
 ```
      
-- **update:** Implement the `update` of existing records:
+#### 5.5 **update:** Implement the `update` of existing records:
 
 #### App Class: 
 ```java
@@ -224,7 +246,7 @@ SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
 WHERE Id = ?
 ```
      
-- **delete:** Implement the `deletion` of records:
+#### 5.6 **delete:** Implement the `deletion` of records:
 
 #### App Class: 
 ```java
