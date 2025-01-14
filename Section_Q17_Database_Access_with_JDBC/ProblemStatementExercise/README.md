@@ -148,6 +148,7 @@ for (Seller s : listSeller) {
 	System.out.println(s);
 }
 ```
+#### SQL Query:
 ```sql
 SELECT seller.*, department.Name as DepName
 FROM seller
@@ -168,6 +169,7 @@ for (Seller s : listSeller) {
  System.out.println(s);
 }
 ```
+#### SQL Query:
 ```sql
 SELECT seller.*, department.Name as DepName
 FROM seller
@@ -183,6 +185,7 @@ Seller newSeller = new Seller(null, "Bartholomeu Zacarias", "bartholomeu@mail.co
 sellerDao.insert(newSeller);
 System.out.println("Inserted! New id = " + newSeller.getId());
 ```
+#### SQL Query:
 ```sql
 INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId)
 VALUES (?, ?, ?, ?, ?)
@@ -202,6 +205,7 @@ seller.setDepartment(department);
 sellerDao.update(seller);
 System.out.println("Update completed!");
 ```
+#### SQL Query:
 ```sql
 UPDATE seller
 SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
@@ -217,6 +221,7 @@ int id = scanner.nextInt();
 sellerDao.deleteById(id);
 System.out.println("Delete completed!");
 ```
+#### SQL Query:
 ```sql
 DELETE FROM seller
 WHERE Id = ?
