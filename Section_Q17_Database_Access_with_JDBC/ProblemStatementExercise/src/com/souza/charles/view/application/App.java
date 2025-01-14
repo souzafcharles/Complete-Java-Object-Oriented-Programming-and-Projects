@@ -36,6 +36,10 @@ public class App {
 		    System.out.println(d);
 		}
 
+		System.out.println("\n********** TEST 04: Department insert **********");
+		Department newDepartment = new Department(null, "Toys");
+		departmentDao.insert(newDepartment);
+		System.out.println("Inserted! New Department Name = " + newDepartment.getName());
 /*
  		SellerDao sellerDao = DaoFactory.createSellerDao();
   		System.out.println("********** TEST 01: Seller findByid **********");
@@ -58,7 +62,7 @@ public class App {
 		System.out.println("\n********** TEST 04: Seller insert **********");
 		Seller newSeller = new Seller(null, "Bartholomeu Zacarias", "bartholomeu@mail.com", new Date(), 4000.0, department);
 		sellerDao.insert(newSeller);
-		System.out.println("Inserted! New id = " + newSeller.getId());
+		System.out.println("Inserted! New Seller id = " + newSeller.getId());
 
 		System.out.println("\n********** TEST 05: Seller update **********");
 		seller = sellerDao.findById(10);
