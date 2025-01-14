@@ -52,8 +52,18 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public void update(Department department) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = connection.prepareStatement("UPDATE department\r\n" + "SET Name = ?\r\n" + "WHERE Id = ?\r\n" + "");
+			preparedStatement.setString(1, department.getName());
+			preparedStatement.setInt(2, department.getId());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(preparedStatement);
+			DB.closeStatement(preparedStatement);
+		}
 	}
 
 	@Override

@@ -35,11 +35,17 @@ public class App {
 		for (Department d : listDepartment) {
 		    System.out.println(d);
 		}
-
+		
 		System.out.println("\n********** TEST 04: Department insert **********");
 		Department newDepartment = new Department(null, "Toys");
 		departmentDao.insert(newDepartment);
 		System.out.println("Inserted! New Department Name = " + newDepartment.getName());
+
+		System.out.println("\n********** TEST 05: Department update **********");
+		department = departmentDao.findById(7);
+		department.setName("Gifts");
+		departmentDao.update(department);
+		System.out.println("Update completed!");
 /*
  		SellerDao sellerDao = DaoFactory.createSellerDao();
   		System.out.println("********** TEST 01: Seller findByid **********");

@@ -254,7 +254,12 @@ UPDATE seller
 SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
 WHERE Id = ?
 ```
-     
+#### Department SQL Query
+```SQL
+UPDATE department
+SET Name = ?
+WHERE Id = ?
+````
 #### 5.6 **delete -** Implement the `deletion` of records:
 
 
