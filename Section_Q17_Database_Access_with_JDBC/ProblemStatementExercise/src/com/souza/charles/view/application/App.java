@@ -6,6 +6,7 @@ Exercise done by: Charles Fernandes de Souza
 Date: January 13, 2025
 */
 
+import java.util.Date;
 import java.util.List;
 
 import com.souza.charles.model.dao.DaoFactory;
@@ -35,5 +36,10 @@ public class App {
 		for (Seller s : listSeller) {
 			System.out.println(s);
 		}
+		
+		System.out.println("\n********** TEST 04: Seller insert **********");
+		Seller newSeller = new Seller(null, "Bartholomeu Zacarias", "bartholomeu@mail.com", new Date(), 4000.0, department);
+		sellerDao.insert(newSeller);
+		System.out.println("Inserted! New id = " + newSeller.getId());
 	}
 }
