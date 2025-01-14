@@ -11,7 +11,7 @@
 
 #### db.properties File:
 
-```sql
+```SQL
 user=developer
 password=1234567
 dburl=jdbc:mysql://localhost:3306/coursejdbc
@@ -23,7 +23,7 @@ useSSL=false
 
 #### database.sql Script:
 
-```sql
+```SQL
 -- Create table 'department' if it does not exist
 CREATE TABLE IF NOT EXISTS department (
   Id int(11) NOT NULL AUTO_INCREMENT,
@@ -102,14 +102,26 @@ ON DUPLICATE KEY UPDATE
 SellerDao sellerDao = DaoFactory.createSellerDao();
 Seller seller = sellerDao.findById(3);
 System.out.println(seller);
+
+DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+Department department = departmentDao.findById(1);
+System.out.println(department);
 ```
-#### SQL Query: 
-```sql
+#### Seller SQL Query: 
+```SQL
 SELECT seller.*, department.Name as DepName
 FROM seller
 INNER JOIN department ON seller.DepartmentId = department.Id
 WHERE seller.Id = ?
 ```
+
+#### Department SQL Query:
+```SQL
+SELECT * 
+FROM department 
+WHERE Id = ?
+
+`````
 #### ResultSet Table:
 ![ResultSet Table](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/resultSet-table.png)
 
@@ -148,8 +160,8 @@ for (Seller s : listSeller) {
 	System.out.println(s);
 }
 ```
-#### SQL Query:
-```sql
+#### Seller SQL Query: 
+```SQL
 SELECT seller.*, department.Name as DepName
 FROM seller
 INNER JOIN department ON seller.DepartmentId = department.Id
@@ -169,8 +181,8 @@ for (Seller s : listSeller) {
  System.out.println(s);
 }
 ```
-#### SQL Query:
-```sql
+#### Seller SQL Query: 
+```SQL
 SELECT seller.*, department.Name as DepName
 FROM seller
 INNER JOIN department ON seller.DepartmentId = department.Id
@@ -185,8 +197,8 @@ Seller newSeller = new Seller(null, "Bartholomeu Zacarias", "bartholomeu@mail.co
 sellerDao.insert(newSeller);
 System.out.println("Inserted! New id = " + newSeller.getId());
 ```
-#### SQL Query:
-```sql
+#### Seller SQL Query: 
+```SQL
 INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId)
 VALUES (?, ?, ?, ?, ?)
 ```
@@ -205,8 +217,8 @@ seller.setDepartment(department);
 sellerDao.update(seller);
 System.out.println("Update completed!");
 ```
-#### SQL Query:
-```sql
+#### Seller SQL Query: 
+```SQL
 UPDATE seller
 SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
 WHERE Id = ?
@@ -221,8 +233,8 @@ int id = scanner.nextInt();
 sellerDao.deleteById(id);
 System.out.println("Delete completed!");
 ```
-#### SQL Query:
-```sql
+#### Seller SQL Query: 
+```SQL
 DELETE FROM seller
 WHERE Id = ?
 ```

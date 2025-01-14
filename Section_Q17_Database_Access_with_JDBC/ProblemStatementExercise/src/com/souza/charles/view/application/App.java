@@ -6,14 +6,15 @@ Exercise done by: Charles Fernandes de Souza
 Date: January 14, 2025
 */
 
-import java.util.Date;
-import java.util.List;
+//import java.util.Date;
+//import java.util.List;
 import java.util.Scanner;
 
 import com.souza.charles.model.dao.DaoFactory;
-import com.souza.charles.model.dao.SellerDao;
+import com.souza.charles.model.dao.DepartmentDao;
+//import com.souza.charles.model.dao.SellerDao;
 import com.souza.charles.model.entities.Department;
-import com.souza.charles.model.entities.Seller;
+//import com.souza.charles.model.entities.Seller;
 
 public class App {
 
@@ -21,12 +22,19 @@ public class App {
 
 		Scanner scanner = new Scanner(System.in);
 
-		SellerDao sellerDao = DaoFactory.createSellerDao();
 
-		System.out.println("********** TEST 01: Seller findByid **********");
+		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+		
+		System.out.println("********** TEST 01: Department findByid **********");
+		Department department = departmentDao.findById(1);
+		System.out.println(department);
+
+/*
+ 		SellerDao sellerDao = DaoFactory.createSellerDao();
+  		System.out.println("********** TEST 01: Seller findByid **********");
 		Seller seller = sellerDao.findById(3);
 		System.out.println(seller);
-
+		
 		System.out.println("\n********** TEST 02: Seller findByDepartment **********");
 		Department department = new Department(3, null);
 		List<Seller> listSeller = sellerDao.findByDepartment(department);
@@ -61,7 +69,7 @@ public class App {
 		int id = scanner.nextInt();
 		sellerDao.deleteById(id);
 		System.out.println("Delete completed!");
-
+*/
 		scanner.close();
 	}
 }
