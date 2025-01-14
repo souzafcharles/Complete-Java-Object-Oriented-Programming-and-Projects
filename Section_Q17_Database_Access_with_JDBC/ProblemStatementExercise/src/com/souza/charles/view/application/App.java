@@ -8,6 +8,7 @@ Date: January 14, 2025
 
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import com.souza.charles.model.dao.DaoFactory;
 import com.souza.charles.model.dao.SellerDao;
@@ -17,6 +18,8 @@ import com.souza.charles.model.entities.Seller;
 public class App {
 
 	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
 
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -36,13 +39,12 @@ public class App {
 		for (Seller s : listSeller) {
 			System.out.println(s);
 		}
-		
-		/*
+
 		System.out.println("\n********** TEST 04: Seller insert **********");
 		Seller newSeller = new Seller(null, "Bartholomeu Zacarias", "bartholomeu@mail.com", new Date(), 4000.0, department);
 		sellerDao.insert(newSeller);
 		System.out.println("Inserted! New id = " + newSeller.getId());
-		*/
+
 		System.out.println("\n********** TEST 05: Seller update **********");
 		seller = sellerDao.findById(10);
 		department = new Department(1, null);
@@ -53,7 +55,13 @@ public class App {
 		seller.setDepartment(department);
 		sellerDao.update(seller);
 		System.out.println("Update completed!");
-		
+
 		System.out.println("\n********** TEST 06: Seller delete **********");
+		System.out.println("Enter the Seller's Id for deleteById test: ");
+		int id = scanner.nextInt();
+		sellerDao.deleteById(id);
+		System.out.println("Delete completed!");
+
+		scanner.close();
 	}
 }

@@ -140,6 +140,14 @@ private Department instantiateDepartment(ResultSet resultSet) throws SQLExceptio
 
 - **findByDepartment:** Implement the search by Department:
 
+#### App Class: 
+```java
+Department department = new Department(3, null);
+List<Seller> listSeller = sellerDao.findByDepartment(department);
+for (Seller s : listSeller) {
+	System.out.println(s);
+}
+```
 ```sql
 SELECT seller.*, department.Name as DepName
 FROM seller
@@ -153,6 +161,13 @@ ORDER BY Name
 
 - **findAll:** Implement the search for `all` records:
 
+#### App Class: 
+```java
+listSeller = sellerDao.findAll();
+for (Seller s : listSeller) {
+ System.out.println(s);
+}
+```
 ```sql
 SELECT seller.*, department.Name as DepName
 FROM seller
@@ -162,6 +177,12 @@ ORDER BY Name
      
 - **insert:** Implement the `insertion` of new records:
 
+#### App Class: 
+```java
+Seller newSeller = new Seller(null, "Bartholomeu Zacarias", "bartholomeu@mail.com", new Date(), 4000.0, department);
+sellerDao.insert(newSeller);
+System.out.println("Inserted! New id = " + newSeller.getId());
+```
 ```sql
 INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId)
 VALUES (?, ?, ?, ?, ?)
@@ -169,6 +190,18 @@ VALUES (?, ?, ?, ?, ?)
      
 - **update:** Implement the `update` of existing records:
 
+#### App Class: 
+```java
+seller = sellerDao.findById(10);
+department = new Department(1, null);
+seller.setName("Cassandra Filisbina");
+seller.setEmail("cassandra@mail.com");
+seller.setBirthDate(new Date());
+seller.setBaseSalary(2200.00);
+seller.setDepartment(department);
+sellerDao.update(seller);
+System.out.println("Update completed!");
+```
 ```sql
 UPDATE seller
 SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?
@@ -177,14 +210,14 @@ WHERE Id = ?
      
 - **delete:** Implement the `deletion` of records:
 
+#### App Class: 
+```java
+System.out.println("Enter the Seller's Id for deleteById test: ");
+int id = scanner.nextInt();
+sellerDao.deleteById(id);
+System.out.println("Delete completed!");
+```
 ```sql
 DELETE FROM seller
 WHERE Id = ?
 ```
-
-### 4. Testing the Implementations:
-- Ensure all implemented operations are thoroughly tested.
-
-### 5. **DepartmentDao Implementation Checklist:**
-- Create DepartmentDaoJDBC
-- Implements DaoFactory
