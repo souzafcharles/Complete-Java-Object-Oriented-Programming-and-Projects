@@ -1,5 +1,10 @@
 package com.souza.charles.model.dao.impl;
-
+/*
+Course title: Complete Java - Object-Oriented Programming + Projects
+Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+Exercise done by: Charles Fernandes de Souza
+Date: January 14, 2025
+*/
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +30,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 	public void insert(Department department) {
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connection.prepareStatement("INSERT INTO department (Name)\r\n" + "VALUES\r\n" + "(?)",
+			preparedStatement = connection.prepareStatement(
+								"INSERT INTO department (Name)\r\n" 
+								+ "VALUES\r\n" + "(?)",
 					Statement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setString(1, department.getName());
@@ -54,8 +61,10 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 	public void update(Department department) {
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connection
-					.prepareStatement("UPDATE department\r\n" + "SET Name = ?\r\n" + "WHERE Id = ?\r\n" + "");
+			preparedStatement = connection.prepareStatement(
+								"UPDATE department\r\n" 
+								+ "SET Name = ?\r\n" 
+								+ "WHERE Id = ?\r\n");
 			preparedStatement.setString(1, department.getName());
 			preparedStatement.setInt(2, department.getId());
 			preparedStatement.executeUpdate();
@@ -72,7 +81,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			preparedStatement = connection.prepareStatement("DELETE FROM department\r\n" + "WHERE Id = ?");
+			preparedStatement = connection.prepareStatement(
+								"DELETE FROM department\r\n" 
+								+ "WHERE Id = ?");
 
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
@@ -92,8 +103,10 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		ResultSet resultSet = null;
 
 		try {
-			preparedStatement = connection
-					.prepareStatement("SELECT * \r\n" + "FROM department \r\n" + "WHERE Id = ?\r\n");
+			preparedStatement = connection.prepareStatement(
+							    "SELECT * \r\n" 
+							    + "FROM department \r\n" 
+							    + "WHERE Id = ?\r\n");
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 
@@ -117,8 +130,10 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		ResultSet resultSet = null;
 
 		try {
-			preparedStatement = connection
-					.prepareStatement("SELECT * \r\n" + "FROM department \r\n" + "ORDER BY Name\r\n");
+			preparedStatement = connection.prepareStatement(
+								"SELECT * \r\n" 
+								+ "FROM department \r\n" 
+								+ "ORDER BY Name\r\n");
 
 			resultSet = preparedStatement.executeQuery();
 			List<Department> departmentList = new ArrayList<>();
