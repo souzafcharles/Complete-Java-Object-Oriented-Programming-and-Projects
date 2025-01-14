@@ -54,7 +54,8 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 	public void update(Department department) {
 		PreparedStatement preparedStatement = null;
 		try {
-			preparedStatement = connection.prepareStatement("UPDATE department\r\n" + "SET Name = ?\r\n" + "WHERE Id = ?\r\n" + "");
+			preparedStatement = connection
+					.prepareStatement("UPDATE department\r\n" + "SET Name = ?\r\n" + "WHERE Id = ?\r\n" + "");
 			preparedStatement.setString(1, department.getName());
 			preparedStatement.setInt(2, department.getId());
 			preparedStatement.executeUpdate();
@@ -68,8 +69,20 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement preparedStatement = null;
 
+		try {
+			preparedStatement = connection.prepareStatement("DELETE FROM department\r\n" + "WHERE Id = ?");
+
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closePreparedStatement(preparedStatement);
+			DB.closeStatement(preparedStatement);
+		}
 	}
 
 	@Override

@@ -154,7 +154,7 @@ private Department instantiateDepartment(ResultSet resultSet) throws SQLExceptio
 ##### DepartmentDaoJDBC Class:
 ```java
 private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
-	Department department = new Department();
+	department = new Department();
 	department.setId(resultSet.getInt("Id"));
 	department.setName(resultSet.getString("Name"));
 	return department;
@@ -247,7 +247,13 @@ seller.setBaseSalary(2200.00);
 seller.setDepartment(department);
 sellerDao.update(seller);
 System.out.println("Update completed!");
+
+department = departmentDao.findById(7);
+department.setName("Gifts");
+departmentDao.update(department);
+System.out.println("Update completed!");
 ```
+
 #### Seller SQL Query: 
 ```SQL
 UPDATE seller
@@ -262,16 +268,26 @@ WHERE Id = ?
 ````
 #### 5.6 **delete -** Implement the `deletion` of records:
 
-
 #### App Class: 
 ```java
 System.out.println("Enter the Seller's Id for deleteById test: ");
 int id = scanner.nextInt();
 sellerDao.deleteById(id);
 System.out.println("Delete completed!");
+
+System.out.print("Enter the Department Id for deleteById test: ");
+id = scanner.nextInt();
+departmentDao.deleteById(id);
+System.out.println("Delete completed!");
 ```
 #### Seller SQL Query: 
 ```SQL
 DELETE FROM seller
+WHERE Id = ?
+```
+
+#### Department SQL Query: 
+```SQL
+DELETE FROM department
 WHERE Id = ?
 ```

@@ -113,7 +113,6 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 		
-
 	@Override
 	public Seller findById(Integer id) {
 		PreparedStatement preparedStatement = null;
