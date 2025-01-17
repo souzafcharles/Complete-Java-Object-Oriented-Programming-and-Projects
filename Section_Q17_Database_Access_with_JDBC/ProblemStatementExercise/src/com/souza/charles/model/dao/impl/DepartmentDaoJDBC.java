@@ -31,7 +31,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"INSERT INTO department (Name)\r\n" 
+								"INSERT INTO department (Name) " 
 								+ "VALUES\r\n" + "(?)",
 					Statement.RETURN_GENERATED_KEYS);
 
@@ -62,9 +62,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"UPDATE department\r\n" 
-								+ "SET Name = ?\r\n" 
-								+ "WHERE Id = ?\r\n");
+								"UPDATE department " 
+								+ "SET Name = ? " 
+								+ "WHERE Id = ?");
 			preparedStatement.setString(1, department.getName());
 			preparedStatement.setInt(2, department.getId());
 			preparedStatement.executeUpdate();
@@ -82,7 +82,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 		try {
 			preparedStatement = connection.prepareStatement(
-								"DELETE FROM department\r\n" 
+								"DELETE FROM department " 
 								+ "WHERE Id = ?");
 
 			preparedStatement.setInt(1, id);
@@ -98,15 +98,14 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 	@Override
 	public Department findById(Integer id) {
-
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
 		try {
 			preparedStatement = connection.prepareStatement(
-							    "SELECT * \r\n" 
-							    + "FROM department \r\n" 
-							    + "WHERE Id = ?\r\n");
+							    "SELECT * " 
+							    + "FROM department " 
+							    + "WHERE Id = ?");
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 
@@ -119,7 +118,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closePreparedStatement(preparedStatement);
-			DB.closeStatement(preparedStatement);
 			DB.closeResultSet(resultSet);
 		}
 	}
@@ -131,9 +129,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
 		try {
 			preparedStatement = connection.prepareStatement(
-								"SELECT * \r\n" 
-								+ "FROM department \r\n" 
-								+ "ORDER BY Name\r\n");
+								"SELECT * " 
+								+ "FROM department " 
+								+ "ORDER BY Name");
 
 			resultSet = preparedStatement.executeQuery();
 			List<Department> departmentList = new ArrayList<>();
@@ -146,7 +144,6 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closePreparedStatement(preparedStatement);
-			DB.closeStatement(preparedStatement);
 			DB.closeResultSet(resultSet);
 		}
 	}

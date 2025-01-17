@@ -25,11 +25,11 @@ public class App {
  		SellerDao sellerDao = DaoFactory.createSellerDao();
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		
-  		System.out.println("********** TEST 01: Seller findByid **********");
+  		System.out.println("********** TEST 01: Seller findById **********");
 		Seller seller = sellerDao.findById(3);
 		System.out.println(seller);
 		
-		System.out.println("********** TEST 01: Department findByid **********");
+		System.out.println("********** TEST 01: Department findById **********");
 		Department department = departmentDao.findById(1);
 		System.out.println(department);
 		
@@ -61,12 +61,6 @@ public class App {
 		Department newDepartment = new Department(null, "Toys");
 		departmentDao.insert(newDepartment);
 		System.out.println("Inserted! New Department Name = " + newDepartment.getName());
-
-		System.out.println("\n********** TEST 05: Department update **********");
-		department = departmentDao.findById(7);
-		department.setName("Gifts");
-		departmentDao.update(department);
-		System.out.println("Update completed!");
 		
 		System.out.println("\n********** TEST 05: Seller update **********");
 		seller = sellerDao.findById(10);
@@ -77,6 +71,12 @@ public class App {
 		seller.setBaseSalary(2200.00);
 		seller.setDepartment(department);
 		sellerDao.update(seller);
+		System.out.println("Update completed!");
+		
+		System.out.println("\n********** TEST 05: Department update **********");
+		department = departmentDao.findById(7);
+		department.setName("Gifts");
+		departmentDao.update(department);
 		System.out.println("Update completed!");
 		
 		System.out.println("\n********** TEST 06: Seller delete **********");

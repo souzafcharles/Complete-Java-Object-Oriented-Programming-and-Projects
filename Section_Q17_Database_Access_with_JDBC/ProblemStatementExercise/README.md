@@ -120,8 +120,8 @@ WHERE seller.Id = ?
 SELECT * 
 FROM department 
 WHERE Id = ?
+```
 
-`````
 #### ResultSet Table:
 ![ResultSet Table](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercise/img/resultSet-table.png)
 

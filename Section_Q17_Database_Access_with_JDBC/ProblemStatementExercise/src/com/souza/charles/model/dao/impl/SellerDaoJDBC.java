@@ -35,9 +35,9 @@ public class SellerDaoJDBC implements SellerDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"INSERT INTO seller\r\n"
-								+ "(Name, Email, BirthDate, BaseSalary, DepartmentId)\r\n" 
-								+ "VALUES\r\n" 
+								"INSERT INTO seller "
+								+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) " 
+								+ "VALUES " 
 								+ "(?, ?, ?, ?, ?)",
 								Statement.RETURN_GENERATED_KEYS);
 
@@ -72,8 +72,8 @@ public class SellerDaoJDBC implements SellerDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"UPDATE seller\r\n"
-								+ "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?\r\n"
+								"UPDATE seller "
+								+ "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
 								+ "WHERE Id = ?");
 
 			preparedStatement.setString(1, seller.getName());
@@ -99,7 +99,7 @@ public class SellerDaoJDBC implements SellerDao {
 		
 		try {
 			preparedStatement = connection.prepareStatement(
-					"DELETE FROM seller\r\n"
+					"DELETE FROM seller "
 					+ "WHERE Id = ?");
 			
 			preparedStatement.setInt(1, id);
@@ -119,9 +119,9 @@ public class SellerDaoJDBC implements SellerDao {
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"SELECT seller.*,department.Name as DepName\r\n" 
-								+ "FROM seller INNER JOIN department\r\n"
-								+ "ON seller.DepartmentId = department.Id\r\n" 
+								"SELECT seller.*,department.Name as DepName " 
+								+ "FROM seller INNER JOIN department "
+								+ "ON seller.DepartmentId = department.Id " 
 								+ "WHERE seller.Id = ?");
 
 			preparedStatement.setInt(1, id);
@@ -148,9 +148,9 @@ public class SellerDaoJDBC implements SellerDao {
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"SELECT seller.*, department.Name as DepName\r\n" 
+								"SELECT seller.*, department.Name as DepName " 
 								+ "FROM seller "
-								+ "INNER JOIN department ON seller.DepartmentId = department.Id\r\n" 
+								+ "INNER JOIN department ON seller.DepartmentId = department.Id " 
 								+ "ORDER BY Name");
 
 			resultSet = preparedStatement.executeQuery();
@@ -183,9 +183,11 @@ public class SellerDaoJDBC implements SellerDao {
 		ResultSet resultSet = null;
 		try {
 			preparedStatement = connection.prepareStatement(
-								"SELECT seller.*, department.Name as DepName\r\n"
-								+ "FROM seller " + "INNER JOIN department ON seller.DepartmentId = department.Id\r\n"
-								+ "WHERE DepartmentId = ? " + "ORDER BY Name");
+								"SELECT seller.*, department.Name as DepName "
+								+ "FROM seller " 
+								+ "INNER JOIN department ON seller.DepartmentId = department.Id "
+								+ "WHERE DepartmentId = ? " 
+								+ "ORDER BY Name");
 
 			preparedStatement.setInt(1, department.getId());
 			resultSet = preparedStatement.executeQuery();
