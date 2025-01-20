@@ -11,8 +11,8 @@ Develop a Java application using the `Spring Boot` framework to implement an ord
 ***
 ## Steps to Follow:
 ### 1. Project Created
-Checklist:
-- Spring Initializr
+#### Requirements Specification:
+- Spring Initializr:
   - Maven;
   - Java 21;
   - Packing JAR;
@@ -20,7 +20,7 @@ Checklist:
 ***
 ### 2. User Entity and Resource
 ![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/img/domain-model.png)
-Entity checklist: 
+#### Entity Requirements: 
 - Create the Entities Classes;
 - Basic Attributes;
 - Associations (Instantiate Collections);
