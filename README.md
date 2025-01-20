@@ -33,7 +33,7 @@
 - Section 16 | [Functional Programming and Lambda Expressions](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_P16_Functional_Programming_and_Lambda_Expressions)
 - Section 17 | [Database Access with JDBC](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_Q17_Database_Access_with_JDBC)
 - Section 18 | [Java EE - Object-relational Mapping with JPA/Hibernate](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate)
-- Section 19 | Project: Web Services with Spring Boot and JPA/Hibernate
+- Section 19 | [Project: Web Services with Spring Boot and JPA/Hibernate](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices)
 - Section 20 | Project: Chess Game System
 - Section 21 | Spring Boot Project and MongoDB Database (Web Services + NoSQL)
 - Section 22 | Graphical Interface with JavaFX
