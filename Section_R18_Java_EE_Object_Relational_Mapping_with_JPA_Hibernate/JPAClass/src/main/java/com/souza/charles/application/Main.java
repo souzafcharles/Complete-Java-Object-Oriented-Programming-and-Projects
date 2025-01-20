@@ -22,12 +22,14 @@ public class Main {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
-        entityManager.persist(person01);
-        entityManager.persist(person02);
-        entityManager.persist(person03);
+        Person personToUpdate = entityManager.find(Person.class, 10);
+        personToUpdate.setName("Balthazar Vitalino de Bigode");
+        entityManager.merge(personToUpdate);
         entityManager.getTransaction().commit();
 
-        System.out.println("OK!");
+        System.out.println("Transaction committed!");
 
+        entityManagerFactory.close();
+        entityManager.close();
     }
 }

@@ -8,7 +8,7 @@ Develop a Java application that connects to a database using `JPA/Hibernate` and
 - Open `Xampp`;
 - Start the `Apache` and `MySQL` services;
 - Access `phpMyAdmin`;
-- Create a new empty database MySQL named `jpaclass`;
+- Create a new empty database MySQL named `jpaclass`.
 ***
 ### 2. Creating and Configurating a new Maven Project:
 - Enter the following details:
@@ -49,8 +49,8 @@ Develop a Java application that connects to a database using `JPA/Hibernate` and
 ```
 ***
 ### 3. Configure JPA in the Project Using the persistence.xml File:
-- Create a `"META-INF"` folder inside the `"resources"` folder.
-- Inside the META-INF folder, create a file named `"persistence.xml"`.
+- Create a `"META-INF"` folder inside the `"resources"` folder;
+- Inside the META-INF folder, create a file named `"persistence.xml"`;
 - Content of the persistence.xml file:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,7 +74,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
 ***
 ### 4. Entity Class:
 - Create the `Person`class:
-![Person Entity](https://github.com/souzafcharles/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/blob/main/img/person-entity.png)
+![Person Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/person-entity.png)
 #### Entities classes checklist:
 - Attributes;
 - Constructors;
@@ -100,6 +100,56 @@ public class Person implements Serializable {
 ...}
 ```
 ***
-#### 6. Database Result:
+### 6. Database Transaction Operations Implementation:
+***
+### 6.1 `insert`- Implement the `insertion` of new records:
+#### Main Class:
+```java
+EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example-jpa");
+EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+entityManager.getTransaction().begin();
+Person personToInsert01 = new Person(null, "Balthazar de Bigode", "balthazar@email.com");
+Person personToInsert02 = new Person(null, "Ophelia Cassandra Birrenta", "ophelia@email.com");
+Person personToInsert03 = new Person(null, "Ludovico Crispim", "ludovico@email.com");
+entityManager.persist(personToInsert01);
+entityManager.persist(personToInsert02);
+entityManager.persist(personToInsert03);
+entityManager.getTransaction().commit();
+System.out.println("Transaction committed!");
+```
+***
+#### Database Result:
 ![Database Result](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/database.png)
 ***
+### 6.2 `findById` - Implement the search by `ID`:
+#### Main Class:
+```java
+entityManager.getTransaction().begin();
+Person personToFind = entityManager.find(Person.class, 2);
+System.out.print(personToFind);
+entityManager.getTransaction().commit();
+System.out.println("Transaction committed!");
+```
+***
+### 6.3 `update` - Implement the update of records:
+#### Main Class:
+```java
+entityManager.getTransaction().begin();
+Person personToUpdate = entityManager.find(Person.class, 10);
+personToUpdate.setName("Balthazar Vitalino de Bigode");
+entityManager.merge(personToUpdate);
+entityManager.getTransaction().commit();
+System.out.println("Transaction committed!");
+```
+***
+### 6.4 `delete` - Implement the `deletion` of records:
+#### Main Class:
+```java
+entityManager.getTransaction().begin();
+Person personToDelete = entityManager.find(Person.class, 2);
+entityManager.remove(personToDelete);
+entityManager.getTransaction().commit();
+System.out.println("Transaction committed!");
+``` 
+
