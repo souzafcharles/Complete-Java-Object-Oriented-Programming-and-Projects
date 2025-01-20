@@ -8,13 +8,13 @@ Develop a Java application that connects to a database using `JPA/Hibernate` and
 - Open `Xampp`;
 - Start the `Apache` and `MySQL` services;
 - Access `phpMyAdmin`;
-- Create a new empty database MySQL named `jpaclass`.
+- Create a new empty database MySQL named `jpaclass`;
 ***
 ### 2. Creating and Configurating a new Maven Project:
 - Enter the following details:
 - `Group Id`: com.souza.charles
 - `Artifact Id`: JPAClass
-- Update the project's Maven to the current `LTS Java version`: 
+- Update the project's Maven to the current `LTS Java version`:
   - Edit the `pom.xml` file.
   - Include the following content:
   ```xml
@@ -49,8 +49,8 @@ Develop a Java application that connects to a database using `JPA/Hibernate` and
 ```
 ***
 ### 3. Configure JPA in the Project Using the persistence.xml File:
-- Create a `"META-INF"` folder inside the `"resources"` folder;
-- Inside the META-INF folder, create a file named `"persistence.xml"`;
+- Create a `"META-INF"` folder inside the `"resources"` folder.
+- Inside the META-INF folder, create a file named `"persistence.xml"`.
 - Content of the persistence.xml file:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,8 +74,8 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
 ***
 ### 4. Entity Class:
 - Create the `Person`class:
+
 ![Person Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/person-entity.png)
-#### Entities classes checklist:
 - Attributes;
 - Constructors;
 - Getters/Setters;
