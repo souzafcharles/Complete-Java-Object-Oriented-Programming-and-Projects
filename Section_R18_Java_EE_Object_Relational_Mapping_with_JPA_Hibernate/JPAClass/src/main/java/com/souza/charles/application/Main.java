@@ -8,14 +8,26 @@ package com.souza.charles.application;
 
 import com.souza.charles.domain.entities.Person;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class Main {
     public static void main(String[] args) {
-        Person person01 = new Person(1001, "Balthazar de Bigode", "balthazar@email.com");
-        Person person02 = new Person(2002, "Ophelia Cassandra Birrenta", "ophelia@email.com");
-        Person person03 = new Person(3003, "Ludovico Crispim", "ludovico@email.com");
+        Person person01 = new Person(null, "Balthazar de Bigode", "balthazar@email.com");
+        Person person02 = new Person(null, "Ophelia Cassandra Birrenta", "ophelia@email.com");
+        Person person03 = new Person(null, "Ludovico Crispim", "ludovico@email.com");
 
-        System.out.print(person01);
-        System.out.print(person02);
-        System.out.print(person03);
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example-jpa");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(person01);
+        entityManager.persist(person02);
+        entityManager.persist(person03);
+        entityManager.getTransaction().commit();
+
+        System.out.println("OK!");
+
     }
 }
