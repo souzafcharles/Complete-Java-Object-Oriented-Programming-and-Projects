@@ -18,17 +18,36 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
   - Packing JAR;
   - Dependencies: Spring Web.
 ***
-### 2. User Entity and Resource
+### 2. User Entity and Resource Class:
 ![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/img/domain-model.png)
 #### Entity Requirements: 
-- Create the Entities Classes;
+- Create the User Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
 - Constructors;
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
+
+#### UserResource Class:
+```java
+@RestController
+@RequestMapping(value = "/users")
+public class UserResource {
+    @GetMapping
+    public ResponseEntity<User> findAll(){
+        User user = new User(1L, "Balthazar de Bigode", "balthazar@rmail.com", "+5516999999999", "******");
+        return ResponseEntity.ok().body(user);
+    }
+}
+```
+#### Summary of the Annotations:
+- `@RestController`: Defines the class as a RESTful controller;
+- `@RequestMapping(value = "/users")`: Maps the class to the /users endpoint;
+- `@GetMapping`: Maps HTTP GET requests to the findAll method;
+- `ResponseEntity<User> findAll()`: Returns an HTTP response containing a User object.
 ***
+
 ## Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;
 - Implement the Domain Model;
