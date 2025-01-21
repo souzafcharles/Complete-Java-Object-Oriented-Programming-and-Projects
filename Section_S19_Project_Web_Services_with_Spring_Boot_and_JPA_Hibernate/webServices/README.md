@@ -101,7 +101,7 @@ public class User implements Serializable {
     private Long id;
 ```
 #### 3.5 Summary of the Annotations:
-- `Entity`: Defines the class as a JPA entity, mapping it to a database table;
+- `@Entity`: Defines the class as a JPA entity, mapping it to a database table;
 - `@Table(name = "tb_user")`: Specifies that the table in the database will be named tb_user;
 - `@Serial`: Indicates that a field is a serial number used during serialization;
 - `@Id` Marks the field as the primary key of the entity;
@@ -163,11 +163,90 @@ public class TestConfig implements CommandLineRunner {
     }
 }
 ```
-#### 4.7 Summary of the Annotations:
+#### 4.7 Summary of the Annotations and Commands:
 - `@Configuration`: Indicates that the class can be used by the Spring IoC container as a source of bean definitions;
 - `@Profile("test")`: Specifies that the configuration of the class will only be active when the "test" profile is active;
 - `@Autowired`: Allows Spring to resolve and automatically inject the marked dependency;
 - `CommandLineRunner`: Interface used to execute specific code when the Spring Boot application starts.
+***
+### 5. Service Layer and Component Registration:
+#### 5.1 Marks the Classes as a Spring Service Component, Used for Business Logic:
+````java
+@Service
+public class UserService {}
+@RestController
+public class UserResource {}
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {}
+````
+#### 5.2 Create a Service Class:
+```java
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.get();
+    }
+}
+```
+#### 5.3 Summary of the Annotations and Commands:
+- `@Service`: Marks the class as a Spring service component, used for business logic;
+- `@GetMapping(value = "/{id}")`: Maps HTTP GET requests to the findById method;
+- `@PathVariable`: Binds a method parameter to a URI template variable;
+- `Optional`: A class that represents a value that may or may not be present;
+- `get()`: Retrieves the value if present, throws NoSuchElementException if not.
+
+#### 5.4 Retrieving User Data via Spring Boot RESTful API:
+
+GET Request /users:
+```json
+http://localhost:8080/users
+```
+```json
+[
+    {
+        "id": 1,
+        "name": "Balthazar de Bigode",
+        "email": "balthazar@email.com",
+        "phone": "+5599999999999",
+        "password": "******"
+    },
+    {
+        "id": 2,
+        "name": "Ophelia Birrenta",
+        "email": "ophelia@email.com",
+        "phone": "+5511111111111",
+        "password": "******"
+    },
+    {
+        "id": 3,
+        "name": "Ludovico Crispim",
+        "email": "ludovico@email.com",
+        "phone": "+5522222222222",
+        "password": "******"
+    }
+]
+```
+GET Request /users/1
+```json
+http://localhost:8080/users/1
+```
+```json
+{
+    "id": 1,
+    "name": "Balthazar de Bigode",
+    "email": "balthazar@email.com",
+    "phone": "+5599999999999",
+    "password": "******"
+}
+```
 ***
 ## Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;
