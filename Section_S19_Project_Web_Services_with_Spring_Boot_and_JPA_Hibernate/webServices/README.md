@@ -8,7 +8,7 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
 ### Logical Layers:
 ![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/img/logical-layers.png)
 ***
-## Steps to Follow:
+## Steps to Follow and Documentation:
 ### 1. Project Created:
 #### 1.1 Requirements Specification:
 - Spring Initializr:
@@ -141,7 +141,7 @@ public void run(String... args) throws Exception {
 ```java
 userRepository.saveAll(Arrays.asList(user01, user02, user03));
 ```
-#### 4.6 TestConfig Class User Database Seeding:
+#### 4.6 Database Seeding with Users in TestConfig Class:
 ```java
 @Configuration
 @Profile("test")
@@ -268,7 +268,7 @@ private User user;
 @OneToMany(mappedBy = "user")
 private List<Order> orders = new ArrayList<>();
 ```
-#### 6.4 TestConfig Class Order Database Seeding:
+#### 6.4 Database Seeding with Orders in TestConfig Class:
 ```java
 Order order01 = new Order(null, Instant.parse("2025-01-19T19:53:07Z"), user01);
 Order order02 = new Order(null, Instant.parse("2025-01-19T03:42:10Z"), user02);
@@ -353,8 +353,90 @@ http://localhost:8080/orderrs/1
   }
 }
 ```
+### 7. OrderStatus Enum Class:
+#### 7.1 OrderStatus Class:
+```java
+public enum OrderStatus {
+  WAITING_PAYMENT(1), // Enum constant for waiting payment status, with associated code 1
+  PAID(2),            // Enum constant for paid status, with associated code 2
+  SHIPPED(3),         // Enum constant for shipped status, with associated code 3
+  DELIVERED(4),       // Enum constant for delivered status, with associated code 4
+  CANCELED(5);        // Enum constant for canceled status, with associated code 5
+
+  private int code;   // Field to store the code associated with the enum constant
+
+  // Constructor to initialize the enum constant with the specified code
+  private OrderStatus(int code) {
+    this.code = code;
+  }
+
+  // Method to get the code associated with the enum constant
+  public int getCode() {
+    return code;
+  }
+  
+  // Static Method valueOf: This method takes an integer code as input and returns the corresponding OrderStatus enum constant.
+  public static OrderStatus valueOf(int code) {
+    // Loop through all enum constants
+    for (OrderStatus orderStatus : OrderStatus.values()) {
+      // If the code matches, return the corresponding enum constant
+      if (orderStatus.getCode() == code) {
+        return orderStatus;
+      }
+    }
+    // If no match is found, throw an exception
+    throw new IllegalArgumentException("Invalid OrderStatus Code!");
+  }
+}
+```
+##### 7.2 Order Class:
+```java
+
+public class Order {
+   
+    private Integer orderStatus; // Stores the OrderStatus as an integer code
+
+    // Constructor initializing the fields, including setting the order status using the enum
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User user) {
+        this.id = id;
+        this.moment = moment;
+        setOrderStatus(orderStatus); // Sets the order status using the setter method to ensure proper conversion
+        this.user = user;
+    }
+    
+    // Getter method that converts the integer code back to the OrderStatus enum
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    // Setter method that converts the OrderStatus enum to its corresponding integer code
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
+    }
+}
+```
+#### 7.3 Code Reasoning for the Order Class:
+<p align="justify">
+`Stored as Integer`: The orderStatus field is stored as an Integer in the database. This simplifies JPA mapping because primitive types are more easily persisted and manipulated by ORM frameworks.<br/>
+`Enum to Integer Conversion`: When setting the order status (OrderStatus), the setter converts the enum to its corresponding integer code using the getCode() method. This ensures that the correct value is stored in the database.<br/>
+`Integer to Enum Conversion`: When the order status is retrieved from the database, the getter converts the integer code back to the OrderStatus enum using the valueOf() method. This makes it easier to use the value as an enum in the code, providing greater safety and clarity.
+</p>
+
+#### 7.4 Database Seeding with Orders and OrderStatus in TestConfig Class:
+```java
+Order order01 = new Order(null, Instant.parse("2025-01-19T19:53:07Z"), OrderStatus.PAID, user01);
+Order order02 = new Order(null, Instant.parse("2025-01-19T03:42:10Z"), OrderStatus.WAITING_PAYMENT, user02);
+Order order03 = new Order(null, Instant.parse("2025-01-20T15:21:22Z"), OrderStatus.WAITING_PAYMENT, user01);
+Order order04 = new Order(null, Instant.parse("2025-01-21T17:10:10Z"), OrderStatus.SHIPPED, user03);
+Order order05 = new Order(null, Instant.parse("2025-01-22T13:18:33Z"), OrderStatus.CANCELED, user03);
+Order order06 = new Order(null, Instant.parse("2025-01-19T10:47:02Z"), OrderStatus.DELIVERED, user04);
+
+orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04, order05, order06));
+```
 ***
-## Checklist:
+## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>
 :ballot_box_with_check: Structure Logical Layers: Resource, Service, Repository;
 - Implement the Domain Model;
