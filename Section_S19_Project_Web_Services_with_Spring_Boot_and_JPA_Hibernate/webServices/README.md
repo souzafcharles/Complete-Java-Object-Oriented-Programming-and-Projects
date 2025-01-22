@@ -244,7 +244,7 @@ http://localhost:8080/users/1
 }
 ```
 ***
-### 6. Order Entity, Instant and ISO 8601:
+### 6. Order Entity Class, Instant Class and ISO 8601:
 #### 6.1 Entity Requirements:
 - Create the Order Entity Class;
 - Basic Attributes;
@@ -253,7 +253,7 @@ http://localhost:8080/users/1
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 6.2 Include Instant and ISO 8601:
+#### 6.2 Include Instant Class and ISO 8601:
 ```java
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 private Instant moment;
@@ -268,7 +268,7 @@ private User user;
 @OneToMany(mappedBy = "user")
 private List<Order> orders = new ArrayList<>();
 ```
-#### 6.4 Database Seeding with Orders in TestConfig Class:
+#### 6.4 Database Seeding with Orders in TestConfig Class and Persist Objects:
 ```java
 Order order01 = new Order(null, Instant.parse("2025-01-19T19:53:07Z"), user01);
 Order order02 = new Order(null, Instant.parse("2025-01-19T03:42:10Z"), user02);
@@ -338,7 +338,7 @@ http://localhost:8080/orders
 ```
 GET Request /orders/1:
 ```json
-http://localhost:8080/orderrs/1
+http://localhost:8080/orders/1
 ```
 ```json
 {
@@ -353,43 +353,21 @@ http://localhost:8080/orderrs/1
   }
 }
 ```
+***
 ### 7. OrderStatus Enum Class:
-#### 7.1 OrderStatus Class:
-```java
-public enum OrderStatus {
-  WAITING_PAYMENT(1), // Enum constant for waiting payment status, with associated code 1
-  PAID(2),            // Enum constant for paid status, with associated code 2
-  SHIPPED(3),         // Enum constant for shipped status, with associated code 3
-  DELIVERED(4),       // Enum constant for delivered status, with associated code 4
-  CANCELED(5);        // Enum constant for canceled status, with associated code 5
-
-  private int code;   // Field to store the code associated with the enum constant
-
-  // Constructor to initialize the enum constant with the specified code
-  private OrderStatus(int code) {
-    this.code = code;
-  }
-
-  // Method to get the code associated with the enum constant
-  public int getCode() {
-    return code;
-  }
-  
-  // Static Method valueOf: This method takes an integer code as input and returns the corresponding OrderStatus enum constant.
-  public static OrderStatus valueOf(int code) {
-    // Loop through all enum constants
-    for (OrderStatus orderStatus : OrderStatus.values()) {
-      // If the code matches, return the corresponding enum constant
-      if (orderStatus.getCode() == code) {
-        return orderStatus;
-      }
-    }
-    // If no match is found, throw an exception
-    throw new IllegalArgumentException("Invalid OrderStatus Code!");
-  }
-}
-```
-##### 7.2 Order Class:
+#### 7.1 OrderStatus Enum Requirements:
+- Declare enum constants for different order statuses;
+- Assign unique integer codes to each enum constant;
+- Define a private field to store the code;
+- Implement a constructor to initialize the code;
+- Provide a getter method to retrieve the code;
+- Implement a static method valueOf to convert an integer code back to the corresponding enum constant.
+#### 7.2 Order Class Requirements:
+- Declare a private field to store the OrderStatus as an integer code;
+- Implement a constructor to initialize the fields, including setting the order status using the enum;
+- Provide a getter method to convert the integer code back to the OrderStatus enum;
+- Provide a setter method to convert the OrderStatus enum to its corresponding integer code.
+##### 7.3 Order Class:
 ```java
 
 public class Order {
@@ -417,14 +395,7 @@ public class Order {
     }
 }
 ```
-#### 7.3 Code Reasoning for the Order Class:
-<p align="justify">
-`Stored as Integer`: The orderStatus field is stored as an Integer in the database. This simplifies JPA mapping because primitive types are more easily persisted and manipulated by ORM frameworks.<br/>
-`Enum to Integer Conversion`: When setting the order status (OrderStatus), the setter converts the enum to its corresponding integer code using the getCode() method. This ensures that the correct value is stored in the database.<br/>
-`Integer to Enum Conversion`: When the order status is retrieved from the database, the getter converts the integer code back to the OrderStatus enum using the valueOf() method. This makes it easier to use the value as an enum in the code, providing greater safety and clarity.
-</p>
-
-#### 7.4 Database Seeding with Orders and OrderStatus in TestConfig Class:
+#### 7.4 Database Seeding with Orders and OrderStatus in TestConfig Class and Persist Objects:
 ```java
 Order order01 = new Order(null, Instant.parse("2025-01-19T19:53:07Z"), OrderStatus.PAID, user01);
 Order order02 = new Order(null, Instant.parse("2025-01-19T03:42:10Z"), OrderStatus.WAITING_PAYMENT, user02);
@@ -434,6 +405,103 @@ Order order05 = new Order(null, Instant.parse("2025-01-22T13:18:33Z"), OrderStat
 Order order06 = new Order(null, Instant.parse("2025-01-19T10:47:02Z"), OrderStatus.DELIVERED, user04);
 
 orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04, order05, order06));
+```
+***
+### 8. Category Entity, Repository, Service and Resource Classes:
+#### 8.1 Entity Requirements:
+- Create the Order Entity Class;
+- Basic Attributes;
+- Associations (Instantiate Collections);
+- Constructors;
+- Getters & Setters (Collections: only get);
+- hashCode & equals;
+- Serializable.
+#### 8.2 Repository Requirement:
+- Extends JpaRepository<Category, Long>.
+#### 8.3 Service Requirements:
+- Use `@Service` annotation;
+- Inject CategoryRepository using `@Autowired`;
+- Implement methods to retrieve all categories (findAll);
+- Implement method to retrieve category by ID (findById).
+#### 8.4 Resource Requirements:
+- Use `@RestController` annotation.
+- Map requests to the `/categories` endpoint;
+- Inject CategoryService using `@Autowired`;
+- Implement a method to handle GET requests and return all categories (`@GetMapping`).
+- Implement a method to handle GET requests for a specific category by ID (`@GetMapping(value = "/{id}")`).
+#### 8.5 Database Seeding with Categories in TestConfig Class and Persist Objects:
+```java
+Category category01 = new Category(null, "Electronics");
+Category category02 = new Category(null, "Books");
+Category category03 = new Category(null, "Computers");
+Category category04 = new Category(null, "Clothing");
+Category category05 = new Category(null, "Home Appliances");
+Category category06 = new Category(null, "Beauty & Personal Care");
+Category category07 = new Category(null, "Sports & Outdoors");
+Category category08 = new Category(null, "Toys & Games");
+Category category09 = new Category(null, "Groceries");
+Category category10 = new Category(null, "Automotive");
+
+categoryRepository.saveAll(Arrays.asList(category01, category02, category03, category04, category05, category06, category07, category08, category09, category10));
+```
+#### 8.6 Retrieving Category Data via Spring Boot RESTful API:
+GET Request /categories:
+```json
+http://localhost:8080/categories
+```
+```json
+[
+  {
+    "id": 1,
+    "name": "Electronics"
+  },
+  {
+    "id": 2,
+    "name": "Books"
+  },
+  {
+    "id": 3,
+    "name": "Computers"
+  },
+  {
+    "id": 4,
+    "name": "Clothing"
+  },
+  {
+    "id": 5,
+    "name": "Home Appliances"
+  },
+  {
+    "id": 6,
+    "name": "Beauty & Personal Care"
+  },
+  {
+    "id": 7,
+    "name": "Sports & Outdoors"
+  },
+  {
+    "id": 8,
+    "name": "Toys & Games"
+  },
+  {
+    "id": 9,
+    "name": "Groceries"
+  },
+  {
+    "id": 10,
+    "name": "Automotive"
+  }
+]
+```
+GET Request /orders/1:
+```json
+http://localhost:8080/categories/7
+```
+```json
+{
+  "id": 7,
+  "name": "Sports & Outdoors"
+}
 ```
 ***
 ## Project Checklist:
