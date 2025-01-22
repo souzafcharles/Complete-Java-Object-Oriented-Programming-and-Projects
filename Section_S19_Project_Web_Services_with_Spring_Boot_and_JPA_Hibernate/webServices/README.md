@@ -11,15 +11,16 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
 ***
 ## Steps to Follow:
 ### 1. Project Created
-#### Requirements Specification:
+#### 1.1 Requirements Specification:
 - Spring Initializr:
   - Maven;
   - Java 21;
   - Packing JAR;
   - Dependencies: Spring Web.
+##### 1.2 Domain Model Entity:
+![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/img/domain-model.png)
 ***
 ### 2. User Entity and Resource Class:
-![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/img/domain-model.png)
 #### 2.1 Entity Requirements: 
 - Create the User Entity Class;
 - Basic Attributes;
@@ -204,7 +205,6 @@ public class UserService {
 - `get()`: Retrieves the value if present, throws NoSuchElementException if not.
 
 #### 5.4 Retrieving User Data via Spring Boot RESTful API:
-
 GET Request /users:
 ```json
 http://localhost:8080/users
@@ -234,7 +234,7 @@ http://localhost:8080/users
     }
 ]
 ```
-GET Request /users/1
+GET Request /users/1:
 ```json
 http://localhost:8080/users/1
 ```
@@ -248,10 +248,120 @@ http://localhost:8080/users/1
 }
 ```
 ***
+### 6. Order Entity, Instant and ISO 8601:
+#### 6.1 Entity Requirements:
+- Create the Order Entity Class;
+- Basic Attributes;
+- Associations (Instantiate Collections);
+- Constructors;
+- Getters & Setters (Collections: only get);
+- hashCode & equals;
+- Serializable.
+#### 6.2 Include Instant and ISO 8601:
+```java
+@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
+private Instant moment;
+```
+#### 6.3 "To Many" Association, Lazy Loading, JsonIgnore:
+```java
+@ManyToOne
+@JoinColumn(name = "user_id")
+private User user;
+
+@JsonIgnore
+@OneToMany(mappedBy = "user")
+private List<Order> orders = new ArrayList<>();
+```
+#### 6.4 TestConfig Class Order Database Seeding:
+```java
+Order order01 = new Order(null, Instant.parse("2025-01-19T19:53:07Z"), user01);
+Order order02 = new Order(null, Instant.parse("2025-01-19T03:42:10Z"), user02);
+Order order03 = new Order(null, Instant.parse("2025-01-20T15:21:22Z"), user01);
+Order order04 = new Order(null, Instant.parse("2025-01-21T15:21:22Z"), user03);
+
+orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04));
+```
+#### 6.5 Summary of the Annotations:
+- `@JsonFormat`: Specifies how a field should be formatted when serialized to JSON;
+- `@ManyToOne`: Defines a many-to-one relationship between entities;
+- `@JoinColumn(name = "user_id")`: Specifies the column used to join the Order table with the User table;
+- `@JsonIgnore`: Indicates that a field should be ignored during JSON serialization and deserialization;
+- `@OneToMany(mappedBy = "user")`: Defines a one-to-many relationship between entities, with the user field in the Order entity being the owner of the relationship;
+#### 6.6 Retrieving Order Data via Spring Boot RESTful API:
+GET Request /orders:
+```json
+http://localhost:8080/orders
+```
+```json
+[
+  {
+    "id": 1,
+    "moment": "2025-01-19T19:53:07Z",
+    "user": {
+      "id": 1,
+      "name": "Balthazar de Bigode",
+      "email": "balthazar@email.com",
+      "phone": "+5599999999999",
+      "password": "******"
+    }
+  },
+  {
+    "id": 2,
+    "moment": "2025-01-19T03:42:10Z",
+    "user": {
+      "id": 2,
+      "name": "Ophelia Birrenta",
+      "email": "ophelia@email.com",
+      "phone": "+5511111111111",
+      "password": "******"
+    }
+  },
+  {
+    "id": 3,
+    "moment": "2025-01-20T15:21:22Z",
+    "user": {
+      "id": 1,
+      "name": "Balthazar de Bigode",
+      "email": "balthazar@email.com",
+      "phone": "+5599999999999",
+      "password": "******"
+    }
+  },
+  {
+    "id": 4,
+    "moment": "2025-01-21T15:21:22Z",
+    "user": {
+      "id": 3,
+      "name": "Ludovico Crispim",
+      "email": "ludovico@email.com",
+      "phone": "+5522222222222",
+      "password": "******"
+    }
+  }
+]
+```
+GET Request /orders/1:
+```json
+http://localhost:8080/orderrs/1
+```
+```json
+{
+  "id": 1,
+  "moment": "2025-01-19T19:53:07Z",
+  "user": {
+    "id": 1,
+    "name": "Balthazar de Bigode",
+    "email": "balthazar@email.com",
+    "phone": "+5599999999999",
+    "password": "******"
+  }
+}
+```
+***
 ## Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;
 - Implement the Domain Model;
-- Structure Logical Layers: Resource, Service, Repository;
+:ballot_box_with_check: Structure Logical Layers: Resource, Service, Repository;
 - Configure the Test Database (H2);
 - Populate the Database;
 - CRUD - Create, Retrieve, Update, Delete;
