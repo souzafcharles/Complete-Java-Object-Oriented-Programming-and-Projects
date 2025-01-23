@@ -712,7 +712,7 @@ http://localhost:8080/products
 ```
 GET Request /products/2:
 ```json
-http://localhost:8080/products/13
+http://localhost:8080/products/2
 ```
 ```json
 {
@@ -769,7 +769,8 @@ public class OrderItemPK implements Serializable {
 - hashCode & equals;
 - Serializable.
 #### 11.5 OrderItem Class:
-The relationship between OrderItem and Order is established through the composite key OrderItemPK.<br/>
+- The relationship between OrderItem and Order is established through the composite key OrderItemPK.<br/>
+- The `@JsonIgnore` annotation was added to the getOrder() method in the OrderItem class to prevent an infinite cyclic reference issue during JSON serialization.
 ```java
 @Entity
 @Table(name = "tb_order_item")
@@ -793,6 +794,10 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
+    public Order getOrder() {
+        return id.getOrder();
+    }
 ```
 #### 11.6 Repository Class Requirement for OrderItem:
 - Extends JpaRepository<Category, Long>.
@@ -811,6 +816,102 @@ OrderItem orderItem04 = new OrderItem(order03, product05, 2, product05.getPrice(
 
 orderItemRepository.saveAll(Arrays.asList(orderItem01, orderItem02, orderItem03, orderItem04));
 ```
+***
+### 12. Product-OrderItem One-to-Many Association:
+#### 12.1 Relationship of the Product Class with Order and OrderItem:
+- `@OneToMany` (in Product): Relates Product with OrderItem, allowing a product to have several order items.
+- The getOrders() function in the Product class navigates through the OrderItem associated with the product to collect the corresponding orders. This demonstrates the many-to-many relationship between Product and Order, mediated by the OrderItem entity.
+- Product Class:
+```java
+public class Product {
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+    public Product() {
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> orderSet = new HashSet<>();
+        for (OrderItem orderItem : items) {
+            orderSet.add(orderItem.getOrder());
+        }
+        return orderSet;
+    }
+}
+```
+#### 12.2 Retrieving Order with Product-OrderItem Data via Spring Boot RESTful API:
+GET Request /orders/1:
+```json
+http://localhost:8080/orders/1
+```
+```json
+  {
+  "id": 1,
+  "moment": "2025-01-19T19:53:07Z",
+  "orderStatus": "PAID",
+  "user": {
+    "id": 1,
+    "name": "Balthazar de Bigode",
+    "email": "balthazar@email.com",
+    "phone": "+5599999999999",
+    "password": "******"
+  },
+  "items": [
+    {
+      "quantity": 2,
+      "price": 90.5,
+      "product": {
+        "id": 1,
+        "name": "The Lord of the Rings",
+        "description": "An epic fantasy novel by J.R.R. Tolkien. Follow the journey of Frodo Baggins as he attempts to destroy the One Ring.",
+        "price": 90.5,
+        "imgUri": "https://github.com/souzafcharles/1.png",
+        "categories": [
+          {
+            "id": 2,
+            "name": "Books"
+          }
+        ]
+      }
+    },
+    {
+      "quantity": 1,
+      "price": 25.99,
+      "product": {
+        "id": 13,
+        "name": "Nike Dri-FIT Cotton T-Shirt",
+        "description": "Comfortable athletic T-shirt with moisture-wicking fabric, available in multiple sizes.",
+        "price": 25.99,
+        "imgUri": "https://github.com/souzafcharles/13.png",
+        "categories": [
+          {
+            "id": 4,
+            "name": "Clothing"
+          }
+        ]
+      }
+    },
+    {
+      "quantity": 1,
+      "price": 1250.0,
+      "product": {
+        "id": 3,
+        "name": "Macbook Pro",
+        "description": "Power through your day with this high-performance Macbook Pro, featuring a sleek design and powerful hardware.",
+        "price": 1250.0,
+        "imgUri": "https://github.com/souzafcharles/3.png",
+        "categories": [
+          {
+            "id": 3,
+            "name": "Computers"
+          }
+        ]
+      }
+    }
+  ]
+}
+ ```
 ***
 ## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>

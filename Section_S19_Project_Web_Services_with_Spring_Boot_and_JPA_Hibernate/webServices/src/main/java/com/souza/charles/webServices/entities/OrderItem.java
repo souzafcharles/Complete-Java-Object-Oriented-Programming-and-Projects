@@ -6,6 +6,7 @@ package com.souza.charles.webServices.entities;
   Date: January 23, 2025
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.souza.charles.webServices.entities.pk.OrderItemPK;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -37,6 +38,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
