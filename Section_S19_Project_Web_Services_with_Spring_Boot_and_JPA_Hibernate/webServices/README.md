@@ -21,14 +21,18 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
 ***
 ### 2. User Entity and Resource Class:
 #### 2.1 Entity Requirements: 
-- Create the User Entity Class;
+- Create the `User` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
 - Constructors;
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 2.2 UserResource Class:
+#### 2.2 Resource Requirements:
+- Use `@RestController` annotation.
+- Map requests to the `/users` endpoint;
+- Implement a method to handle GET requests and return all categories (`@GetMapping`).
+#### 2.3 UserResource Class:
 ```java
 @RestController
 @RequestMapping(value = "/users")
@@ -40,12 +44,12 @@ public class UserResource {
     }
 }
 ```
-#### 2.3 Summary of the Annotations:
+#### 2.4 Summary of the Annotations:
 - `@RestController`: Defines the class as a RESTful controller;
 - `@RequestMapping(value = "/users")`: Maps the class to the /users endpoint;
 - `@GetMapping`: Maps HTTP GET requests to the findAll method;
 - `ResponseEntity<User> findAll()`: Returns an HTTP response containing a User object.
-#### 2.4 Uniform Resource Locator (URL) Field:
+#### 2.5 Uniform Resource Locator (URL) Field:
 ```URL
 http://localhost:8080/users
 ```
@@ -167,7 +171,18 @@ public class TestConfig implements CommandLineRunner {
 - `CommandLineRunner`: Interface used to execute specific code when the Spring Boot application starts.
 ***
 ### 5. Service Layer and Component Registration:
-#### 5.1 Marks the Classes as a Spring Service Component, Used for Business Logic:
+#### 5.1 User Requirements:
+- Use `@Service` annotation;
+- Inject CategoryRepository using `@Autowired`;
+- Implement methods to retrieve all categories (findAll);
+- Implement method to retrieve category by ID (findById).
+#### 5.2 Resource Requirements:
+- Use `@RestController` annotation.
+- Map requests to the `/users` endpoint;
+- Inject CategoryService using `@Autowired`;
+- Implement a method to handle GET requests and return all categories (`@GetMapping`).
+- Implement a method to handle GET requests for a specific category by ID (`@GetMapping(value = "/{id}")`).
+#### 5.3 Marks the Classes as a Spring Service Component, Used for Business Logic:
 ````java
 @Service
 public class UserService {}
@@ -176,31 +191,13 @@ public class UserResource {}
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {}
 ````
-#### 5.2 Create a Service Class:
-```java
-@Service
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
-
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
-    public User findById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.get();
-    }
-}
-```
-#### 5.3 Summary of the Annotations and Commands:
+#### 5.4 Summary of the Annotations and Commands:
 - `@Service`: Marks the class as a Spring service component, used for business logic;
 - `@GetMapping(value = "/{id}")`: Maps HTTP GET requests to the findById method;
 - `@PathVariable`: Binds a method parameter to a URI template variable;
 - `Optional`: A class that represents a value that may or may not be present;
 - `get()`: Retrieves the value if present, throws NoSuchElementException if not.
-
-#### 5.4 Retrieving User Data via Spring Boot RESTful API:
+#### 5.5 Retrieving User Data via Spring Boot RESTful API:
 GET Request /users:
 ```json
 http://localhost:8080/users
@@ -246,19 +243,32 @@ http://localhost:8080/users/1
 ***
 ### 6. Order Entity Class, Instant Class and ISO 8601:
 #### 6.1 Entity Requirements:
-- Create the Order Entity Class;
+- Create the `Order` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
 - Constructors;
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 6.2 Include Instant Class and ISO 8601:
+#### 6.2 Repository Requirement:
+- Extends JpaRepository<Category, Long>.
+#### 6.3 Service Requirements:
+- Use `@Service` annotation;
+- Inject CategoryRepository using `@Autowired`;
+- Implement methods to retrieve all categories (findAll);
+- Implement method to retrieve category by ID (findById).
+#### 6.4 Resource Requirements:
+- Use `@RestController` annotation.
+- Map requests (`@RequestMapping`) to the `/categories` endpoint;
+- Inject CategoryService using `@Autowired`;
+- Implement a method to handle GET requests and return all categories (`@GetMapping`).
+- Implement a method to handle GET requests for a specific category by ID (`@GetMapping(value = "/{id}")`).
+#### 6.5 Include Instant Class and ISO 8601:
 ```java
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 private Instant moment;
 ```
-#### 6.3 "To Many" Association, Lazy Loading, JsonIgnore:
+#### 6.6 "To Many" Association, Lazy Loading, JsonIgnore:
 ```java
 @ManyToOne
 @JoinColumn(name = "user_id")
@@ -268,7 +278,7 @@ private User user;
 @OneToMany(mappedBy = "user")
 private List<Order> orders = new ArrayList<>();
 ```
-#### 6.4 Database Seeding with Orders in TestConfig Class and Persist Objects:
+#### 6.7 Database Seeding with Orders in TestConfig Class and Persist Objects:
 ```java
 Order order01 = new Order(null, Instant.parse("2025-01-19T19:53:07Z"), user01);
 Order order02 = new Order(null, Instant.parse("2025-01-19T03:42:10Z"), user02);
@@ -277,13 +287,13 @@ Order order04 = new Order(null, Instant.parse("2025-01-21T15:21:22Z"), user03);
 
 orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04));
 ```
-#### 6.5 Summary of the Annotations:
+#### 6.8 Summary of the Annotations:
 - `@JsonFormat`: Specifies how a field should be formatted when serialized to JSON;
 - `@ManyToOne`: Defines a many-to-one relationship between entities;
 - `@JoinColumn(name = "user_id")`: Specifies the column used to join the Order table with the User table;
 - `@JsonIgnore`: Indicates that a field should be ignored during JSON serialization and deserialization;
 - `@OneToMany(mappedBy = "user")`: Defines a one-to-many relationship between entities, with the user field in the Order entity being the owner of the relationship;
-#### 6.6 Retrieving Order Data via Spring Boot RESTful API:
+#### 6.9 Retrieving Order Data via Spring Boot RESTful API:
 GET Request /orders:
 ```json
 http://localhost:8080/orders
@@ -409,7 +419,7 @@ orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04, order0
 ***
 ### 8. Category Entity, Repository, Service and Resource Classes:
 #### 8.1 Entity Requirements:
-- Create the Order Entity Class;
+- Create the `Category` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
 - Constructors;
@@ -425,7 +435,7 @@ orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04, order0
 - Implement method to retrieve category by ID (findById).
 #### 8.4 Resource Requirements:
 - Use `@RestController` annotation.
-- Map requests to the `/categories` endpoint;
+- Map requests (`@RequestMapping`) to the `/categories` endpoint;
 - Inject CategoryService using `@Autowired`;
 - Implement a method to handle GET requests and return all categories (`@GetMapping`).
 - Implement a method to handle GET requests for a specific category by ID (`@GetMapping(value = "/{id}")`).
@@ -503,6 +513,189 @@ http://localhost:8080/categories/7
   "name": "Sports & Outdoors"
 }
 ```
+***
+### 9. Product Entity, Repository, Service and Resource Classes:
+#### 9.1 Product Requirements:
+- Create the `Product` Entity Class;
+- Basic Attributes;
+- Associations (Instantiate Collections);
+- Constructors;
+- Getters & Setters (Collections: only get);
+- hashCode & equals;
+- Serializable.
+#### 9.2 Repository Requirement:
+- Extends JpaRepository<Category, Long>.
+#### 9.3 Service Requirements:
+- Use `@Service` annotation;
+- Inject CategoryRepository using `@Autowired`;
+- Implement methods to retrieve all categories (findAll);
+- Implement method to retrieve category by ID (findById).
+#### 9.4 Resource Requirements:
+- Use `@RestController` annotation.
+- Map requests (`@RequestMapping`) to the `/products` endpoint;
+- Inject CategoryService using `@Autowired`;
+- Implement a method to handle GET requests and return all categories (`@GetMapping`).
+- Implement a method to handle GET requests for a specific category by ID (`@GetMapping(value = "/{id}")`).
+#### 9.5 Database Seeding with Categories in TestConfig Class and Persist Objects:
+```java
+Category category01 = new Category(null, "Electronics");
+Category category02 = new Category(null, "Books");
+Category category03 = new Category(null, "Computers");
+Category category04 = new Category(null, "Clothing");
+Category category05 = new Category(null, "Home Appliances");
+Category category06 = new Category(null, "Beauty & Personal Care");
+Category category07 = new Category(null, "Sports & Outdoors");
+Category category08 = new Category(null, "Toys & Games");
+Category category09 = new Category(null, "Groceries");
+Category category10 = new Category(null, "Automotive");
+
+categoryRepository.saveAll(Arrays.asList(category01, category02, category03, category04, category05, category06, category07, category08, category09, category10));
+```
+#### 9.6 Retrieving Category Data via Spring Boot RESTful API:
+GET Request /products:
+```json
+http://localhost:8080/products
+```
+```json
+[
+  {
+    "id": 1,
+    "name": "Smartphone",
+    "description": "Latest model smartphone",
+    "price": 699.99,
+    "imgUri": "https://github.com/souzafcharles/1.png",
+    "categories": []
+  },
+  {
+    "id": 2,
+    "name": "Laptop",
+    "description": "High performance laptop",
+    "price": 1199.99,
+    "imgUri": "https://github.com/souzafcharles/2.png",
+    "categories": []
+  },
+  {
+    "id": 3,
+    "name": "Fiction Book",
+    "description": "Best-selling fiction book",
+    "price": 19.99,
+    "imgUri": "https://github.com/souzafcharles/3.png",
+    "categories": []
+  },
+  {
+    "id": 4,
+    "name": "Jeans",
+    "description": "Comfortable blue jeans",
+    "price": 49.99,
+    "imgUri": "https://github.com/souzafcharles/4.png",
+    "categories": []
+  },
+  {
+    "id": 5,
+    "name": "Air Conditioner",
+    "description": "Energy-efficient air conditioner",
+    "price": 299.99,
+    "imgUri": "https://github.com/souzafcharles/5.png",
+    "categories": []
+  },
+  {
+    "id": 6,
+    "name": "Shampoo",
+    "description": "Organic hair shampoo",
+    "price": 12.99,
+    "imgUri": "https://github.com/souzafcharles/6.png",
+    "categories": []
+  },
+  {
+    "id": 7,
+    "name": "Tennis Racket",
+    "description": "Lightweight tennis racket",
+    "price": 89.99,
+    "imgUri": "https://github.com/souzafcharles/7.png",
+    "categories": []
+  },
+  {
+    "id": 8,
+    "name": "Board Game",
+    "description": "Popular family board game",
+    "price": 29.99,
+    "imgUri": "https://github.com/souzafcharles/8.png",
+    "categories": []
+  },
+  {
+    "id": 9,
+    "name": "Coffee Beans",
+    "description": "Premium roasted coffee beans",
+    "price": 15.99,
+    "imgUri": "https://github.com/souzafcharles/9.png",
+    "categories": []
+  },
+  {
+    "id": 10,
+    "name": "Car Tires",
+    "description": "High-performance car tires",
+    "price": 89.99,
+    "imgUri": "https://github.com/souzafcharles/10.png",
+    "categories": []
+  },
+  {
+    "id": 11,
+    "name": "Tablet",
+    "description": "Sleek and responsive tablet",
+    "price": 499.99,
+    "imgUri": "https://github.com/souzafcharles/11.png",
+    "categories": []
+  },
+  {
+    "id": 12,
+    "name": "Cookbook",
+    "description": "Gourmet cookbook",
+    "price": 24.99,
+    "imgUri": "https://github.com/souzafcharles/12.png",
+    "categories": []
+  },
+  {
+    "id": 13,
+    "name": "Gaming Laptop",
+    "description": "Powerful gaming laptop",
+    "price": 1499.99,
+    "imgUri": "https://github.com/souzafcharles/13.png",
+    "categories": []
+  },
+  {
+    "id": 14,
+    "name": "Smart Watch",
+    "description": "Feature-rich smart watch",
+    "price": 199.99,
+    "imgUri": "https://github.com/souzafcharles/14.png",
+    "categories": []
+  },
+  {
+    "id": 15,
+    "name": "Refrigerator",
+    "description": "Spacious and efficient refrigerator",
+    "price": 699.99,
+    "imgUri": "https://github.com/souzafcharles/15.png",
+    "categories": []
+  }
+]
+```
+GET Request /products/1:
+```json
+http://localhost:8080/products/13
+```
+```json
+{
+  "id": 13,
+  "name": "Gaming Laptop",
+  "description": "Powerful gaming laptop",
+  "price": 1499.99,
+  "imgUri": "https://github.com/souzafcharles/13.png",
+  "categories": []
+}
+```
+***
+
 ***
 ## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>

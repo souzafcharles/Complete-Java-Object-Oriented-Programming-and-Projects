@@ -8,10 +8,12 @@ package com.souza.charles.webServices.config;
 
 import com.souza.charles.webServices.entities.Category;
 import com.souza.charles.webServices.entities.Order;
+import com.souza.charles.webServices.entities.Product;
 import com.souza.charles.webServices.entities.User;
 import com.souza.charles.webServices.entities.enums.OrderStatus;
 import com.souza.charles.webServices.repositories.CategoryRepository;
 import com.souza.charles.webServices.repositories.OrderRepository;
+import com.souza.charles.webServices.repositories.ProductRepository;
 import com.souza.charles.webServices.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -76,6 +81,24 @@ public class TestConfig implements CommandLineRunner {
         Category category10 = new Category(null, "Automotive");
 
         categoryRepository.saveAll(Arrays.asList(category01, category02, category03, category04, category05, category06, category07, category08, category09, category10));
+
+        Product product01 = new Product(null, "Smartphone", "Latest model smartphone", 699.99, "https://github.com/souzafcharles/1.png");
+        Product product02 = new Product(null, "Laptop", "High performance laptop", 1199.99, "https://github.com/souzafcharles/2.png");
+        Product product03 = new Product(null, "Fiction Book", "Best-selling fiction book", 19.99, "https://github.com/souzafcharles/3.png");
+        Product product04 = new Product(null, "Jeans", "Comfortable blue jeans", 49.99, "https://github.com/souzafcharles/4.png");
+        Product product05 = new Product(null, "Air Conditioner", "Energy-efficient air conditioner", 299.99, "https://github.com/souzafcharles/5.png");
+        Product product06 = new Product(null, "Shampoo", "Organic hair shampoo", 12.99, "https://github.com/souzafcharles/6.png");
+        Product product07 = new Product(null, "Tennis Racket", "Lightweight tennis racket", 89.99, "https://github.com/souzafcharles/7.png");
+        Product product08 = new Product(null, "Board Game", "Popular family board game", 29.99, "https://github.com/souzafcharles/8.png");
+        Product product09 = new Product(null, "Coffee Beans", "Premium roasted coffee beans", 15.99, "https://github.com/souzafcharles/9.png");
+        Product product10 = new Product(null, "Car Tires", "High-performance car tires", 89.99, "https://github.com/souzafcharles/10.png");
+        Product product11 = new Product(null, "Tablet", "Sleek and responsive tablet", 499.99, "https://github.com/souzafcharles/11.png");
+        Product product12 = new Product(null, "Cookbook", "Gourmet cookbook", 24.99, "https://github.com/souzafcharles/12.png");
+        Product product13 = new Product(null, "Gaming Laptop", "Powerful gaming laptop", 1499.99, "https://github.com/souzafcharles/13.png");
+        Product product14 = new Product(null, "Smart Watch", "Feature-rich smart watch", 199.99, "https://github.com/souzafcharles/14.png");
+        Product product15 = new Product(null, "Refrigerator", "Spacious and efficient refrigerator", 699.99, "https://github.com/souzafcharles/15.png");
+
+        productRepository.saveAll(Arrays.asList(product01, product02, product03, product04, product05, product06, product07, product08, product09, product10, product11, product12, product13, product14, product15));
 
     }
 }
