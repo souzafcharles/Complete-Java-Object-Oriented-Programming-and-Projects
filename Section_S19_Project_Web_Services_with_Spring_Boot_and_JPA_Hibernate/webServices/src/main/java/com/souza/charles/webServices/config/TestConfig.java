@@ -6,15 +6,9 @@ package com.souza.charles.webServices.config;
   Date: January 22, 2025
  */
 
-import com.souza.charles.webServices.entities.Category;
-import com.souza.charles.webServices.entities.Order;
-import com.souza.charles.webServices.entities.Product;
-import com.souza.charles.webServices.entities.User;
+import com.souza.charles.webServices.entities.*;
 import com.souza.charles.webServices.entities.enums.OrderStatus;
-import com.souza.charles.webServices.repositories.CategoryRepository;
-import com.souza.charles.webServices.repositories.OrderRepository;
-import com.souza.charles.webServices.repositories.ProductRepository;
-import com.souza.charles.webServices.repositories.UserRepository;
+import com.souza.charles.webServices.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +32,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -115,6 +112,26 @@ public class TestConfig implements CommandLineRunner {
         product15.getCategories().add(category05);
 
         productRepository.saveAll(Arrays.asList(product01, product02, product03, product04, product05, product06, product07, product08, product09, product10, product11, product12, product13, product14, product15));
+
+        OrderItem orderItem01 = new OrderItem(order01, product01, 2, product01.getPrice());
+        OrderItem orderItem02 = new OrderItem(order01, product03, 1, product03.getPrice());
+        OrderItem orderItem03 = new OrderItem(order02, product03, 2, product03.getPrice());
+        OrderItem orderItem04 = new OrderItem(order03, product05, 2, product05.getPrice());
+        OrderItem orderItem05 = new OrderItem(order04, product02, 1, product02.getPrice());
+        OrderItem orderItem06 = new OrderItem(order05, product04, 1, product04.getPrice());
+        OrderItem orderItem07 = new OrderItem(order06, product06, 3, product06.getPrice());
+        OrderItem orderItem08 = new OrderItem(order07, product07, 2, product07.getPrice());
+        OrderItem orderItem09 = new OrderItem(order08, product08, 1, product08.getPrice());
+        OrderItem orderItem10 = new OrderItem(order09, product09, 4, product09.getPrice());
+        OrderItem orderItem11 = new OrderItem(order10, product10, 2, product10.getPrice());
+        OrderItem orderItem12 = new OrderItem(order11, product11, 1, product11.getPrice());
+        OrderItem orderItem13 = new OrderItem(order12, product12, 1, product12.getPrice());
+        OrderItem orderItem14 = new OrderItem(order01, product13, 1, product13.getPrice());
+        OrderItem orderItem15 = new OrderItem(order02, product14, 2, product14.getPrice());
+        OrderItem orderItem16 = new OrderItem(order03, product15, 1, product15.getPrice());
+
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem01, orderItem02, orderItem03, orderItem04, orderItem05, orderItem06, orderItem07, orderItem08, orderItem09, orderItem10, orderItem11, orderItem12, orderItem13, orderItem14, orderItem15, orderItem16));
 
     }
 }

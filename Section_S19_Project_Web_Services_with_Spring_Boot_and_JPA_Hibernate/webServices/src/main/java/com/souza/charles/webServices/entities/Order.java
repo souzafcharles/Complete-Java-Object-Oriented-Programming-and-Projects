@@ -3,7 +3,7 @@ package com.souza.charles.webServices.entities;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: January 22, 2025
+  Date: January 23, 2025
  */
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,7 +13,9 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -32,6 +34,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order() {
     }
@@ -75,6 +80,10 @@ public class Order implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     @Override

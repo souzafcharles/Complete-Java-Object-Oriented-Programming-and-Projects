@@ -20,7 +20,7 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
 ![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/img/domain-model.png)
 ***
 ### 2. User Entity and Resource Class:
-#### 2.1 Entity Requirements: 
+#### 2.1 Entity Class Requirements for User:
 - Create the `User` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
@@ -28,7 +28,7 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 2.2 Resource Requirements:
+#### 2.2 Resource Class Requirements for User:
 - Use `@RestController` annotation.
 - Map requests to the `/users` endpoint;
 - Implement a method to handle GET requests and return all categories (`@GetMapping`).
@@ -171,12 +171,12 @@ public class TestConfig implements CommandLineRunner {
 - `CommandLineRunner`: Interface used to execute specific code when the Spring Boot application starts.
 ***
 ### 5. Service Layer and Component Registration:
-#### 5.1 User Requirements:
+#### 5.1 Service Class Requirements for User:
 - Use `@Service` annotation;
 - Inject CategoryRepository using `@Autowired`;
 - Implement methods to retrieve all categories (findAll);
 - Implement method to retrieve category by ID (findById).
-#### 5.2 Resource Requirements:
+#### 5.2 Resource Class Requirements for User:
 - Use `@RestController` annotation.
 - Map requests to the `/users` endpoint;
 - Inject CategoryService using `@Autowired`;
@@ -242,7 +242,7 @@ http://localhost:8080/users/1
 ```
 ***
 ### 6. Order Entity Class, Instant Class and ISO 8601:
-#### 6.1 Entity Requirements:
+#### 6.1 Entity Class Requirements for Order:
 - Create the `Order` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
@@ -250,14 +250,14 @@ http://localhost:8080/users/1
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 6.2 Repository Requirement:
+#### 6.2 Repository Class Requirements for Order:
 - Extends JpaRepository<Category, Long>.
-#### 6.3 Service Requirements:
+#### 6.3 Service Class Requirements for Order:
 - Use `@Service` annotation;
 - Inject CategoryRepository using `@Autowired`;
 - Implement methods to retrieve all categories (findAll);
 - Implement method to retrieve category by ID (findById).
-#### 6.4 Resource Requirements:
+#### 6.4 Resource Class Requirements for Order:
 - Use `@RestController` annotation.
 - Map requests (`@RequestMapping`) to the `/categories` endpoint;
 - Inject CategoryService using `@Autowired`;
@@ -365,14 +365,14 @@ http://localhost:8080/orders/1
 ```
 ***
 ### 7. OrderStatus Enum Class:
-#### 7.1 OrderStatus Enum Requirements:
+#### 7.1 Enum Class Requirements for OrderStatus:
 - Declare enum constants for different order statuses;
 - Assign unique integer codes to each enum constant;
 - Define a private field to store the code;
 - Implement a constructor to initialize the code;
 - Provide a getter method to retrieve the code;
 - Implement a static method valueOf to convert an integer code back to the corresponding enum constant.
-#### 7.2 Order Class Requirements:
+#### 7.2 Order Class Requirements: 
 - Declare a private field to store the OrderStatus as an integer code;
 - Implement a constructor to initialize the fields, including setting the order status using the enum;
 - Provide a getter method to convert the integer code back to the OrderStatus enum;
@@ -418,7 +418,7 @@ orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04, order0
 ```
 ***
 ### 8. Category Entity, Repository, Service and Resource Classes:
-#### 8.1 Entity Requirements:
+#### 8.1 Entity Class Requirements for Category:
 - Create the `Category` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
@@ -426,14 +426,14 @@ orderRepository.saveAll(Arrays.asList(order01, order02, order03, order04, order0
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 8.2 Repository Requirement:
+#### 8.2 Repository Class Requirement for Category:
 - Extends JpaRepository<Category, Long>.
-#### 8.3 Service Requirements:
+#### 8.3 Service Class Requirements:
 - Use `@Service` annotation;
 - Inject CategoryRepository using `@Autowired`;
 - Implement methods to retrieve all categories (findAll);
 - Implement method to retrieve category by ID (findById).
-#### 8.4 Resource Requirements:
+#### 8.4 Resource Class Requirements for Category:
 - Use `@RestController` annotation.
 - Map requests (`@RequestMapping`) to the `/categories` endpoint;
 - Inject CategoryService using `@Autowired`;
@@ -515,7 +515,7 @@ http://localhost:8080/categories/7
 ```
 ***
 ### 9. Product Entity, Repository, Service and Resource Classes:
-#### 9.1 Product Requirements:
+#### 9.1 Entity Class Requirements for Product:
 - Create the `Product` Entity Class;
 - Basic Attributes;
 - Associations (Instantiate Collections);
@@ -523,14 +523,14 @@ http://localhost:8080/categories/7
 - Getters & Setters (Collections: only get);
 - hashCode & equals;
 - Serializable.
-#### 9.2 Repository Requirement:
+#### 9.2 Repository Class Requirement for Product:
 - Extends JpaRepository<Category, Long>.
-#### 9.3 Service Requirements:
+#### 9.3 Service Class Requirements for Product:
 - Use `@Service` annotation;
 - Inject CategoryRepository using `@Autowired`;
 - Implement methods to retrieve all categories (findAll);
 - Implement method to retrieve category by ID (findById).
-#### 9.4 Resource Requirements:
+#### 9.4 Resource Class Requirements for Product:
 - Use `@RestController` annotation.
 - Map requests (`@RequestMapping`) to the `/products` endpoint;
 - Inject CategoryService using `@Autowired`;
@@ -637,7 +637,7 @@ product03.getCategories().add(category03);
 Product product05 = new Product(null, "Rails for Dummies", "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.", 100.99, "https://github.com/souzafcharles/5.png");
 product05.getCategories().add(category02);
 ```
-#### 10.4 Retrieving Category Data via Spring Boot RESTful API:
+#### 10.4 Retrieving Products with Categories Data via Spring Boot RESTful API:
 GET Request /products:
 ```json
 http://localhost:8080/products
@@ -733,7 +733,84 @@ http://localhost:8080/products/13
   ]
 }
 ```
+***
+### 11. OrderItem, Many-to-Many Association with Extra Attributes:
+#### 11.1 Entity Class Requirements for OrderItemPK:
+- Create the OrderItemPK Entity Class;
+- Annotate the class with @Embeddable to indicate it is an embeddable key class.
+- Define Order and Product attributes as @ManyToOne associations, annotated with @JoinColumn to define foreign key columns:
+  - order → mapped to order_id.
+  - product → mapped to product_id.
+- Getters & Setters;
+- hashCode & equals;
+- Serializable.
+#### 11.2 OrderItemPK Class:
+```java
+@Embeddable
+public class OrderItemPK implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+```
+#### 11.3 Entity Class Requirements for OrderItem:
+- Create the OrderItem Entity Class;
+- Basic Attributes;
+- Associations (Instantiate Collections);
+- Constructors;
+- Getters & Setters (Collections: only get);
+- hashCode & equals;
+- Serializable.
+#### 11.5 OrderItem Class:
+The relationship between OrderItem and Order is established through the composite key OrderItemPK.<br/>
+```java
+@Entity
+@Table(name = "tb_order_item")
+public class OrderItem implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @EmbeddedId
+    private OrderItemPK id = new OrderItemPK();
+
+    private Integer quantity;
+    private Double price;
+
+    public OrderItem() {
+    }
+
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        id.setOrder(order);
+        id.setProduct(product);
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+```
+#### 11.6 Repository Class Requirement for OrderItem:
+- Extends JpaRepository<Category, Long>.
+#### 11.7 Summary of Annotations:
+- `@Embeddable`: Marks the class as embeddable in another class as a composite key;
+- `@ManyToOne`: Defines a many-to-one relationship between entities;
+- `@JoinColumn`: Specifies the column that uses the foreign key in relationships;
+- `@EmbeddedId`: Marks a field as an embedded composite primary key.
+
+#### 11.8 Database Seeding with OrderItem in TestConfig Class and Persist Objects:
+```java
+OrderItem orderItem01 = new OrderItem(order01, product01, 2, product01.getPrice());
+OrderItem orderItem02 = new OrderItem(order01, product03, 1, product03.getPrice());
+OrderItem orderItem03 = new OrderItem(order02, product03, 2, product03.getPrice());
+OrderItem orderItem04 = new OrderItem(order03, product05, 2, product05.getPrice());
+
+orderItemRepository.saveAll(Arrays.asList(orderItem01, orderItem02, orderItem03, orderItem04));
+```
 ***
 ## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>
