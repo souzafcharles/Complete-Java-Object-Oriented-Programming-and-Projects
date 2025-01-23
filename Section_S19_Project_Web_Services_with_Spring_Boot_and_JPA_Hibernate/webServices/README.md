@@ -913,11 +913,107 @@ http://localhost:8080/orders/1
 }
  ```
 ***
+### 13 Payment, One-to-One Association:
+#### 13.1 Entity Class Requirements for Payment:
+- Create the OrderItem Entity Class;
+- Basic Attributes;
+- Associations (Instantiate Collections);
+- Constructors;
+- Getters & Setters (Collections: only get);
+- hashCode & equals;
+- Serializable.
+#### 13.2 Payment Class One-to-One Association:
+```java
+public class Payment {
+
+    @JsonIgnore
+    @OneToOne
+    @MapsId
+    private Order order;
+}
+```
+#### 13.3 Order Class One-to-One Association:
+```java
+public class Order  {
+   
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
+
+}
+```
+#### 13.4 Database Seeding with Payment in TestConfig Class and Persist Objects:
+```java
+Payment payment01 = new Payment(null, Instant.parse("2025-01-19T20:31:07Z"), order01);
+order01.setPayment(payment01);
+Payment payment02 = new Payment(null, Instant.parse("2025-01-23T11:57:59Z"), order07);
+order07.setPayment(payment02);
+Payment payment03 = new Payment(null, Instant.parse("2025-01-26T15:03:34Z"), order10);
+order10.setPayment(payment03);
+
+orderRepository.saveAll(Arrays.asList(order01, order07, order10));
+```
+In a One-to-One relationship, like in the classes Order and Payment, one object is dependent on the other. There is no necessity to create a separate repository for the dependent object (in this case, Payment).
+
+#### 13.5 Key Concepts:
+- One-to-One Relationship: In the relationship between Order and Payment, each Order may or may not have a Payment, while each Payment must be associated with an Order;
+- `@MapsId`: The `@MapsId` annotation is used to indicate that the Payment should share the same primary key as the Order. This ensures no duplication, and the Payment is uniquely identified by the Order's primary key.
+#### 13.6 The In-Memory Association and Primary Object Saving Work:
+- A new Payment is created and associated with an Order.
+#### 13.7 Bidirectional In-Memory Association:
+- The association is established in both directions in memory;
+- The Payment is associated with the Order using `order10.setPayment(payment10)`;
+- The Order is associated with the Payment by defining `@MapsId` on the Payment.
+### 13.8 Primary Object Persistence (Order):
+- The primary object (Order) is saved in the database using the OrderRepository;
+- With the `@OneToOne`(mappedBy = "order", cascade = `CascadeType.ALL`) annotation, the Order automatically saves the dependent object (Payment).
+#### 13.9 Retrieving Order with Payment Data via Spring Boot RESTful API:
+GET Request /orders/10:
+```json
+http://localhost:8080/orders/10
+```
+```json
+{
+  "id": 10,
+  "moment": "2025-01-26T14:14:14Z",
+  "orderStatus": "PAID",
+  "user": {
+    "id": 8,
+    "name": "Florentino Fidalgo",
+    "email": "florentino@email.com",
+    "phone": "+5577777777777",
+    "password": "******"
+  },
+  "items": [
+    {
+      "quantity": 2,
+      "price": 159.99,
+      "product": {
+        "id": 10,
+        "name": "Michelin Pilot Sport 4 Tires",
+        "description": "High-performance tires with excellent grip and stability for sports cars.",
+        "price": 159.99,
+        "imgUri": "https://github.com/souzafcharles/10.png",
+        "categories": [
+          {
+            "id": 10,
+            "name": "Automotive"
+          }
+        ]
+      }
+    }
+  ],
+  "payment": {
+    "id": 10,
+    "moment": "2025-01-26T15:03:34Z"
+  }
+}
+ ```
+***
 ## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>
-:ballot_box_with_check: Structure Logical Layers: Resource, Service, Repository;
-- Implement the Domain Model;
-- Configure the Test Database (H2);
-- Populate the Database;
+:ballot_box_with_check: Structure Logical Layers: Resource, Service, Repository;<br/>
+:ballot_box_with_check: Implement the Domain Model;<br/>
+:ballot_box_with_check: Configure the Test Database (H2);<br/>
+:ballot_box_with_check: Populate the Database;<br/>
 - CRUD - Create, Retrieve, Update, Delete;
 - Exception Handling.

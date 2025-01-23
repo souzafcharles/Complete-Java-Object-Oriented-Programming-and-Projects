@@ -60,7 +60,7 @@ public class TestConfig implements CommandLineRunner {
         Order order07 = new Order(null, Instant.parse("2025-01-23T11:11:11Z"), OrderStatus.PAID, user05);
         Order order08 = new Order(null, Instant.parse("2025-01-24T12:12:12Z"), OrderStatus.SHIPPED, user06);
         Order order09 = new Order(null, Instant.parse("2025-01-25T13:13:13Z"), OrderStatus.WAITING_PAYMENT, user07);
-        Order order10 = new Order(null, Instant.parse("2025-01-26T14:14:14Z"), OrderStatus.CANCELED, user08);
+        Order order10 = new Order(null, Instant.parse("2025-01-26T14:14:14Z"), OrderStatus.PAID, user08);
         Order order11 = new Order(null, Instant.parse("2025-01-15T15:15:15Z"), OrderStatus.DELIVERED, user09);
         Order order12 = new Order(null, Instant.parse("2025-01-28T16:16:16Z"), OrderStatus.SHIPPED, user10);
 
@@ -130,8 +130,15 @@ public class TestConfig implements CommandLineRunner {
         OrderItem orderItem15 = new OrderItem(order02, product14, 2, product14.getPrice());
         OrderItem orderItem16 = new OrderItem(order03, product15, 1, product15.getPrice());
 
-
         orderItemRepository.saveAll(Arrays.asList(orderItem01, orderItem02, orderItem03, orderItem04, orderItem05, orderItem06, orderItem07, orderItem08, orderItem09, orderItem10, orderItem11, orderItem12, orderItem13, orderItem14, orderItem15, orderItem16));
 
+        Payment payment01 = new Payment(null, Instant.parse("2025-01-19T20:31:07Z"), order01);
+        order01.setPayment(payment01);
+        Payment payment02 = new Payment(null, Instant.parse("2025-01-23T11:57:59Z"), order07);
+        order07.setPayment(payment02);
+        Payment payment03 = new Payment(null, Instant.parse("2025-01-26T15:03:34Z"), order10);
+        order10.setPayment(payment03);
+
+        orderRepository.saveAll(Arrays.asList(order01, order07, order10));
     }
 }
