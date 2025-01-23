@@ -3,7 +3,7 @@ package com.souza.charles.webServices.entities;
  Course title: Complete Java - Object-Oriented Programming + Projects
  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
  Project done by: Charles Fernandes de Souza
- Date: January 22, 2025
+ Date: January 23, 2025
 */
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +30,6 @@ public class Category implements Serializable {
 
     public Category() {
     }
-
 
     public Category(Long id, String name) {
         this.id = id;

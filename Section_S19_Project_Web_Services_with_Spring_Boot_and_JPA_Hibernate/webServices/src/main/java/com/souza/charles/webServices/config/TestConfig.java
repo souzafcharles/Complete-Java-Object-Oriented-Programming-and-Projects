@@ -82,21 +82,37 @@ public class TestConfig implements CommandLineRunner {
 
         categoryRepository.saveAll(Arrays.asList(category01, category02, category03, category04, category05, category06, category07, category08, category09, category10));
 
-        Product product01 = new Product(null, "Smartphone", "Latest model smartphone", 699.99, "https://github.com/souzafcharles/1.png");
-        Product product02 = new Product(null, "Laptop", "High performance laptop", 1199.99, "https://github.com/souzafcharles/2.png");
-        Product product03 = new Product(null, "Fiction Book", "Best-selling fiction book", 19.99, "https://github.com/souzafcharles/3.png");
-        Product product04 = new Product(null, "Jeans", "Comfortable blue jeans", 49.99, "https://github.com/souzafcharles/4.png");
-        Product product05 = new Product(null, "Air Conditioner", "Energy-efficient air conditioner", 299.99, "https://github.com/souzafcharles/5.png");
-        Product product06 = new Product(null, "Shampoo", "Organic hair shampoo", 12.99, "https://github.com/souzafcharles/6.png");
-        Product product07 = new Product(null, "Tennis Racket", "Lightweight tennis racket", 89.99, "https://github.com/souzafcharles/7.png");
-        Product product08 = new Product(null, "Board Game", "Popular family board game", 29.99, "https://github.com/souzafcharles/8.png");
-        Product product09 = new Product(null, "Coffee Beans", "Premium roasted coffee beans", 15.99, "https://github.com/souzafcharles/9.png");
-        Product product10 = new Product(null, "Car Tires", "High-performance car tires", 89.99, "https://github.com/souzafcharles/10.png");
-        Product product11 = new Product(null, "Tablet", "Sleek and responsive tablet", 499.99, "https://github.com/souzafcharles/11.png");
-        Product product12 = new Product(null, "Cookbook", "Gourmet cookbook", 24.99, "https://github.com/souzafcharles/12.png");
-        Product product13 = new Product(null, "Gaming Laptop", "Powerful gaming laptop", 1499.99, "https://github.com/souzafcharles/13.png");
-        Product product14 = new Product(null, "Smart Watch", "Feature-rich smart watch", 199.99, "https://github.com/souzafcharles/14.png");
-        Product product15 = new Product(null, "Refrigerator", "Spacious and efficient refrigerator", 699.99, "https://github.com/souzafcharles/15.png");
+        Product product01 = new Product(null, "The Lord of the Rings", "An epic fantasy novel by J.R.R. Tolkien. Follow the journey of Frodo Baggins as he attempts to destroy the One Ring.", 90.5, "https://github.com/souzafcharles/1.png");
+        product01.getCategories().add(category02);
+        Product product02 = new Product(null, "Smart TV", "Enjoy your favorite shows on this sleek Smart TV with vibrant colors and crisp resolution.", 2190.0, "https://github.com/souzafcharles/2.png");
+        product02.getCategories().add(category01);
+        product02.getCategories().add(category03);
+        Product product03 = new Product(null, "Macbook Pro", "Power through your day with this high-performance Macbook Pro, featuring a sleek design and powerful hardware.", 1250.0, "https://github.com/souzafcharles/3.png");
+        Product product04 = new Product(null, "PC Gamer", "Experience top-notch gaming performance with this powerful gaming PC, designed for the ultimate gaming experience.", 1200.0, "https://github.com/souzafcharles/4.png");
+        product03.getCategories().add(category03);
+        Product product05 = new Product(null, "Rails for Dummies", "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.", 100.99, "https://github.com/souzafcharles/5.png");
+        product05.getCategories().add(category02);
+        Product product06 = new Product(null, "Moroccanoil Hydrating Shampoo", "Moisturizing shampoo with argan oil and vitamins, perfect for dry hair.", 18.99, "https://github.com/souzafcharles/6.png");
+        product06.getCategories().add(category06);
+        Product product07 = new Product(null, "Wilson Pro Staff RF97 V13 Tennis Racket", "Federer’s signature tennis racket for precision and control on the court.", 269.99, "https://github.com/souzafcharles/7.png");
+        product07.getCategories().add(category07);
+        Product product08 = new Product(null, "Catan: Seafarers Board Game", "The expansion for Catan with new islands, ships, and adventure.", 44.99, "https://github.com/souzafcharles/8.png");
+        product08.getCategories().add(category08);
+        Product product09 = new Product(null, "Lavazza Super Crema Espresso Coffee Beans", "Premium Italian espresso blend with a rich, creamy taste.", 19.99, "https://github.com/souzafcharles/9.png");
+        product09.getCategories().add(category09);
+        Product product10 = new Product(null, "Michelin Pilot Sport 4 Tires", "High-performance tires with excellent grip and stability for sports cars.", 159.99, "https://github.com/souzafcharles/10.png");
+        product10.getCategories().add(category10);
+        Product product11 = new Product(null, "Apple iPad Air (2023)", "Sleek, responsive tablet with the latest M1 chip and 10.9-inch display.", 599.99, "https://github.com/souzafcharles/11.png");
+        product11.getCategories().add(category01);
+        Product product12 = new Product(null, "The Food Lab: Better Home Cooking through Science", "Comprehensive cookbook by J. Kenji López-Alt focusing on the science of cooking.", 39.99, "https://github.com/souzafcharles/12.png");
+        product12.getCategories().add(category02);
+        Product product13 = new Product(null, "Nike Dri-FIT Cotton T-Shirt", "Comfortable athletic T-shirt with moisture-wicking fabric, available in multiple sizes.", 25.99, "https://github.com/souzafcharles/13.png");
+        product13.getCategories().add(category04);
+        Product product14 = new Product(null, "Garmin Forerunner 245 Music", "GPS running smartwatch with music storage and heart-rate monitoring.", 249.99, "https://github.com/souzafcharles/14.png");
+        product14.getCategories().add(category01);
+        product14.getCategories().add(category03);
+        Product product15 = new Product(null, "LG InstaView French Door Refrigerator", "Smart refrigerator with InstaView door, sleek design, and energy efficiency.", 1299.99, "https://github.com/souzafcharles/15.png");
+        product15.getCategories().add(category05);
 
         productRepository.saveAll(Arrays.asList(product01, product02, product03, product04, product05, product06, product07, product08, product09, product10, product11, product12, product13, product14, product15));
 

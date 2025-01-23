@@ -536,20 +536,14 @@ http://localhost:8080/categories/7
 - Inject CategoryService using `@Autowired`;
 - Implement a method to handle GET requests and return all categories (`@GetMapping`).
 - Implement a method to handle GET requests for a specific category by ID (`@GetMapping(value = "/{id}")`).
-#### 9.5 Database Seeding with Categories in TestConfig Class and Persist Objects:
+#### 9.5 Database Seeding with Products in TestConfig Class and Persist Objects:
 ```java
-Category category01 = new Category(null, "Electronics");
-Category category02 = new Category(null, "Books");
-Category category03 = new Category(null, "Computers");
-Category category04 = new Category(null, "Clothing");
-Category category05 = new Category(null, "Home Appliances");
-Category category06 = new Category(null, "Beauty & Personal Care");
-Category category07 = new Category(null, "Sports & Outdoors");
-Category category08 = new Category(null, "Toys & Games");
-Category category09 = new Category(null, "Groceries");
-Category category10 = new Category(null, "Automotive");
-
-categoryRepository.saveAll(Arrays.asList(category01, category02, category03, category04, category05, category06, category07, category08, category09, category10));
+Product product01 = new Product(null, "The Lord of the Rings", "An epic fantasy novel by J.R.R. Tolkien. Follow the journey of Frodo Baggins as he attempts to destroy the One Ring.", 90.5, "https://github.com/souzafcharles/1.png");
+Product product02 = new Product(null, "Smart TV", "Enjoy your favorite shows on this sleek Smart TV with vibrant colors and crisp resolution.", 2190.0, "https://github.com/souzafcharles/2.png");
+Product product03 = new Product(null, "Macbook Pro", "Power through your day with this high-performance Macbook Pro, featuring a sleek design and powerful hardware.", 1250.0, "https://github.com/souzafcharles/3.png");
+Product product04 = new Product(null, "PC Gamer", "Experience top-notch gaming performance with this powerful gaming PC, designed for the ultimate gaming experience.", 1200.0, "https://github.com/souzafcharles/4.png");
+Product product05 = new Product(null, "Rails for Dummies", "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.", 100.99, "https://github.com/souzafcharles/5.png");
+productRepository.saveAll(Arrays.asList(product01, product02, product03, product04, product05));
 ```
 #### 9.6 Retrieving Category Data via Spring Boot RESTful API:
 GET Request /products:
@@ -560,122 +554,42 @@ http://localhost:8080/products
 [
   {
     "id": 1,
-    "name": "Smartphone",
-    "description": "Latest model smartphone",
-    "price": 699.99,
+    "name": "The Lord of the Rings",
+    "description": "An epic fantasy novel by J.R.R. Tolkien. Follow the journey of Frodo Baggins as he attempts to destroy the One Ring.",
+    "price": 90.5,
     "imgUri": "https://github.com/souzafcharles/1.png",
     "categories": []
   },
   {
     "id": 2,
-    "name": "Laptop",
-    "description": "High performance laptop",
-    "price": 1199.99,
+    "name": "Smart TV",
+    "description": "Enjoy your favorite shows on this sleek Smart TV with vibrant colors and crisp resolution.",
+    "price": 2190.0,
     "imgUri": "https://github.com/souzafcharles/2.png",
     "categories": []
   },
   {
     "id": 3,
-    "name": "Fiction Book",
-    "description": "Best-selling fiction book",
-    "price": 19.99,
+    "name": "Macbook Pro",
+    "description": "Power through your day with this high-performance Macbook Pro, featuring a sleek design and powerful hardware.",
+    "price": 1250.0,
     "imgUri": "https://github.com/souzafcharles/3.png",
     "categories": []
   },
   {
     "id": 4,
-    "name": "Jeans",
-    "description": "Comfortable blue jeans",
-    "price": 49.99,
+    "name": "PC Gamer",
+    "description": "Experience top-notch gaming performance with this powerful gaming PC, designed for the ultimate gaming experience.",
+    "price": 1200.0,
     "imgUri": "https://github.com/souzafcharles/4.png",
     "categories": []
   },
   {
     "id": 5,
-    "name": "Air Conditioner",
-    "description": "Energy-efficient air conditioner",
-    "price": 299.99,
+    "name": "Rails for Dummies",
+    "description": "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.",
+    "price": 100.99,
     "imgUri": "https://github.com/souzafcharles/5.png",
-    "categories": []
-  },
-  {
-    "id": 6,
-    "name": "Shampoo",
-    "description": "Organic hair shampoo",
-    "price": 12.99,
-    "imgUri": "https://github.com/souzafcharles/6.png",
-    "categories": []
-  },
-  {
-    "id": 7,
-    "name": "Tennis Racket",
-    "description": "Lightweight tennis racket",
-    "price": 89.99,
-    "imgUri": "https://github.com/souzafcharles/7.png",
-    "categories": []
-  },
-  {
-    "id": 8,
-    "name": "Board Game",
-    "description": "Popular family board game",
-    "price": 29.99,
-    "imgUri": "https://github.com/souzafcharles/8.png",
-    "categories": []
-  },
-  {
-    "id": 9,
-    "name": "Coffee Beans",
-    "description": "Premium roasted coffee beans",
-    "price": 15.99,
-    "imgUri": "https://github.com/souzafcharles/9.png",
-    "categories": []
-  },
-  {
-    "id": 10,
-    "name": "Car Tires",
-    "description": "High-performance car tires",
-    "price": 89.99,
-    "imgUri": "https://github.com/souzafcharles/10.png",
-    "categories": []
-  },
-  {
-    "id": 11,
-    "name": "Tablet",
-    "description": "Sleek and responsive tablet",
-    "price": 499.99,
-    "imgUri": "https://github.com/souzafcharles/11.png",
-    "categories": []
-  },
-  {
-    "id": 12,
-    "name": "Cookbook",
-    "description": "Gourmet cookbook",
-    "price": 24.99,
-    "imgUri": "https://github.com/souzafcharles/12.png",
-    "categories": []
-  },
-  {
-    "id": 13,
-    "name": "Gaming Laptop",
-    "description": "Powerful gaming laptop",
-    "price": 1499.99,
-    "imgUri": "https://github.com/souzafcharles/13.png",
-    "categories": []
-  },
-  {
-    "id": 14,
-    "name": "Smart Watch",
-    "description": "Feature-rich smart watch",
-    "price": 199.99,
-    "imgUri": "https://github.com/souzafcharles/14.png",
-    "categories": []
-  },
-  {
-    "id": 15,
-    "name": "Refrigerator",
-    "description": "Spacious and efficient refrigerator",
-    "price": 699.99,
-    "imgUri": "https://github.com/souzafcharles/15.png",
     "categories": []
   }
 ]
@@ -685,16 +599,140 @@ GET Request /products/1:
 http://localhost:8080/products/13
 ```
 ```json
+
 {
-  "id": 13,
-  "name": "Gaming Laptop",
-  "description": "Powerful gaming laptop",
-  "price": 1499.99,
-  "imgUri": "https://github.com/souzafcharles/13.png",
+  "id": 5,
+  "name": "Rails for Dummies",
+  "description": "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.",
+  "price": 100.99,
+  "imgUri": "https://github.com/souzafcharles/5.png",
   "categories": []
 }
+
 ```
 ***
+### 10. Many-to-many Association with JoinTable:
+#### 10.1 Annotation @JoinTable:
+```java
+@ManyToMany
+@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+private Set<Category> categories = new HashSet<>();
+```
+#### 10.2 Summary of the Annotations:
+- `@JoinTable`(name = "tb_product_category", joinColumns = `@JoinColumn`(name = "product_id"), `inverseJoinColumns` = `@JoinColumn`(name = "category_id")): This annotation specifies the details of the join table used to manage the many-to-many relationship.
+name = `"tb_product_category"`: The name of the join table.
+- `joinColumns` = `@JoinColumn`(name = "product_id"): Specifies the foreign key column in the join table that references the primary key of the Product entity.
+- `inverseJoinColumns` = `@JoinColumn`(name = "category_id"): Specifies the foreign key column in the join table that references the primary key of the Category entity.
+
+#### 10.3 Database Seeding with Products in TestConfig Class and Persist Objects:
+```java
+Product product01 = new Product(null, "The Lord of the Rings", "An epic fantasy novel by J.R.R. Tolkien. Follow the journey of Frodo Baggins as he attempts to destroy the One Ring.", 90.5, "https://github.com/souzafcharles/1.png");
+product01.getCategories().add(category02);
+Product product02 = new Product(null, "Smart TV", "Enjoy your favorite shows on this sleek Smart TV with vibrant colors and crisp resolution.", 2190.0, "https://github.com/souzafcharles/2.png");
+product02.getCategories().add(category01);
+product02.getCategories().add(category03);
+Product product03 = new Product(null, "Macbook Pro", "Power through your day with this high-performance Macbook Pro, featuring a sleek design and powerful hardware.", 1250.0, "https://github.com/souzafcharles/3.png");
+Product product04 = new Product(null, "PC Gamer", "Experience top-notch gaming performance with this powerful gaming PC, designed for the ultimate gaming experience.", 1200.0, "https://github.com/souzafcharles/4.png");
+product03.getCategories().add(category03);
+Product product05 = new Product(null, "Rails for Dummies", "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.", 100.99, "https://github.com/souzafcharles/5.png");
+product05.getCategories().add(category02);
+```
+#### 10.4 Retrieving Category Data via Spring Boot RESTful API:
+GET Request /products:
+```json
+http://localhost:8080/products
+```
+```json
+[
+  {
+    "id": 1,
+    "name": "The Lord of the Rings",
+    "description": "An epic fantasy novel by J.R.R. Tolkien. Follow the journey of Frodo Baggins as he attempts to destroy the One Ring.",
+    "price": 90.5,
+    "imgUri": "https://github.com/souzafcharles/1.png",
+    "categories": [
+      {
+        "id": 2,
+        "name": "Books"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Smart TV",
+    "description": "Enjoy your favorite shows on this sleek Smart TV with vibrant colors and crisp resolution.",
+    "price": 2190.0,
+    "imgUri": "https://github.com/souzafcharles/2.png",
+    "categories": [
+      {
+        "id": 1,
+        "name": "Electronics"
+      },
+      {
+        "id": 3,
+        "name": "Computers"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Macbook Pro",
+    "description": "Power through your day with this high-performance Macbook Pro, featuring a sleek design and powerful hardware.",
+    "price": 1250.0,
+    "imgUri": "https://github.com/souzafcharles/3.png",
+    "categories": [
+      {
+        "id": 3,
+        "name": "Computers"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "PC Gamer",
+    "description": "Experience top-notch gaming performance with this powerful gaming PC, designed for the ultimate gaming experience.",
+    "price": 1200.0,
+    "imgUri": "https://github.com/souzafcharles/4.png",
+    "categories": []
+  },
+  {
+    "id": 5,
+    "name": "Rails for Dummies",
+    "description": "A comprehensive guide to Ruby on Rails for beginners. Learn how to build web applications from scratch.",
+    "price": 100.99,
+    "imgUri": "https://github.com/souzafcharles/5.png",
+    "categories": [
+      {
+        "id": 2,
+        "name": "Books"
+      }
+    ]
+  }
+]
+```
+GET Request /products/2:
+```json
+http://localhost:8080/products/13
+```
+```json
+{
+  "id": 2,
+  "name": "Smart TV",
+  "description": "Enjoy your favorite shows on this sleek Smart TV with vibrant colors and crisp resolution.",
+  "price": 2190.0,
+  "imgUri": "https://github.com/souzafcharles/2.png",
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics"
+    },
+    {
+      "id": 3,
+      "name": "Computers"
+    }
+  ]
+}
+```
 
 ***
 ## Project Checklist:
