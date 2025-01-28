@@ -3,7 +3,7 @@ package com.souza.charles.webServices.entities;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: January 23, 2025
+  Date: January 28, 2025
  */
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -95,6 +95,12 @@ public class Order implements Serializable {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public double getTotal(){
+        return items.stream()
+                .mapToDouble(OrderItem::getSubTotal)
+                .sum();
     }
 
     @Override
