@@ -636,7 +636,7 @@ http://localhost:8080/products/5
 }
 ```
 ***
-### 10. Many-to-many Association with JoinTable:
+### 10. Many-to-Many Association with JoinTable:
 #### 10.1 Annotation @JoinTable:
 ```java
 @ManyToMany
@@ -768,8 +768,8 @@ http://localhost:8080/products/2
 - Create the `OrderItemPK` Entity Class;
 - Annotate the class with `@Embeddable` to indicate it is an embeddable key class;
 - Define Order and Product attributes as `@ManyToOne` associations, annotated with `@JoinColumn` to define foreign key columns:
-    - order → mapped to order_id;
-    - product → mapped to product_id;
+    - `Order` → mapped to `order_id`;
+    - `Product` → mapped to `product_id`;
 - Getters & Setters;
 - hashCode & equals;
 - Serializable.
@@ -1142,5 +1142,5 @@ http://localhost:8080/orders/1
 :ballot_box_with_check: Implement the Domain Model;<br/>
 :ballot_box_with_check: Configure the Test Database (H2);<br/>
 :ballot_box_with_check: Populate the Database;<br/>
-- CRUD - Create, Retrieve, Update, Delete;
+- CRUD - Create, Read, Update and Delete;
 - Exception Handling.
