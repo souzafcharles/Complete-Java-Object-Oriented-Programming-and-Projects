@@ -1148,7 +1148,7 @@ http://localhost:8080/orders/1
 #### 15.1 Service Class Requirements for User:
 - Use `@Transactional` for the method inserting data to ensure the method runs within a transaction.
 #### 15.2 Resource Class Requirements for User:
-- Implement a method to handle `POST` requests to insert a new `User` (`@PostMapping`):
+- Implement a method to handle `POST` requests to `insert` a new `User` (`@PostMapping`):
 ```java
 @PostMapping
 public ResponseEntity<User> insert(@RequestBody User user) {
@@ -1193,11 +1193,103 @@ Body -> raw -> JSON
 }
 ```
 ***
+### 16. CRUD Operation User Class `delete` Method on Service and Resource Layers:
+#### 16.1 Service Class Requirements for User:
+- Use `@Transactional` for the method deleting data to ensure the method runs within a transaction.
+#### 16.2 Resource Class Requirements for User:
+- Implement a method to handle `DELETE` requests to delete a new `User` (`@DeleteMapping`):
+```java
+@DeleteMapping(value = "/{id}")
+public ResponseEntity<Void> delete(@PathVariable Long id) {
+	userService.delete(id);
+	return ResponseEntity.noContent().build();
+}
+
+```
+#### 16.3 Summary of the Annotations and Commands:
+- `@DeleteMapping(value = "/{id}")`: Maps HTTP `DELETE` requests to the delete method. The value = `"/{id}"` specifies that the method will handle requests to `delete` a `User` by their ID, where {`id`} is a path variable;
+- `.noContent()`: Returns a  `ResponseEntity ` with a status code of  `204 No Content `, indicating that the request was successful but there is no content to return in the response body;
+- `.build()`: Constructs the  `ResponseEntity ` with the specified status and no body.
+
+### 16.4. Setting Up the RESTful API for HTTP Methods (Idempotent):
+#### 16.4.1 Endpoint:
+- DELETE `/users/{id}`: Deletes a User by ID.
+#### 16.4.2 Example DELETE Request:
+```json
+http://localhost:8080/users/1
+```
+#### 16.4.3 Example Response:
+- Status Code: `204 No Content`;
+- Response Body: `None`
+***
+### 17. CRUD Operation User Class `update` Method on Service and Resource Layers:
+#### 17.1 Service Class Requirements for User:
+- Use a method to update an existing `User` object in the database by retrieving it based on its `id`;
+- Ensure transactional integrity during the update operation using `@Transactional`;
+- Map the updated values to the retrieved `User` entity using a helper method such as `updateData`:
+````java
+@Transactional
+public User update(Long id, User user){
+    User entity = userRepository.getReferenceById(id);
+    updateData(entity, user);
+    return userRepository.save(entity);
+}
+
+@Transactional
+private void updateData(User entity, User user) {
+    entity.setName(user.getName());
+    entity.setEmail(user.getEmail());
+    entity.setPhone(user.getPhone());
+}
+````
+- After the necessary updates are applied to the entity, the method calls `userRepository.save(entity)` to persist the changes in the database. This method handles both updates and inserts based on the entity state, making it versatile for data operations.
+#### 17.2 Resource Class Requirements for User:
+- Handle `PUT` requests to update an existing `User` by its `id`:
+```java
+@PutMapping(value = "/{id}")
+public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+    user = userService.update(id, user);
+    return ResponseEntity.ok().body(user);
+}
+```
+- Extract the `id` from the URL using `@PathVariable`;
+- Bind the request body containing the updated user data to the `User` parameter using `@RequestBody`;
+- Call the `update` method in the `UserService` to perform the update operation.
+### 17.3 Summary of the Annotations and Commands:
+- `@PutMapping`: Maps HTTP `PUT` requests to the `update` method.
+- `userRepository.getReferenceById(id)`: Efficiently retrieves a reference to the existing entity for updating without executing a full query.
+- `updateData(entity, user)`: Helper method to map the updated fields to the existing `User` entity.
+### 17.4 Setting Up the RESTful API for HTTP Methods (Idempotent):
+#### 17.4.1 Endpoint
+- **PUT** `/users/{id}`: Updates an existing User by its `id`.
+#### 17.4.2 Example PUT Request:
+```json
+http://localhost:8080/users/11
+Body -> raw -> JSON
+```
+```json
+{
+  "name": "Eulalia Carvalhosa",
+  "email": "eulalia@email.com",
+  "phone": "+5599888777666"
+}
+```
+#### 17.4.3 Example Response:
+```json
+{
+  "id": 11,
+  "name": "Eulalia Carvalhosa",
+  "email": "eulalia@email.com",
+  "phone": "+5599888777666",
+  "password": "******"
+}
+```
+***
 ## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>
 :ballot_box_with_check: Structure Logical Layers: Resource, Service, Repository;<br/>
 :ballot_box_with_check: Implement the Domain Model;<br/>
 :ballot_box_with_check: Configure the Test Database (H2);<br/>
 :ballot_box_with_check: Populate the Database;<br/>
-- CRUD - Create, Read, Update and Delete;
+:ballot_box_with_check: CRUD - Create, Read, Update and Delete;<br/>
 - Exception Handling.

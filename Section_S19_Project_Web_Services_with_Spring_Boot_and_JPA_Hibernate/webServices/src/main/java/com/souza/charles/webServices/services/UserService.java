@@ -36,4 +36,23 @@ public class UserService {
     public User insert(User user) {
         return userRepository.save(user);
     }
+
+    @Transactional
+    public void delete(Long id){
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public User update(Long id, User user){
+        User entity = userRepository.getReferenceById(id);
+        updateData(entity, user);
+        return userRepository.save(entity);
+    }
+
+    @Transactional
+    private void updateData(User entity, User user) {
+        entity.setName(user.getName());
+        entity.setEmail(user.getEmail());
+        entity.setPhone(user.getPhone());
+    }
 }
