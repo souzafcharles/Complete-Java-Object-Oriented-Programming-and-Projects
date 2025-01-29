@@ -1166,7 +1166,7 @@ public ResponseEntity<User> insert(@RequestBody User user) {
 - `path("/{id}")`: Appends a `path` segment to the current `URI`. In this case, it adds `/{id}` to the `URI`, where `{id}` is a placeholder for the `User`'s ID;
 - `buildAndExpand(user.getId())`: Replaces the placeholder `{id}` in the `URI` with the actual ID of the `User` object;
 - `toUri()`:  Converts the `UriComponents` object into a `URI` object, which can be used in the response.
-### 15.4. Setting Up the RESTful API for HTTP Methods (Non-Idempotent):
+#### 15.4. Setting Up the RESTful API for HTTP Methods (Non-Idempotent):
 #### 15.4.1 Endpoint:
 - POST `/users`: Creates a new User.
 #### 15.4.2 Example POST Request:
@@ -1209,7 +1209,7 @@ public ResponseEntity<Void> delete(@PathVariable Long id) {
 #### 16.3 Summary of the Annotations and Commands:
 - `@DeleteMapping(value = "/{id}")`: Maps HTTP `DELETE` requests to the delete method. The value = `"/{id}"` specifies that the method will handle requests to `delete` a `User` by their ID, where {`id`} is a path variable;
 - `.noContent()`: Returns a  `ResponseEntity ` with a status code of  `204 No Content `, indicating that the request was successful but there is no content to return in the response body;
-- `.build()`: Constructs the  `ResponseEntity ` with the specified status and no body.
+- `.build()`: Constructs the  `ResponseEntity `  with the specified HTTP status but without a response body. This is commonly used when the response does not require content, such as for operations that successfully complete without returning data (e.g., `DELETE` or update actions that do not return the updated resource).
 
 ### 16.4. Setting Up the RESTful API for HTTP Methods (Idempotent):
 #### 16.4.1 Endpoint:
@@ -1255,12 +1255,12 @@ public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user
 - Extract the `id` from the URL using `@PathVariable`;
 - Bind the request body containing the updated user data to the `User` parameter using `@RequestBody`;
 - Call the `update` method in the `UserService` to perform the update operation.
-### 17.3 Summary of the Annotations and Commands:
+#### 17.3 Summary of the Annotations and Commands:
 - `@PutMapping`: Maps HTTP `PUT` requests to the `update` method.
 - `userRepository.getReferenceById(id)`: Efficiently retrieves a reference to the existing entity for updating without executing a full query.
 - `updateData(entity, user)`: Helper method to map the updated fields to the existing `User` entity.
-### 17.4 Setting Up the RESTful API for HTTP Methods (Idempotent):
-#### 17.4.1 Endpoint
+#### 17.4 Setting Up the RESTful API for HTTP Methods (Idempotent):
+#### 17.4.1 Endpoint:
 - **PUT** `/users/{id}`: Updates an existing User by its `id`.
 #### 17.4.2 Example PUT Request:
 ```json
@@ -1285,6 +1285,65 @@ Body -> raw -> JSON
 }
 ```
 ***
+### 18. Exception Handling
+#### 18.1 Requirements for Entity StandardError Class:
+- Create the `StandardError` Entity Class;
+- Basic Attributes;
+  - `timestamp`: The time when the error occurred, formatted using `@JsonFormat`.
+  - `status`: The HTTP status code returned by the server.
+  - `error`: A short, descriptive error message.
+  - `message`: A detailed message explaining the error.
+  - `path`: The URI path where the error occurred.
+- Constructors;
+- Getters & Setters;
+- Serializable.
+#### 18.2 Requirements for ResourceExceptionHandler Class:
+- **ControllerAdvice annotation**: The class should be annotated with `@ControllerAdvice` to handle exceptions globally in the Spring application;
+- **ExceptionHandler annotation**: The class should contain methods annotated with `@ExceptionHandler` to handle specific exceptions, such as `ResourceNotFoundException` and `DatabaseException`;
+- **StandardError class**: The `StandardError` class should be implemented to structure the error responses. It should contain fields like timestamp, status code, error message, exception message, and request URI;
+- **ResponseEntity**: Methods should return a `ResponseEntity` that contains the error details, including HTTP status code and body content;
+- **HttpServletRequest**: The methods should accept an `HttpServletRequest` object to capture the request URI and include it in the error response;
+- **Error messages**: Define clear and specific error messages for each exception (e.g., "The requested resource was not found." and "An error occurred while processing your request with the database.");
+- **HttpStatus**: Set the appropriate HTTP status codes for each exception (e.g., `NOT_FOUND` for resource not found, `BAD_REQUEST` for database-related errors);
+- **Time-stamping**: Use `Instant.now()` to add a timestamp to the error response for each exception.
+#### 18.2.1 resourceNotFound(ResourceNotFoundException e, HttpServletRequest request):
+- **@ExceptionHandler(ResourceNotFoundException.class)**: This method will handle exceptions of type `ResourceNotFoundException` globally;
+- **String error**: Defines a custom error message to return when the requested resource is not found;
+- **HttpStatus status**: Sets the HTTP status to `NOT_FOUND` (404) to indicate a missing resource;
+- **StandardError err**: Creates a new instance of the `StandardError` class, passing in the current timestamp, status code, error message, exception message, and the request URI;
+- **ResponseEntity.status(status).body(err)**: Returns a `ResponseEntity` with the status code and the error details.
+#### 18.2.2 database(DatabaseException e, HttpServletRequest request):
+- **@ExceptionHandler(DatabaseException.class)**: This method will handle exceptions of type `DatabaseException` globally;
+- **String error**: Defines a custom error message to return when an error occurs with database processing;
+- **HttpStatus status**: Sets the HTTP status to `BAD_REQUEST` (400) to indicate a database-related error;
+- **StandardError err**: Creates a new instance of the `StandardError` class, passing in the current timestamp, status code, error message, exception message, and the request URI;
+- **ResponseEntity.status(status).body(err)**: Returns a `ResponseEntity` with the status code and the error details.
+### 18.3 Requirements for DatabaseException Class:
+- **Extend RuntimeException**: The `DatabaseException` class should extend `RuntimeException` to make it an unchecked exception;
+- **SerialVersionUID**: Define a `serialVersionUID` for serialization compatibility. Annotate it with `@Serial` for automatic versioning of the class during serialization;
+- **Constructor with Message**: Provide a constructor that accepts a custom error message (`String msg`) to be passed to the superclass `RuntimeException`. This allows for generating specific exception messages;
+- **Custom Exception Message**: The message passed to the constructor will be used to provide detailed, customized error messages when the exception is thrown.
+### 18.4 Requirements for ResourceNotFoundException Class:
+- **Extend RuntimeException**: The `ResourceNotFoundException` class should extend `RuntimeException` to make it an unchecked exception;
+- **SerialVersionUID**: Define a `serialVersionUID` for serialization compatibility. Annotate it with `@Serial` for automatic versioning of the class during serialization;
+- **Constructor with ID**: Provide a constructor that accepts an `Object id` to represent the unique identifier of the resource that could not be found. This allows for generating specific exception messages based on the resource ID;
+- **Custom Exception Message**: The message passed to the constructor will be used to provide a detailed, customized error message when the exception is thrown. The format should be: `"Resource not found. ID <id>"`.
+### 18.5 Methods with Exception Handling in UserService:
+1. **findById(Long id)**:
+  - **Exception Type**: `ResourceNotFoundException`
+  - **Explanation**: If the `User` with the specified `id` is not found in the database (i.e., `Optional<User>` is empty), a `ResourceNotFoundException` is thrown with the `id` passed as part of the exception message. This custom exception helps provide a specific error message for missing resources.
+2. **delete(Long id)**:
+  - **Exception Type**: `ResourceNotFoundException`, `DatabaseException`
+  - **Explanation**:
+    - `ResourceNotFoundException`: If an attempt is made to delete a user that doesn't exist in the database (i.e., `EmptyResultDataAccessException` occurs), a `ResourceNotFoundException` is thrown with the `id` of the non-existent resource.
+    - `DatabaseException`: If there is an issue with the database integrity (e.g., a constraint violation occurs), a `DatabaseException` is thrown, with the exception message captured from `DataIntegrityViolationException`. This helps handle database-related errors.
+3. **update(Long id, User user)**:
+  - **Exception Type**: `ResourceNotFoundException`
+  - **Explanation**: If the `User` with the specified `id` does not exist (i.e., `EntityNotFoundException` is thrown when fetching the user with `getReferenceById()`), a `ResourceNotFoundException` is thrown with the `id` of the non-existent user. This ensures that updates to non-existent users are handled appropriately with a custom exception message.
+### Summary:
+- The `ResourceNotFoundException` is used for situations where a resource is not found (e.g., user not found by `id` or during deletion).
+- The `DatabaseException` is used to handle database-related issues like integrity violations during delete operations.
+***
 ## Project Checklist:
 :ballot_box_with_check: Create a Java Spring Boot Project;<br/>
 :ballot_box_with_check: Structure Logical Layers: Resource, Service, Repository;<br/>
@@ -1292,4 +1351,4 @@ Body -> raw -> JSON
 :ballot_box_with_check: Configure the Test Database (H2);<br/>
 :ballot_box_with_check: Populate the Database;<br/>
 :ballot_box_with_check: CRUD - Create, Read, Update and Delete;<br/>
-- Exception Handling.
+:ballot_box_with_check: Exception Handling.

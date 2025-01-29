@@ -3,7 +3,7 @@ package com.souza.charles.webServices.resources;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: January 28, 2025
+  Date: January 29, 2025
  */
 
 import com.souza.charles.webServices.entities.User;
