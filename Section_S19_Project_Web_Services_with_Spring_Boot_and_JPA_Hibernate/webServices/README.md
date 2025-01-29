@@ -1285,15 +1285,15 @@ Body -> raw -> JSON
 }
 ```
 ***
-### 18. Exception Handling
+### 18. Exception Handling:
 #### 18.1 Requirements for Entity StandardError Class:
 - Create the `StandardError` Entity Class;
 - Basic Attributes;
-  - `timestamp`: The time when the error occurred, formatted using `@JsonFormat`.
-  - `status`: The HTTP status code returned by the server.
-  - `error`: A short, descriptive error message.
-  - `message`: A detailed message explaining the error.
-  - `path`: The URI path where the error occurred.
+  - `timestamp`: The time when the error occurred, formatted using `@JsonFormat`;
+  - `status`: The HTTP status code returned by the server;
+  - `error`: A short, descriptive error message;
+  - `message`: A detailed message explaining the error;
+  - `path`: The URI path where the error occurred;
 - Constructors;
 - Getters & Setters;
 - Serializable.
@@ -1330,18 +1330,18 @@ Body -> raw -> JSON
 - **Custom Exception Message**: The message passed to the constructor will be used to provide a detailed, customized error message when the exception is thrown. The format should be: `"Resource not found. ID <id>"`.
 ### 18.5 Methods with Exception Handling in UserService:
 1. **findById(Long id)**:
-  - **Exception Type**: `ResourceNotFoundException`
+  - **Exception Type**: `ResourceNotFoundException`;
   - **Explanation**: If the `User` with the specified `id` is not found in the database (i.e., `Optional<User>` is empty), a `ResourceNotFoundException` is thrown with the `id` passed as part of the exception message. This custom exception helps provide a specific error message for missing resources.
 2. **delete(Long id)**:
-  - **Exception Type**: `ResourceNotFoundException`, `DatabaseException`
+  - **Exception Type**: `ResourceNotFoundException`, `DatabaseException`;
   - **Explanation**:
     - `ResourceNotFoundException`: If an attempt is made to delete a user that doesn't exist in the database (i.e., `EmptyResultDataAccessException` occurs), a `ResourceNotFoundException` is thrown with the `id` of the non-existent resource.
     - `DatabaseException`: If there is an issue with the database integrity (e.g., a constraint violation occurs), a `DatabaseException` is thrown, with the exception message captured from `DataIntegrityViolationException`. This helps handle database-related errors.
 3. **update(Long id, User user)**:
-  - **Exception Type**: `ResourceNotFoundException`
+  - **Exception Type**: `ResourceNotFoundException`;
   - **Explanation**: If the `User` with the specified `id` does not exist (i.e., `EntityNotFoundException` is thrown when fetching the user with `getReferenceById()`), a `ResourceNotFoundException` is thrown with the `id` of the non-existent user. This ensures that updates to non-existent users are handled appropriately with a custom exception message.
 ### Summary:
-- The `ResourceNotFoundException` is used for situations where a resource is not found (e.g., user not found by `id` or during deletion).
+- The `ResourceNotFoundException` is used for situations where a resource is not found (e.g., user not found by `id` or during deletion);
 - The `DatabaseException` is used to handle database-related issues like integrity violations during delete operations.
 ***
 ## Project Checklist:
