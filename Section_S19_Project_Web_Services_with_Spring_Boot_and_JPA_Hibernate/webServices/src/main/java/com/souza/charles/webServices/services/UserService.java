@@ -5,6 +5,7 @@ package com.souza.charles.webServices.services;
   Project done by: Charles Fernandes de Souza
   Date: January 28, 2025
  */
+
 import com.souza.charles.webServices.entities.User;
 import com.souza.charles.webServices.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,10 @@ public class UserService {
     public User findById(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.get();
+    }
+
+    @Transactional
+    public User insert(User user) {
+        return userRepository.save(user);
     }
 }

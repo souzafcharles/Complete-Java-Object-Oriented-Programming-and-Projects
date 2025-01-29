@@ -377,17 +377,27 @@ http://localhost:8080/orders/1
 ***
 ### 7. OrderStatus Enum Class:
 #### 7.1 Enum Class Requirements for OrderStatus:
-- Declare enum constants for different order statuses;
-- Assign unique integer codes to each enum constant;
-- Define a private field to store the code;
-- Implement a constructor to initialize the code;
-- Provide a getter method to retrieve the code;
-- Implement a static method valueOf to convert an integer code back to the corresponding enum constant.
+- Declare `enum` constants for different the `OrderStatus`;
+- Assign unique integer codes to each `enum` constant;
+- Define a `private` field to store the `code` variable;
+- Implement a `private` `constructor` to initialize the `code`;
+- Provide a `getter` method to retrieve the `code`;
+- Implement a `public` `static` method `valueOf` to convert an integer `code` back to the corresponding `enum` constant:
+````java
+public static OrderStatus valueOf(int code) {
+    for (OrderStatus orderStatus : OrderStatus.values()) {
+        if (orderStatus.getCode() == code) {
+            return orderStatus;
+        }
+    }
+    throw new IllegalArgumentException("Invalid OrderStatus Code!");
+}
+````
 #### 7.2 Order Class Requirements:
-- Declare a private field to store the OrderStatus as an integer code;
-- Implement a constructor to initialize the fields, including setting the order status using the enum;
-- Provide a getter method to convert the integer code back to the OrderStatus enum;
-- Provide a setter method to convert the OrderStatus enum to its corresponding integer code.
+- Declare a `private` field to store the `OrderStatus` as an `Integer` `code`;
+- Implement a constructor to initialize the fields, including setting the `OrderStatus` using the `enum`;
+- Provide a `getter` method to convert the `Integer` `code` back to the `OrderStatus` `enum`;
+- Provide a `setter` method to convert the `OrderStatus` `enum` to its corresponding `Integer` code.
 ##### 7.3 Order Class:
 ```java
 public class Order {
@@ -981,10 +991,8 @@ public class Order {
 ```java
 Payment payment01 = new Payment(null, Instant.parse("2025-01-19T20:31:07Z"), order01);
 order01.setPayment(payment01);
-
 Payment payment02 = new Payment(null, Instant.parse("2025-01-23T11:57:59Z"), order07);
 order07.setPayment(payment02);
-
 Payment payment03 = new Payment(null, Instant.parse("2025-01-26T15:03:34Z"), order10);
 order10.setPayment(payment03);
 
@@ -1133,6 +1141,55 @@ http://localhost:8080/orders/1
   ],
   "payment": null,
   "total": 2999.98
+}
+```
+***
+### 15. CRUD Operation User Class `insert` Method on Service and Resource Layers:
+#### 15.1 Service Class Requirements for User:
+- Use `@Transactional` for the method inserting data to ensure the method runs within a transaction.
+#### 15.2 Resource Class Requirements for User:
+- Implement a method to handle `POST` requests to insert a new `User` (`@PostMapping`):
+```java
+@PostMapping
+public ResponseEntity<User> insert(@RequestBody User user) {
+	user = userService.insert(user);
+	URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+	return ResponseEntity.created(uri).body(user);
+}
+```
+#### 15.3 Summary of the Annotations and Commands:
+- `@PostMapping`: Maps HTTP `POST` requests to the insert method;
+- `@RequestBody`: Binds the HTTP request body containing the `User` data to the `User` parameter;
+- `URI`: Represents a Uniform Resource Identifier, which is used to identify a resource in the context of web applications;
+- `ServletUriComponentsBuilder`: A utility class in Spring MVC that helps in building `URIs` for `Controllers`;
+- `fromCurrentRequest()`: A method of `ServletUriComponentsBuilder` that initializes the builder with the current request's `URI`;
+- `path("/{id}")`: Appends a `path` segment to the current `URI`. In this case, it adds `/{id}` to the `URI`, where `{id}` is a placeholder for the `User`'s ID;
+- `buildAndExpand(user.getId())`: Replaces the placeholder `{id}` in the `URI` with the actual ID of the `User` object;
+- `toUri()`:  Converts the `UriComponents` object into a `URI` object, which can be used in the response.
+### 15.4. Setting Up the RESTful API for HTTP Methods (Non-Idempotent):
+#### 15.4.1 Endpoint:
+- POST `/users`: Creates a new User.
+#### 15.4.2 Example POST Request:
+```json
+http://localhost:8080/users
+Body -> raw -> JSON
+```
+```json
+{
+"name": "Teodorico Calisto",
+"email": "teodorico@email.com",
+"phone": "+5599777666555",
+"password": "******"
+}
+```
+#### 15.4.3 Example Response:
+```json
+{
+    "id": 11,
+    "name": "Teodorico Calisto",
+    "email": "teodorico@email.com",
+    "phone": "+5599777666555",
+    "password": "******"
 }
 ```
 ***
