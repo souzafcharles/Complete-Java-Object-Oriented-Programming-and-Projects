@@ -1,4 +1,10 @@
 package com.souza.charles.webServices.resources.exceptions;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: January 22, 2025
+ */
 
 import com.souza.charles.webServices.services.exceptions.DatabaseException;
 import com.souza.charles.webServices.services.exceptions.ResourceNotFoundException;
@@ -29,4 +35,3 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 }
-
