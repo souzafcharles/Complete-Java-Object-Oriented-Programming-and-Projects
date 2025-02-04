@@ -6,7 +6,7 @@ This project outlines the development of a robust <code>RESTful API</code> using
 </p>
 
 ### Logical Layers:
-![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_U21_Spring_Boot_Project_and_MongoDB_Database_Web_Services_NoSQL/mongodbspringboot/src/main/resources/static/img/logical-layers.png)
+![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_U21_Spring_Boot_Project_and_MongoDB_Database_Web_Services_NoSQL/mongoDBSpringBoot/src/main/resources/static/img/logical-layers.png)
 ---
 ### 1. Backend Requirements Specification:
 #### 1.1. Dependencies and Tools:
@@ -105,7 +105,7 @@ spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 - Ensure that the class implements the `Serializable` interface to support object serialization when needed.
 ---
 ### 6. Database Seeding with User Data in MongoDB:
-````bson
+````json
 {
   "_id": {
     "$oid": "67a2409ef1378e0d5af372cc"
