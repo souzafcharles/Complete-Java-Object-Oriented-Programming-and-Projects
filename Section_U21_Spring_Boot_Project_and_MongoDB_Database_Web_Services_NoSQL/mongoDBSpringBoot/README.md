@@ -18,7 +18,6 @@ This project outlines the development of a robust <code>RESTful API</code> using
         - **Spring Web;**
         - **Spring Data MongoDB.**
 ---
-
 ### 2. Entity and Controller Classes:
 #### 2.1. Requirements for User Entity Class:
 - **Entity Mapping:**
@@ -38,7 +37,6 @@ This project outlines the development of a robust <code>RESTful API</code> using
     - Override `hashCode()` to provide a consistent hash for `User` objects, using `Objects.hashCode(id)`;
 - **Serializable Interface:**
     - Implement the `Serializable` interface to support object serialization for the entity when necessary (e.g., when transferring objects between systems).
-
 #### 2.1. Requirements for UserResource Class:
 - Create the `UserResource` class to manage RESTful endpoints for the `User` resource;
 - Use `@RestController` annotation to mark it as a REST controller for Spring;
@@ -50,8 +48,7 @@ This project outlines the development of a robust <code>RESTful API</code> using
     - Handle empty lists and return an HTTP 204 (No Content) status if no users are found;
 - Use `@CrossOrigin(origins = "*", allowedHeaders = "*")` annotation to allow cross-origin requests from any origin;
 - Ensure that the class implements the `Serializable` interface to support object serialization when needed.
-
-***
+---
 ### 3. Requesting and Responding User Data via Spring Boot RESTful API:
 #### 3.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
 - **Endpoint**: GET `/users`: Retrieves a list of all Users.
@@ -74,14 +71,138 @@ http://localhost:8080/users
   }
 ]
 ````
+---
+### 4. Configuration of Environment:
+#### 4.1. Configuration of the `application.properties` File:
+- This file defines the general configurations of the application:
+```properties
+spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
+````
+### 5. Repository Interface, Service and Resource/Controller Classes:
+#### 5.1. Requirements for UserRepository Interface:
+- **Repository Creation:**
+  - Create the `UserRepository` interface to handle data access operations for the `User` entity;
+- **MongoRepository Extension:**
+  - Extend `MongoRepository<User, String>` to inherit common CRUD operations and MongoDB-specific functionalities;
+- **Entity Association:**
+  - Specify `User` as the associated entity and `String` as the type for its primary key.
+#### 5.2. Requirements for UserServices Class:
+- Use `@Service` annotation to define the class as a Spring service component;
+- Inject `UserRepository` using `@Autowired` for dependency injection;
+- Implement methods to retrieve all `User` entities:
+  - `findAll`: Fetches all entries from the database;
+  - Use `@Transactional(readOnly = true)` to ensure the method runs within a read-only transaction for optimized database performance.
+#### 5.3. Requirements for UserResource Class:
+- Create the `UserResource` class to manage RESTful endpoints for the `User` resource;
+- Use `@RestController` annotation to mark it as a REST controller for Spring;
+- Map requests using the `@RequestMapping` annotation for the `/users` endpoint;
+- Inject `UserServices` using `@Autowired` for service dependency injection;
+- Implement a method to handle `GET` requests:
+  - Use `@GetMapping` annotation to map GET requests to `/users`;
+  - Return a `ResponseEntity<List<User>>` with an HTTP 200 (OK) status and the list of users;
+  - Handle empty lists and return an HTTP 204 (No Content) status if no users are found;
+- Use `@CrossOrigin(origins = "*", allowedHeaders = "*")` annotation to allow cross-origin requests from any origin;
+- Ensure that the class implements the `Serializable` interface to support object serialization when needed.
+---
+### 6. Database Seeding with User Data in MongoDB:
+````bson
+{
+  "_id": {
+    "$oid": "67a2409ef1378e0d5af372cc"
+  },
+  "name": "Balthazar de Bigode",
+  "email": "balthazar@email.com"
+}
 
+{
+  "_id": {
+    "$oid": "67a2413ff1378e0d5af372cd"
+  },
+  "name": "Ophelia Birrenta",
+  "email": "ophelia@email.com"
+}
 
+{
+  "_id": {
+    "$oid": "67a241c0f1378e0d5af372ce"
+  },
+  "name": "Gonçalo Munhoz",
+  "email": "goncalo@email.com"
+}
+
+{
+  "_id": {
+    "$oid": "67a24469f1378e0d5af372cf"
+  },
+  "name": "Vitalina Simplicio",
+  "email": "vitalina@email.com"
+}
+
+{
+  "_id": {
+    "$oid": "67a244b0f1378e0d5af372d0"
+  },
+  "name": "Ludovico Crispim",
+  "email": "ludovico@email.com"
+}
+
+{
+  "_id": {
+    "$oid": "67a244e1f1378e0d5af372d1"
+  },
+  "name": "Filisbina Junqueira",
+  "email": "filisbina@email.com"
+}
+````
+---
+### 7. Requesting and Responding User Data via Spring Boot RESTful API:
+#### 7.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
+- **Endpoint**: GET `/users`: Retrieves a list of all Users.
+#### 7.2. Example GET Request:
+````json
+http://localhost:8080/users
+````
+#### 7.3. Example GET Request:
+````json
+[
+  {
+    "id": "67a2409ef1378e0d5af372cc",
+    "name": "Balthazar de Bigode",
+    "email": "balthazar@email.com"
+  },
+  {
+    "id": "67a2413ff1378e0d5af372cd",
+    "name": "Ophelia Birrenta",
+    "email": "ophelia@email.com"
+  },
+  {
+    "id": "67a241c0f1378e0d5af372ce",
+    "name": "Gonçalo Munhoz",
+    "email": "goncalo@email.com"
+  },
+  {
+    "id": "67a24469f1378e0d5af372cf",
+    "name": "Vitalina Simplicio",
+    "email": "vitalina@email.com"
+  },
+  {
+    "id": "67a244b0f1378e0d5af372d0",
+    "name": "Ludovico Crispim",
+    "email": "ludovico@email.com"
+  },
+  {
+    "id": "67a244e1f1378e0d5af372d1",
+    "name": "Filisbina Junqueira",
+    "email": "filisbina@email.com"
+  }
+]
+````
 ## Project Checklist:
 :ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
 :ballot_box_with_check: Implement the User entity and RESTful endpoints;
 - Configure MongoDB connection and data instantiation;
-- Implement DTOs for User representation;
-- Implement CRUD operations for Users, including exception handling for resource not found;
+- Implement DTOs for User Representation;
+- Implement CRUD Operations for Users, including Exception Handling for resource not found;
 - Develop the Post entity with nested User information;
 - Implement DTOs for Post and Author;
 - Implement CRUD operations for Posts, including association with Users;
