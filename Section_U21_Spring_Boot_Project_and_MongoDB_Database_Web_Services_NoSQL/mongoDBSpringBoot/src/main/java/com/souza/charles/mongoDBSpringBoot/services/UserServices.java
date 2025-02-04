@@ -7,6 +7,7 @@ package com.souza.charles.mongoDBSpringBoot.services;
  */
 
 import com.souza.charles.mongoDBSpringBoot.domain.User;
+import com.souza.charles.mongoDBSpringBoot.dto.UserResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,10 @@ public class UserServices implements Serializable {
     private UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserResponseDTO> findAll() {
+        List<User> list = userRepository.findAll();
+        return list.stream()
+                .map(UserResponseDTO::new)
+                .toList();
     }
 }

@@ -6,7 +6,7 @@ package com.souza.charles.mongoDBSpringBoot.resources;
   Date: February 04, 2025
  */
 
-import com.souza.charles.mongoDBSpringBoot.domain.User;
+import com.souza.charles.mongoDBSpringBoot.dto.UserResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,11 @@ public class UserResource implements Serializable {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> list = userServices.findAll();
+    public ResponseEntity<List<UserResponseDTO>> findAll() {
+        List<UserResponseDTO> list = userServices.findAll();
+        if(list.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok().body(list);
     }
 }
