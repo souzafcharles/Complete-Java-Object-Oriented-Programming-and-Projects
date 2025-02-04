@@ -1,13 +1,13 @@
-package com.souza.charles.mongoDBSpringBoot;
+package com.souza.charles.mongodbspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MongoDbSpringBootApplication {
+public class MongodbspringbootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MongoDbSpringBootApplication.class, args);
+		SpringApplication.run(MongodbspringbootApplication.class, args);
 	}
 
 }

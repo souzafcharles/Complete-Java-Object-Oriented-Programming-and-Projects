@@ -1,10 +1,10 @@
-package com.souza.charles.mongoDBSpringBoot;
+package com.souza.charles.mongodbspringboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MongoDbSpringBootApplicationTests {
+class MongodbspringbootApplicationTests {
 
 	@Test
 	void contextLoads() {
