@@ -77,7 +77,7 @@ http://localhost:8080/users
 
 
 ## Project Checklist:
-:ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;
+:ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
 :ballot_box_with_check: Implement the User entity and RESTful endpoints;
 - Configure MongoDB connection and data instantiation;
 - Implement DTOs for User representation;

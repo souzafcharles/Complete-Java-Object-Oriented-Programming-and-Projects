@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.souza.charles</groupId>
-	<artifactId>mongodbspringboot</artifactId>
+	<artifactId>mongoDBSpringBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mongodbspringboot</name>
+	<name>mongoDBSpringBoot</name>
 	<description>Spring Boot Project and MongoDB Database (Web Services + NoSQL)</description>
 	<url/>
 	<licenses>

@@ -1,4 +1,10 @@
-package com.souza.charles.mongodbspringboot.domain;
+package com.souza.charles.mongoDBSpringBoot.domain;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 04, 2025
+ */
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
