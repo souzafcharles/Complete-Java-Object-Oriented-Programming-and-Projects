@@ -6,7 +6,7 @@ This project outlines the development of a robust <code>RESTful API</code> using
 </p>
 
 ### Logical Layers:
-![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_U21_Spring_Boot_Project_and_MongoDB_Database_Web_Services_NoSQL/mongodbspringboot/src/main/resources/static/img/logical-layers.png)
+![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_U21_Spring_Boot_Project_and_MongoDB_Database_Web_Services_NoSQL/mongodbspringboot/src/main/resources/static/img/logical-layers.png)
 ---
 ### 1. Backend Requirements Specification:
 #### 1.1. Dependencies and Tools:
@@ -53,7 +53,7 @@ This project outlines the development of a robust <code>RESTful API</code> using
 #### 3.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
 - **Endpoint**: GET `/users`: Retrieves a list of all Users.
 #### 5.2. Example GET Request:
-````json
+````markdown
 http://localhost:8080/users
 ````
 #### 3.3. Example GET Request:
@@ -159,7 +159,7 @@ spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 #### 7.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
 - **Endpoint**: GET `/users`: Retrieves a list of all Users.
 #### 7.2. Example GET Request:
-````json
+````markdown
 http://localhost:8080/users
 ````
 #### 7.3. Example GET Request:
@@ -197,10 +197,67 @@ http://localhost:8080/users
   }
 ]
 ````
+### 8. Database Initialization Operation:
+#### 8.1 In the `config` Subpackage, Create the `Instantiation` Configuration Class Implementing `CommandLineRunner`:
+```java
+import com.souza.charles.mongoDBSpringBoot.domain.User;
+import com.souza.charles.mongoDBSpringBoot.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.Arrays;
+
+@Configuration
+public class Instantiation implements CommandLineRunner {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        userRepository.deleteAll();
+
+        User user01 = new User(null, "Balthazar de Bigode", "balthazar@email.com");
+        User user02 = new User(null, "Ophelia Birrenta", "ophelia@email.com");
+        User user03 = new User(null, "Gonçalo Munhoz", "goncalo@email.com");
+        User user04 = new User(null, "Vitalina Simplicio", "vitalina@email.com");
+        User user05 = new User(null, "Ludovico Crispim", "ludovico@email.com");
+        User user06 = new User(null, "Filisbina Junqueira", "filisbina@email.com");
+
+        userRepository.saveAll(Arrays.asList(user01, user02, user03, user04, user05, user06));
+    }
+}
+````
+#### 8.2 Summary of the Annotations and Commands:
+- `@Configuration`: Indicates that the class can be used by the Spring IoC container as a source of bean definitions;
+- `@Autowired`: Allows Spring to resolve and automatically inject the marked dependency;
+- `CommandLineRunner`: Interface used to execute specific code when the Spring Boot application starts;
+- `userRepository.deleteAll()`: Removes all existing documents from the `user` collection to ensure a clean database state for seeding;
+- `new User(null, "name", "email")`: Creates a new instance of the `User` entity with specified name and email values;
+- `userRepository.saveAll(Arrays.asList(...))`: Saves multiple `User` objects into the database in a single operation, improving efficiency;
+- `@Override`: Specifies that the method overrides a superclass method.
+#### 8.3 Requirements for Instantiation Class:
+- **Package Structure:**
+  - Place the `Instantiation` class under the `config` subpackage;
+- **Class Definition:**
+  - Implement the `CommandLineRunner` interface to execute code during application startup;
+- **Annotations and Configuration:**
+  - Annotate the class with `@Configuration` to mark it as a configuration class for Spring;
+  - Use `@Autowired` to inject the `UserRepository` dependency;
+- **Database Seeding:**
+  - Implement the `run` method to perform the following operations:
+    - Delete all existing `User` documents from the database using `userRepository.deleteAll()`;
+    - Create new `User` objects with sample data;
+    - Save all newly created `User` objects using `userRepository.saveAll(Arrays.asList(...))`;
+- **Error Handling:**
+  - Ensure that any exceptions are handled or propagated as necessary.
+---
 ## Project Checklist:
 :ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
-:ballot_box_with_check: Implement the User entity and RESTful endpoints;
-- Configure MongoDB connection and data instantiation;
+:ballot_box_with_check: Implement the User entity and RESTful endpoints;</br>
+:ballot_box_with_check: Configure MongoDB connection and data instantiation;</br>
+:ballot_box_with_check: Database initialization operation;
 - Implement DTOs for User Representation;
 - Implement CRUD Operations for Users, including Exception Handling for resource not found;
 - Develop the Post entity with nested User information;

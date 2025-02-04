@@ -1,4 +1,10 @@
 package com.souza.charles.mongoDBSpringBoot.services;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 04, 2025
+ */
 
 import com.souza.charles.mongoDBSpringBoot.domain.User;
 import com.souza.charles.mongoDBSpringBoot.repositories.UserRepository;
@@ -16,7 +22,7 @@ public class UserServices implements Serializable {
     private UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 }
