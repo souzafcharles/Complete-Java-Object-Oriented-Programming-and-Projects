@@ -55,6 +55,7 @@ This project outlines the development of a robust <code>RESTful API</code> using
 ```properties
 spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 ````
+---
 ### 4. Repository Interface, Service and Resource/Controller Classes:
 #### 4.1. Requirements for UserRepository Interface:
 - **Repository Creation:**
@@ -263,13 +264,12 @@ http://localhost:8080/users/67a2409ef1378e0d5af372cc
   "email": "balthazar@email.com"
 }
 ````
-#### 8.3. NEW CLASS: `services.exceptions.ResourceNotFoundException`
-#### 8.3.1. **NEW CLASS:** `services.exceptions.ResourceNotFoundException` (Custom Exception)`:
+#### 8.3. **NEW CLASS:** `services.exceptions.ResourceNotFoundException` (Custom Exception)`:
 - This section introduces the implementation of custom exception handling for the `findById` method in the UserService class, introducing custom exceptions and centralized error handling mechanisms.
 - Create a custom exception named `ResourceNotFoundException`, extending `RuntimeException`;
 - Constructor takes an `Object id` as a parameter to provide a specific resource ID in the error message;
 - Provide a detailed message when an exception occurs: `"Resource Not Found! ID: [id]"`.
-#### 8.3.2. **NEW CLASS:** `controller.exceptions.StandardError` (Entity for Standardized Error Messages):
+#### 8.4. **NEW CLASS:** `controller.exceptions.StandardError` (Entity for Standardized Error Messages):
 - Create the `StandardError` class to represent error messages for RESTful APIs:
 - Include the following attributes:
   - `Instant timestamp`: formatted with `@JsonFormat` to comply with standard time formats;
@@ -279,12 +279,12 @@ http://localhost:8080/users/67a2409ef1378e0d5af372cc
   - `String path`: the URI that generated the error;
 - Provide constructors, getters, and setters to support object manipulation;
 - Implement `Serializable` for object serialization when needed.
-#### 8.3.3. **NEW CLASS:** `controller.exceptions.ResourceExceptionHandler`:
+#### 8.5. **NEW CLASS:** `controller.exceptions.ResourceExceptionHandler`:
 - The `ResourceExceptionHandler` class is responsible for intercepting exceptions thrown during the execution of RESTful requests in the application and converting them into standardized HTTP error responses.
-#### 8.3.3.1. **Key Features:**
+#### 8.5.1. **Key Features:**
 - **Global Exception Handling:** The class is annotated with `@ControllerAdvice`, which enables centralized exception handling across all `@Controller` components;
 - **Error Response Standardization:** Provides a mechanism to customize the error response by creating and returning `StandardError` objects with detailed error information.
-#### 8.3.3.2. **Detailed Breakdown of the `handleResourceNotFound` Method:**
+#### 8.5.2. **Detailed Breakdown of the `handleResourceNotFound` Method:**
 ````java
 @ExceptionHandler(ResourceNotFoundException.class)
 public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
@@ -300,26 +300,26 @@ public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundExce
     return ResponseEntity.status(status).body(err);
 }
 ````
-#### 8.3.3.3. Annotations and Parameters:
+#### 8.5.3. Annotations and Parameters:
 - `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type `ResourceNotFoundException`;
 - `ResourceNotFoundException` e: The exception object containing the error details;
 - `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
-#### 8.3.3.4. Response Construction:
+#### 8.5.4. Response Construction:
 - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
 - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
 - **Error Message**: The variable `error` provides a concise description for the error;
 - **Detailed Message**: `e.getMessage()` displays the custom error message from ResourceNotFoundException;
 - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-#### 8.4. Requesting and Responding User Data via Spring Boot RESTful API:
-#### 8.4.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
+#### 8.6. Requesting and Responding User Data via Spring Boot RESTful API:
+#### 8.6.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
 - **Endpoint**: GET `/users/{id}`;
 - **Purpose**: Retrieves a specific User item by its ID.
-#### 8.4.2. Example GET Request:
+#### 8.6.2. Example GET Request:
 - **Scenario**: The requested ID `67a2d4c676cb0c201346e8f` does not exist, triggering the custom error response with a `404 Not Found` status code:
 ````markdown
 http://localhost:8080/users/67a2d4c676cb0c201346e8f
 ````
-#### 8.4.3. Example Error Response:
+#### 8.6.3. Example Error Response:
 - Upon catching a `ResourceNotFoundException`, the method returns a structured JSON response in the following format:
 ````json
 {
@@ -330,12 +330,12 @@ http://localhost:8080/users/67a2d4c676cb0c201346e8f
   "path": "/users/67a2d4c676cb0c201346e8f"
 }
 ````
-#### Key Attributes Explained:
-- `timestamp`: Indicates when the error occurred;
-- `status`: The HTTP status code (404 Not Found);
-- `error`: Short description of the issue;
-- `message`: Detailed information, including the resource identifier;
-- `path`: The URI path of the failed request.
+- **Key Attributes Explained**:
+    - `timestamp`: Indicates when the error occurred;
+    - `status`: The HTTP status code (404 Not Found);
+    - `error`: Short description of the issue;
+    - `message`: Detailed information, including the resource identifier;
+    - `path`: The URI path of the failed request.
 ---
 ## Project Checklist:
 :ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
