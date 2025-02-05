@@ -7,6 +7,7 @@ package com.souza.charles.mongoDBSpringBoot.services;
  */
 
 import com.souza.charles.mongoDBSpringBoot.domain.User;
+import com.souza.charles.mongoDBSpringBoot.dto.UserRequestDTO;
 import com.souza.charles.mongoDBSpringBoot.dto.UserResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.repositories.UserRepository;
 import com.souza.charles.mongoDBSpringBoot.services.exceptions.ResourceNotFoundException;
@@ -23,6 +24,14 @@ public class UserServices implements Serializable {
 
     @Autowired
     private UserRepository userRepository;
+
+
+    @Transactional
+    public UserResponseDTO insert(UserRequestDTO data){
+        User user = new User(data);
+        User create = userRepository.insert(user);
+        return new UserResponseDTO(create);
+    }
 
     @Transactional(readOnly = true)
     public List<UserResponseDTO> findAll() {

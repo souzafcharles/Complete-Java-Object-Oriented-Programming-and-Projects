@@ -6,9 +6,11 @@ package com.souza.charles.mongoDBSpringBoot.resources;
   Date: February 05, 2025
  */
 
+import com.souza.charles.mongoDBSpringBoot.dto.UserRequestDTO;
 import com.souza.charles.mongoDBSpringBoot.dto.UserResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,13 @@ public class UserResource implements Serializable {
 
     @Autowired
     private UserServices userServices;
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping
+    public ResponseEntity<UserResponseDTO> insert (@RequestBody UserRequestDTO data){
+        UserResponseDTO create = userServices.insert(data);
+        return ResponseEntity.status(HttpStatus.CREATED).body(create);
+    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping

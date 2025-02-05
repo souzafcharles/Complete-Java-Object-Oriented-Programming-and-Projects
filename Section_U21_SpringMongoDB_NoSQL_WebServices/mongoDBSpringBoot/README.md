@@ -337,17 +337,78 @@ http://localhost:8080/users/67a2d4c676cb0c201346e8f
     - `message`: Detailed information, including the resource identifier;
     - `path`: The URI path of the failed request.
 ---
+### 9. Implement `insert` operation for Users with POST method:
+#### 9.1. **NEW METHOD:** `UserServices.insert`:
+- Implement a method to insert a new `User` entity:
+  - **Purpose:** Maps data from a `UserRequestDTO`, creates a `User` entity, and inserts it into the MongoDB collection;
+  - **Transaction:** Annotate with `@Transactional` to ensure that the operation is atomic and managed by the transaction manager;
+  - **Response:** Returns a `UserResponseDTO` containing the created `User` data.
+##### 9.1.1. Sample Code:
+````java
+@Transactional
+public UserResponseDTO insert(UserRequestDTO data) {
+  User user = new User(data);
+  User create = userRepository.insert(user);
+  return new UserResponseDTO(create);
+}
+````
+### 9.2. **NEW METHOD:** `UserResource.insert`:
+- **Purpose:** Handles `POST` requests to create a new User resource;
+- **Mapping:** Use `@PostMapping` to map the request;
+- **Cross-Origin:** Annotate with `@CrossOrigin(origins = "*", allowedHeaders = "*")` to enable CORS;
+- **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `201 (Created)` status if successful.
+#### 9.2.1. Sample Code:
+````java
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@PostMapping
+public ResponseEntity<UserResponseDTO> insert(@RequestBody UserRequestDTO data) {
+    UserResponseDTO create = userServices.insert(data);
+    return ResponseEntity.status(HttpStatus.CREATED).body(create);
+}
+````
+### 9.3. **UPDATED CLASS:** `User`
+- **Purpose:** Modify the `User` class to include a constructor that accepts `UserRequestDTO` to facilitate mapping DTO data to the `User` entity during the insertion process.
+#### 9.3.1. Sample Code:
+````java
+public User(UserRequestDTO data) {
+    this.id = data.id();
+    this.name = data.name();
+    this.email = data.email();
+}
+````
+#### 10 Setting Up the RESTful API for HTTP Methods (Non-Idempotent):
+- **Endpoint**: POST `/users`: Creates a new User.
+#### 10.1. Example POST Request:
+````markdown
+http://localhost:8080/users
+Body -> raw -> JSON
+````
+````json
+{
+  "name": "Epaminondas Gumercindo",
+  "email": "epaminondas@email.com"
+}
+````
+#### 10.2. Example Response:
+````json
+{
+    "id": "67a37227ac590770c04742d6",
+    "name": "Epaminondas Gumercindo",
+    "email": "epaminondas@email.com"
+}
+````
+---
 ## Project Checklist:
 :ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
 :ballot_box_with_check: Implement the User entity and RESTful endpoints;</br>
 :ballot_box_with_check: Configure MongoDB connection and data instantiation;</br>
 :ballot_box_with_check: Database initialization operation;</br>
 :ballot_box_with_check: Implement DTOs Pattern for User Representation; </br>
-:ballot_box_with_check: Implement `findById` operation for Users, including Exception Handling for resource not found;
-- Develop the Post entity with nested User information;
-- Implement DTOs for Post and Author;
-- Implement CRUD operations for Posts, including association with Users;
-- Implement endpoints for retrieving user posts;
-- Add Comment functionality to Posts;
-- Implement custom queries for Post retrieval (simple and multi-criteria);
+- Implement CRUD operation for Users, including Exception Handling for resource not found;</br>
+- Develop the Post entity with nested User information;</br>
+- Implement DTOs for Post and Author;</br>
+- Implement CRUD operations for Posts, including association with Users;</br>
+- Implement endpoints for retrieving user posts;</br>
+- Add Comment functionality to Posts;</br>
+- Implement custom queries for Post retrieval (simple and multi-criteria);</br>
 - Implement URL parameter decoding for query methods.

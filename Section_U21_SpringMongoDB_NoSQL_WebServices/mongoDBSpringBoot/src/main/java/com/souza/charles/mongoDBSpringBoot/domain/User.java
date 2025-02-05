@@ -3,9 +3,10 @@ package com.souza.charles.mongoDBSpringBoot.domain;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 04, 2025
+  Date: February 05, 2025
  */
 
+import com.souza.charles.mongoDBSpringBoot.dto.UserRequestDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -27,6 +28,12 @@ public class User implements Serializable {
         this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    public User(UserRequestDTO data) {
+        this.id = data.id();
+        this.name = data.name();
+        this.email = data.email();
     }
 
     public String getId() {
