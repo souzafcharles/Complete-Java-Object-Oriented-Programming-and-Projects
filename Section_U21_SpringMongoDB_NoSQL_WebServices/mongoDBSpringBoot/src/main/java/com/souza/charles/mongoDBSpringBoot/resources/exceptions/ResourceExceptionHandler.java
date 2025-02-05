@@ -6,6 +6,7 @@ package com.souza.charles.mongoDBSpringBoot.resources.exceptions;
   Date: February 05, 2025
  */
 
+import com.souza.charles.mongoDBSpringBoot.services.exceptions.DatabaseException;
 import com.souza.charles.mongoDBSpringBoot.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,17 @@ import java.time.Instant;
 public class ResourceExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
         String error = "Resource not found with the specified identifier or criteria.";
         HttpStatus status = HttpStatus.NOT_FOUND;
+        StandardError standardError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(standardError);
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e, HttpServletRequest request) {
+        String error = "A database error occurred. Please check the provided data and try again.";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError standardError = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(standardError);
     }

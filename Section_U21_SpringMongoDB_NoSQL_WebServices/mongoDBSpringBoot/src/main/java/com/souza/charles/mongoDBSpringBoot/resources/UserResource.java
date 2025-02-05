@@ -47,4 +47,12 @@ public class UserResource implements Serializable {
         UserResponseDTO result = userServices.findById(id);
         return ResponseEntity.ok().body(result);
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete (@PathVariable String id){
+        userServices.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

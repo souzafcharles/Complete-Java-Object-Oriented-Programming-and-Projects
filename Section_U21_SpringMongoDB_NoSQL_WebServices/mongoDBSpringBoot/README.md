@@ -408,6 +408,127 @@ Body -> raw -> JSON
 }
 ````
 ---
+### 14. Implement `delete` operation for Users with DELETE method:
+#### 14.1. **NEW METHOD:** `UserServices.delete`:
+- Implement a method to delete a `User` entity:
+  - **Purpose:** Deletes a `User` entity by its identifier;
+  - **Transaction:** Annotate with `@Transactional` to ensure that the operation is atomic and managed by the transaction manager.
+#### 14.1.1. Sample Code:
+````java
+@Transactional
+public void delete(String id) {
+  try {
+    userRepository.deleteById(id);
+  } catch (EmptyResultDataAccessException e) {
+    throw new ResourceNotFoundException(id);
+  } catch (DataIntegrityViolationException e) {
+    throw new DatabaseException(e.getMessage());
+  }
+}
+````
+#### 14.2. **NEW METHOD:** `UserResource.delete`:
+- **Purpose:** Implement a method to handle `DELETE` requests for deleting a `User` by `id`;
+- **Mapping:** Use `@DeleteMapping(value = "/{id}")` annotation to map DELETE requests for removing a specific `User`;
+- **Cross-Origin:** Annotate with `@CrossOrigin(origins = "*", allowedHeaders = "*")` to enable CORS;
+- **Response:** Return a `ResponseEntity<Void>` with an HTTP `204 (No Content)` status after successful deletion.
+#### 14.2.1. Sample Code:
+````java
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@DeleteMapping(value = "/{id}")
+public ResponseEntity<Void> delete (@PathVariable String id){
+  userServices.delete(id);
+  return ResponseEntity.noContent().build();
+}
+````
+---
+### 15. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`delete`):
+#### 15.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+- **Endpoint:** `GET /users/{id}`;
+- **Purpose:** Deletes a specific User item by its ID.
+#### 15.2. Example GET Request:
+- **Scenario:** Successfully deletes the requested user by ID:
+````markdown
+http://localhost:8080/users/67a2409ef1378e0d5af372cc
+````        
+#### 15.3. Example Response:
+````markdown
+HTTP Status 204 - No Content
+````
+---
+### 16. Exception Handling for `findById` Method:
+#### 16.1. **NEW CLASS:** `services.exceptions.DatabaseException`:
+- Custom exception created to handle database-related errors such as data integrity violations;
+- **Constructor:**
+```java
+public class DatabaseException extends RuntimeException {
+  public DatabaseException(String message) {
+    super(message);
+  }
+}
+````
+#### 16.2. **UPDATE CLASS:** `controller.exceptions.ResourceExceptionHandler`:
+Key Features:
+- New Method: `handleDatabaseException`(DatabaseException e, HttpServletRequest request) handles database-related exceptions.
+- Exception Handling Method:
+````java
+@ExceptionHandler(DatabaseException.class)
+public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e, HttpServletRequest request) {
+    String error = "A database error occurred. Please check the provided data and try again.";
+    HttpStatus status = HttpStatus.BAD_REQUEST;
+    StandardError err = new StandardError(
+            Instant.now(),                   // Current timestamp
+            status.value(),                  // HTTP Status code (400)
+            error,                           // Custom error message
+            e.getMessage(),                  // Exception's detailed message
+            request.getRequestURI()          // URI path where the error occurred
+    );
+    return ResponseEntity.status(status).body(err);
+}
+````
+---
+### 17. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`delete`):
+#### 17.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+- **Endpoint**: DELETE `/users/{id}`;
+- **Purpose**: Deletes a specific User item by its ID.
+#### 17.2. Example DELETE Request (Resource Not Found):
+- **Scenario**: The requested ID `67a2d4c676cb0c201346e8f` does not exist, triggering the custom error response with a `404 Not Found` status code:
+````markdown
+DELETE http://localhost:8080/users/67a2d4c676cb0c201346e8f
+````
+#### 17.3. Example Error Response:
+````json
+{
+  "timestamp": "2025-02-05T14:23:17Z",
+  "status": 404,
+  "error": "Resource not found with the specified identifier or criteria.",
+  "message": "Resource Not Found! ID: 67a2d4c676cb0c201346e8f",
+  "path": "/users/67a2d4c676cb0c201346e8f"
+}
+````
+#### 7.4.4. Example DELETE Request (Data Integrity Violation):
+- **Scenario**: The requested ID `67a37227ac590770c04742d6` exists, but due to relationships with another entity, a `Database Constraint Violation` occurs, triggering the custom error response with a `400 Bad Request` status code:
+````markdown
+DELETE http://localhost:8080/users/67a37227ac590770c04742d6
+````
+#### 7.4.5. Example Error Response:
+````json
+{
+    "timestamp": "2025-01-31T18:35:02Z",
+    "status": 400,
+    "error": "A database error occurred. Please check the provided data and try again.",
+    "message": "Could not delete User due to data integrity violation.",
+    "path": "/users/67a37227ac590770c04742d6"
+}
+````
+#### Key Attributes Explained:
+- `timestamp`: Indicates when the error occurred;
+- `status`: The HTTP status code (either `404` for `Not Found` or `400` for `Bad Request` database errors );
+- `error`: Short description of the issue;
+- `message`: Detailed information, including the resource identifier;
+- `path`: The URI path of the failed request.
+***
+
+---
 ## Project Checklist:
 :ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
 :ballot_box_with_check: Implement the User entity and RESTful endpoints;</br>
