@@ -139,14 +139,15 @@ public class Instantiation implements CommandLineRunner {
 - `userRepository.saveAll(Arrays.asList(...))`: Saves multiple `User` objects into the database in a single operation, improving efficiency;
 - `@Override`: Specifies that the method overrides a superclass method.
 ---
-### 6. Requesting and Responding User Data via Spring Boot RESTful API:
-#### 6.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
-- **Endpoint**: GET `/users`: Retrieves a list of all Users.
+### 6. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`findAll`):
+#### 6.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+- **Endpoint:** `GET /users`;
+- **Purpose:** Retrieves a list of all Users.
 #### 6.2. Example GET Request:
 ````markdown
 http://localhost:8080/users
 ````
-#### 6.3. Example GET Request:
+#### 6.3. Example Response:
 ````json
 [
   {
@@ -249,14 +250,17 @@ public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
     return ResponseEntity.ok().body(result);
 }
 ````
-#### 8.2.2. Setting Up the RESTful API for HTTP Methods (Idempotent):
-- **Endpoint**: GET `/users/{id}`: Retrieves a specific User item by its ID.
-
-#### 8.2.3. Example GET Request:
+---
+### 9. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`findById`):
+#### 9.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+- **Endpoint:** `GET /users/{id}`;
+- **Purpose:** Retrieves a specific User item by its ID.
+#### 9.2. Example GET Request:
+- **Scenario:** Successfully retrieves the requested user by ID:
 ````markdown
 http://localhost:8080/users/67a2409ef1378e0d5af372cc
 ````        
-#### 8.2.3. Example Response:
+#### 9.3. Example Response:
 ````json
 {
   "id": "67a2409ef1378e0d5af372cc",
@@ -264,12 +268,14 @@ http://localhost:8080/users/67a2409ef1378e0d5af372cc
   "email": "balthazar@email.com"
 }
 ````
-#### 8.3. **NEW CLASS:** `services.exceptions.ResourceNotFoundException` (Custom Exception)`:
+---
+### 10. Exception Handling for `findById` Method:
+#### 10.1. **NEW CLASS:** `services.exceptions.ResourceNotFoundException` (Custom Exception)`:
 - This section introduces the implementation of custom exception handling for the `findById` method in the UserService class, introducing custom exceptions and centralized error handling mechanisms.
 - Create a custom exception named `ResourceNotFoundException`, extending `RuntimeException`;
 - Constructor takes an `Object id` as a parameter to provide a specific resource ID in the error message;
 - Provide a detailed message when an exception occurs: `"Resource Not Found! ID: [id]"`.
-#### 8.4. **NEW CLASS:** `controller.exceptions.StandardError` (Entity for Standardized Error Messages):
+#### 10.2. **NEW CLASS:** `controller.exceptions.StandardError` (Entity for Standardized Error Messages):
 - Create the `StandardError` class to represent error messages for RESTful APIs:
 - Include the following attributes:
   - `Instant timestamp`: formatted with `@JsonFormat` to comply with standard time formats;
@@ -279,12 +285,12 @@ http://localhost:8080/users/67a2409ef1378e0d5af372cc
   - `String path`: the URI that generated the error;
 - Provide constructors, getters, and setters to support object manipulation;
 - Implement `Serializable` for object serialization when needed.
-#### 8.5. **NEW CLASS:** `controller.exceptions.ResourceExceptionHandler`:
+#### 10.3. **NEW CLASS:** `controller.exceptions.ResourceExceptionHandler`:
 - The `ResourceExceptionHandler` class is responsible for intercepting exceptions thrown during the execution of RESTful requests in the application and converting them into standardized HTTP error responses.
-#### 8.5.1. **Key Features:**
+#### 10.4. **Key Features:**
 - **Global Exception Handling:** The class is annotated with `@ControllerAdvice`, which enables centralized exception handling across all `@Controller` components;
 - **Error Response Standardization:** Provides a mechanism to customize the error response by creating and returning `StandardError` objects with detailed error information.
-#### 8.5.2. **Detailed Breakdown of the `handleResourceNotFound` Method:**
+#### 10.5. **Detailed Breakdown of the `handleResourceNotFound` Method:**
 ````java
 @ExceptionHandler(ResourceNotFoundException.class)
 public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
@@ -300,27 +306,28 @@ public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundExce
     return ResponseEntity.status(status).body(err);
 }
 ````
-#### 8.5.3. Annotations and Parameters:
-- `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type `ResourceNotFoundException`;
-- `ResourceNotFoundException` e: The exception object containing the error details;
-- `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
-#### 8.5.4. Response Construction:
+- **Annotations and Parameters**:
+  - `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type `ResourceNotFoundException`;
+  - `ResourceNotFoundException` e: The exception object containing the error details;
+  - `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
+#### 10.6. Response Construction:
 - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
 - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
 - **Error Message**: The variable `error` provides a concise description for the error;
 - **Detailed Message**: `e.getMessage()` displays the custom error message from ResourceNotFoundException;
 - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-#### 8.6. Requesting and Responding User Data via Spring Boot RESTful API:
-#### 8.6.1. Setting Up the RESTful API for HTTP Methods (Idempotent):
-- **Endpoint**: GET `/users/{id}`;
-- **Purpose**: Retrieves a specific User item by its ID.
-#### 8.6.2. Example GET Request:
-- **Scenario**: The requested ID `67a2d4c676cb0c201346e8f` does not exist, triggering the custom error response with a `404 Not Found` status code:
+---
+### 11. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`findById`):
+#### 11.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+- **Endpoint:** `GET /users/{id}`;
+- **Purpose:** Retrieves a specific User item by its ID.
+#### 11.2. Example GET Request:
+- **Scenario:** The requested ID `67a2d4c676cb0c201346e8f` does not exist, triggering the custom error response with a `404 Not Found` status code:
 ````markdown
 http://localhost:8080/users/67a2d4c676cb0c201346e8f
 ````
-#### 8.6.3. Example Error Response:
-- Upon catching a `ResourceNotFoundException`, the method returns a structured JSON response in the following format:
+#### 11.3. Example Error Response:
+- **Error Handling**: Upon catching a `ResourceNotFoundException`, the method returns a structured JSON response in the following format:
 ````json
 {
   "timestamp": "2025-02-05T04:13:27Z",
@@ -337,13 +344,13 @@ http://localhost:8080/users/67a2d4c676cb0c201346e8f
     - `message`: Detailed information, including the resource identifier;
     - `path`: The URI path of the failed request.
 ---
-### 9. Implement `insert` operation for Users with POST method:
-#### 9.1. **NEW METHOD:** `UserServices.insert`:
+### 12. Implement `insert` operation for Users with POST method:
+#### 12.1. **NEW METHOD:** `UserServices.insert`:
 - Implement a method to insert a new `User` entity:
   - **Purpose:** Maps data from a `UserRequestDTO`, creates a `User` entity, and inserts it into the MongoDB collection;
   - **Transaction:** Annotate with `@Transactional` to ensure that the operation is atomic and managed by the transaction manager;
   - **Response:** Returns a `UserResponseDTO` containing the created `User` data.
-##### 9.1.1. Sample Code:
+#### 12.1.1. Sample Code:
 ````java
 @Transactional
 public UserResponseDTO insert(UserRequestDTO data) {
@@ -352,12 +359,12 @@ public UserResponseDTO insert(UserRequestDTO data) {
   return new UserResponseDTO(create);
 }
 ````
-### 9.2. **NEW METHOD:** `UserResource.insert`:
+#### 12.2. **NEW METHOD:** `UserResource.insert`:
 - **Purpose:** Handles `POST` requests to create a new User resource;
 - **Mapping:** Use `@PostMapping` to map the request;
 - **Cross-Origin:** Annotate with `@CrossOrigin(origins = "*", allowedHeaders = "*")` to enable CORS;
 - **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `201 (Created)` status if successful.
-#### 9.2.1. Sample Code:
+#### 12.2.1. Sample Code:
 ````java
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @PostMapping
@@ -366,9 +373,9 @@ public ResponseEntity<UserResponseDTO> insert(@RequestBody UserRequestDTO data) 
     return ResponseEntity.status(HttpStatus.CREATED).body(create);
 }
 ````
-### 9.3. **UPDATED CLASS:** `User`
+#### 12.3. **UPDATED CLASS:** `User`
 - **Purpose:** Modify the `User` class to include a constructor that accepts `UserRequestDTO` to facilitate mapping DTO data to the `User` entity during the insertion process.
-#### 9.3.1. Sample Code:
+#### 12.3.1. Sample Code:
 ````java
 public User(UserRequestDTO data) {
     this.id = data.id();
@@ -376,9 +383,12 @@ public User(UserRequestDTO data) {
     this.email = data.email();
 }
 ````
-#### 10 Setting Up the RESTful API for HTTP Methods (Non-Idempotent):
-- **Endpoint**: POST `/users`: Creates a new User.
-#### 10.1. Example POST Request:
+---
+### 13. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`insert`):
+#### 13.1. Setting Up the RESTful API for HTTP Methods (`Non-Idempotent`):
+- **Endpoint:** `POST /users`;
+- **Purpose:** Creates a new User.
+#### 13.2. Example POST Request:
 ````markdown
 http://localhost:8080/users
 Body -> raw -> JSON
@@ -389,7 +399,7 @@ Body -> raw -> JSON
   "email": "epaminondas@email.com"
 }
 ````
-#### 10.2. Example Response:
+#### 13.3. Example Response:
 ````json
 {
     "id": "67a37227ac590770c04742d6",
