@@ -50,6 +50,24 @@ public class UserServices implements Serializable {
     }
 
     @Transactional
+    public UserResponseDTO update(String id, UserRequestDTO data) {
+        try {
+            User entity = userRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException(id));
+            updateData(entity, data);
+            User create = userRepository.save(entity);
+            return new UserResponseDTO(create);
+        } catch (IllegalArgumentException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
+
+    private void updateData(User entity, UserRequestDTO data) {
+        entity.setName(data.name());
+        entity.setEmail(data.email());
+    }
+
+    @Transactional
     public void delete(String id) {
         try {
             userRepository.deleteById(id);
@@ -59,5 +77,4 @@ public class UserServices implements Serializable {
             throw new DatabaseException(e.getMessage());
         }
     }
-
 }

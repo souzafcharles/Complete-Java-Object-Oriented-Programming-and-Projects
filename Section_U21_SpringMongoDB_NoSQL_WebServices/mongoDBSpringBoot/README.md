@@ -542,16 +542,16 @@ Body -> raw -> JSON
 ````
 ---
 ## Project Checklist:
-:ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>
-:ballot_box_with_check: Implement the User entity and RESTful endpoints;</br>
-:ballot_box_with_check: Configure MongoDB connection and data instantiation;</br>
-:ballot_box_with_check: Database initialization operation;</br>
-:ballot_box_with_check: Implement DTOs Pattern for User Representation; </br>
-- Implement CRUD operation for Users, including Exception Handling for resource not found;</br>
-- Develop the Post entity with nested User information;</br>
-- Implement DTOs for Post and Author;</br>
-- Implement CRUD operations for Posts, including association with Users;</br>
-- Implement endpoints for retrieving user posts;</br>
-- Add Comment functionality to Posts;</br>
-- Implement custom queries for Post retrieval (simple and multi-criteria);</br>
-- Implement URL parameter decoding for query methods.
+- [X] Set up a Java Spring Boot project with MongoDB dependencies;
+- [X] Implement the User entity and RESTful endpoints;
+- [X] Configure MongoDB connection and data instantiation;
+- [X] Database initialization operation;
+- [X] Implement DTOs Pattern for User Representation; 
+- [] Implement CRUD operation for Users, including Exception Handling for resource not found;
+- [] Develop the Post entity with nested User information;
+- [] Implement DTOs for Post and Author;
+- [] Implement CRUD operations for Posts, including association with Users;
+- [] Implement endpoints for retrieving user posts;
+- [] Add Comment functionality to Posts;
+- [] Implement custom queries for Post retrieval (simple and multi-criteria);
+- [] Implement URL parameter decoding for query methods.
