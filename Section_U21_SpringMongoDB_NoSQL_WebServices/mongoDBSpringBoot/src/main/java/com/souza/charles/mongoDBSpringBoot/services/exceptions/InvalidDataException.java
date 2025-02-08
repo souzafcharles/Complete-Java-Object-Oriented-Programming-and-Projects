@@ -6,8 +6,8 @@ package com.souza.charles.mongoDBSpringBoot.services.exceptions;
   Date: February 08, 2025
  */
 
-public class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(Object id) {
-        super("Resource Not Found! ID: " + id);
+public class InvalidDataException extends RuntimeException {
+    public InvalidDataException() {
+        super("Mandatory fields must not be null or empty.");
     }
 }

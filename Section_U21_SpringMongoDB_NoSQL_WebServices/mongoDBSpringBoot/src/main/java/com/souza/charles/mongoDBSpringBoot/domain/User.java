@@ -3,7 +3,7 @@ package com.souza.charles.mongoDBSpringBoot.domain;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 05, 2025
+  Date: February 08, 2025
  */
 
 import com.souza.charles.mongoDBSpringBoot.dto.UserRequestDTO;
@@ -64,11 +64,11 @@ public class User implements Serializable {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id);
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, email);
     }
 }
