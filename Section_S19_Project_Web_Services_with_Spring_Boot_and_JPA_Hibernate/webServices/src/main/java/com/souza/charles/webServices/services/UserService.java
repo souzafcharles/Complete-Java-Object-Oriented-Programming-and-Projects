@@ -26,6 +26,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Transactional
+    public User insert(User user) {
+        return userRepository.save(user);
+    }
+
     @Transactional(readOnly = true)
     public List<User> findAll() {
         return userRepository.findAll();
@@ -33,13 +38,26 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.orElseThrow(() -> new ResourceNotFoundException(id));
+        Optional<User> entity = userRepository.findById(id);
+        return entity.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     @Transactional
-    public User insert(User user) {
-        return userRepository.save(user);
+    public User update(Long id, User data) {
+        try {
+            User entity = userRepository.getReferenceById(id);
+            updateData(entity, data);
+            return userRepository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    @Transactional
+    private void updateData(User entity, User data) {
+        entity.setName(data.getName());
+        entity.setEmail(data.getEmail());
+        entity.setPhone(data.getPhone());
     }
 
     @Transactional
@@ -52,25 +70,4 @@ public class UserService {
             throw new DatabaseException(e.getMessage());
         }
     }
-
-    @Transactional
-    public User update(Long id, User user) {
-        try {
-            User entity = userRepository.getReferenceById(id);
-            updateData(entity, user);
-            return userRepository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
-        }
-    }
-
-    @Transactional
-    private void updateData(User entity, User user) {
-        entity.setName(user.getName());
-        entity.setEmail(user.getEmail());
-        entity.setPhone(user.getPhone());
-    }
 }
-
-
-

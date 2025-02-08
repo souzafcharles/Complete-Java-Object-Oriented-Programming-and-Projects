@@ -26,13 +26,13 @@ public class OrderResource {
 
     @GetMapping
     public ResponseEntity<List<Order>> findAll() {
-        List<Order> orderFindAll = orderService.findAll();
-        return ResponseEntity.ok().body(orderFindAll);
+        List<Order> list = orderService.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Order> findById(@PathVariable Long id) {
-        Order orderFindById = orderService.findById(id);
-        return ResponseEntity.ok().body(orderFindById);
+        Order entity = orderService.findById(id);
+        return ResponseEntity.ok().body(entity);
     }
 }

@@ -144,6 +144,7 @@ public class Instantiation implements CommandLineRunner {
 - **Endpoint:** `GET /users`;
 - **Purpose:** Retrieves a list of all Users.
 #### 6.2. Example GET Request:
+- **Scenario:** Successfully retrieves a list of all users:
 ````markdown
 http://localhost:8080/users
 ````
@@ -256,7 +257,7 @@ public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
 - **Endpoint:** `GET /users/{id}`;
 - **Purpose:** Retrieves a specific User item by its ID.
 #### 9.2. Example GET Request:
-- **Scenario:** Successfully retrieves the requested user by ID:
+- **Scenario:** Successfully retrieves the requested User by ID:
 ````markdown
 http://localhost:8080/users/67a2409ef1378e0d5af372cc
 ````        
@@ -290,10 +291,10 @@ http://localhost:8080/users/67a2409ef1378e0d5af372cc
 #### 10.4. **Key Features:**
 - **Global Exception Handling:** The class is annotated with `@ControllerAdvice`, which enables centralized exception handling across all `@Controller` components;
 - **Error Response Standardization:** Provides a mechanism to customize the error response by creating and returning `StandardError` objects with detailed error information.
-#### 10.5. **Detailed Breakdown of the `handleResourceNotFound` Method:**
+#### 10.5. **Detailed Breakdown of the ` handleResourceNotFoundException` Method:**
 ````java
 @ExceptionHandler(ResourceNotFoundException.class)
-public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+public ResponseEntity<StandardError>  handleResourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
     String error = "Resource not found with the specified identifier or criteria.";
     HttpStatus status = HttpStatus.NOT_FOUND;
     StandardError err = new StandardError(
@@ -389,6 +390,7 @@ public User(UserRequestDTO data) {
 - **Endpoint:** `POST /users`;
 - **Purpose:** Creates a new User.
 #### 13.2. Example POST Request:
+- **Scenario:** Successfully creates a new User:
 ````markdown
 http://localhost:8080/users
 Body -> raw -> JSON
@@ -443,10 +445,10 @@ public ResponseEntity<Void> delete (@PathVariable String id){
 ---
 ### 15. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`delete`):
 #### 15.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
-- **Endpoint:** `GET /users/{id}`;
+- **Endpoint:** `DELETE /users/{id}`;
 - **Purpose:** Deletes a specific User item by its ID.
-#### 15.2. Example GET Request:
-- **Scenario:** Successfully deletes the requested user by ID:
+#### 15.2. Example DELETE Request:
+- **Scenario:** Successfully deletes the requested User by ID:
 ````markdown
 http://localhost:8080/users/67a2409ef1378e0d5af372cc
 ````        
@@ -505,12 +507,12 @@ DELETE http://localhost:8080/users/67a2d4c676cb0c201346e8f
   "path": "/users/67a2d4c676cb0c201346e8f"
 }
 ````
-#### 7.4.4. Example DELETE Request (Data Integrity Violation):
+#### 17.4. Example DELETE Request (`Data Integrity Violation`):
 - **Scenario**: The requested ID `67a37227ac590770c04742d6` exists, but due to relationships with another entity, a `Database Constraint Violation` occurs, triggering the custom error response with a `400 Bad Request` status code:
 ````markdown
 DELETE http://localhost:8080/users/67a37227ac590770c04742d6
 ````
-#### 7.4.5. Example Error Response:
+#### 7.4.1. Example Error Response:
 ````json
 {
     "timestamp": "2025-01-31T18:35:02Z",
@@ -527,7 +529,17 @@ DELETE http://localhost:8080/users/67a37227ac590770c04742d6
 - `message`: Detailed information, including the resource identifier;
 - `path`: The URI path of the failed request.
 ***
-
+---
+### 19. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`update`):
+#### 19.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+- **Endpoint:** PUT `/users/{id}`;
+- **Purpose:** Updates a specific User item by its ID.
+#### 19.2. Example PUT Request:
+- **Scenario:** Successfully updates the requested User by ID:
+````markdown
+http://localhost:8080/users/16
+Body -> raw -> JSON
+````
 ---
 ## Project Checklist:
 :ballot_box_with_check: Set up a Java Spring Boot project with MongoDB dependencies;</br>

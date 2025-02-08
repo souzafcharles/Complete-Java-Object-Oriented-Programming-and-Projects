@@ -28,7 +28,7 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public Order findById(Long id) {
-        Optional<Order> orderFindById = orderRepository.findById(id);
-        return orderFindById.get();
+        Optional<Order> entity= orderRepository.findById(id);
+        return entity.get();
     }
 }
