@@ -111,6 +111,12 @@ spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 - Use the `@CrossOrigin(origins = "*", allowedHeaders = "*")` annotation to allow cross-origin requests from any origin;
 - Ensure that the class implements the `Serializable` interface to support object serialisation when needed.
 
+#### 4.4. Idempotent and Non-Idempotent Methods:
+
+- **Idempotent Method**: `GET`, `PUT`, and `DELETE` are idempotent, meaning multiple identical requests should have the
+  same effect as a single request;
+- **Non-Idempotent Method**: `POST` is non-idempotent, meaning multiple identical requests may have additional effects.
+
 ---
 
 ### 5. Database Initialization Operation:
@@ -256,7 +262,8 @@ GET http://localhost:8080/users
     - Define the attributes `String id`, `String name`, and `String email` directly in the record's header to enable
       immutability and automatic generation of accessor methods;
 - **Purpose:**
-    - Use this `record` for receiving and validating `User` input from client requests to create/insert or update `User`
+    - Use this `record` for receiving and validating `User` input from `author` requests to create/insert or update
+      `User`
       entities within the application.
 
 #### 7.3. Service Layer Refactoring Requirements:
@@ -1297,6 +1304,8 @@ GET http://localhost:8080/users
 }
 ````
 
+---
+
 ### 26. Implement `findByEmail` Operation for Users with GET Method:
 
 #### 26.1. **UPDATE INTERFACE:** `FoodRepository`:
@@ -1344,6 +1353,8 @@ public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) {
     return ResponseEntity.ok().body(dto);
 }
 ```
+
+---
 
 ### 27. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`findByEmail`):
 
@@ -1452,6 +1463,210 @@ GET http://localhost:8080/users/joaquina@email.com
 
 ---
 
+### 30. Requirements for Domain Models with References and Aggregate Alignment:
+
+* Design Considerations for Domain Models: Choosing Between References and Aggregate Alignment (`User`, `Post`,
+  `Comment` Entities).
+
+#### 30.1. Domain Model with References:
+
+![Domain Model with References](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_U21_SpringMongoDB_NoSQL_WebServices/mongoDBSpringBoot/src/main/resources/static/img/domain-model-references.png)
+
+````json
+[
+  {
+    "id": "1001",
+    "name": "Ophelia Birrenta",
+    "email": "ophelia@email.com",
+    "posts": [
+      {
+        "date": "2025-02-10",
+        "title": "Trip departure",
+        "body": "I'm going to travel to São Paulo. Cheers!",
+        "comments": [
+          {
+            "text": "Have a nice trip, dude!",
+            "date": "2025-02-10",
+            "author": {
+              "id": "1013",
+              "name": "Balthazar de Bigode"
+            }
+          },
+          {
+            "text": "Enjoy!",
+            "date": "2025-02-11",
+            "author": {
+              "id": "1027",
+              "name": "Vitalina Simplicio"
+            }
+          }
+        ]
+      },
+      {
+        "date": "2025-02-12",
+        "title": "Good morning",
+        "body": "I woke up happy today!",
+        "comments": [
+          {
+            "text": "Have a great day!",
+            "date": "2025-02-12",
+            "author": {
+              "id": "1013",
+              "name": "Balthazar de Bigode"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
+````
+
+* **Observation:** Image 1 demonstrates the domain model with references. This is evident in how the relationships
+  between entities are established.
+* **Requirements:**
+    * Related objects (Post and Comment) have a significant amount of data and/or independent relevance within the
+      domain;
+    * The need to access all data of related objects simultaneously is less frequent;
+    * Prioritizes performance optimization and reduced load in scenarios where complete data of related objects is not
+      always needed.
+
+* **Details (Image 1):**
+    * **User:** Has a list of Post IDs (`posts: [5001, 5010]`), indicating the user has associated posts, but not the
+      posts themselves;
+    * **Post:** Similarly, has a list of Comment IDs (`comments: [...]`), showing the post has comments, but not the
+      Comment objects themselves;
+    * **Comment:** Likewise, only has the ID of the authoring user (`author: { id: "1013", ... }`), not the complete
+      User object.
+
+* **Example (User):**
+    * `id` (String): Unique identifier of the user;
+    * `name` (String): Name of the user;
+    * `email` (String): Email address of the user;
+    * `posts` (List<String>): List of IDs of posts associated with the user.
+
+* **Example (Post):**
+    * `id` (String): Unique identifier of the post;
+    * `date` (Date): Date of creation of the post;
+    * `title` (String): Title of the post;
+    * `body` (String): Content of the post;
+    * `author` (String): ID of the user who authored the post;
+    * `comments` (List<String>): List of IDs of comments associated with the post.
+
+* **Example (Comment):**
+    * `id` (String): Unique identifier of the comment;
+    * `text` (String): Text of the comment;
+    * `date` (Date): Date of creation of the comment;
+    * `author` (String): ID of the user who authored the comment.
+
+#### 30.2. Domain Model with Aggregate Alignment:
+
+![Domain Model with Aggregate Alignment](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_U21_SpringMongoDB_NoSQL_WebServices/mongoDBSpringBoot/src/main/resources/static/img/domain-model-aggregate-alignment.png)
+
+````json
+[
+  {
+    "id": "1001",
+    "name": "Ophelia Birrenta",
+    "email": "ophelia@email.com",
+    "posts": [
+      "5001",
+      "5010"
+    ]
+  }
+  {
+    "id": "5001",
+    "date": "2025-02-10",
+    "title": "Trip departure",
+    "body": "I'm going to travel to São Paulo. Cheers!",
+    "author": {
+      "id": "1001",
+      "name": "Ophelia Birrenta"
+    },
+    "comments": [
+      {
+        "text": "Have a nice trip, dude!",
+        "date": "2025-02-10",
+        "author": {
+          "id": "1013",
+          "name": "Balthazar de Bigode"
+        }
+      },
+      {
+        "text": "Enjoy!",
+        "date": "2025-02-11",
+        "author": {
+          "id": "1027",
+          "name": "Vitalina Simplicio"
+        }
+      }
+    ]
+  }
+  {
+    "id": "5010",
+    "date": "2025-02-12",
+    "title": "Good morning",
+    "body": "I woke up happy today!",
+    "author": {
+      "id": "1001",
+      "name": "Ophelia Birrenta"
+    },
+    "comments": [
+      {
+        "text": "Have a great day!",
+        "date": "2025-02-12",
+        "author": {
+          "id": "1013",
+          "name": "Balthazar de Bigode"
+        }
+      }
+    ]
+  }
+]
+````
+
+* **Observation:** Image 2 represents the domain model with aggregate alignment.
+* **Requirements:**
+    * Related objects (Post and Comment) are relatively simple and/or the need to access all data of related objects
+      simultaneously is very frequent;
+    * Prioritizes convenience and ease of data access over performance in specific scenarios.
+
+* **Details (Image 2):**
+    * **User:** Has a list of complete Post objects (`posts: [...]`), meaning the post data is directly embedded within
+      the User object;
+    * **Post:** Similarly, has a list of complete Comment objects (`comments: [...]`), with all comment details within
+      the Post object;
+    * **Comment:** The Comment object also contains the complete User object of the author (`author: { ... }`).
+
+* **Example (User):**
+    * `id` (String): Unique identifier of the user;
+    * `name` (String): Name of the user;
+    * `email` (String): Email address of the user;
+    * `posts` (List<Post>): List of Post objects associated with the user.
+
+* **Example (Post):**
+    * `id` (String): Unique identifier of the post;
+    * `date` (Date): Date of creation of the post;
+    * `title` (String): Title of the post;
+    * `body` (String): Content of the post;
+    * `author` (User): User object of the post's author;
+    * `comments` (List<Comment>): List of Comment objects associated with the post.
+
+* **Example (Comment):**
+    * `id` (String): Unique identifier of the comment;
+    * `text` (String): Text of the comment;
+    * `date` (Date): Date of creation of the comment;
+    * `author` (User): User object of the comment's author.
+
+#### Notes:
+
+* The choice between domain models with references and aggregate alignment depends on the specific business requirements
+  and data access needs;
+* In complex scenarios, it may be advantageous to combine the two models, using references for related objects with
+  large data volumes and aggregate alignment for simpler, frequently accessed objects.
+
+---
+
 ## Project Checklist:
 
 - [X] Set up a Java Spring Boot project with MongoDB dependencies;
@@ -1461,10 +1676,11 @@ GET http://localhost:8080/users/joaquina@email.com
 - [X] Implement DTOs Pattern for User Representation;
 - [X] Implement CRUD operation for User, including Exception Handling;
 - [X] CRUD Test Cases validating Success and Error Scenarios;
-- [] Develop the Post entity with nested User information;
-- [] Implement DTOs for Post and Author;
-- [] Implement CRUD operations for Posts, including association with Users;
-- [] Implement endpoints for retrieving User Posts;
-- [] Add Comment functionality to Posts;
-- [] Implement custom queries for Post retrieval (simple and multi-criteria);
-- [] Implement URL parameter decoding for query methods.
+- [X] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
+- [ ] Develop the Post entity with nested User information;
+- [ ] Implement DTOs for Post and Author;
+- [ ] Implement CRUD operations for Posts, including association with Users;
+- [ ] Implement endpoints for retrieving User Posts;
+- [ ] Add Comment functionality to Posts;
+- [ ] Implement custom queries for Post retrieval (simple and multi-criteria);
+- [ ] Implement URL parameter decoding for query methods.

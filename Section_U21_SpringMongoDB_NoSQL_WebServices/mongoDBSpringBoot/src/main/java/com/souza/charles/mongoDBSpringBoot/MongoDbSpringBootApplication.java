@@ -15,5 +15,4 @@ public class MongoDbSpringBootApplication {
     public static void main(String[] args) {
         SpringApplication.run(MongoDbSpringBootApplication.class, args);
     }
-
 }
