@@ -1666,7 +1666,75 @@ GET http://localhost:8080/users/joaquina@email.com
   large data volumes and aggregate alignment for simpler, frequently accessed objects.
 
 ---
+### 31. Creating Post Entity with Nested User:
 
+#### 31.1. **NEW CLASS:** Requirements for Post Entity Class:
+
+- **Entity Mapping:**
+    - Create the `Post` class as an entity to represent a database collection in the application;
+    - Annotate the class with `@Document` to define it as a MongoDB document.
+- **Attributes and Annotations:**
+    - Define attributes `id`, `date`, `title`, `body`, and `author` to represent fields in the document;
+    - Annotate the `id` field with `@Id` to designate it as the primary key field;
+    - Annotate the `date` field with `@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")` to specify the date format for JSON serialization and deserialization;
+    - The `author` field should be of type `User`, establishing a nested relationship.
+- **Constructors:**
+    - Create a no-argument constructor required by the persistence framework;
+    - Provide an all-arguments constructor for convenience.
+- **Accessors and Mutators:**
+    - Implement getters and setters for all attributes to allow data manipulation.
+- **Equals and HashCode:**
+    - Override the `equals()` method to compare entities based on the `id` attribute;
+    - Override `hashCode()` to provide a consistent hash for `Post` objects, using `Objects.hashCode(id)`.
+- **Serializable Interface:**
+    - Implement the `Serializable` interface to support object serialization for the entity when necessary.
+
+#### 31.2. **NEW CLASS:** Requirements for PostRepository Interface:
+
+- **Repository Creation:**
+    - Create the `PostRepository` interface to handle data access operations for the `Post` entity.
+- **MongoRepository Extension:**
+    - Extend `MongoRepository<Post, String>` to inherit common CRUD operations and MongoDB-specific functionalities.
+- **Entity Association:**
+    - Specify `Post` as the associated entity and `String` as the type for its primary key.
+
+#### 31.3. **UPDATE CLASS:** Requirements for Instantiation Class:
+
+- **Database Seeding:**
+    - Modify the `run` method to include the following operations:
+        - Delete all existing `Post` documents from the database using `postRepository.deleteAll()`;
+        - Create new `Post` objects with sample data, including associated `User` objects.  Ensure that the `User` objects used for the `author` field are existing users already saved in the database;
+        - Save all newly created `Post` objects using `postRepository.saveAll(Arrays.asList(...))`.  This should be done *after* the `User` objects have been saved.
+````java
+@Configuration
+public class Instantiation implements CommandLineRunner {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        userRepository.deleteAll();
+        postRepository.deleteAll();
+
+        User user01 = new User(null, "Balthazar de Bigode", "balthazar@email.com");
+        User user02 = new User(null, "Ophelia Birrenta", "ophelia@email.com");
+        User user03 = new User(null, "Gonçalo Munhoz", "goncalo@email.com");
+        User user04 = new User(null, "Vitalina Simplicio", "vitalina@email.com");
+        User user05 = new User(null, "Ludovico Crispim", "ludovico@email.com");
+        User user06 = new User(null, "Filisbina Junqueira", "filisbina@email.com");
+
+        Post post01 = new Post(null, Instant.parse("2025-02-10T00:00:00Z"), "Trip departure", "I'm going to travel to São Paulo. Cheers!", user02);
+        Post post02 = new Post(null, Instant.parse("2025-02-12T00:00:00Z"), "Good morning", "I woke up happy today!", user02);
+
+        userRepository.saveAll(Arrays.asList(user01, user02, user03, user04, user05, user06));
+        postRepository.saveAll(Arrays.asList(post01, post02));
+    }
+}
+````
 ## Project Checklist:
 
 - [X] Set up a Java Spring Boot project with MongoDB dependencies;
@@ -1677,7 +1745,7 @@ GET http://localhost:8080/users/joaquina@email.com
 - [X] Implement CRUD operation for User, including Exception Handling;
 - [X] CRUD Test Cases validating Success and Error Scenarios;
 - [X] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
-- [ ] Develop the Post entity with nested User information;
+- [X] Develop the Post entity with nested User information;
 - [ ] Implement DTOs for Post and Author;
 - [ ] Implement CRUD operations for Posts, including association with Users;
 - [ ] Implement endpoints for retrieving User Posts;
