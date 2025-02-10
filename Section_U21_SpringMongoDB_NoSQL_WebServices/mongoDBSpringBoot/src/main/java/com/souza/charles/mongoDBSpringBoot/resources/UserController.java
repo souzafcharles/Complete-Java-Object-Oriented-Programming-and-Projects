@@ -43,6 +43,12 @@ public class UserController implements Serializable {
         return ResponseEntity.ok().body(dto);
     }
 
+    @GetMapping(value = "/email/{email}")
+    public ResponseEntity<UserResponseDTO> findByEmail (@PathVariable String email){
+        UserResponseDTO dto = userService.findByEmail(email);
+        return ResponseEntity.ok().body(dto);
+    }
+
     @PutMapping(value = "/{id}")
     public ResponseEntity<UserResponseDTO> update(@PathVariable String id, @RequestBody UserRequestDTO data){
         UserResponseDTO dto = userService.update(id, data);

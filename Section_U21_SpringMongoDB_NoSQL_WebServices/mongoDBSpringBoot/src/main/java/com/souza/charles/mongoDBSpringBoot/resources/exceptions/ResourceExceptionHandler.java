@@ -3,7 +3,7 @@ package com.souza.charles.mongoDBSpringBoot.resources.exceptions;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 08, 2025
+  Date: February 09, 2025
  */
 
 import com.souza.charles.mongoDBSpringBoot.services.exceptions.*;
@@ -18,8 +18,8 @@ import java.time.Instant;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<StandardError> handleResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+    @ExceptionHandler({ResourceNotFoundException.class, EmailNotFoundException.class})
+    public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeException e, HttpServletRequest request) {
         String error = "Resource not found with the specified identifier or criteria.";
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());

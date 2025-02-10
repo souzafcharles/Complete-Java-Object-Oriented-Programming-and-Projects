@@ -5,7 +5,7 @@
 ## Instructions:
 
 <p align="justify">
-This project outlines the development of a robust <code>RESTful API</code> using the <code>Spring Boot</code> framework in conjunction with <code>MongoDB</code>. The primary objective is to create a fully functional backend system capable of managing user data and their associated posts, incorporating features such as <code>CRUD operations</code>, <code>data transfer objects (DTOs)</code>, and <code>exception handling</code>. The project will emphasise best practices in software design, including the implementation of a service layer for business logic and a repository layer for database interactions. Furthermore, it will explore the use of <code>nested objects</code> and <code>database references</code> to model relationships between users and posts, as well as the implementation of <code>query methods</code> and <code>custom queries</code> for data retrieval. The resulting API will provide a comprehensive set of endpoints for managing users, posts, and comments, demonstrating a practical application of <code>Spring Boot</code> and <code>MongoDB</code> in a real-world scenario.
+This project outlines the development of a robust <code>RESTful API</code> using the <code>Spring Boot</code> framework in conjunction with <code>MongoDB</code>. The primary objective is to create a fully functional backend system capable of managing user data and their associated posts, incorporating features such as <code>CRUD operations</code>, <code>data transfer objects (DTOs)</code>, and <code>exception handling</code>. The project will emphasise best practices in software design, including the implementation of a service layer for business logic and a repository layer for database interactions. Furthermore, it will explore the use of <code>nested objects</code> and <code>database references</code> to model relationships between Users and Posts, as well as the implementation of <code>query methods</code> and <code>custom queries</code> for data retrieval. The resulting API will provide a comprehensive set of endpoints for managing Users, Posts, and Comments, demonstrating a practical application of <code>Spring Boot</code> and <code>MongoDB</code> in a real-world scenario.
 </p>
 
 ### Logical Layers:
@@ -59,8 +59,8 @@ This project outlines the development of a robust <code>RESTful API</code> using
 - Inject `UserService` (or similar) using `@Autowired` for service dependency injection;
 - Implement a method `findAll`to handle `GET` requests:
     - Use `@GetMapping` annotation to map GET requests to `/users`;
-    - Return a `ResponseEntity<List<User>>` with an HTTP 200 (OK) status and the list of users;
-    - Handle empty lists and return an HTTP 204 (No Content) status if no users are found;
+    - Return a `ResponseEntity<List<User>>` with an HTTP 200 (OK) status and the list of `Users`;
+    - Handle empty lists and return an HTTP 204 (No Content) status if no `Users` are found;
 - Use `@CrossOrigin(origins = "*", allowedHeaders = "*")` annotation to allow cross-origin requests from any origin;
 - Ensure that the class implements the `Serializable` interface to support object serialization when needed.
 
@@ -107,7 +107,7 @@ spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 - Implement `findAll` method to handle HTTP requests:
     - **GET Request:**
         - Use the `@GetMapping` annotation to map GET requests to `/users`;
-        - Return a `ResponseEntity<List<User>>` with an HTTP 200 (OK) status and the list of users;
+        - Return a `ResponseEntity<List<User>>` with an HTTP 200 (OK) status and the list of `Users`;
 - Use the `@CrossOrigin(origins = "*", allowedHeaders = "*")` annotation to allow cross-origin requests from any origin;
 - Ensure that the class implements the `Serializable` interface to support object serialisation when needed.
 
@@ -170,7 +170,7 @@ public class Instantiation implements CommandLineRunner {
 - `@Configuration`: Indicates that the class can be used by the Spring IoC container as a source of bean definitions;
 - `@Autowired`: Allows Spring to resolve and automatically inject the marked dependency;
 - `CommandLineRunner`: Interface used to execute specific code when the Spring Boot application starts;
-- `userRepository.deleteAll()`: Removes all existing documents from the `user` collection to ensure a clean database
+- `userRepository.deleteAll()`: Removes all existing documents from the `User` collection to ensure a clean database
   state for seeding;
 - `new User(null, "name", "email")`: Creates a new instance of the `User` entity with specified name and email values;
 - `userRepository.saveAll(Arrays.asList(...))`: Saves multiple `User` objects into the database in a single operation,
@@ -184,11 +184,11 @@ public class Instantiation implements CommandLineRunner {
 #### 6.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint:** `GET /users`;
-- **Purpose:** Retrieves a list of all Users.
+- **Purpose:** Retrieves a list of all `Users`.
 
 #### 6.2. Example GET Request:
 
-- **Scenario:** Successfully retrieves a list of all Users:
+- **Scenario:** Successfully retrieves a list of all `Users`:
 
 ````markdown
 GET http://localhost:8080/users
@@ -250,29 +250,30 @@ GET http://localhost:8080/users
 #### 7.2. Requirements for UserRequestDTO Record Class:
 
 - **Record Declaration:**
-    - Create the `UserRequestDTO` as a `record` class to represent the request payload for creating or updating user
+    - Create the `UserRequestDTO` as a `record` class to represent the request payload for creating or updating `User`
       entries;
 - **Attribute Definition:**
     - Define the attributes `String id`, `String name`, and `String email` directly in the record's header to enable
       immutability and automatic generation of accessor methods;
 - **Purpose:**
-    - Use this `record` for receiving and validating user input from client requests to create/insert or update `User`
+    - Use this `record` for receiving and validating `User` input from client requests to create/insert or update `User`
       entities within the application.
 
 #### 7.3. Service Layer Refactoring Requirements:
 
 - **Service Layer Responsibility:**
-    - Ensure that the `UserServices` class contains the business logic for retrieving users from the database;
+    - Ensure that the `UserServices` class contains the business logic for retrieving `Users` from the database;
 - **Return Type Update:**
     - Update the `findAll()` method to return a list of `UserResponseDTO` objects instead of `User` objects;
 - **Mapping Logic:**
     - Use Java streams to transform the list of `User` entities into a list of `UserResponseDTO` objects;
 - **Purpose:**
-    - Improve encapsulation and ensure that only essential user information is exposed to the REST controller.
+    - Improve encapsulation and ensure that only essential `User` information is exposed to the REST controller.
 
 ##### 7.3.1. Sample Code:
 
 ````java
+
 @Transactional(readOnly = true)
 public List<UserResponseDTO> findAll() {
     List<User> list = userRepository.findAll();
@@ -285,18 +286,19 @@ public List<UserResponseDTO> findAll() {
 #### 7.4. Controller Layer Refactoring Requirements:
 
 - **Controller Layer Responsibility:**
-    - Ensure that `UserController` communicates directly with the `UserServices` service to retrieve user information;
+    - Ensure that `UserController` communicates directly with the `UserServices` service to retrieve `User` information;
 - **Return Type Update:**
     - Update the `findAll()` method to return a list of `UserResponseDTO` objects wrapped in a `ResponseEntity`;
 - **Status Code Handling:**
-    - Return a `ResponseEntity<List<UserResponseDTO>>` with an HTTP `200 (OK)` status and the list of users;
-    - Handle empty lists and return an HTTP `204 (No Content)` status if no users are found;
+    - Return a `ResponseEntity<List<UserResponseDTO>>` with an HTTP `200 (OK)` status and the list of `Users`;
+    - Handle empty lists and return an HTTP `204 (No Content)` status if no `Users` are found;
 - **Purpose:**
     - Ensure clear and accurate communication between client and server using RESTful API conventions.
 
 ##### 7.4.1. Sample Code:
 
 ````java
+
 @GetMapping
 public ResponseEntity<List<UserResponseDTO>> findAll() {
     List<UserResponseDTO> list = userService.findAll();
@@ -306,7 +308,7 @@ public ResponseEntity<List<UserResponseDTO>> findAll() {
 
 ---
 
-### 8. Implement `findById` Operation for Users with GET Method::
+### 8. Implement `findById` Operation for Users with GET Method:
 
 #### 8.1. **NEW METHOD:** `UserService.findById`:
 
@@ -314,11 +316,12 @@ public ResponseEntity<List<UserResponseDTO>> findAll() {
     - **Purpose:** Fetches a single `User` entity by its identifier and maps it to a `UserResponseDTO`;
     - **Transaction:** Annotate with `@Transactional(readOnly = true)` to ensure that the method runs within a read-only
       transaction;
-    - **Exception Handling:** Throws a custom `ResourceNotFoundException` if the user is not found.
+    - **Exception Handling:** Throws a custom `ResourceNotFoundException` if the `User` is not found.
 
 ##### 8.1.1. Sample Code:
 
 ````java
+
 @Transactional(readOnly = true)
 public UserResponseDTO findById(String id) {
     User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
@@ -333,11 +336,12 @@ public UserResponseDTO findById(String id) {
     - **Mapping:** Use `@GetMapping(value = "/{id}")` to map the request;
     - **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `200 (OK)` status if successful;
     - **Exception Handling:** Automatically handles `ResourceNotFoundException` and returns an appropriate HTTP
-      `404 (Not Found)` response if the user is not found.
+      `404 (Not Found)` response if the `User` is not found.
 
 #### 8.2.1. Sample Code:
 
 ````java
+
 @GetMapping(value = "/{id}")
 public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
     UserResponseDTO dto = userService.findById(id);
@@ -352,11 +356,11 @@ public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
 #### 9.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint:** `GET /users/{id}`;
-- **Purpose:** Retrieves a specific User item by its ID.
+- **Purpose:** Retrieves a specific `User` item by its ID.
 
 #### 9.2. Example GET Request:
 
-- **Scenario:** Successfully retrieves the requested User by ID:
+- **Scenario:** Successfully retrieves the requested U`User` by ID:
 
 ````markdown
 GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
@@ -376,7 +380,7 @@ GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
 
 ### 10. Exception Handling for `findById` Method:
 
-- This section introduces the implementation of custom exception handling for the `findById` method in the UserService
+- This section introduces the implementation of custom exception handling for the `findById` method in the `UserService`
   class, introducing custom exceptions and centralized error handling mechanisms.
 
 #### 10.1. **NEW CLASS:** `services.exceptions.ResourceNotFoundException` (Custom Exception)`:
@@ -397,7 +401,7 @@ GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
 - Provide constructors, getters, and setters to support object manipulation;
 - Implement `Serializable` for object serialization when needed.
 
-#### 10.3. **NEW CLASS:** `controller.exceptions.ResourceExceptionHandler`:
+#### 10.3. **NEW CLASS:** `controller.exceptions.ResourceExceptionHandler` (Custom Exception):
 
 - The `ResourceExceptionHandler` class is responsible for intercepting exceptions thrown during the execution of RESTful
   requests in the application and converting them into standardized HTTP error responses.
@@ -409,12 +413,13 @@ GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
 - **Error Response Standardization:** Provides a mechanism to customize the error response by creating and returning
   `StandardError` objects with detailed error information.
 
-#### 10.3.2. **Detailed Breakdown of the ` handleResourceNotFoundException` Method:**
+#### 10.3.2. **NEW METHOD:**` handleResourceNotFoundException`:
 
 - This method is responsible for handling exceptions of type `ResourceNotFoundException` and converting them into
   standardized HTTP error responses:
 
 ````java
+
 @ExceptionHandler(ResourceNotFoundException.class)
 public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
     String error = "Resource not found with the specified identifier or criteria.";
@@ -451,7 +456,7 @@ public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNot
 #### 11.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint:** `GET /users/{id}`;
-- **Purpose:** Retrieves a specific User item by its ID.
+- **Purpose:** Retrieves a specific `User` item by its ID.
 
 #### 11.2. Example GET Request (`ID Does Not Exist`):
 
@@ -497,6 +502,7 @@ GET http://localhost:8080/users/67a2d4c676cb0c201346e8f
 #### 12.1.1. Sample Code:
 
 ````java
+
 @Transactional
 public UserResponseDTO insert(UserRequestDTO data) {
     if (data.name() == null || data.name().isEmpty() ||
@@ -523,6 +529,7 @@ public UserResponseDTO insert(UserRequestDTO data) {
 #### 12.2.1. Sample Code:
 
 ````java
+
 @PostMapping
 public ResponseEntity<UserResponseDTO> insert(@RequestBody UserRequestDTO data) {
     UserResponseDTO dto = userService.insert(data);
@@ -552,11 +559,11 @@ public User(UserRequestDTO data) {
 #### 13.1. Setting Up the RESTful API for HTTP Methods (`Non-Idempotent`):
 
 - **Endpoint:** `POST /users`;
-- **Purpose:** Creates a new User.
+- **Purpose:** Creates a new `User`.
 
 #### 13.2. Example POST Request:
 
-- **Scenario:** Successfully creates a new User.
+- **Scenario:** Successfully creates a new `User`.
 
 - **Request Data:**
 
@@ -586,8 +593,8 @@ Body -> raw -> JSON
 
 ### 14. Exception Handling for `insert` Method:
 
-- This section introduces the implementation of custom exception handling for the `insert` method in the UserService
-  class, focusing on scenarios where a duplicate email is detected during user registration.
+- This section introduces the implementation of custom exception handling for the `insert` method in the `UserService`
+  class, focusing on scenarios where a duplicate email is detected during `User` registration.
 
 #### 14.1. **NEW CLASS:** `services.exceptions.InvalidDataException` (Custom Exception):
 
@@ -601,6 +608,7 @@ Body -> raw -> JSON
   standardized HTTP error responses:
 
 ````java
+
 @ExceptionHandler(InvalidDataException.class)
 public ResponseEntity<StandardError> handleBadRequestException(InvalidDataException e, HttpServletRequest request) {
     String error = "Invalid data provided. Please check the input and try again.";
@@ -645,6 +653,7 @@ public ResponseEntity<StandardError> handleBadRequestException(InvalidDataExcept
   standardized HTTP error responses:
 
 ````java
+
 @ExceptionHandler(DuplicateEmailException.class)
 public ResponseEntity<StandardError> handleDuplicateEmailException(DuplicateEmailException e, HttpServletRequest request) {
     String error = "Email address already in use.";
@@ -681,7 +690,7 @@ public ResponseEntity<StandardError> handleDuplicateEmailException(DuplicateEmai
 #### 15.1. Setting Up the RESTful API for HTTP Methods (`Non-Idempotent`):
 
 - **Endpoint**: POST `/users`;
-- **Purpose**: Creates a new User.
+- **Purpose**: Creates a new `User`.
 
 #### 15.2. Example POST Request (`Null or Empty Data`):
 
@@ -762,14 +771,16 @@ Body -> raw -> JSON
     - **Purpose:** Deletes a `User` entity by its identifier;
     - **Transaction:** Annotate with `@Transactional` to ensure that the operation is atomic and managed by the
       transaction manager;
-    - **Validation:** Checks if the user exists using `userRepository.findById`, throwing a `ResourceNotFoundException`
-      if the user is not found;
+    - **Validation:** Checks if the `User` exists using `userRepository.findById`, throwing a
+      `ResourceNotFoundException`
+      if the `User` is not found;
     - **Exception Handling:** Catches `DataIntegrityViolationException` and throws a `DatabaseException` for database
       integrity violations.
 
 #### 16.1.1. Sample Code:
 
 ```java
+
 @Transactional
 public void delete(String id) {
     try {
@@ -790,6 +801,7 @@ public void delete(String id) {
 #### 16.2.1. Sample Code:
 
 ````java
+
 @DeleteMapping(value = "/{id}")
 public ResponseEntity<Void> delete(@PathVariable String id) {
     userService.delete(id);
@@ -804,11 +816,11 @@ public ResponseEntity<Void> delete(@PathVariable String id) {
 #### 17.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint:** `DELETE /users/{id}`;
-- **Purpose:** Deletes a specific User item by its ID.
+- **Purpose:** Deletes a specific `User` item by its ID.
 
 #### 17.2. Example DELETE Request:
 
-- **Scenario:** Successfully deletes the requested User by ID:
+- **Scenario:** Successfully deletes the requested `User` by ID:
 
 ````markdown
 DELETE http://localhost:8080/users/67a2409ef1378e0d5af372cc
@@ -824,8 +836,8 @@ HTTP Status 204 - No Content
 
 ### 18. Exception Handling for `delete` Method:
 
-- This section introduces the implementation of custom exception handling for the `delete` method in the UserService
-  class, focusing on scenarios where database-related errors occur during user deletion.
+- This section introduces the implementation of custom exception handling for the `delete` method in the `UserService`
+  class, focusing on scenarios where database-related errors occur during `User` deletion.
 
 #### 18.1. **NEW CLASS:** `services.exceptions.DatabaseException` (Custom Exception):
 
@@ -842,6 +854,7 @@ HTTP Status 204 - No Content
   HTTP error responses:
 
 ````java
+
 @ExceptionHandler(DatabaseException.class)
 public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e, HttpServletRequest request) {
     String error = "A database error occurred. Please check the provided data and try again.";
@@ -877,7 +890,7 @@ public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e
 #### 19.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint**: DELETE `/users/{id}`;
-- **Purpose**: Deletes a specific User item by its ID.
+- **Purpose**: Deletes a specific `User` item by its ID.
 
 #### 19.2. Example DELETE Request (``ID Does Not Exist``):
 
@@ -940,12 +953,13 @@ DELETE http://localhost:8080/users/67a37227ac590770c04742d6
     - **Validation:** Checks for null or empty values in `name` and `email` fields, throwing an `InvalidDataException`
       if invalid;
     - **Duplicate Email Check:** Uses `userRepository.findByEmail` to verify if the email already exists for another
-      user, throwing a `DuplicateEmailException` if a duplicate is found;
+      `User`, throwing a `DuplicateEmailException` if a duplicate is found;
     - **Response:** Returns a `UserResponseDTO` containing the updated `User` data.
 
 #### 20.1.1. Sample Code:
 
 ```java
+
 @Transactional
 public UserResponseDTO update(String id, UserRequestDTO data) {
     User entity = userRepository.findById(id)
@@ -977,8 +991,8 @@ private void updateData(User entity, UserRequestDTO data) {
 - **Purpose:** Handles `PUT` requests to update an existing `User` resource;
 - **Mapping:** Use `@PutMapping` to map the request to the specified URI (`/users/{id}`);
 - **Parameters:**
-    - `@PathVariable String id`: Captures the `id` of the user to be updated from the URI;
-    - `@RequestBody UserRequestDTO data`: Captures the updated user data from the request body;
+    - `@PathVariable String id`: Captures the `id` of the `User` to be updated from the URI;
+    - `@RequestBody UserRequestDTO data`: Captures the updated `User` data from the request body;
 - **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `200 (OK)` status if successful;
 - **Exception Handling:** Automatically handles exceptions such as `DuplicateEmailException`, `InvalidDataException`,
   and `ResourceNotFoundException`, returning appropriate HTTP error responses.
@@ -986,6 +1000,7 @@ private void updateData(User entity, UserRequestDTO data) {
 #### 20.2.1. Sample Code:
 
 ```java
+
 @PutMapping(value = "/{id}")
 public ResponseEntity<UserResponseDTO> update(@PathVariable String id, @RequestBody UserRequestDTO data) {
     UserResponseDTO dto = userService.update(id, data);
@@ -1000,11 +1015,11 @@ public ResponseEntity<UserResponseDTO> update(@PathVariable String id, @RequestB
 #### 21.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint:** PUT `/users/{id}`;
-- **Purpose:** Updates a specific User item by its ID.
+- **Purpose:** Updates a specific `User` item by its ID.
 
 #### 21.2. Example PUT Request:
 
-- **Scenario:** Successfully updates the requested User by ID.
+- **Scenario:** Successfully updates the requested `User` by ID.
 
 - **Data for Update:**
 
@@ -1044,18 +1059,18 @@ Body -> raw -> JSON
 
 ### 22. Exception Handling for `update` Method:
 
-- This section introduces the implementation of custom exception handling for the `update` method in the UserService
-  class, focusing on scenarios where invalid data, duplicate emails, or missing resources are detected during user
+- This section introduces the implementation of custom exception handling for the `update` method in the `UserService`
+  class, focusing on scenarios where invalid data, duplicate emails, or missing resources are detected during `User`
   updates.
 
 #### 22.1. **Exception Scenarios:**
 
 1. **ResourceNotFoundException:**
-    - **Triggered When:** The provided `id` does not match any existing user in the database;
+    - **Triggered When:** The provided `id` does not match any existing `User` in the database;
     - **Action:** Throws a `ResourceNotFoundException` with a detailed message: `"Resource Not Found! ID: [id]"`.
 
 2. **DuplicateEmailException:**
-    - **Triggered When:** The provided `email` already exists in the database for another user;
+    - **Triggered When:** The provided `email` already exists in the database for another `User`;
     - **Action:** Throws a `DuplicateEmailException` with a detailed message:
       `"The email address '[email]' is already registered in the system."`.
 
@@ -1066,13 +1081,13 @@ Body -> raw -> JSON
 
 #### 22.2. **Exception Handling Flow:**
 
-- The `update` method first checks if the user exists using `userRepository.findById`. If not found, it throws a
+- The `update` method first checks if the `User` exists using `userRepository.findById`. If not found, it throws a
   `ResourceNotFoundException`;
 - If the `email` field is provided, it checks for duplicates using `userRepository.findByEmail`. If a duplicate is
   found, it throws a `DuplicateEmailException`;
 - The `updateData` method validates the `name` and `email` fields. If they are null or empty, it throws an
   `InvalidDataException`;
-- If all validations pass, the user data is updated and saved to the database.
+- If all validations pass, the `User` data is updated and saved to the database.
 
 ---
 
@@ -1081,7 +1096,7 @@ Body -> raw -> JSON
 #### 23.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint**: PUT `/users/{id}`;
-- **Purpose**: Updates a specific User item by its ID.
+- **Purpose**: Updates a specific `User` item by its ID.
 
 #### 23.2. Example PUT Request (`ID Does Not Exist`):
 
@@ -1223,6 +1238,7 @@ Body -> raw -> JSON
   HTTP error responses:
 
 ```java
+
 @ExceptionHandler(EmptyTableException.class)
 public ResponseEntity<StandardError> handleEmptyTableException(EmptyTableException e, HttpServletRequest request) {
     String error = "No data found in the requested table. Please verify the table name or check if it contains records.";
@@ -1259,7 +1275,7 @@ public ResponseEntity<StandardError> handleEmptyTableException(EmptyTableExcepti
 #### 25.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint** GET `/users`;
-- **Purpose**: Retrieves all User items from the database.
+- **Purpose**: Retrieves all `User` items from the database.
 
 #### 25.2. Example GET Request (`Empty Table`):
 
@@ -1281,6 +1297,159 @@ GET http://localhost:8080/users
 }
 ````
 
+### 26. Implement `findByEmail` Operation for Users with GET Method:
+
+#### 26.1. **UPDATE INTERFACE:** `FoodRepository`:
+
+- Use `Optional<User> findByEmail(String email);` only if the email attribute is expected to be unique. This method
+  returns an `Optional` that contains the `User` if found, or is empty if not. Handling the result through `Optional`
+  encourages explicit checks for absence, thereby reducing `NullPointerExceptions`;
+- If the email attribute is not guaranteed to be unique, consider implementing a method that returns a list of `Users`,
+  such as `List<User> findAllByEmail(String email);`. This approach ensures that multiple `Users` with the same email
+  address can be retrieved effectively, avoiding potential conflicts.
+
+#### 26.2. **NEW METHOD:** `UserService.findByEmail`:
+
+- **Purpose:** Fetch a single `User` entity by its email address and map it to a `UserResponseDTO`;
+- **Transaction:** Annotate with `@Transactional(readOnly = true)` to ensure that the method runs within a read-only
+  transaction;
+- **Exception Handling:** Throws a custom `EmailNotFoundException` if the `email` is not found.
+
+##### 26.2.1. **Sample Code**:
+
+```java
+
+@Transactional(readOnly = true)
+public UserResponseDTO findByEmail(String email) {
+    User entity = userRepository.findByEmail(email).orElseThrow(() -> new EmailNotFoundException(email));
+    return new UserResponseDTO(entity);
+}
+```
+
+#### 26.3. **NEW METHOD:** `UserController.findByEmail`:
+
+- **Purpose:** Handle `GET` requests to retrieve a `User` by its email address;
+- **Mapping:** Use `@GetMapping(value = "/email/{email}")` to map the request;
+- **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `200 (OK)` status if successful;
+- **Exception Handling:** Automatically handles `EmailNotFoundException` and returns an appropriate HTTP
+  `404 (Not Found)` response if the `User` is not found.
+
+##### 26.3.1. **Sample Code**:
+
+```java
+
+@GetMapping(value = "/email/{email}")
+public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) {
+    UserResponseDTO dto = userService.findByEmail(email);
+    return ResponseEntity.ok().body(dto);
+}
+```
+
+### 27. Success Case: Requesting and Responding User Data via Spring Boot RESTful API (`findByEmail`):
+
+#### 27.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /users/email/{email}`;
+- **Purpose:** Retrieves a specific `User` item by its email address.
+
+#### 27.2. Example GET Request:
+
+- **Scenario:** Successfully retrieves the requested `User` by email address:
+
+````markdown
+GET http://localhost:8080/users/email/ophelia@email.com
+````        
+
+#### 27.3. Example Response:
+
+````json
+{
+  "id": "67a9344d0684c222bb260f24",
+  "name": "Ophelia Birrenta",
+  "email": "ophelia@email.com"
+}
+````
+
+---
+
+### 28. Exception Handling for `findByEmail` Method:
+
+- This section introduces the implementation of custom exception handling for the `findByEmail` method in the
+  `UserService`
+  class, introducing custom exceptions and centralized error handling mechanisms.
+
+#### 28.1. **NEW CLASS:** `services.exceptions.EmailNotFoundException` (Custom Exception)`:
+
+- Create a custom exception named `EmailNotFoundException`, extending `RuntimeException`;
+- Constructor takes an `Object email` as a parameter to provide a specific resource email address in the error message;
+- Provide a detailed message when an exception occurs: `"Resource Not Found! Email: [email]"`.
+-
+
+#### 28.2. **UPDATE METHOD:** `handleResourceNotFoundException`:
+
+- This method is responsible for handling exceptions to types `ResourceNotFoundException` and `EmailNotFoundException`,
+  converting them into standardised HTTP error responses:
+
+````java
+
+@ExceptionHandler({ResourceNotFoundException.class, EmailNotFoundException.class})
+public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeException e, HttpServletRequest request) {
+    String error = "Resource not found with the specified identifier or criteria.";
+    HttpStatus status = HttpStatus.NOT_FOUND;
+    StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+    return ResponseEntity.status(status).body(err);
+}
+````
+
+- **Annotations and Parameters:**
+    - `@ExceptionHandler`({ResourceNotFoundException.class, EmailNotFoundException.class}): Maps the method to handle
+      exceptions to types `ResourceNotFoundException` and `EmailNotFoundException` simultaneously.
+    - Parameters:
+        - `RuntimeException` e: Captures the exception object, allowing the method to handle both exceptions
+          generically, as they inherit from `RuntimeException`;
+        - `HttpServletRequest` request: Provides details about the incoming HTTP request, such as the request URI.
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+        - **Error Message**: The variable `error` provides a concise description of the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from the respective exception class (
+          `ResourceNotFoundException` or `EmailNotFoundException`);
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception;
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+
+---
+
+### 29. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`findByEmail`):
+
+#### 29.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /users/email/{email}`;
+- **Purpose:** Retrieves a specific `User` item by its email address.
+
+#### 29.2. Example GET Request (`Email Address Does Not Exist`):
+
+- **Scenario:** The requested email address does not exist, triggering the custom error response with a
+  `404 Not Found` status code:
+
+````markdown
+GET http://localhost:8080/users/joaquina@email.com
+````
+
+#### 29.3. Example Error Response:
+
+- **Error Handling**: Upon catching a `EmailNotFoundException`, the method returns a structured JSON response in the
+  following format:
+
+````json
+{
+  "timestamp": "2025-02-10T00:44:17Z",
+  "status": 404,
+  "error": "Resource not found with the specified identifier or criteria.",
+  "message": "Resource Not Found! Email: joaquinha@email.com",
+  "path": "/users/email/joaquina@email.com"
+}
+````
+
 ---
 
 ## Project Checklist:
@@ -1291,10 +1460,11 @@ GET http://localhost:8080/users
 - [X] Database initialization operation;
 - [X] Implement DTOs Pattern for User Representation;
 - [X] Implement CRUD operation for User, including Exception Handling;
+- [X] CRUD Test Cases validating Success and Error Scenarios;
 - [] Develop the Post entity with nested User information;
 - [] Implement DTOs for Post and Author;
 - [] Implement CRUD operations for Posts, including association with Users;
-- [] Implement endpoints for retrieving user posts;
+- [] Implement endpoints for retrieving User Posts;
 - [] Add Comment functionality to Posts;
 - [] Implement custom queries for Post retrieval (simple and multi-criteria);
 - [] Implement URL parameter decoding for query methods.

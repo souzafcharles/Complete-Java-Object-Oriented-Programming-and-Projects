@@ -3,7 +3,7 @@ package com.souza.charles.mongoDBSpringBoot.services;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 08, 2025
+  Date: February 09, 2025
  */
 
 import com.souza.charles.mongoDBSpringBoot.domain.User;
@@ -16,7 +16,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.io.Serializable;
 import java.util.List;
@@ -56,6 +55,12 @@ public class UserService implements Serializable {
     @Transactional(readOnly = true)
     public UserResponseDTO findById(String id) {
         User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        return new UserResponseDTO(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public UserResponseDTO findByEmail(String email) {
+        User entity = userRepository.findByEmail(email).orElseThrow(() -> new EmailNotFoundException(email));
         return new UserResponseDTO(entity);
     }
 
