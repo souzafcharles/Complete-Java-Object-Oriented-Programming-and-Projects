@@ -1,6 +1,13 @@
 package com.souza.charles.mongoDBSpringBoot.domain;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 10, 2025
+ */
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.souza.charles.mongoDBSpringBoot.dto.AuthorResponseDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,12 +25,12 @@ public class Post implements Serializable {
     private String title;
     private String body;
 
-    private User author;
+    private AuthorResponseDTO author;
 
     public Post() {
     }
 
-    public Post(String id, Instant date, String title, String body, User author) {
+    public Post(String id, Instant date, String title, String body, AuthorResponseDTO author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -63,11 +70,11 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public User getAuthor() {
+    public AuthorResponseDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AuthorResponseDTO author) {
         this.author = author;
     }
 

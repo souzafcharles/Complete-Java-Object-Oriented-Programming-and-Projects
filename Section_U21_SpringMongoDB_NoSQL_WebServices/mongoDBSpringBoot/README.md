@@ -1677,7 +1677,7 @@ GET http://localhost:8080/users/joaquina@email.com
     - Define attributes `id`, `date`, `title`, `body`, and `author` to represent fields in the document;
     - Annotate the `id` field with `@Id` to designate it as the primary key field;
     - Annotate the `date` field with `@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")` to specify the date format for JSON serialization and deserialization;
-    - The `author` field should be of type `User`, establishing a nested relationship.
+    - The `author` field should be of type `AuthorResponseDTO`, establishing a relationship with the DTO.
 - **Constructors:**
     - Create a no-argument constructor required by the persistence framework;
     - Provide an all-arguments constructor for convenience.
@@ -1689,22 +1689,28 @@ GET http://localhost:8080/users/joaquina@email.com
 - **Serializable Interface:**
     - Implement the `Serializable` interface to support object serialization for the entity when necessary.
 
-#### 31.2. **NEW CLASS:** Requirements for PostRepository Interface:
+### 32. **NEW DTO PATTERN** for Customizing User Representation:
 
-- **Repository Creation:**
-    - Create the `PostRepository` interface to handle data access operations for the `Post` entity.
-- **MongoRepository Extension:**
-    - Extend `MongoRepository<Post, String>` to inherit common CRUD operations and MongoDB-specific functionalities.
-- **Entity Association:**
-    - Specify `Post` as the associated entity and `String` as the type for its primary key.
+#### 32.1. Requirements for AuthorResponseDTO Record Class:
 
-#### 31.3. **UPDATE CLASS:** Requirements for Instantiation Class:
+- **Record Declaration:**
+    - Create the `AuthorResponseDTO` as a `record` class to represent a simplified data structure for the `author` field in `Post` responses;
+- **Attribute Definition:**
+    - Define the attributes `String id` and `String name` directly in the record's header to make them immutable and automatically provide accessor methods;
+- **Entity-based Constructor:**
+    - Implement a custom constructor that accepts a `User` entity object as an argument;
+    - Extract and map values from the `User` entity to initialize the `AuthorResponseDTO` attributes;
+- **Purpose:**
+    - Use this `record` for representing the `author` data within the `Post` object, offering a controlled and potentially more efficient way to transfer author-related data.  This avoids exposing the entire `User` entity in the `Post` response.
+
+### 33. **UPDATE CLASS:** Requirements for Instantiation Class:
 
 - **Database Seeding:**
     - Modify the `run` method to include the following operations:
         - Delete all existing `Post` documents from the database using `postRepository.deleteAll()`;
-        - Create new `Post` objects with sample data, including associated `User` objects.  Ensure that the `User` objects used for the `author` field are existing users already saved in the database;
-        - Save all newly created `Post` objects using `postRepository.saveAll(Arrays.asList(...))`.  This should be done *after* the `User` objects have been saved.
+        - Create new `Post` objects with sample data, including associated `AuthorResponseDTO` objects. Ensure that the `User` objects, from which the `AuthorResponseDTO` objects are created, are existing users already saved in the database;
+        - Save all newly created `Post` objects using `postRepository.saveAll(Arrays.asList(...))`. This should be done *after* the `User` objects have been saved.
+
 ````java
 @Configuration
 public class Instantiation implements CommandLineRunner {
@@ -1727,10 +1733,11 @@ public class Instantiation implements CommandLineRunner {
         User user05 = new User(null, "Ludovico Crispim", "ludovico@email.com");
         User user06 = new User(null, "Filisbina Junqueira", "filisbina@email.com");
 
-        Post post01 = new Post(null, Instant.parse("2025-02-10T00:00:00Z"), "Trip departure", "I'm going to travel to São Paulo. Cheers!", user02);
-        Post post02 = new Post(null, Instant.parse("2025-02-12T00:00:00Z"), "Good morning", "I woke up happy today!", user02);
-
         userRepository.saveAll(Arrays.asList(user01, user02, user03, user04, user05, user06));
+
+        Post post01 = new Post(null, Instant.parse("2025-02-10T00:00:00Z"), "Trip departure", "I'm going to travel to São Paulo. Cheers!", new AuthorResponseDTO(user02));
+        Post post02 = new Post(null, Instant.parse("2025-02-12T00:00:00Z"), "Good morning", "I woke up happy today!", new AuthorResponseDTO(user02));
+
         postRepository.saveAll(Arrays.asList(post01, post02));
     }
 }
@@ -1746,7 +1753,7 @@ public class Instantiation implements CommandLineRunner {
 - [X] CRUD Test Cases validating Success and Error Scenarios;
 - [X] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
 - [X] Develop the Post entity with nested User information;
-- [ ] Implement DTOs for Post and Author;
+- [X] Implement DTO for Post and Author;
 - [ ] Implement CRUD operations for Posts, including association with Users;
 - [ ] Implement endpoints for retrieving User Posts;
 - [ ] Add Comment functionality to Posts;
