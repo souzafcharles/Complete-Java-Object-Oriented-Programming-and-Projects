@@ -6,8 +6,14 @@ package com.souza.charles.mongoDBSpringBoot.dto;
   Date: February 11, 2025
  */
 
+import com.souza.charles.mongoDBSpringBoot.domain.Comment;
+
 import java.io.Serializable;
 import java.time.Instant;
 
-public record PostRequestDTO(String id, Instant date, String title, String body) implements Serializable {
+public record CommentResponseDTO(String text, Instant date, AuthorResponseDTO author) implements Serializable {
+
+    public CommentResponseDTO(Comment comment) {
+        this(comment.getText(), comment.getDate(), comment.getAuthor());
+    }
 }

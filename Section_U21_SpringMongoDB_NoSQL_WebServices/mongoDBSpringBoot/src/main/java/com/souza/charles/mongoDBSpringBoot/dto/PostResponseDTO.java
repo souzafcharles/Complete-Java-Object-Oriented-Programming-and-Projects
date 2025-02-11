@@ -17,5 +17,3 @@ public record PostResponseDTO(String id, Instant date, String title, String body
         this(post.getId(), post.getDate(), post.getTitle(), post.getBody());
     }
 }
-
-

@@ -3,17 +3,19 @@ package com.souza.charles.mongoDBSpringBoot.domain;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 10, 2025
+  Date: February 11, 2025
  */
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.souza.charles.mongoDBSpringBoot.dto.AuthorResponseDTO;
-import com.souza.charles.mongoDBSpringBoot.dto.PostRequestDTO;
+import com.souza.charles.mongoDBSpringBoot.dto.CommentResponseDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -28,6 +30,8 @@ public class Post implements Serializable {
 
     private AuthorResponseDTO author;
 
+    private List<CommentResponseDTO> comments = new ArrayList<>();
+
     public Post() {
     }
 
@@ -37,13 +41,6 @@ public class Post implements Serializable {
         this.title = title;
         this.body = body;
         this.author = author;
-    }
-
-    public Post(PostRequestDTO data){
-        this.id = data.id();
-        this.date = data.date();
-        this.title = data.title();
-        this.body = data.body();
     }
 
     public String getId() {
@@ -84,6 +81,10 @@ public class Post implements Serializable {
 
     public void setAuthor(AuthorResponseDTO author) {
         this.author = author;
+    }
+
+    public List<CommentResponseDTO> getComments() {
+        return comments;
     }
 
     @Override

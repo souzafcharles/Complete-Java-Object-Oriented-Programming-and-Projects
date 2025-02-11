@@ -1,4 +1,10 @@
 package com.souza.charles.mongoDBSpringBoot.resources;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 11, 2025
+ */
 
 import com.souza.charles.mongoDBSpringBoot.dto.PostResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.services.PostService;
@@ -16,8 +22,8 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping(value="/{id}")
-    public ResponseEntity<PostResponseDTO> findById(@PathVariable String id){
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<PostResponseDTO> findById(@PathVariable String id) {
         PostResponseDTO dto = postService.findByiId(id);
         return ResponseEntity.ok().body(dto);
     }

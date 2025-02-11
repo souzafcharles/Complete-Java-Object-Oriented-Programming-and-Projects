@@ -124,14 +124,6 @@ spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 #### 5.1 In the `config` Subpackage, Create the `Instantiation` Configuration Class Implementing `CommandLineRunner`:
 
 ```java
-import com.souza.charles.mongoDBSpringBoot.domain.User;
-import com.souza.charles.mongoDBSpringBoot.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Configuration;
-
-import java.util.Arrays;
-
 @Configuration
 public class Instantiation implements CommandLineRunner {
     @Autowired
@@ -164,10 +156,10 @@ public class Instantiation implements CommandLineRunner {
     - Annotate the class with `@Configuration` to mark it as a configuration class for Spring;
     - Use `@Autowired` to inject the `UserRepository` dependency;
 - **Database Seeding:**
-    - Implement the `run` method to perform the following operations:
-        - Delete all existing `User` documents from the database using `userRepository.deleteAll()`;
-        - Create new `User` objects with sample data;
-        - Save all newly created `User` objects using `userRepository.saveAll(Arrays.asList(...))`;
+  - Implement the `run` method to perform the following operations:
+      - Delete all existing `User` documents from the database using `userRepository.deleteAll()`;
+      - Create new `User` objects with sample data;
+      - Save all newly created `User` objects using `userRepository.saveAll(Arrays.asList(...))`;
 - **Error Handling:**
     - Ensure that any exceptions are handled or propagated as necessary.
 
@@ -266,7 +258,18 @@ GET http://localhost:8080/users
       `User`
       entities within the application.
 
-#### 7.3. Service Layer Refactoring Requirements:
+#### 7.3. Requirements for `User` Entity Constructor with `UserRequestDTO`:
+
+- **Constructor Implementation:**
+    - Add a constructor to the `User` entity that accepts a `UserRequestDTO` object as an argument;
+- **Data Mapping:**
+    - Within the constructor, map the values from the `UserRequestDTO` object's attributes (`id`, `name`, `email`) to
+      the corresponding attributes of the `User` entity;
+- **Purpose:**
+    - This constructor facilitates the creation or update of `User` entities from incoming `UserRequestDTO` objects,
+      ensuring consistency in data mapping and cleaner code by encapsulating the data conversion logic.
+
+#### 7.4. Service Layer Refactoring Requirements:
 
 - **Service Layer Responsibility:**
     - Ensure that the `UserServices` class contains the business logic for retrieving `Users` from the database;
@@ -277,10 +280,9 @@ GET http://localhost:8080/users
 - **Purpose:**
     - Improve encapsulation and ensure that only essential `User` information is exposed to the REST controller.
 
-##### 7.3.1. Sample Code:
+##### 7.4.1. Sample Code:
 
 ````java
-
 @Transactional(readOnly = true)
 public List<UserResponseDTO> findAll() {
     List<User> list = userRepository.findAll();
@@ -290,7 +292,7 @@ public List<UserResponseDTO> findAll() {
 }
 ````
 
-#### 7.4. Controller Layer Refactoring Requirements:
+#### 7.5. Controller Layer Refactoring Requirements:
 
 - **Controller Layer Responsibility:**
     - Ensure that `UserController` communicates directly with the `UserServices` service to retrieve `User` information;
@@ -302,10 +304,9 @@ public List<UserResponseDTO> findAll() {
 - **Purpose:**
     - Ensure clear and accurate communication between client and server using RESTful API conventions.
 
-##### 7.4.1. Sample Code:
+##### 7.5.1. Sample Code:
 
 ````java
-
 @GetMapping
 public ResponseEntity<List<UserResponseDTO>> findAll() {
     List<UserResponseDTO> list = userService.findAll();
@@ -320,7 +321,7 @@ public ResponseEntity<List<UserResponseDTO>> findAll() {
 #### 8.1. **NEW METHOD:** `UserService.findById`:
 
 - Implement a method to retrieve a `User` entity by its `id`:
-    - **Purpose:** Fetches a single `User` entity by its identifier and maps it to a `UserResponseDTO`;
+  - **Purpose:** Fetches a single `User` entity by its identifier and maps it to a `UserResponseDTO`;
     - **Transaction:** Annotate with `@Transactional(readOnly = true)` to ensure that the method runs within a read-only
       transaction;
     - **Exception Handling:** Throws a custom `ResourceNotFoundException` if the `User` is not found.
@@ -328,7 +329,6 @@ public ResponseEntity<List<UserResponseDTO>> findAll() {
 ##### 8.1.1. Sample Code:
 
 ````java
-
 @Transactional(readOnly = true)
 public UserResponseDTO findById(String id) {
     User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
@@ -339,7 +339,7 @@ public UserResponseDTO findById(String id) {
 #### 8.2. **NEW METHOD**: `UserController.findById`:
 
 - Implement a method to handle `GET` requests by `id`:
-    - **Purpose:** Handle `GET` requests to retrieve a `User` by its identifier;
+  - **Purpose:** Handle `GET` requests to retrieve a `User` by its identifier;
     - **Mapping:** Use `@GetMapping(value = "/{id}")` to map the request;
     - **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `200 (OK)` status if successful;
     - **Exception Handling:** Automatically handles `ResourceNotFoundException` and returns an appropriate HTTP
@@ -348,7 +348,6 @@ public UserResponseDTO findById(String id) {
 #### 8.2.1. Sample Code:
 
 ````java
-
 @GetMapping(value = "/{id}")
 public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
     UserResponseDTO dto = userService.findById(id);
@@ -426,7 +425,6 @@ GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
   standardized HTTP error responses:
 
 ````java
-
 @ExceptionHandler(ResourceNotFoundException.class)
 public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
     String error = "Resource not found with the specified identifier or criteria.";
@@ -443,18 +441,18 @@ public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNot
 ````
 
 - **Annotations and Parameters**:
-    - `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type
-      `ResourceNotFoundException`;
-    - It takes two parameters:
-        - `ResourceNotFoundException` e: The exception object containing the error details;
-        - `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
-    - The method constructs a `StandardError` object, which includes:
-        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
-        - **Error Message**: The variable `error` provides a concise description for the error;
-        - **Detailed Message**: `e.getMessage()` displays the custom error message from ResourceNotFoundException;
-        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+  - `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type
+    `ResourceNotFoundException`;
+  - It takes two parameters:
+      - `ResourceNotFoundException` e: The exception object containing the error details;
+      - `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
+  - The method constructs a `StandardError` object, which includes:
+      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+      - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+      - **Error Message**: The variable `error` provides a concise description for the error;
+      - **Detailed Message**: `e.getMessage()` displays the custom error message from ResourceNotFoundException;
+      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -496,8 +494,8 @@ GET http://localhost:8080/users/67a2d4c676cb0c201346e8f
 #### 12.1. **NEW METHOD:** `UserService.insert`:
 
 - Implement a method to insert a new `User` entity:
-    - **Purpose:** Maps data from a `UserRequestDTO`, creates a `User` entity, and inserts it into the `MongoDB`
-      collection;
+  - **Purpose:** Maps data from a `UserRequestDTO`, creates a `User` entity, and inserts it into the `MongoDB`
+    collection;
     - **Transaction:** Annotate with `@Transactional` to ensure that the operation is atomic and managed by the
       transaction manager;
     - **Validation:** Checks for null or empty values in `name` and `email` fields, throwing an `InvalidDataException`
@@ -509,7 +507,6 @@ GET http://localhost:8080/users/67a2d4c676cb0c201346e8f
 #### 12.1.1. Sample Code:
 
 ````java
-
 @Transactional
 public UserResponseDTO insert(UserRequestDTO data) {
     if (data.name() == null || data.name().isEmpty() ||
@@ -615,7 +612,6 @@ Body -> raw -> JSON
   standardized HTTP error responses:
 
 ````java
-
 @ExceptionHandler(InvalidDataException.class)
 public ResponseEntity<StandardError> handleBadRequestException(InvalidDataException e, HttpServletRequest request) {
     String error = "Invalid data provided. Please check the input and try again.";
@@ -632,18 +628,18 @@ public ResponseEntity<StandardError> handleBadRequestException(InvalidDataExcept
 ````
 
 - **Annotations and Parameters:**
-    - `@ExceptionHandler(InvalidDataException.class)`: Maps the method to handle exceptions of type
-      `InvalidDataException`;
-    - It takes two parameters:
+  - `@ExceptionHandler(InvalidDataException.class)`: Maps the method to handle exceptions of type
+    `InvalidDataException`;
+  - It takes two parameters:
     - `InvalidDataException e`: The exception object containing the error details;
     - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
-    - The method constructs a `StandardError` object, which includes:
-        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-        - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
-        - **Error Message**: The variable `error` provides a concise description for the error;
-        - **Detailed Message**: `e.getMessage()` displays the custom error message from `InvalidDataException`;
-        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+  - The method constructs a `StandardError` object, which includes:
+      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+      - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
+      - **Error Message**: The variable `error` provides a concise description for the error;
+      - **Detailed Message**: `e.getMessage()` displays the custom error message from `InvalidDataException`;
+      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 #### 14.3. **NEW CLASS:** `services.exceptions.DuplicateEmailException` (Custom Exception):
 
@@ -660,7 +656,6 @@ public ResponseEntity<StandardError> handleBadRequestException(InvalidDataExcept
   standardized HTTP error responses:
 
 ````java
-
 @ExceptionHandler(DuplicateEmailException.class)
 public ResponseEntity<StandardError> handleDuplicateEmailException(DuplicateEmailException e, HttpServletRequest request) {
     String error = "Email address already in use.";
@@ -677,18 +672,18 @@ public ResponseEntity<StandardError> handleDuplicateEmailException(DuplicateEmai
 ````
 
 - **Annotations and Parameters:**
-    - `@ExceptionHandler(DuplicateEmailException.class)`: Maps the method to handle exceptions of type
-      `DuplicateEmailException`;
-    - It takes two parameters:
-        - `DuplicateEmailException e`: The exception object containing the error details;
-        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
-    - The method constructs a `StandardError` object, which includes:
-        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-        - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
-        - **Error Message**: The variable `error` provides a concise description for the error;
-        - **Detailed Message**: `e.getMessage()` displays the custom error message from `DuplicateEmailException`;
-        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+  - `@ExceptionHandler(DuplicateEmailException.class)`: Maps the method to handle exceptions of type
+    `DuplicateEmailException`;
+  - It takes two parameters:
+      - `DuplicateEmailException e`: The exception object containing the error details;
+      - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
+  - The method constructs a `StandardError` object, which includes:
+      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+      - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
+      - **Error Message**: The variable `error` provides a concise description for the error;
+      - **Detailed Message**: `e.getMessage()` displays the custom error message from `DuplicateEmailException`;
+      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -787,7 +782,6 @@ Body -> raw -> JSON
 #### 16.1.1. Sample Code:
 
 ```java
-
 @Transactional
 public void delete(String id) {
     try {
@@ -808,7 +802,6 @@ public void delete(String id) {
 #### 16.2.1. Sample Code:
 
 ````java
-
 @DeleteMapping(value = "/{id}")
 public ResponseEntity<Void> delete(@PathVariable String id) {
     userService.delete(id);
@@ -861,7 +854,6 @@ HTTP Status 204 - No Content
   HTTP error responses:
 
 ````java
-
 @ExceptionHandler(DatabaseException.class)
 public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e, HttpServletRequest request) {
     String error = "A database error occurred. Please check the provided data and try again.";
@@ -878,17 +870,17 @@ public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e
 ````
 
 - **Annotations and Parameters:**
-    - `@ExceptionHandler(DatabaseException.class)`: Maps the method to handle exceptions of type `DatabaseException`;
-    - It takes two parameters:
-        - `DatabaseException e`: The exception object containing the error details;
-        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
-    - The method constructs a `StandardError` object, which includes:
-        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-        - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
-        - **Error Message**: The variable `error` provides a concise description for the error;
-        - **Detailed Message**: `e.getMessage()` displays the custom error message from `DatabaseException`;
-        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+  - `@ExceptionHandler(DatabaseException.class)`: Maps the method to handle exceptions of type `DatabaseException`;
+  - It takes two parameters:
+      - `DatabaseException e`: The exception object containing the error details;
+      - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
+  - The method constructs a `StandardError` object, which includes:
+      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+      - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
+      - **Error Message**: The variable `error` provides a concise description for the error;
+      - **Detailed Message**: `e.getMessage()` displays the custom error message from `DatabaseException`;
+      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -966,7 +958,6 @@ DELETE http://localhost:8080/users/67a37227ac590770c04742d6
 #### 20.1.1. Sample Code:
 
 ```java
-
 @Transactional
 public UserResponseDTO update(String id, UserRequestDTO data) {
     User entity = userRepository.findById(id)
@@ -1007,7 +998,6 @@ private void updateData(User entity, UserRequestDTO data) {
 #### 20.2.1. Sample Code:
 
 ```java
-
 @PutMapping(value = "/{id}")
 public ResponseEntity<UserResponseDTO> update(@PathVariable String id, @RequestBody UserRequestDTO data) {
     UserResponseDTO dto = userService.update(id, data);
@@ -1245,7 +1235,6 @@ Body -> raw -> JSON
   HTTP error responses:
 
 ```java
-
 @ExceptionHandler(EmptyTableException.class)
 public ResponseEntity<StandardError> handleEmptyTableException(EmptyTableException e, HttpServletRequest request) {
     String error = "No data found in the requested table. Please verify the table name or check if it contains records.";
@@ -1262,18 +1251,18 @@ public ResponseEntity<StandardError> handleEmptyTableException(EmptyTableExcepti
 ````
 
 - **Annotations and Parameters:**
-    - `@ExceptionHandler(EmptyTableException.class)`: Maps the method to handle exceptions of type
-      `EmptyTableException`;
-    - It takes two parameters:
-        - `EmptyTableException e`: The exception object containing the error details;
-        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
-    - The method constructs a `StandardError` object, which includes:
-        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
-        - **Error Message**: The variable `error` provides a concise description for the error;
-        - **Detailed Message**: `e.getMessage()` displays the custom error message from `EmptyTableException`;
-        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+  - `@ExceptionHandler(EmptyTableException.class)`: Maps the method to handle exceptions of type
+    `EmptyTableException`;
+  - It takes two parameters:
+      - `EmptyTableException e`: The exception object containing the error details;
+      - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
+  - The method constructs a `StandardError` object, which includes:
+      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+      - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+      - **Error Message**: The variable `error` provides a concise description for the error;
+      - **Detailed Message**: `e.getMessage()` displays the custom error message from `EmptyTableException`;
+      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -1327,7 +1316,6 @@ GET http://localhost:8080/users
 ##### 26.2.1. **Sample Code**:
 
 ```java
-
 @Transactional(readOnly = true)
 public UserResponseDTO findByEmail(String email) {
     User entity = userRepository.findByEmail(email).orElseThrow(() -> new EmailNotFoundException(email));
@@ -1346,7 +1334,6 @@ public UserResponseDTO findByEmail(String email) {
 ##### 26.3.1. **Sample Code**:
 
 ```java
-
 @GetMapping(value = "/email/{email}")
 public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) {
     UserResponseDTO dto = userService.findByEmail(email);
@@ -1402,7 +1389,6 @@ GET http://localhost:8080/users/email/ophelia@email.com
   converting them into standardised HTTP error responses:
 
 ````java
-
 @ExceptionHandler({ResourceNotFoundException.class, EmailNotFoundException.class})
 public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeException e, HttpServletRequest request) {
     String error = "Resource not found with the specified identifier or criteria.";
@@ -1413,20 +1399,20 @@ public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeExce
 ````
 
 - **Annotations and Parameters:**
-    - `@ExceptionHandler`({ResourceNotFoundException.class, EmailNotFoundException.class}): Maps the method to handle
-      exceptions to types `ResourceNotFoundException` and `EmailNotFoundException` simultaneously.
-    - Parameters:
-        - `RuntimeException` e: Captures the exception object, allowing the method to handle both exceptions
-          generically, as they inherit from `RuntimeException`;
-        - `HttpServletRequest` request: Provides details about the incoming HTTP request, such as the request URI.
-    - The method constructs a `StandardError` object, which includes:
-        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
-        - **Error Message**: The variable `error` provides a concise description of the error;
-        - **Detailed Message**: `e.getMessage()` displays the custom error message from the respective exception class (
-          `ResourceNotFoundException` or `EmailNotFoundException`);
-        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception;
-    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+  - `@ExceptionHandler`({ResourceNotFoundException.class, EmailNotFoundException.class}): Maps the method to handle
+    exceptions to types `ResourceNotFoundException` and `EmailNotFoundException` simultaneously.
+  - Parameters:
+      - `RuntimeException` e: Captures the exception object, allowing the method to handle both exceptions
+        generically, as they inherit from `RuntimeException`;
+      - `HttpServletRequest` request: Provides details about the incoming HTTP request, such as the request URI.
+  - The method constructs a `StandardError` object, which includes:
+      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+      - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+      - **Error Message**: The variable `error` provides a concise description of the error;
+      - **Detailed Message**: `e.getMessage()` displays the custom error message from the respective exception class (
+        `ResourceNotFoundException` or `EmailNotFoundException`);
+      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception;
+  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -1522,7 +1508,8 @@ GET http://localhost:8080/users/joaquina@email.com
 ]
 ````
 
-* **Observation:** Image 1 demonstrates the domain model with references. This is evident in how the relationships
+* **Observation:** Domain Model with References demonstrates the domain model with references. This is evident in how
+  the relationships
   between entities are established.
 * **Requirements:**
     * Related objects (Post and Comment) have a significant amount of data and/or independent relevance within the
@@ -1531,7 +1518,7 @@ GET http://localhost:8080/users/joaquina@email.com
     * Prioritizes performance optimization and reduced load in scenarios where complete data of related objects is not
       always needed.
 
-* **Details (Image 1):**
+* **Details (Domain Model with References):**
     * **User:** Has a list of Post IDs (`posts: [5001, 5010]`), indicating the user has associated posts, but not the
       posts themselves;
     * **Post:** Similarly, has a list of Comment IDs (`comments: [...]`), showing the post has comments, but not the
@@ -1625,13 +1612,13 @@ GET http://localhost:8080/users/joaquina@email.com
 ]
 ````
 
-* **Observation:** Image 2 represents the domain model with aggregate alignment.
+* **Observation:** Domain Model with Aggregate Alignment represents the domain model with aggregate alignment.
 * **Requirements:**
     * Related objects (Post and Comment) are relatively simple and/or the need to access all data of related objects
       simultaneously is very frequent;
     * Prioritizes convenience and ease of data access over performance in specific scenarios.
 
-* **Details (Image 2):**
+* **Details (Domain Model with Aggregate Alignment):**
     * **User:** Has a list of complete Post objects (`posts: [...]`), meaning the post data is directly embedded within
       the User object;
     * **Post:** Similarly, has a list of complete Comment objects (`comments: [...]`), with all comment details within
@@ -1712,18 +1699,7 @@ GET http://localhost:8080/users/joaquina@email.com
       potentially more efficient way to transfer author-related data. This avoids exposing the entire `User` entity in
       the `Post` response.
 
-#### 32.2. Requirements for AuthorRequestDTO Record Class:
-
-- **Record Declaration:**
-    - Create the `AuthorRequestDTO` as a `record` class to represent the data required to create or update an author;
-- **Attribute Definition:**
-    - Define the attributes `String id` and `String name` directly in the record's header to make them immutable and
-      automatically provide accessor methods;
-- **Purpose:**
-    - Use this `record` for receiving author data from requests, ensuring a consistent and well-defined structure for
-      incoming information. This separates the internal representation (`User` entity) from the data transfer object.
-
-#### 32.3. Requirements for PostResponseDTO Record Class:
+#### 32.2. Requirements for PostResponseDTO Record Class:
 
 - **Record Declaration:**
     - Create the `PostResponseDTO` as a `record` class to represent a simplified data structure for `Post` responses;
@@ -1736,29 +1712,6 @@ GET http://localhost:8080/users/joaquina@email.com
 - **Purpose:**
     - Use this `record` for representing `Post` data in responses, offering a controlled and potentially more efficient
       way to transfer post-related data. This avoids exposing the entire `Post` entity in the response.
-
-#### 32.4. Requirements for PostRequestDTO Record Class:
-
-- **Record Declaration:**
-    - Create the `PostRequestDTO` as a `record` class to represent the data required to create or update a post;
-- **Attribute Definition:**
-    - Define the attributes `String id`, `Instant date`, `String title`, and `String body` directly in the record's
-      header to make them immutable and automatically provide accessor methods;
-- **Purpose:**
-    - Use this `record` for receiving post data from requests, ensuring a consistent and well-defined structure for
-      incoming information. This separates the internal representation (`Post` entity) from the data transfer object.
-
-#### 32.5. Requirements for Post Entity Constructor with PostRequestDTO:
-
-- **Constructor Implementation:**
-    - Add a constructor to the `Post` entity that accepts a `PostRequestDTO` object as an argument;
-- **Data Mapping:**
-    - Within the constructor, map the values from the `PostRequestDTO` object's attributes (`id`, `date`, `title`,
-      `body`) to the corresponding attributes of the `Post` entity;
-- **Purpose:**
-    - This constructor facilitates the creation of `Post` entities from incoming `PostRequestDTO` objects, streamlining
-      the process of handling post creation and update requests. It centralises the mapping logic and promotes cleaner
-      code by encapsulating the data transfer to entity conversion.
 
 ---
 
@@ -1879,7 +1832,7 @@ GET http://localhost:8080/posts/XXXXXXXXXX
 
 ---
 
-### 36. **UPDATE CLASS:** `User` Entity and `Instantiation` Class:
+### 36. **UPDATE CLASS:** `User` Entity Class:
 
 #### 36.1. New Requirements for User Entity Class:
 
@@ -1888,72 +1841,6 @@ GET http://localhost:8080/posts/XXXXXXXXXX
       with the `Post` entity and enable lazy loading. .
 - **Accessors and Mutators:**
     - Implement getters for posts attribute to allow data manipulation.
-
-#### 36.2. Requirements for Updating User with Posts in Instantiation Class:
-
-- **Post-User Relationship Management:**
-    - After saving the `Post` objects, update the `User` object (`user02` in this case) to reflect the relationship with
-      the newly created posts.
-- **Updating the User's Post List:**
-    - Retrieve the list of posts associated with `user02` using `user02.getPosts()`. It is important to understand that
-      if the `posts` list is initialized when the `User` is created, then this retrieval will return that list. If the
-      `posts` list is not initialized, then the retrieval will return null. If it returns null, then you must initialize
-      the `posts` list before proceeding. This can be done with `user02.setPosts(new ArrayList<>());` for example;
-    - Add the newly created `Post` objects (`post01` and `post02`) to the user's list of posts using
-      `addAll(Arrays.asList(post01, post02))`. This establishes the connection between the user and their posts.
-- **Saving the Updated User:**
-    - Persist the changes to the `user02` object in the database using `userRepository.save(user02)`. This ensures that
-      the updated list of posts is stored along with the user's information. It is important to understand that the
-      `posts` list is annotated with `@DBRef`. This annotation means that only references to the `Post` objects are
-      stored in the `User` document. The actual `Post` objects are stored in a separate collection. This is a key
-      concept in MongoDB and NoSQL databases in general.
-
-````java
-
-@Configuration
-public class Instantiation implements CommandLineRunner {
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PostRepository postRepository;
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        userRepository.deleteAll();
-        postRepository.deleteAll();
-
-        User user01 = new User(null, "Balthazar de Bigode", "balthazar@email.com");
-        User user02 = new User(null, "Ophelia Birrenta", "ophelia@email.com");
-        User user03 = new User(null, "Gonçalo Munhoz", "goncalo@email.com");
-        User user04 = new User(null, "Vitalina Simplicio", "vitalina@email.com");
-        User user05 = new User(null, "Ludovico Crispim", "ludovico@email.com");
-        User user06 = new User(null, "Filisbina Junqueira", "filisbina@email.com");
-
-        userRepository.saveAll(Arrays.asList(user01, user02, user03, user04, user05, user06));
-
-        Post post01 = new Post(null, Instant.parse("2025-02-10T00:00:00Z"), "Trip departure", "I'm going to travel to São Paulo. Cheers!", new AuthorResponseDTO(user02));
-        Post post02 = new Post(null, Instant.parse("2025-02-12T00:00:00Z"), "Good morning", "I woke up happy today!", new AuthorResponseDTO(user02));
-
-        postRepository.saveAll(Arrays.asList(post01, post02));
-
-        user02.getPosts().addAll(Arrays.asList(post01, post02));
-        userRepository.save(user02);
-
-    }
-}
-````
-
-* `user02.getPosts()`: This retrieves the posts list associated with the `user02` object. Remember that `user02`
-  represents a user, and `posts` is a list of `Post` objects they have authored;
-* `.addAll(Arrays.asList(post01, post02))`: This adds the `post01` and `post02` objects to the `posts` list retrieved in
-  the previous step. The `addAll()` method is used to add all elements from the specified collection (in this case, a
-  list created from the `post01` and `post02` objects) to the end of the current list;
-* `userRepository.save(user02)`: This saves the updated `user02` object back to the database. Because of the `@DBRef`
-  annotation on the `posts` list, only the references (IDs) of the `post01` and `post02` objects are stored in the
-  `user02` document. This is how MongoDB handles relationships efficiently. The actual `Post` documents are stored
-  separately.
 
 ---
 
@@ -2071,6 +1958,235 @@ GET http://localhost:8080/users/XXXXXXXXXXXXXX/posts
 
 ---
 
+### 40. Creating Comment Entity Class:
+
+#### 40.1. **NEW CLASS:** Requirements for Comment Entity Class:
+
+- **Entity Mapping:**
+    - Create the `Comment` class as an entity to represent embedded data within a `Post` document;
+    - The `Comment` class should *not* be annotated with `@Document` as it's not a top-level collection.
+
+- **Attributes and Annotations:**
+    - Define attributes `text`, `date`, and `author` to represent fields in the embedded document;
+    - Annotate the `date` field with
+      `@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")` to specify
+      the date format for JSON serialization and deserialization;
+    - The `author` field should be of type `AuthorResponseDTO`, establishing a relationship with the DTO.
+
+- **Constructors:**
+    - Create a no-argument constructor required by the persistence framework;
+    - Provide an all-arguments constructor for convenience.
+
+- **Accessors and Mutators:**
+    - Implement getters and setters for all attributes to allow data manipulation.
+
+- **Serializable Interface:**
+    - Implement the `Serializable` interface to support object serialization for the entity when necessary.
+
+---
+
+### 41. DTO Pattern for Comment Representation:
+
+#### 41.1. Requirements for CommentResponseDTO Record Class:
+
+- **Record Declaration:**
+    - Create the `CommentResponseDTO` as a `record` class to represent a simplified data structure for responses.
+
+- **Attribute Definition:**
+    - Define the attributes `String text`, `Instant date`, and `AuthorResponseDTO author` directly in the record's
+      header, making them immutable and automatically providing accessor methods.
+
+- **Entity-based Constructor:**
+    - Implement a custom constructor that accepts a `Comment` entity object as an argument;
+    - Extract and map values from the `Comment` entity to initialize the `CommentResponseDTO` attributes.
+
+- **Purpose:**
+    - Use this `record` for transferring comment-related data from the backend service layer to the controller response,
+      following RESTful API conventions.
+
+---
+
+### 42. **UPDATE CLASS:** `Instantiation` Class:
+
+#### 42.1. Requirements for Updating User with Posts and Comments in Instantiation Class:
+
+- **Post-User Relationship Management:**
+    - After saving the `Post` objects, update the `User` object (`user02` in this case) to reflect the relationship with
+      the newly created posts.
+
+- **Updating the User's Post List:**
+    - Retrieve the list of posts associated with `user02` using `user02.getPosts()`. It is important to understand that
+      if the `posts` list is initialized when the `User` is created, then this retrieval will return that list. If the
+      `posts` list is not initialized, then the retrieval will return null. If it returns null, then you must initialize
+      the `posts` list before proceeding. This can be done with `user02.setPosts(new ArrayList<>());` for example;
+    - Add the newly created `Post` objects (`post01` and `post02`) to the user's list of posts using
+      `addAll(Arrays.asList(post01, post02))`. This establishes the connection between the user and their posts.
+
+- **Saving the Updated User:**
+    - Persist the changes to the `user02` object in the database using `userRepository.save(user02)`. This ensures that
+      the updated list of posts is stored along with the user's information. It is important to understand that the
+      `posts` list is annotated with `@DBRef`. This annotation means that only references to the `Post` objects are
+      stored in the `User` document. The actual `Post` objects are stored in a separate collection. This is a key
+      concept in MongoDB and NoSQL databases in general.
+
+- **Comment Integration within Posts:**
+    - After creating the `Post` objects (`post01` and `post02`), associate `Comment` objects with them;
+    - Create instances of `CommentResponseDTO` (e.g., `comment01`, `comment02`, `comment03`) representing comments on
+      the posts. These should contain the comment text, date, and author (represented by `AuthorResponseDTO`);
+    - Retrieve the `comments` list from each `Post` object (similar to how you handled the `posts` list in the `User`
+      object). Ensure the list is initialized if it is null;
+    - Add the created `CommentResponseDTO` objects to the respective `Post`'s `comments` list using `addAll()` or
+      `add()`. This establishes the relationship between the post and its comments;
+    - Save the updated `Post` objects using `postRepository.saveAll(Arrays.asList(post01, post02))`. This persists the
+      comments along with the posts. Because `Comment` is embedded within `Post`, saving the `Post` will also save the
+      associated `Comment` objects. There's no separate collection for comments.
+
+- **Explanation of Key Operations:**
+    - `user02.getPosts()`: This retrieves the posts list associated with the `user02` object. Remember that `user02`
+      represents a user, and `posts` is a list of `Post` objects they have authored;
+    - `.addAll(Arrays.asList(post01, post02))`: This adds the `post01` and `post02` objects to the `posts` list
+      retrieved in the previous step. The `addAll()` method is used to add all elements from the specified collection (
+      in this case, a list created from the `post01` and `post02` objects) to the end of the current list;
+    - `userRepository.save(user02)`: This saves the updated `user02` object back to the database. Because of the
+      `@DBRef` annotation on the `posts` list, only the references (IDs) of the `post01` and `post02` objects are stored
+      in the `user02` document. This is how MongoDB handles relationships efficiently. The actual `Post` documents are
+      stored separately;
+    - `post01.getComments().addAll(...)`:  This retrieves the list of comments for `post01` and adds the new comments to
+      it. Again, if the list is null, it needs to be initialized first. Because `Comment` is embedded, the comments are
+      stored directly within the `Post` document.
+    - `postRepository.saveAll(...)`: This saves the `Post` objects, including the embedded `Comment` objects.
+
+````java
+@Configuration
+public class Instantiation implements CommandLineRunner {
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        userRepository.deleteAll();
+        postRepository.deleteAll();
+
+        User user01 = new User(null, "Balthazar de Bigode", "balthazar@email.com");
+        User user02 = new User(null, "Ophelia Birrenta", "ophelia@email.com");
+        User user03 = new User(null, "Gonçalo Munhoz", "goncalo@email.com");
+        User user04 = new User(null, "Vitalina Simplicio", "vitalina@email.com");
+        User user05 = new User(null, "Ludovico Crispim", "ludovico@email.com");
+        User user06 = new User(null, "Filisbina Junqueira", "filisbina@email.com");
+
+        userRepository.saveAll(Arrays.asList(user01, user02, user03, user04, user05, user06));
+
+        Post post01 = new Post(null, Instant.parse("2025-02-10T00:00:00Z"), "Trip departure", "I'm going to travel to São Paulo. Cheers!", new AuthorResponseDTO(user02));
+        Post post02 = new Post(null, Instant.parse("2025-02-12T00:00:00Z"), "Good morning", "I woke up happy today!", new AuthorResponseDTO(user02));
+
+        CommentResponseDTO comment01 = new CommentResponseDTO("Have a nice trip, dude!", Instant.parse("2025-02-10T00:00:00Z"), new AuthorResponseDTO(user01));
+        CommentResponseDTO comment02 = new CommentResponseDTO("Enjoy!", Instant.parse("2025-02-11T00:00:00Z"), new AuthorResponseDTO(user04));
+        CommentResponseDTO comment03 = new CommentResponseDTO("Have a great day!", Instant.parse("2025-02-12T00:00:00Z"), new AuthorResponseDTO(user01));
+        post01.getComments().addAll(Arrays.asList(comment01, comment02));
+        post02.getComments().add(comment03);
+
+        postRepository.saveAll(Arrays.asList(post01, post02));
+
+        user02.getPosts().addAll(Arrays.asList(post01, post02));
+
+    }
+}
+````
+
+### 43. Sample Post Document with Comments as Viewed in MongoDB Compass:
+
+#### 43.1. Example Response `post01`:
+
+````json
+{
+  "_id": {
+    "$oid": "67ab7fdfd9ee726c0a71ce24"
+  },
+  "date": {
+    "$date": "2025-02-10T00:00:00.000Z"
+  },
+  "title": "Trip departure",
+  "body": "I'm going to travel to São Paulo. Cheers!",
+  "author": {
+    "_id": {
+      "$oid": "67ab7fdfd9ee726c0a71ce1f"
+    },
+    "name": "Ophelia Birrenta"
+  },
+  "comments": [
+    {
+      "text": "Have a nice trip, dude!",
+      "date": {
+        "$date": "2025-02-10T00:00:00.000Z"
+      },
+      "author": {
+        "_id": {
+          "$oid": "67ab7fdfd9ee726c0a71ce1e"
+        },
+        "name": "Balthazar de Bigode"
+      }
+    },
+    {
+      "text": "Enjoy!",
+      "date": {
+        "$date": "2025-02-11T00:00:00.000Z"
+      },
+      "author": {
+        "_id": {
+          "$oid": "67ab7fdfd9ee726c0a71ce21"
+        },
+        "name": "Vitalina Simplicio"
+      }
+    }
+  ],
+  "_class": "com.souza.charles.mongoDBSpringBoot.domain.Post"
+}
+````
+
+### 44. Sample Post Document with Comments as Viewed in MongoDB Compass:
+
+#### 44.1. Example Response `post02`:
+
+````json
+{
+  "_id": {
+    "$oid": "67ab7fdfd9ee726c0a71ce25"
+  },
+  "date": {
+    "$date": "2025-02-12T00:00:00.000Z"
+  },
+  "title": "Good morning",
+  "body": "I woke up happy today!",
+  "author": {
+    "_id": {
+      "$oid": "67ab7fdfd9ee726c0a71ce1f"
+    },
+    "name": "Ophelia Birrenta"
+  },
+  "comments": [
+    {
+      "text": "Have a great day!",
+      "date": {
+        "$date": "2025-02-12T00:00:00.000Z"
+      },
+      "author": {
+        "_id": {
+          "$oid": "67ab7fdfd9ee726c0a71ce1e"
+        },
+        "name": "Balthazar de Bigode"
+      }
+    }
+  ],
+  "_class": "com.souza.charles.mongoDBSpringBoot.domain.Post"
+}
+````
+
+---
+
 ## Project Checklist:
 
 - [x] Set up a Java Spring Boot project with MongoDB dependencies;
@@ -2086,6 +2202,8 @@ GET http://localhost:8080/users/XXXXXXXXXXXXXX/posts
 - [x] Implement an endpoint for retrieving a specific Post, including Exception Handling;
 - [x] Update User entity to include Post references;
 - [x] Implement an endpoint for retrieving User Posts, including Exception Handling;
-- [ ] Add Comment functionality to Posts;
+- [x] Develop the Comment entity with nested User and Post information;
+- [x] Implement DTO Pattern for Comment;
+- [X] Add Comment functionality to Posts;
 - [ ] Implement custom queries for Post retrieval (simple and multi-criteria);
 - [ ] Implement URL parameter decoding for query methods.
