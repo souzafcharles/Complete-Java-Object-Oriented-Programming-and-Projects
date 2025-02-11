@@ -2184,6 +2184,82 @@ public class Instantiation implements CommandLineRunner {
   "_class": "com.souza.charles.mongoDBSpringBoot.domain.Post"
 }
 ````
+---
+### 45. **UPDATE CLASS** Requirements for PostRepository Interface:
+
+- **Title Search Query:**
+  - Implement the `searchTitle(String text)` method;
+  - Annotate it with `@Query("{ 'title': { $regex: ?0, $options: 'i' } }")` to perform case-insensitive searches in the `title` field using a regular expression;
+  - Ensure the method returns a `List<PostResponseDTO>`.
+
+- **Find by Title Containing (Ignoring Case):**
+  - Define `findByTitleContainingIgnoreCase(String text)`;
+  - Use the built-in MongoDB query method `findByTitleContainingIgnoreCase` to search for posts where the `title` contains the specified text, regardless of case sensitivity;
+  - Ensure the method returns a `List<PostResponseDTO>`.
+
+- **Full Search Query:**
+  - Implement the `fullSearch(String text, Instant minDate, Instant maxDate)` method;
+  - Annotate it with:
+    ```java
+    @Query("{ $and: [ { date: {$gte: ?1} }, { date: { $lte: ?2} } , { $or: [ { 'title': { $regex: ?0, $options: 'i' } }, { 'body': { $regex: ?0, $options: 'i' } }, { 'comments.text': { $regex: ?0, $options: 'i' } } ] } ] }")
+    ```
+  - Ensure the method:
+    - Filters posts with `date` between `minDate` and `maxDate`;
+    - Searches for the provided `text` in `title`, `body`, or `comments.text`, using case-insensitive regular expressions;
+    - Returns a `List<PostResponseDTO>`.
+
+---
+
+### 46. **NEW CLASS:** Requirements for URL Utility Class:
+
+- **Class Definition:**
+  - Create a utility class named `URL` for handling URL-related operations;
+  - Ensure the class contains only static methods and cannot be instantiated.
+
+- **Parameter Decoding:**
+  - Implement `decodeParam(String text)`;
+  - Use `URLDecoder.decode(text, StandardCharsets.UTF_8)` to decode URL-encoded strings;
+  - Return the decoded string.
+
+- **Date Conversion:**
+  - Implement `convertDate(String textDate, Instant defaultValue)`;
+  - Use `DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.of("GMT"))` to parse dates in `yyyy-MM-dd` format;
+  - Convert parsed `LocalDate` values to `Instant` using `atStartOfDay(ZoneId.of("GMT")).toInstant()`;
+  - Handle exceptions by returning the provided `defaultValue`.
+
+---
+
+### 47. **NEW METHODS:** Requirements for PostService Class:
+
+- **Find Posts by Title:**
+  - Implement `findByTitle(String text)`;
+  - Delegate the search operation to `postRepository.searchTitle(text)`;
+  - Return a `List<PostResponseDTO>`.
+
+- **Full Search with Date Filtering:**
+  - Implement `fullSearch(String text, Instant minDate, Instant maxDate)`;
+  - Extend `maxDate` by one day using `maxDate.plusSeconds(24 * 60 * 60)`;
+  - Delegate the search operation to `postRepository.fullSearch(text, minDate, maxDate)`;
+  - Return a `List<PostResponseDTO>`.
+
+---
+
+### 48. **NEW METHODS:** Requirements for PostController Class:
+
+- **Find Posts by Title Endpoint:**
+  - Implement `findByTitle(@RequestParam(value = "text", defaultValue = "") String text)`;
+  - Map it to `@GetMapping(value = "/titles")`;
+  - Decode the `text` parameter using `URL.decodeParam(text)`;
+  - Call `postService.findByTitle(text)`;
+  - Return a `ResponseEntity<List<PostResponseDTO>>` with HTTP status `200 OK`.
+
+- **Full Search Endpoint:**
+  - Implement `fullSearch(@RequestParam(value = "text", defaultValue = "") String text, @RequestParam(value = "minDate", defaultValue = "") String minDate, @RequestParam(value = "maxDate", defaultValue = "") String maxDate)`;
+  - Map it to `@GetMapping(value = "/search")`;
+  - Decode the `text` parameter using `URL.decodeParam(text)`;
+  - Convert `minDate` and `maxDate` using `URL.convertDate(minDate, Instant.EPOCH)` and `URL.convertDate(maxDate, Instant.now())`;
+  - Call `postService.fullSearch(text, min, max)`;
+  - Return a `ResponseEntity<List<PostResponseDTO>>` with HTTP status `200 OK`.
 
 ---
 
@@ -2204,6 +2280,6 @@ public class Instantiation implements CommandLineRunner {
 - [x] Implement an endpoint for retrieving User Posts, including Exception Handling;
 - [x] Develop the Comment entity with nested User and Post information;
 - [x] Implement DTO Pattern for Comment;
-- [X] Add Comment functionality to Posts;
-- [ ] Implement custom queries for Post retrieval (simple and multi-criteria);
+- [x] Add Comment functionality to Posts;
+- [x] Implement custom queries for Post retrieval (simple and multi-criteria);
 - [ ] Implement URL parameter decoding for query methods.

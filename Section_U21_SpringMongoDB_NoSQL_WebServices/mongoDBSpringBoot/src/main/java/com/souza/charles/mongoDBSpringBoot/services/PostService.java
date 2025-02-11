@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.List;
 
 @Service
 public class PostService implements Serializable {
@@ -23,8 +25,19 @@ public class PostService implements Serializable {
     private PostRepository postRepository;
 
     @Transactional(readOnly = true)
-    public PostResponseDTO findByiId(String id) {
+    public PostResponseDTO findById(String id) {
         Post entity = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         return new PostResponseDTO(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostResponseDTO> findByTitle(String text) {
+        return postRepository.searchTitle(text);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostResponseDTO> fullSearch(String text, Instant minDate, Instant maxDate) {
+        maxDate = maxDate.plusSeconds(24 * 60 * 60);
+        return postRepository.fullSearch(text, minDate, maxDate);
     }
 }
