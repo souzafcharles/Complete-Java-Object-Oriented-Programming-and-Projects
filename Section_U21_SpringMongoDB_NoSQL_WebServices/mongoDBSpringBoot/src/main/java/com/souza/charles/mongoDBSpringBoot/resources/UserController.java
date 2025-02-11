@@ -6,6 +6,7 @@ package com.souza.charles.mongoDBSpringBoot.resources;
   Date: February 08, 2025
  */
 
+import com.souza.charles.mongoDBSpringBoot.dto.PostResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.dto.UserRequestDTO;
 import com.souza.charles.mongoDBSpringBoot.dto.UserResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.services.UserService;
@@ -59,5 +60,11 @@ public class UserController implements Serializable {
     public ResponseEntity<Void> delete (@PathVariable String id){
         userService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<PostResponseDTO>> findPostsByUserId(@PathVariable String id) {
+        List<PostResponseDTO> list = userService.findPostsByUserId(id);
+        return list.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(list);
     }
 }

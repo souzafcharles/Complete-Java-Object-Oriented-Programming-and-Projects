@@ -7,6 +7,7 @@ package com.souza.charles.mongoDBSpringBoot.services;
  */
 
 import com.souza.charles.mongoDBSpringBoot.domain.User;
+import com.souza.charles.mongoDBSpringBoot.dto.PostResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.dto.UserRequestDTO;
 import com.souza.charles.mongoDBSpringBoot.dto.UserResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.repositories.UserRepository;
@@ -97,5 +98,11 @@ public class UserService implements Serializable {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostResponseDTO> findPostsByUserId(String id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        return user.getPosts().stream().map(PostResponseDTO::new).toList();
     }
 }

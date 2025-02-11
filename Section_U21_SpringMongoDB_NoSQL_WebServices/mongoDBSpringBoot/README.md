@@ -367,7 +367,7 @@ public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
 
 #### 9.2. Example GET Request:
 
-- **Scenario:** Successfully retrieves the requested U`User` by ID:
+- **Scenario:** Successfully retrieves the requested `User` by ID:
 
 ````markdown
 GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
@@ -1694,7 +1694,7 @@ GET http://localhost:8080/users/joaquina@email.com
 
 ---
 
-### 32. **NEW DTO PATTERN** for Customizing User Representation:
+### 32. **NEW DTO PATTERN** for Customizing User and Post Representation:
 
 #### 32.1. Requirements for AuthorResponseDTO Record Class:
 
@@ -1706,11 +1706,59 @@ GET http://localhost:8080/users/joaquina@email.com
       automatically provide accessor methods;
 - **Entity-based Constructor:**
     - Implement a custom constructor that accepts a `User` entity object as an argument;
-    - Extract and map values from the `User` entity to initialize the `AuthorResponseDTO` attributes;
+    - Extract and map values from the `User` entity to initialise the `AuthorResponseDTO` attributes;
 - **Purpose:**
     - Use this `record` for representing the `author` data within the `Post` object, offering a controlled and
       potentially more efficient way to transfer author-related data. This avoids exposing the entire `User` entity in
       the `Post` response.
+
+#### 32.2. Requirements for AuthorRequestDTO Record Class:
+
+- **Record Declaration:**
+    - Create the `AuthorRequestDTO` as a `record` class to represent the data required to create or update an author;
+- **Attribute Definition:**
+    - Define the attributes `String id` and `String name` directly in the record's header to make them immutable and
+      automatically provide accessor methods;
+- **Purpose:**
+    - Use this `record` for receiving author data from requests, ensuring a consistent and well-defined structure for
+      incoming information. This separates the internal representation (`User` entity) from the data transfer object.
+
+#### 32.3. Requirements for PostResponseDTO Record Class:
+
+- **Record Declaration:**
+    - Create the `PostResponseDTO` as a `record` class to represent a simplified data structure for `Post` responses;
+- **Attribute Definition:**
+    - Define the attributes `String id`, `Instant date`, `String title`, and `String body` directly in the record's
+      header to make them immutable and automatically provide accessor methods;
+- **Entity-based Constructor:**
+    - Implement a custom constructor that accepts a `Post` entity object as an argument;
+    - Extract and map values from the `Post` entity to initialise the `PostResponseDTO` attributes;
+- **Purpose:**
+    - Use this `record` for representing `Post` data in responses, offering a controlled and potentially more efficient
+      way to transfer post-related data. This avoids exposing the entire `Post` entity in the response.
+
+#### 32.4. Requirements for PostRequestDTO Record Class:
+
+- **Record Declaration:**
+    - Create the `PostRequestDTO` as a `record` class to represent the data required to create or update a post;
+- **Attribute Definition:**
+    - Define the attributes `String id`, `Instant date`, `String title`, and `String body` directly in the record's
+      header to make them immutable and automatically provide accessor methods;
+- **Purpose:**
+    - Use this `record` for receiving post data from requests, ensuring a consistent and well-defined structure for
+      incoming information. This separates the internal representation (`Post` entity) from the data transfer object.
+
+#### 32.5. Requirements for Post Entity Constructor with PostRequestDTO:
+
+- **Constructor Implementation:**
+    - Add a constructor to the `Post` entity that accepts a `PostRequestDTO` object as an argument;
+- **Data Mapping:**
+    - Within the constructor, map the values from the `PostRequestDTO` object's attributes (`id`, `date`, `title`,
+      `body`) to the corresponding attributes of the `Post` entity;
+- **Purpose:**
+    - This constructor facilitates the creation of `Post` entities from incoming `PostRequestDTO` objects, streamlining
+      the process of handling post creation and update requests. It centralises the mapping logic and promotes cleaner
+      code by encapsulating the data transfer to entity conversion.
 
 ---
 
@@ -1772,7 +1820,7 @@ public class Instantiation implements CommandLineRunner {
 - **Accessors and Mutators:**
     - Implement getters for posts attribute to allow data manipulation.
 
-#### 5.3. Requirements for Updating User with Posts in Instantiation Class:
+#### 34.2. Requirements for Updating User with Posts in Instantiation Class:
 
 - **Post-User Relationship Management:**
     - After saving the `Post` objects, update the `User` object (`user02` in this case) to reflect the relationship with
@@ -1792,12 +1840,8 @@ public class Instantiation implements CommandLineRunner {
       concept in MongoDB and NoSQL databases in general.
 
 ````java
-      user02.getPosts().
-
-addAll(Arrays.asList(post01, post02));
-        userRepository.
-
-save(user02);
+user02.getPosts().addAll(Arrays.asList(post01, post02));
+userRepository.save(user02);
 ````
 
 * `user02.getPosts()`: This retrieves the posts list associated with the `user02` object. Remember that `user02`
@@ -1812,21 +1856,134 @@ save(user02);
 
 ---
 
+### 35. Implement endpoint `findPostsByUserId` for retrieving User Posts;
+
+#### 35.1. **NEW GET METHOD:** `UserService.findPostsByUserId`:
+
+- **Method Signature:**
+    - Define a method named `findPostsByUserId` that accepts a `String id` (representing the user's ID) as a parameter;
+- **Data Retrieval:**
+    - Use the `userRepository` to find the `User` entity by the provided `id`;
+- **Exception Handling:**
+    - If the `User` is not found, throw a `ResourceNotFoundException` with the provided `id`;
+- **Data Transformation:**
+    - Retrieve the list of `Post` entities associated with the found `User` (e.g., using `user.getPosts()`);
+    - Use Java streams to map each `Post` entity to a `PostResponseDTO` object;
+- **Return Value:**
+    - Return a `List<PostResponseDTO>` containing the transformed post data;
+- **Transaction Management:**
+    - Annotate the method with `@Transactional(readOnly = true)` to indicate that it's a read-only transaction.
+- **Purpose:**
+    - This method encapsulates the business logic for retrieving a user's posts and transforming them into DTOs,
+      providing a clean and consistent interface for the controller.
+
+#### 35.2. **NEW GET METHOD:** `UserController.findPostsByUserId`:
+
+- **Request Mapping:**
+    - Map a `GET` request to the endpoint `/users/{id}/posts`, where `{id}` is a path variable representing the user's
+      ID;
+- **Path Variable:**
+    - Use the `@PathVariable` annotation to extract the `id` from the URL;
+- **Service Call:**
+    - Call the `userService.findPostsByUserId(id)` method to retrieve the list of `PostResponseDTO` objects;
+- **Response Handling:**
+    - If the returned list is empty, return a `ResponseEntity` with HTTP status `204 (No Content)`;
+    - If the list is not empty, return a `ResponseEntity` with HTTP status `200 (OK)` and the list of `PostResponseDTO`
+      objects in the response body;
+- **Cross-Origin Resource Sharing (CORS):**
+    - Apply the `@CrossOrigin` annotation to allow requests from specific origins (e.g., `*` for all origins, or a
+      specific domain). Consider the security implications of allowing all origins.
+- **Purpose:**
+    - This method handles incoming `GET` requests for user posts, delegates the data retrieval and transformation to the
+      service layer, and returns an appropriate HTTP response to the client. It manages the API endpoint and ensures
+      proper communication with the service.****
+
+---
+
+### 36. Success Case: Requesting and Responding User Posts via Spring Boot RESTful API (`findPostsByUserId`)
+
+#### 36.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`)
+
+- **Endpoint:** `GET /users/{id}/posts`;
+- **Purpose:** Retrieves all `Post` items associated with a specific `User` by their ID.
+
+#### 36.2. Example GET Request
+
+- **Scenario:** Successfully retrieves all posts linked to the requested `User` by ID:
+
+````markdown
+GET http://localhost:8080/users/67ab40625e5a68033a6cb9b1/posts
+````
+
+#### 36.3. Example Response:
+
+````json
+[
+  {
+    "id": "67ab40625e5a68033a6cb9b6",
+    "date": "2025-02-10T00:00:00Z",
+    "title": "Trip departure",
+    "body": "I'm going to travel to São Paulo. Cheers!"
+  },
+  {
+    "id": "67ab40625e5a68033a6cb9b7",
+    "date": "2025-02-12T00:00:00Z",
+    "title": "Good morning",
+    "body": "I woke up happy today!"
+  }
+]
+
+````
+
+---
+
+### 37. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`findPostsByUserId`):
+
+#### 37.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /users/{id}/posts`;
+- **Purpose:** Retrieves all `Post` items associated with a specific `User` by their ID.
+
+#### 37.2. Example GET Request (`ID Does Not Exist`):
+
+- **Scenario:** The requested ID does not exist, triggering the custom error response with a
+  `404 Not Found` status code:
+
+````markdown
+GET http://localhost:8080/users/XXXXXXXXXXXXXX/posts
+````
+
+#### 37.3. Example Error Response:
+
+- **Error Handling**: Upon catching a `ResourceNotFoundException`, the method returns a structured JSON response in the
+  following format:
+
+````json
+{
+  "timestamp": "2025-02-11T13:43:06Z",
+  "status": 404,
+  "error": "Resource not found with the specified identifier or criteria.",
+  "message": "Resource Not Found! ID: XXXXXXXXXXXXXX",
+  "path": "/users/XXXXXXXXXXXXXX/posts"
+}
+````
+
+---
+
 ## Project Checklist:
 
-- [X] Set up a Java Spring Boot project with MongoDB dependencies;
-- [X] Implement the User entity and RESTful endpoints;
-- [X] Configure MongoDB connection and data instantiation;
-- [X] Database initialization operation;
-- [X] Implement DTOs Pattern for User Representation;
-- [X] Implement CRUD operation for User, including Exception Handling;
-- [X] CRUD Test Cases validating Success and Error Scenarios;
-- [X] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
-- [X] Develop the Post entity with nested User information;
-- [X] Implement DTO for Post and Author;
-- [X] Update User entity to include Post references;
-- [ ] Implement CRUD operations for Posts, including association with Users;
-- [ ] Implement endpoints for retrieving User Posts;
+- [x] Set up a Java Spring Boot project with MongoDB dependencies;
+- [x] Implement the User entity and RESTful endpoints;
+- [x] Configure MongoDB connection and data instantiation;
+- [x] Database initialisation operation;
+- [x] Implement DTO Pattern for User Representation;
+- [x] Implement CRUD operations for User, including Exception Handling;
+- [x] CRUD Test Cases validating Success and Error Scenarios;
+- [x] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
+- [x] Develop the Post entity with nested User information;
+- [x] Implement DTO Pattern for Post and Author;
+- [x] Update User entity to include Post references;
+- [x] Implement endpoint for retrieving User Posts;
 - [ ] Add Comment functionality to Posts;
 - [ ] Implement custom queries for Post retrieval (simple and multi-criteria);
 - [ ] Implement URL parameter decoding for query methods.

@@ -8,6 +8,7 @@ package com.souza.charles.mongoDBSpringBoot.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.souza.charles.mongoDBSpringBoot.dto.AuthorResponseDTO;
+import com.souza.charles.mongoDBSpringBoot.dto.PostRequestDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -36,6 +37,13 @@ public class Post implements Serializable {
         this.title = title;
         this.body = body;
         this.author = author;
+    }
+
+    public Post(PostRequestDTO data){
+        this.id = data.id();
+        this.date = data.date();
+        this.title = data.title();
+        this.body = data.body();
     }
 
     public String getId() {
