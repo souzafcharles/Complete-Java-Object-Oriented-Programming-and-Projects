@@ -1666,6 +1666,7 @@ GET http://localhost:8080/users/joaquina@email.com
   large data volumes and aggregate alignment for simpler, frequently accessed objects.
 
 ---
+
 ### 31. Creating Post Entity with Nested User:
 
 #### 31.1. **NEW CLASS:** Requirements for Post Entity Class:
@@ -1676,7 +1677,9 @@ GET http://localhost:8080/users/joaquina@email.com
 - **Attributes and Annotations:**
     - Define attributes `id`, `date`, `title`, `body`, and `author` to represent fields in the document;
     - Annotate the `id` field with `@Id` to designate it as the primary key field;
-    - Annotate the `date` field with `@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")` to specify the date format for JSON serialization and deserialization;
+    - Annotate the `date` field with
+      `@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")` to specify
+      the date format for JSON serialization and deserialization;
     - The `author` field should be of type `AuthorResponseDTO`, establishing a relationship with the DTO.
 - **Constructors:**
     - Create a no-argument constructor required by the persistence framework;
@@ -1689,29 +1692,43 @@ GET http://localhost:8080/users/joaquina@email.com
 - **Serializable Interface:**
     - Implement the `Serializable` interface to support object serialization for the entity when necessary.
 
+---
+
 ### 32. **NEW DTO PATTERN** for Customizing User Representation:
 
 #### 32.1. Requirements for AuthorResponseDTO Record Class:
 
 - **Record Declaration:**
-    - Create the `AuthorResponseDTO` as a `record` class to represent a simplified data structure for the `author` field in `Post` responses;
+    - Create the `AuthorResponseDTO` as a `record` class to represent a simplified data structure for the `author` field
+      in `Post` responses;
 - **Attribute Definition:**
-    - Define the attributes `String id` and `String name` directly in the record's header to make them immutable and automatically provide accessor methods;
+    - Define the attributes `String id` and `String name` directly in the record's header to make them immutable and
+      automatically provide accessor methods;
 - **Entity-based Constructor:**
     - Implement a custom constructor that accepts a `User` entity object as an argument;
     - Extract and map values from the `User` entity to initialize the `AuthorResponseDTO` attributes;
 - **Purpose:**
-    - Use this `record` for representing the `author` data within the `Post` object, offering a controlled and potentially more efficient way to transfer author-related data.  This avoids exposing the entire `User` entity in the `Post` response.
+    - Use this `record` for representing the `author` data within the `Post` object, offering a controlled and
+      potentially more efficient way to transfer author-related data. This avoids exposing the entire `User` entity in
+      the `Post` response.
 
-### 33. **UPDATE CLASS:** Requirements for Instantiation Class:
+---
+
+### 33. **UPDATE CLASS:** `Instantiation`:
+
+#### 33.1. New Requirements for Instantiation Class:
 
 - **Database Seeding:**
     - Modify the `run` method to include the following operations:
         - Delete all existing `Post` documents from the database using `postRepository.deleteAll()`;
-        - Create new `Post` objects with sample data, including associated `AuthorResponseDTO` objects. Ensure that the `User` objects, from which the `AuthorResponseDTO` objects are created, are existing users already saved in the database;
-        - Save all newly created `Post` objects using `postRepository.saveAll(Arrays.asList(...))`. This should be done *after* the `User` objects have been saved.
+        - Create new `Post` objects with sample data, including associated `AuthorResponseDTO` objects. Ensure that the
+          `User` objects, from which the `AuthorResponseDTO` objects are created, are existing users already saved in
+          the database;
+        - Save all newly created `Post` objects using `postRepository.saveAll(Arrays.asList(...))`. This should be done
+          *after* the `User` objects have been saved.
 
 ````java
+
 @Configuration
 public class Instantiation implements CommandLineRunner {
     @Autowired
@@ -1742,6 +1759,59 @@ public class Instantiation implements CommandLineRunner {
     }
 }
 ````
+
+---
+
+### 34. **UPDATE CLASS:** `User` Entity and `Instantiation` Class:
+
+#### 34.1. New Requirements for User Entity Class:
+
+- **Attributes and Annotations:**
+    - The `posts` field should be a `List<Post>` and annotated with `@DBRef(lazy = true)` to establish a relationship
+      with the `Post` entity and enable lazy loading. .
+- **Accessors and Mutators:**
+    - Implement getters for posts attribute to allow data manipulation.
+
+#### 5.3. Requirements for Updating User with Posts in Instantiation Class:
+
+- **Post-User Relationship Management:**
+    - After saving the `Post` objects, update the `User` object (`user02` in this case) to reflect the relationship with
+      the newly created posts.
+- **Updating the User's Post List:**
+    - Retrieve the list of posts associated with `user02` using `user02.getPosts()`. It is important to understand that
+      if the `posts` list is initialized when the `User` is created, then this retrieval will return that list. If the
+      `posts` list is not initialized, then the retrieval will return null. If it returns null, then you must initialize
+      the `posts` list before proceeding. This can be done with `user02.setPosts(new ArrayList<>());` for example;
+    - Add the newly created `Post` objects (`post01` and `post02`) to the user's list of posts using
+      `addAll(Arrays.asList(post01, post02))`. This establishes the connection between the user and their posts.
+- **Saving the Updated User:**
+    - Persist the changes to the `user02` object in the database using `userRepository.save(user02)`. This ensures that
+      the updated list of posts is stored along with the user's information. It is important to understand that the
+      `posts` list is annotated with `@DBRef`. This annotation means that only references to the `Post` objects are
+      stored in the `User` document. The actual `Post` objects are stored in a separate collection. This is a key
+      concept in MongoDB and NoSQL databases in general.
+
+````java
+      user02.getPosts().
+
+addAll(Arrays.asList(post01, post02));
+        userRepository.
+
+save(user02);
+````
+
+* `user02.getPosts()`: This retrieves the posts list associated with the `user02` object. Remember that `user02`
+  represents a user, and `posts` is a list of `Post` objects they have authored;
+* `.addAll(Arrays.asList(post01, post02))`: This adds the `post01` and `post02` objects to the `posts` list retrieved in
+  the previous step. The `addAll()` method is used to add all elements from the specified collection (in this case, a
+  list created from the `post01` and `post02` objects) to the end of the current list;
+* `userRepository.save(user02)`: This saves the updated `user02` object back to the database. Because of the `@DBRef`
+  annotation on the `posts` list, only the references (IDs) of the `post01` and `post02` objects are stored in the
+  `user02` document. This is how MongoDB handles relationships efficiently. The actual `Post` documents are stored
+  separately.
+
+---
+
 ## Project Checklist:
 
 - [X] Set up a Java Spring Boot project with MongoDB dependencies;
@@ -1754,6 +1824,7 @@ public class Instantiation implements CommandLineRunner {
 - [X] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
 - [X] Develop the Post entity with nested User information;
 - [X] Implement DTO for Post and Author;
+- [X] Update User entity to include Post references;
 - [ ] Implement CRUD operations for Posts, including association with Users;
 - [ ] Implement endpoints for retrieving User Posts;
 - [ ] Add Comment functionality to Posts;
