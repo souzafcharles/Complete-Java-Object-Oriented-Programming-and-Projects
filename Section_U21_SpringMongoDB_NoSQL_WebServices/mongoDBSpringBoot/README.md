@@ -78,7 +78,7 @@ spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
 
 ---
 
-### 4. Repository Interface, Service, and Resource/Controller Classes:
+### 4. Repository Interface, Service, and Resource/Controller User Classes:
 
 #### 4.1. Requirements for UserRepository Interface:
 
@@ -458,7 +458,7 @@ public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNot
 
 ---
 
-### 11. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`findById`):
+### 11. Error Case: User Handling Resource Not Found via Spring Boot RESTful API (`findById`):
 
 #### 11.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
@@ -1762,18 +1762,151 @@ GET http://localhost:8080/users/joaquina@email.com
 
 ---
 
-### 33. **UPDATE CLASS:** `Instantiation`:
+### 33. Repository Interface, Service, and Resource/Controller Post Classes:
 
-#### 33.1. New Requirements for Instantiation Class:
+#### 33.1. Requirements for PostRepository Interface:
 
-- **Database Seeding:**
-    - Modify the `run` method to include the following operations:
-        - Delete all existing `Post` documents from the database using `postRepository.deleteAll()`;
-        - Create new `Post` objects with sample data, including associated `AuthorResponseDTO` objects. Ensure that the
-          `User` objects, from which the `AuthorResponseDTO` objects are created, are existing users already saved in
-          the database;
-        - Save all newly created `Post` objects using `postRepository.saveAll(Arrays.asList(...))`. This should be done
-          *after* the `User` objects have been saved.
+- **Repository Creation:**
+    - Create the `PostRepository` interface to handle data access operations for the `Post` entity;
+- **MongoRepository Extension:**
+    - Extend `MongoRepository<Post, String>` to inherit common CRUD operations and MongoDB-specific functionalities;
+- **Entity Association:**
+    - Specify `Post` as the associated entity and `String` as the type for its primary key.
+
+#### 33.2. Requirements for PostService Class:
+
+- **Service Annotation:**
+    - Use the `@Service` annotation to define the class as a Spring service component;
+- **Dependency Injection:**
+    - Inject `PostRepository` using the `@Autowired` annotation for dependency injection;
+- **`findById` Method Implementation:**
+    - Implement the `findById(String id)` method to retrieve a `Post` entity by its ID;
+- **Transaction Management:**
+    - Use the `@Transactional(readOnly = true)` annotation to ensure the method runs within a read-only transaction for
+      optimised database performance.
+- **Exception Handling:**
+    - Implement proper exception handling, such as throwing a `ResourceNotFoundException` if a `Post` with the given ID
+      is not found.
+- **DTO Conversion:**
+    - Convert the retrieved `Post` entity to a `PostResponseDTO` before returning it.
+
+#### 33.3. Requirements for PostController Class:
+
+- **Controller Annotation:**
+    - Create the `PostController` class to manage RESTful endpoints for the `Post` resource;
+    - Use the `@RestController` annotation to mark it as a REST controller for Spring;
+- **Request Mapping:**
+    - Map requests using the `@RequestMapping` annotation for the `/posts` endpoint;
+- **Dependency Injection:**
+    - Inject `PostService` using the `@Autowired` annotation for service dependency injection;
+- **`findById` Endpoint Implementation:**
+    - Implement the `findById` method to handle HTTP requests:
+        - **GET Request:**
+            - Use the `@GetMapping(value="/{id}")` annotation to map GET requests to `/posts/{id}`;
+            - Call the `postService.findById(id)` method to retrieve the `PostResponseDTO`;
+            - Return a `ResponseEntity<PostResponseDTO>` with an HTTP 200 (OK) status and the `PostResponseDTO` in the
+              response body.
+- **Exception Handling:**
+    - Ensure that the controller handles exceptions appropriately, such as returning a 404 Not Found response if a
+      `ResourceNotFoundException` is thrown by the service.
+
+#### 33.4. Idempotent and Non-Idempotent Methods:
+
+- **Idempotent Methods:** `GET`, `PUT`, and `DELETE` are idempotent, meaning multiple identical requests should have the
+  same effect as a single request;
+- **Non-Idempotent Method:** `POST` is non-idempotent, meaning multiple identical requests may have additional effects.
+
+---
+
+### 34. Success Case: Requesting and Responding Post Data via Spring Boot RESTful API (`findById`):
+
+#### 34.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /posts/{id}`;
+- **Purpose:** Retrieves a specific `Post` item by its ID.
+
+#### 34.2. Example GET Request:
+
+- **Scenario:** Successfully retrieves the requested `Post` by ID:
+
+````markdown
+GET http://localhost:8080/posts/67ab5f0400e0ba322ea51db0
+````        
+
+#### 34.3. Example Response:
+
+````json
+{
+  "id": "67ab5f0400e0ba322ea51db0",
+  "date": "2025-02-12T00:00:00Z",
+  "title": "Good morning",
+  "body": "I woke up happy today!"
+}
+````
+
+---
+
+### 35. Error Case: Post Handling Resource Not Found via Spring Boot RESTful API (`findById`):
+
+#### 35.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /posts/{id}`;
+- **Purpose:** Retrieves a specific `POST` item by its ID.
+
+#### 35.2. Example GET Request (`ID Does Not Exist`):
+
+- **Scenario:** The requested ID does not exist, triggering the custom error response with a
+  `404 Not Found` status code:
+
+````markdown
+GET http://localhost:8080/posts/XXXXXXXXXX
+````
+
+#### 35.3. Example Error Response:
+
+- **Error Handling**: Upon catching a `ResourceNotFoundException`, the method returns a structured JSON response in the
+  following format:
+
+````json
+{
+  "timestamp": "2025-02-11T14:44:29Z",
+  "status": 404,
+  "error": "Resource not found with the specified identifier or criteria.",
+  "message": "Resource Not Found! ID: XXXXXXXXXX",
+  "path": "/posts/XXXXXXXXXX"
+}
+````
+
+---
+
+### 36. **UPDATE CLASS:** `User` Entity and `Instantiation` Class:
+
+#### 36.1. New Requirements for User Entity Class:
+
+- **Attributes and Annotations:**
+    - The `posts` field should be a `List<Post>` and annotated with `@DBRef(lazy = true)` to establish a relationship
+      with the `Post` entity and enable lazy loading. .
+- **Accessors and Mutators:**
+    - Implement getters for posts attribute to allow data manipulation.
+
+#### 36.2. Requirements for Updating User with Posts in Instantiation Class:
+
+- **Post-User Relationship Management:**
+    - After saving the `Post` objects, update the `User` object (`user02` in this case) to reflect the relationship with
+      the newly created posts.
+- **Updating the User's Post List:**
+    - Retrieve the list of posts associated with `user02` using `user02.getPosts()`. It is important to understand that
+      if the `posts` list is initialized when the `User` is created, then this retrieval will return that list. If the
+      `posts` list is not initialized, then the retrieval will return null. If it returns null, then you must initialize
+      the `posts` list before proceeding. This can be done with `user02.setPosts(new ArrayList<>());` for example;
+    - Add the newly created `Post` objects (`post01` and `post02`) to the user's list of posts using
+      `addAll(Arrays.asList(post01, post02))`. This establishes the connection between the user and their posts.
+- **Saving the Updated User:**
+    - Persist the changes to the `user02` object in the database using `userRepository.save(user02)`. This ensures that
+      the updated list of posts is stored along with the user's information. It is important to understand that the
+      `posts` list is annotated with `@DBRef`. This annotation means that only references to the `Post` objects are
+      stored in the `User` document. The actual `Post` objects are stored in a separate collection. This is a key
+      concept in MongoDB and NoSQL databases in general.
 
 ````java
 
@@ -1804,44 +1937,12 @@ public class Instantiation implements CommandLineRunner {
         Post post02 = new Post(null, Instant.parse("2025-02-12T00:00:00Z"), "Good morning", "I woke up happy today!", new AuthorResponseDTO(user02));
 
         postRepository.saveAll(Arrays.asList(post01, post02));
+
+        user02.getPosts().addAll(Arrays.asList(post01, post02));
+        userRepository.save(user02);
+
     }
 }
-````
-
----
-
-### 34. **UPDATE CLASS:** `User` Entity and `Instantiation` Class:
-
-#### 34.1. New Requirements for User Entity Class:
-
-- **Attributes and Annotations:**
-    - The `posts` field should be a `List<Post>` and annotated with `@DBRef(lazy = true)` to establish a relationship
-      with the `Post` entity and enable lazy loading. .
-- **Accessors and Mutators:**
-    - Implement getters for posts attribute to allow data manipulation.
-
-#### 34.2. Requirements for Updating User with Posts in Instantiation Class:
-
-- **Post-User Relationship Management:**
-    - After saving the `Post` objects, update the `User` object (`user02` in this case) to reflect the relationship with
-      the newly created posts.
-- **Updating the User's Post List:**
-    - Retrieve the list of posts associated with `user02` using `user02.getPosts()`. It is important to understand that
-      if the `posts` list is initialized when the `User` is created, then this retrieval will return that list. If the
-      `posts` list is not initialized, then the retrieval will return null. If it returns null, then you must initialize
-      the `posts` list before proceeding. This can be done with `user02.setPosts(new ArrayList<>());` for example;
-    - Add the newly created `Post` objects (`post01` and `post02`) to the user's list of posts using
-      `addAll(Arrays.asList(post01, post02))`. This establishes the connection between the user and their posts.
-- **Saving the Updated User:**
-    - Persist the changes to the `user02` object in the database using `userRepository.save(user02)`. This ensures that
-      the updated list of posts is stored along with the user's information. It is important to understand that the
-      `posts` list is annotated with `@DBRef`. This annotation means that only references to the `Post` objects are
-      stored in the `User` document. The actual `Post` objects are stored in a separate collection. This is a key
-      concept in MongoDB and NoSQL databases in general.
-
-````java
-user02.getPosts().addAll(Arrays.asList(post01, post02));
-userRepository.save(user02);
 ````
 
 * `user02.getPosts()`: This retrieves the posts list associated with the `user02` object. Remember that `user02`
@@ -1856,9 +1957,9 @@ userRepository.save(user02);
 
 ---
 
-### 35. Implement endpoint `findPostsByUserId` for retrieving User Posts;
+### 37. Implement endpoint `findPostsByUserId` for retrieving User Posts;
 
-#### 35.1. **NEW GET METHOD:** `UserService.findPostsByUserId`:
+#### 37.1. **NEW GET METHOD:** `UserService.findPostsByUserId`:
 
 - **Method Signature:**
     - Define a method named `findPostsByUserId` that accepts a `String id` (representing the user's ID) as a parameter;
@@ -1877,7 +1978,7 @@ userRepository.save(user02);
     - This method encapsulates the business logic for retrieving a user's posts and transforming them into DTOs,
       providing a clean and consistent interface for the controller.
 
-#### 35.2. **NEW GET METHOD:** `UserController.findPostsByUserId`:
+#### 37.2. **NEW GET METHOD:** `UserController.findPostsByUserId`:
 
 - **Request Mapping:**
     - Map a `GET` request to the endpoint `/users/{id}/posts`, where `{id}` is a path variable representing the user's
@@ -1900,14 +2001,14 @@ userRepository.save(user02);
 
 ---
 
-### 36. Success Case: Requesting and Responding User Posts via Spring Boot RESTful API (`findPostsByUserId`)
+### 38. Success Case: Requesting and Responding User Posts via Spring Boot RESTful API (`findPostsByUserId`)
 
-#### 36.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`)
+#### 38.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`)
 
 - **Endpoint:** `GET /users/{id}/posts`;
 - **Purpose:** Retrieves all `Post` items associated with a specific `User` by their ID.
 
-#### 36.2. Example GET Request
+#### 38.2. Example GET Request
 
 - **Scenario:** Successfully retrieves all posts linked to the requested `User` by ID:
 
@@ -1915,7 +2016,7 @@ userRepository.save(user02);
 GET http://localhost:8080/users/67ab40625e5a68033a6cb9b1/posts
 ````
 
-#### 36.3. Example Response:
+#### 38.3. Example Response:
 
 ````json
 [
@@ -1937,14 +2038,14 @@ GET http://localhost:8080/users/67ab40625e5a68033a6cb9b1/posts
 
 ---
 
-### 37. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`findPostsByUserId`):
+### 39. Error Case: Handling Resource Not Found via Spring Boot RESTful API (`findPostsByUserId`):
 
-#### 37.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+#### 39.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
 
 - **Endpoint:** `GET /users/{id}/posts`;
 - **Purpose:** Retrieves all `Post` items associated with a specific `User` by their ID.
 
-#### 37.2. Example GET Request (`ID Does Not Exist`):
+#### 39.2. Example GET Request (`ID Does Not Exist`):
 
 - **Scenario:** The requested ID does not exist, triggering the custom error response with a
   `404 Not Found` status code:
@@ -1953,7 +2054,7 @@ GET http://localhost:8080/users/67ab40625e5a68033a6cb9b1/posts
 GET http://localhost:8080/users/XXXXXXXXXXXXXX/posts
 ````
 
-#### 37.3. Example Error Response:
+#### 39.3. Example Error Response:
 
 - **Error Handling**: Upon catching a `ResourceNotFoundException`, the method returns a structured JSON response in the
   following format:
@@ -1978,12 +2079,13 @@ GET http://localhost:8080/users/XXXXXXXXXXXXXX/posts
 - [x] Database initialisation operation;
 - [x] Implement DTO Pattern for User Representation;
 - [x] Implement CRUD operations for User, including Exception Handling;
-- [x] CRUD Test Cases validating Success and Error Scenarios;
+- [x] CRUD User Test Cases validating Success and Error Scenarios;
 - [x] Define Domain Model Requirements for Object Reference and Aggregate Object Models;
 - [x] Develop the Post entity with nested User information;
 - [x] Implement DTO Pattern for Post and Author;
+- [x] Implement an endpoint for retrieving a specific Post, including Exception Handling;
 - [x] Update User entity to include Post references;
-- [x] Implement endpoint for retrieving User Posts;
+- [x] Implement an endpoint for retrieving User Posts, including Exception Handling;
 - [ ] Add Comment functionality to Posts;
 - [ ] Implement custom queries for Post retrieval (simple and multi-criteria);
 - [ ] Implement URL parameter decoding for query methods.
