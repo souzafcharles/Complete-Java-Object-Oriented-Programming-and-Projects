@@ -34,7 +34,7 @@
 - Section 17 | [Database Access with JDBC](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_Q17_Database_Access_with_JDBC)
 - Section 18 | [Java EE - Object-relational Mapping with JPA/Hibernate](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate)
 - Section 19 | [Project: Web Services with Spring Boot and JPA/Hibernate](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices)
-- Section 20 | Project: Chess Game System
+- Section 20 | [Project: Chess Game System](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_T20_Project_Chess_Game_System/ChessGameSystem)
 - Section 21 | [Spring Boot Project and MongoDB Database (Web Services + NoSQL)](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_U21_SpringMongoDB_NoSQL_WebServices/mongoDBSpringBoot)
 - Section 22 | Graphical Interface with JavaFX
 
