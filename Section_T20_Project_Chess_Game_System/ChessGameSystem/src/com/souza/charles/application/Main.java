@@ -8,12 +8,14 @@ package com.souza.charles.application;
 
 import com.souza.charles.boardgame.Board;
 import com.souza.charles.boardgame.Position;
+import com.souza.charles.chessgame.ChessMatch;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Project: ♟\uFE0F Chess Game System ♟\uFE0F");
 
-        Board board = new Board(8, 8);
+        System.out.println("♟\uFE0F Chess Game System ♟\uFE0F");
+        ChessMatch chessMatch = new ChessMatch();
+        UI.printBoard(chessMatch.getPieces());
     }
 }
