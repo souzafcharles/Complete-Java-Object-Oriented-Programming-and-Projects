@@ -3,7 +3,7 @@ package com.souza.charles.mongoDBSpringBoot.resources.exceptions;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 09, 2025
+  Date: February 12, 2025
  */
 
 import com.souza.charles.mongoDBSpringBoot.services.exceptions.*;
@@ -18,7 +18,7 @@ import java.time.Instant;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler({ResourceNotFoundException.class, EmailNotFoundException.class})
+    @ExceptionHandler({SearchResultNotFoundException.class, ResourceNotFoundException.class, EmailNotFoundException.class})
     public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeException e, HttpServletRequest request) {
         String error = "Resource not found with the specified identifier or criteria.";
         HttpStatus status = HttpStatus.NOT_FOUND;
@@ -53,6 +53,14 @@ public class ResourceExceptionHandler {
     @ExceptionHandler(DuplicateEmailException.class)
     public ResponseEntity<StandardError> handleDuplicateEmailException(DuplicateEmailException e, HttpServletRequest request) {
         String error = "Email address already in use.";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(DateRangeInvalidException.class)
+    public ResponseEntity<StandardError> handleDateRangeInvalidException(DateRangeInvalidException e, HttpServletRequest request) {
+        String error = "Invalid Date Range";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);

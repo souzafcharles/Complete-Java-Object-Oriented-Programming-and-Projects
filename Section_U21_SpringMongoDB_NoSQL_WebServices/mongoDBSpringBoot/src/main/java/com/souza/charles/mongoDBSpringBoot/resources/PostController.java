@@ -1,5 +1,4 @@
 package com.souza.charles.mongoDBSpringBoot.resources;
-
 /*
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
@@ -10,6 +9,8 @@ package com.souza.charles.mongoDBSpringBoot.resources;
 import com.souza.charles.mongoDBSpringBoot.dto.PostResponseDTO;
 import com.souza.charles.mongoDBSpringBoot.resources.utils.URL;
 import com.souza.charles.mongoDBSpringBoot.services.PostService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/posts")
 public class PostController {
+
+    private static final Logger logger = LoggerFactory.getLogger(PostController.class);
 
     @Autowired
     private PostService postService;

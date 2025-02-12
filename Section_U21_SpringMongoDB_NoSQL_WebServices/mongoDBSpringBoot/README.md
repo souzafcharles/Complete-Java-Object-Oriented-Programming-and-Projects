@@ -51,7 +51,7 @@ This project outlines the development of a robust <code>RESTful API</code> using
     - Implement the `Serializable` interface to support object serialization for the entity when necessary (e.g., when
       transferring objects between systems).
 
-#### 2.1. Requirements for UserController Class:
+#### 2.2. Requirements for UserController Class:
 
 - Create the `UserController` class to manage RESTful endpoints for the `User` resource;
 - Use `@RestController` annotation to mark it as a REST controller for Spring;
@@ -68,12 +68,19 @@ This project outlines the development of a robust <code>RESTful API</code> using
 
 ### 3. Configuration of Environment:
 
+- The section titled "Configuration of Environment" provides essential setup instructions for configuring the
+  `application.properties` file, which defines the general settings for the application.
+
 #### 3.1. Configuration of the `application.properties` File:
 
-- This file defines the general configurations of the application:
+- This configuration includes the necessary connection URI for MongoDB, specifying the database location as
+  `mongodb://localhost:27017/mongoDBSpringBoot`, and sets the logging level for the services package to `DEBUG`,
+  enabling detailed logging information to assist in debugging and development processes.
 
 ```properties
+# MongoDB Connection
 spring.data.mongodb.uri=mongodb://localhost:27017/mongoDBSpringBoot
+logging.level.com.souza.charles.mongoDBSpringBoot.services=DEBUG
 ````
 
 ---
@@ -156,10 +163,10 @@ public class Instantiation implements CommandLineRunner {
     - Annotate the class with `@Configuration` to mark it as a configuration class for Spring;
     - Use `@Autowired` to inject the `UserRepository` dependency;
 - **Database Seeding:**
-  - Implement the `run` method to perform the following operations:
-      - Delete all existing `User` documents from the database using `userRepository.deleteAll()`;
-      - Create new `User` objects with sample data;
-      - Save all newly created `User` objects using `userRepository.saveAll(Arrays.asList(...))`;
+    - Implement the `run` method to perform the following operations:
+        - Delete all existing `User` documents from the database using `userRepository.deleteAll()`;
+        - Create new `User` objects with sample data;
+        - Save all newly created `User` objects using `userRepository.saveAll(Arrays.asList(...))`;
 - **Error Handling:**
     - Ensure that any exceptions are handled or propagated as necessary.
 
@@ -283,6 +290,7 @@ GET http://localhost:8080/users
 ##### 7.4.1. Sample Code:
 
 ````java
+
 @Transactional(readOnly = true)
 public List<UserResponseDTO> findAll() {
     List<User> list = userRepository.findAll();
@@ -307,6 +315,7 @@ public List<UserResponseDTO> findAll() {
 ##### 7.5.1. Sample Code:
 
 ````java
+
 @GetMapping
 public ResponseEntity<List<UserResponseDTO>> findAll() {
     List<UserResponseDTO> list = userService.findAll();
@@ -321,14 +330,16 @@ public ResponseEntity<List<UserResponseDTO>> findAll() {
 #### 8.1. **NEW METHOD:** `UserService.findById`:
 
 - Implement a method to retrieve a `User` entity by its `id`:
-  - **Purpose:** Fetches a single `User` entity by its identifier and maps it to a `UserResponseDTO`;
-    - **Transaction:** Annotate with `@Transactional(readOnly = true)` to ensure that the method runs within a read-only
-      transaction;
-    - **Exception Handling:** Throws a custom `ResourceNotFoundException` if the `User` is not found.
+    - **Purpose:** Fetches a single `User` entity by its identifier and maps it to a `UserResponseDTO`;
+        - **Transaction:** Annotate with `@Transactional(readOnly = true)` to ensure that the method runs within a
+          read-only
+          transaction;
+        - **Exception Handling:** Throws a custom `ResourceNotFoundException` if the `User` is not found.
 
 ##### 8.1.1. Sample Code:
 
 ````java
+
 @Transactional(readOnly = true)
 public UserResponseDTO findById(String id) {
     User entity = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
@@ -339,15 +350,16 @@ public UserResponseDTO findById(String id) {
 #### 8.2. **NEW METHOD**: `UserController.findById`:
 
 - Implement a method to handle `GET` requests by `id`:
-  - **Purpose:** Handle `GET` requests to retrieve a `User` by its identifier;
-    - **Mapping:** Use `@GetMapping(value = "/{id}")` to map the request;
-    - **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `200 (OK)` status if successful;
-    - **Exception Handling:** Automatically handles `ResourceNotFoundException` and returns an appropriate HTTP
-      `404 (Not Found)` response if the `User` is not found.
+    - **Purpose:** Handle `GET` requests to retrieve a `User` by its identifier;
+        - **Mapping:** Use `@GetMapping(value = "/{id}")` to map the request;
+        - **Response:** Returns a `ResponseEntity<UserResponseDTO>` with an HTTP `200 (OK)` status if successful;
+        - **Exception Handling:** Automatically handles `ResourceNotFoundException` and returns an appropriate HTTP
+          `404 (Not Found)` response if the `User` is not found.
 
 #### 8.2.1. Sample Code:
 
 ````java
+
 @GetMapping(value = "/{id}")
 public ResponseEntity<UserResponseDTO> findById(@PathVariable String id) {
     UserResponseDTO dto = userService.findById(id);
@@ -425,6 +437,7 @@ GET http://localhost:8080/users/67a2409ef1378e0d5af372cc
   standardized HTTP error responses:
 
 ````java
+
 @ExceptionHandler(ResourceNotFoundException.class)
 public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
     String error = "Resource not found with the specified identifier or criteria.";
@@ -441,18 +454,18 @@ public ResponseEntity<StandardError> handleResourceNotFoundException(ResourceNot
 ````
 
 - **Annotations and Parameters**:
-  - `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type
-    `ResourceNotFoundException`;
-  - It takes two parameters:
-      - `ResourceNotFoundException` e: The exception object containing the error details;
-      - `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
-  - The method constructs a `StandardError` object, which includes:
-      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-      - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
-      - **Error Message**: The variable `error` provides a concise description for the error;
-      - **Detailed Message**: `e.getMessage()` displays the custom error message from ResourceNotFoundException;
-      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+    - `@ExceptionHandler`(ResourceNotFoundException.class): Maps the method to handle exceptions of type
+      `ResourceNotFoundException`;
+    - It takes two parameters:
+        - `ResourceNotFoundException` e: The exception object containing the error details;
+        - `HttpServletRequest` request: Captures information about the HTTP request, such as the request URI.
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+        - **Error Message**: The variable `error` provides a concise description for the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from ResourceNotFoundException;
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -494,11 +507,12 @@ GET http://localhost:8080/users/67a2d4c676cb0c201346e8f
 #### 12.1. **NEW METHOD:** `UserService.insert`:
 
 - Implement a method to insert a new `User` entity:
-  - **Purpose:** Maps data from a `UserRequestDTO`, creates a `User` entity, and inserts it into the `MongoDB`
-    collection;
+    - **Purpose:** Maps data from a `UserRequestDTO`, creates a `User` entity, and inserts it into the `MongoDB`
+      collection;
     - **Transaction:** Annotate with `@Transactional` to ensure that the operation is atomic and managed by the
       transaction manager;
-    - **Validation:** Checks for null or empty values in `name` and `email` fields, throwing an `InvalidDataException`
+    - **Validation:** Checks for null or empty values in `name` and `email` fields, throwing an
+      `InvalidDataException`
       if invalid;
     - **Duplicate Email Check:** Uses `userRepository.findByEmail` to verify if the email already exists, throwing a
       `DuplicateEmailException` if a duplicate is found;
@@ -533,7 +547,6 @@ public UserResponseDTO insert(UserRequestDTO data) {
 #### 12.2.1. Sample Code:
 
 ````java
-
 @PostMapping
 public ResponseEntity<UserResponseDTO> insert(@RequestBody UserRequestDTO data) {
     UserResponseDTO dto = userService.insert(data);
@@ -628,18 +641,18 @@ public ResponseEntity<StandardError> handleBadRequestException(InvalidDataExcept
 ````
 
 - **Annotations and Parameters:**
-  - `@ExceptionHandler(InvalidDataException.class)`: Maps the method to handle exceptions of type
-    `InvalidDataException`;
-  - It takes two parameters:
-    - `InvalidDataException e`: The exception object containing the error details;
-    - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
-  - The method constructs a `StandardError` object, which includes:
-      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-      - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
-      - **Error Message**: The variable `error` provides a concise description for the error;
-      - **Detailed Message**: `e.getMessage()` displays the custom error message from `InvalidDataException`;
-      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+    - `@ExceptionHandler(InvalidDataException.class)`: Maps the method to handle exceptions of type
+      `InvalidDataException`;
+    - It takes two parameters:
+        - `InvalidDataException e`: The exception object containing the error details;
+        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
+        - **Error Message**: The variable `error` provides a concise description for the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from `InvalidDataException`;
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 #### 14.3. **NEW CLASS:** `services.exceptions.DuplicateEmailException` (Custom Exception):
 
@@ -672,18 +685,18 @@ public ResponseEntity<StandardError> handleDuplicateEmailException(DuplicateEmai
 ````
 
 - **Annotations and Parameters:**
-  - `@ExceptionHandler(DuplicateEmailException.class)`: Maps the method to handle exceptions of type
-    `DuplicateEmailException`;
-  - It takes two parameters:
-      - `DuplicateEmailException e`: The exception object containing the error details;
-      - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
-  - The method constructs a `StandardError` object, which includes:
-      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-      - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
-      - **Error Message**: The variable `error` provides a concise description for the error;
-      - **Detailed Message**: `e.getMessage()` displays the custom error message from `DuplicateEmailException`;
-      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+    - `@ExceptionHandler(DuplicateEmailException.class)`: Maps the method to handle exceptions of type
+      `DuplicateEmailException`;
+    - It takes two parameters:
+        - `DuplicateEmailException e`: The exception object containing the error details;
+        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI.
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
+        - **Error Message**: The variable `error` provides a concise description for the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from `DuplicateEmailException`;
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -870,17 +883,17 @@ public ResponseEntity<StandardError> handleDatabaseException(DatabaseException e
 ````
 
 - **Annotations and Parameters:**
-  - `@ExceptionHandler(DatabaseException.class)`: Maps the method to handle exceptions of type `DatabaseException`;
-  - It takes two parameters:
-      - `DatabaseException e`: The exception object containing the error details;
-      - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
-  - The method constructs a `StandardError` object, which includes:
-      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-      - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
-      - **Error Message**: The variable `error` provides a concise description for the error;
-      - **Detailed Message**: `e.getMessage()` displays the custom error message from `DatabaseException`;
-      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+    - `@ExceptionHandler(DatabaseException.class)`: Maps the method to handle exceptions of type `DatabaseException`;
+    - It takes two parameters:
+        - `DatabaseException e`: The exception object containing the error details;
+        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.BAD_REQUEST.value()` returns the HTTP status code 400;
+        - **Error Message**: The variable `error` provides a concise description for the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from `DatabaseException`;
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -1251,18 +1264,18 @@ public ResponseEntity<StandardError> handleEmptyTableException(EmptyTableExcepti
 ````
 
 - **Annotations and Parameters:**
-  - `@ExceptionHandler(EmptyTableException.class)`: Maps the method to handle exceptions of type
-    `EmptyTableException`;
-  - It takes two parameters:
-      - `EmptyTableException e`: The exception object containing the error details;
-      - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
-  - The method constructs a `StandardError` object, which includes:
-      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-      - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
-      - **Error Message**: The variable `error` provides a concise description for the error;
-      - **Detailed Message**: `e.getMessage()` displays the custom error message from `EmptyTableException`;
-      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
-  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+    - `@ExceptionHandler(EmptyTableException.class)`: Maps the method to handle exceptions of type
+      `EmptyTableException`;
+    - It takes two parameters:
+        - `EmptyTableException e`: The exception object containing the error details;
+        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+        - **Error Message**: The variable `error` provides a concise description for the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from `EmptyTableException`;
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -1316,6 +1329,7 @@ GET http://localhost:8080/users
 ##### 26.2.1. **Sample Code**:
 
 ```java
+
 @Transactional(readOnly = true)
 public UserResponseDTO findByEmail(String email) {
     User entity = userRepository.findByEmail(email).orElseThrow(() -> new EmailNotFoundException(email));
@@ -1381,7 +1395,6 @@ GET http://localhost:8080/users/email/ophelia@email.com
 - Create a custom exception named `EmailNotFoundException`, extending `RuntimeException`;
 - Constructor takes an `Object email` as a parameter to provide a specific resource email address in the error message;
 - Provide a detailed message when an exception occurs: `"Resource Not Found! Email: [email]"`.
--
 
 #### 28.2. **UPDATE METHOD:** `handleResourceNotFoundException`:
 
@@ -1399,20 +1412,20 @@ public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeExce
 ````
 
 - **Annotations and Parameters:**
-  - `@ExceptionHandler`({ResourceNotFoundException.class, EmailNotFoundException.class}): Maps the method to handle
-    exceptions to types `ResourceNotFoundException` and `EmailNotFoundException` simultaneously.
-  - Parameters:
-      - `RuntimeException` e: Captures the exception object, allowing the method to handle both exceptions
-        generically, as they inherit from `RuntimeException`;
-      - `HttpServletRequest` request: Provides details about the incoming HTTP request, such as the request URI.
-  - The method constructs a `StandardError` object, which includes:
-      - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
-      - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
-      - **Error Message**: The variable `error` provides a concise description of the error;
-      - **Detailed Message**: `e.getMessage()` displays the custom error message from the respective exception class (
-        `ResourceNotFoundException` or `EmailNotFoundException`);
-      - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception;
-  - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+    - `@ExceptionHandler`({ResourceNotFoundException.class, EmailNotFoundException.class}): Maps the method to handle
+      exceptions to types `ResourceNotFoundException` and `EmailNotFoundException` simultaneously.
+    - Parameters:
+        - `RuntimeException` e: Captures the exception object, allowing the method to handle both exceptions
+          generically, as they inherit from `RuntimeException`;
+        - `HttpServletRequest` request: Provides details about the incoming HTTP request, such as the request URI.
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+        - **Error Message**: The variable `error` provides a concise description of the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from the respective exception class (
+          `ResourceNotFoundException` or `EmailNotFoundException`);
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception;
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
 
 ---
 
@@ -2092,7 +2105,7 @@ public class Instantiation implements CommandLineRunner {
         postRepository.saveAll(Arrays.asList(post01, post02));
 
         user02.getPosts().addAll(Arrays.asList(post01, post02));
-
+        userRepository.save(user02);
     }
 }
 ````
@@ -2184,82 +2197,310 @@ public class Instantiation implements CommandLineRunner {
   "_class": "com.souza.charles.mongoDBSpringBoot.domain.Post"
 }
 ````
+
 ---
+
 ### 45. **UPDATE CLASS** Requirements for PostRepository Interface:
 
 - **Title Search Query:**
-  - Implement the `searchTitle(String text)` method;
-  - Annotate it with `@Query("{ 'title': { $regex: ?0, $options: 'i' } }")` to perform case-insensitive searches in the `title` field using a regular expression;
-  - Ensure the method returns a `List<PostResponseDTO>`.
-
-- **Find by Title Containing (Ignoring Case):**
-  - Define `findByTitleContainingIgnoreCase(String text)`;
-  - Use the built-in MongoDB query method `findByTitleContainingIgnoreCase` to search for posts where the `title` contains the specified text, regardless of case sensitivity;
-  - Ensure the method returns a `List<PostResponseDTO>`.
+    - Implement the `searchTitle(String text)` method;
+    - Annotate it with `@Query("{ 'title': { $regex: ?0, $options: 'i' } }")` to perform case-insensitive searches in
+      the `title` field using a regular expression;
+    - Ensure the method returns a `List<PostResponseDTO>`.
 
 - **Full Search Query:**
-  - Implement the `fullSearch(String text, Instant minDate, Instant maxDate)` method;
-  - Annotate it with:
-    ```java
-    @Query("{ $and: [ { date: {$gte: ?1} }, { date: { $lte: ?2} } , { $or: [ { 'title': { $regex: ?0, $options: 'i' } }, { 'body': { $regex: ?0, $options: 'i' } }, { 'comments.text': { $regex: ?0, $options: 'i' } } ] } ] }")
-    ```
-  - Ensure the method:
-    - Filters posts with `date` between `minDate` and `maxDate`;
-    - Searches for the provided `text` in `title`, `body`, or `comments.text`, using case-insensitive regular expressions;
-    - Returns a `List<PostResponseDTO>`.
+    - Implement the `fullSearch(String text, Instant minDate, Instant maxDate)` method;
+    - Annotate it with:
+      ```java
+      @Query("{ $and: [ { date: {$gte: ?1} }, { date: { $lte: ?2} } , { $or: [ { 'title': { $regex: ?0, $options: 'i' } }, { 'body': { $regex: ?0, $options: 'i' } }, { 'comments.text': { $regex: ?0, $options: 'i' } } ] } ] }")
+      ```
+    - Ensure the method:
+        - Filters posts with `date` between `minDate` and `maxDate`;
+        - Searches for the provided `text` in `title`, `body`, or `comments.text`, using case-insensitive regular
+          expressions;
+        - Returns a `List<PostResponseDTO>`.
 
 ---
 
 ### 46. **NEW CLASS:** Requirements for URL Utility Class:
 
 - **Class Definition:**
-  - Create a utility class named `URL` for handling URL-related operations;
-  - Ensure the class contains only static methods and cannot be instantiated.
+    - Create a utility class named `URL` for handling URL-related operations;
+    - Ensure the class contains only static methods and cannot be instantiated.
 
 - **Parameter Decoding:**
-  - Implement `decodeParam(String text)`;
-  - Use `URLDecoder.decode(text, StandardCharsets.UTF_8)` to decode URL-encoded strings;
-  - Return the decoded string.
+    - Implement `decodeParam(String text)`;
+    - Use `URLDecoder.decode(text, StandardCharsets.UTF_8)` to decode URL-encoded strings;
+    - Return the decoded string.
 
 - **Date Conversion:**
-  - Implement `convertDate(String textDate, Instant defaultValue)`;
-  - Use `DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.of("GMT"))` to parse dates in `yyyy-MM-dd` format;
-  - Convert parsed `LocalDate` values to `Instant` using `atStartOfDay(ZoneId.of("GMT")).toInstant()`;
-  - Handle exceptions by returning the provided `defaultValue`.
+    - Implement `convertDate(String textDate, Instant defaultValue)`;
+    - Use `DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneId.of("GMT"))` to parse dates in `yyyy-MM-dd` format;
+    - Convert parsed `LocalDate` values to `Instant` using `atStartOfDay(ZoneId.of("GMT")).toInstant()`;
+    - Handle exceptions by returning the provided `defaultValue`.
 
 ---
 
-### 47. **NEW METHODS:** Requirements for PostService Class:
+### 47. **UPDATED CLASS:** Requirements for PostService Class:
+
+- **Logger:**
+    - Declare a `Logger` instance using `LoggerFactory.getLogger(PostService.class)`.
 
 - **Find Posts by Title:**
-  - Implement `findByTitle(String text)`;
-  - Delegate the search operation to `postRepository.searchTitle(text)`;
-  - Return a `List<PostResponseDTO>`.
+    - Implement `findByTitle(String text)`;
+    - Delegate the search operation to `postRepository.searchTitle(text)`;
+    - Throw a `SearchResultNotFoundException` if the search returns an empty list;
+    - Return a `List<PostResponseDTO>`.
 
 - **Full Search with Date Filtering:**
-  - Implement `fullSearch(String text, Instant minDate, Instant maxDate)`;
-  - Extend `maxDate` by one day using `maxDate.plusSeconds(24 * 60 * 60)`;
-  - Delegate the search operation to `postRepository.fullSearch(text, minDate, maxDate)`;
-  - Return a `List<PostResponseDTO>`.
+    - Implement `fullSearch(String text, Instant minDate, Instant maxDate)`;
+    - Validate that `minDate` and `maxDate` are not null and that `minDate` is not after `maxDate` or the current date;
+    - Extend `maxDate` by one day using `maxDate = maxDate.plusSeconds(24 * 60 * 60)`;
+    - Delegate the search operation to `postRepository.fullSearch(text, minDate, maxDate)`;
+    - Throw a `SearchResultNotFoundException` if the search returns an empty list;
+    - Throw a `DateRangeInvalidException` if the date range is invalid.
 
 ---
 
-### 48. **NEW METHODS:** Requirements for PostController Class:
+### 48. **UPDATED CLASS:** Requirements for PostController Class:
+
+- **Logger:**
+    - Declare a `Logger` instance using `LoggerFactory.getLogger(PostController.class)`.
 
 - **Find Posts by Title Endpoint:**
-  - Implement `findByTitle(@RequestParam(value = "text", defaultValue = "") String text)`;
-  - Map it to `@GetMapping(value = "/titles")`;
-  - Decode the `text` parameter using `URL.decodeParam(text)`;
-  - Call `postService.findByTitle(text)`;
-  - Return a `ResponseEntity<List<PostResponseDTO>>` with HTTP status `200 OK`.
+    - Implement `findByTitle(@RequestParam(value = "text", defaultValue = "") String text)`;
+    - Map it to `@GetMapping(value = "/titles")`;
+    - Decode the `text` parameter using `URL.decodeParam(text)`;
+    - Call `postService.findByTitle(text)`;
+    - Return a `ResponseEntity<List<PostResponseDTO>>` with HTTP status `200 OK`.
 
 - **Full Search Endpoint:**
-  - Implement `fullSearch(@RequestParam(value = "text", defaultValue = "") String text, @RequestParam(value = "minDate", defaultValue = "") String minDate, @RequestParam(value = "maxDate", defaultValue = "") String maxDate)`;
-  - Map it to `@GetMapping(value = "/search")`;
-  - Decode the `text` parameter using `URL.decodeParam(text)`;
-  - Convert `minDate` and `maxDate` using `URL.convertDate(minDate, Instant.EPOCH)` and `URL.convertDate(maxDate, Instant.now())`;
-  - Call `postService.fullSearch(text, min, max)`;
-  - Return a `ResponseEntity<List<PostResponseDTO>>` with HTTP status `200 OK`.
+    - Implement
+      `fullSearch(@RequestParam(value = "text", defaultValue = "") String text, @RequestParam(value = "minDate", defaultValue = "") String minDate, @RequestParam(value = "maxDate", defaultValue = "") String maxDate)`;
+    - Map it to `@GetMapping(value = "/search")`;
+    - Decode the `text` parameter using `URL.decodeParam(text)`;
+    - Convert `minDate` and `maxDate` using `URL.convertDate(minDate, Instant.EPOCH)` and
+      `URL.convertDate(maxDate, Instant.now())`;
+    - Call `postService.fullSearch(text, min, max)`;
+    - Return a `ResponseEntity<List<PostResponseDTO>>` with HTTP status `200 OK`.
+
+---
+
+### 49. Success Case: Post Requesting and Responding User Data via Spring Boot RESTful API (`findByTitle`):
+
+#### 49.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /posts/titles`;
+- **Purpose:** Searches for `Posts` based on a `title`.
+
+#### 49.2. Example GET Request:
+
+- **Scenario:** Successfully retrieves the requested `Posts` by `title`:
+
+````markdown
+GET http://localhost:8080/posts/titles?text=Trip
+````        
+
+#### 49.3. Example Response:
+
+````json
+[
+  {
+    "id": "67abfc47cca46676bf2a53e9",
+    "date": "2025-02-10T00:00:00Z",
+    "title": "Trip departure",
+    "body": "I'm going to travel to São Paulo. Cheers!"
+  }
+]
+````
+
+### 50. Exception Handling for `findByTitle` Method:
+
+- This section introduces the implementation of custom exception handling for the `findByTitle` method in the
+  `UserService` class, introducing custom exceptions and centralized error handling mechanisms.
+
+#### 50.1. **NEW CLASS:** `services.exceptions.SearchResultNotFoundException` (Custom Exception)`:
+
+- Create a custom exception named `SearchResultNotFoundException`, extending `RuntimeException`;
+- Constructor takes an `Object text` as a parameter to provide a specific resource Post title in the error message;
+- Provide a detailed message when an exception occurs: `"No results found for the search: " [text] `.
+
+---
+
+#### 50.2. **UPDATE METHOD:** `handleResourceNotFoundException`:
+
+- This method is responsible for handling exceptions to types `ResourceNotFoundException`, `EmailNotFoundException`, and
+  `SearchResultNotFoundException`,
+  converting them into standardised HTTP error responses:
+
+````java
+@ExceptionHandler({ResourceNotFoundException.class, EmailNotFoundException.class, SearchResultNotFoundException.class})
+public ResponseEntity<StandardError> handleResourceNotFoundException(RuntimeException e, HttpServletRequest request) {
+    String error = "Resource not found with the specified identifier or criteria.";
+    HttpStatus status = HttpStatus.NOT_FOUND;
+    StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+    return ResponseEntity.status(status).body(err);
+}
+````
+
+- **Annotations and Parameters:**
+    - `@ExceptionHandler`({ResourceNotFoundException.class, EmailNotFoundException.class,
+      SearchResultNotFoundException.class})): Maps the method to handle
+      exceptions to types `ResourceNotFoundException`, `EmailNotFoundException`, and `SearchResultNotFoundException`
+      simultaneously.
+    - Parameters:
+        - `RuntimeException` e: Captures the exception object, allowing the method to handle both exceptions
+          generically, as they inherit from `RuntimeException`;
+        - `HttpServletRequest` request: Provides details about the incoming HTTP request, such as the request URI.
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+        - **Error Message**: The variable `error` provides a concise description of the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from the respective exception class (
+          `ResourceNotFoundException` or `EmailNotFoundException` or SearchResultNotFoundException);
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception;
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+
+---
+
+### 51. Error Case: Post Handling Resource Not Found via Spring Boot RESTful API (`findByTitle`):
+
+#### 51.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /posts/titles`;
+- **Purpose:** Searches for `Posts` based on a `title`.
+
+#### 51.2. Example GET Request (`Title Does Not Found`):
+
+- **Scenario:** The requested title does not exist, triggering the custom error response with a
+  `404 Not Found` status code:
+
+````markdown
+GET http://localhost:8080/posts/titles?text=XXXXX
+````
+
+#### 51.3. Example Error Response:
+
+- **Error Handling**: Upon catching a `SearchResultNotFoundException`, the method returns a structured JSON response in
+  the
+  following format:
+
+````json
+{
+  "timestamp": "2025-02-12T01:41:48Z",
+  "status": 404,
+  "error": "Resource not found with the specified identifier or criteria.",
+  "message": "No results found for the search: XXXXX",
+  "path": "/posts/titles"
+}
+````
+
+---
+
+### 52. Success Case: Post Requesting and Responding User Data via Spring Boot RESTful API (`fullSearch`):
+
+#### 52.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /posts/search`
+- **Purpose:** Searches for `Posts` based on the provided `search text` and `date` range filters.
+
+#### 52.2. Example GET Request:
+
+- **Scenario:** Successfully retrieves the requested `Posts` by `text` within the specified `date` range:
+
+````markdown
+GET http://localhost:8080/posts/search?text=enjoy&minDate=2025-02-10&maxDate=2025-02-14
+````        
+
+#### 52.3. Example Response:
+
+````json
+[
+  {
+    "id": "67ac14cd65188373d733457d",
+    "date": "2025-02-10T00:00:00Z",
+    "title": "Trip departure",
+    "body": "I'm going to travel to São Paulo. Cheers!"
+  }
+]
+````
+
+### 53. Exception Handling for `fullSearch` Method:
+
+- This section introduces the implementation of custom exception handling for the `fullSearch` method in the
+  `UserService` class, introducing custom exceptions and centralized error handling mechanisms.
+
+#### 53.1. **NEW CLASS:** `services.exceptions.DateRangeInvalidException` (Custom Exception):
+
+- Create a custom exception named `DateRangeInvalidException`, extending `RuntimeException`;
+- Constructor does not take any parameters;
+- Provide a detailed message when an exception occurs: "Invalid date range provided. Please ensure the minimum date is
+  no later than the maximum and current dates."
+
+#### 53.2. **NEW METHOD:** `handleDateRangeInvalidException` on class `controller.exceptions.ResourceExceptionHandler`:
+
+- This method is responsible for handling exceptions of type `DateRangeInvalidException` and converting them into
+  standardized
+  HTTP error responses:
+
+```java
+@ExceptionHandler(DateRangeInvalidException.class)
+public ResponseEntity<StandardError> handleDateRangeInvalidException(DateRangeInvalidException e, HttpServletRequest request) {
+    String error = "Invalid Date Range";
+    HttpStatus status = HttpStatus.BAD_REQUEST;
+    StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+    return ResponseEntity.status(status).body(err);
+}
+````
+
+- **Annotations and Parameters:**
+    - `@ExceptionHandler(DateRangeInvalidException.class)`: Maps the method to handle exceptions of type
+      `DateRangeInvalidException`;
+    - It takes two parameters:
+        - `DateRangeInvalidException e`: The exception object containing the error details;
+        - `HttpServletRequest request`: Captures information about the HTTP request, such as the request URI;
+    - The method constructs a `StandardError` object, which includes:
+        - **Timestamp**: `Instant.now()` ensures the current time is recorded when the exception is handled;
+        - **Status Code**: `HttpStatus.NOT_FOUND.value()` returns the HTTP status code 404;
+        - **Error Message**: The variable `error` provides a concise description for the error;
+        - **Detailed Message**: `e.getMessage()` displays the custom error message from `DateRangeInvalidException`;
+        - **Request Path**: `request.getRequestURI()` specifies the URI that caused the exception.
+    - The method returns a `ResponseEntity` containing the `StandardError` object and the appropriate HTTP status code.
+
+---
+
+### 54. Error Case: Post Handling Resource Not Found via Spring Boot RESTful API (`fullSearch`):
+
+#### 54.1. Setting Up the RESTful API for HTTP Methods (`Idempotent`):
+
+- **Endpoint:** `GET /posts/search`
+- **Purpose:** Searches for `Posts` based on the provided `search text` and `date` range filters.
+
+#### 54.2. Example GET Request (`Search Text and Date Range Does Not Found`):
+
+- **Scenario:** The requested `Posts` based on the provided `search text` and `date range` filters, triggering the
+  custom error response with a `404 Not Found` status code.
+
+````markdown
+GET http://localhost:8080/posts/search?text=enjoy&minDate=2025-02-15&maxDate=2025-02-14
+
+````
+
+#### 54.3. Example Error Response:
+
+- **Error Handling**: Upon catching a `DateRangeInvalidException`, the method returns a structured JSON response in
+  the
+  following format:
+
+````json
+{
+  "timestamp": "2025-02-12T04:33:41Z",
+  "status": 400,
+  "error": "Dates are invalids",
+  "message": "Minimum and maximum dates are required, with the minimum date no later than the maximum and current.",
+  "path": "/posts/search"
+}
+````
 
 ---
 
@@ -2282,4 +2523,4 @@ public class Instantiation implements CommandLineRunner {
 - [x] Implement DTO Pattern for Comment;
 - [x] Add Comment functionality to Posts;
 - [x] Implement custom queries for Post retrieval (simple and multi-criteria);
-- [ ] Implement URL parameter decoding for query methods.
+- [X] Implement URL parameter decoding for query methods.
