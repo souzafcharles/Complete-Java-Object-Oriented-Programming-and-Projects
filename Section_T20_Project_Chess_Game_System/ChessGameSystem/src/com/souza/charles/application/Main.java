@@ -6,6 +6,7 @@ package com.souza.charles.application;
  Date: February 12, 2025
 */
 
+import com.souza.charles.boardgame.Board;
 import com.souza.charles.boardgame.Position;
 
 public class Main {
@@ -13,7 +14,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Project: ♟\uFE0F Chess Game System ♟\uFE0F");
 
-        Position position = new Position(3, 5);
-        System.out.println(position);
+        Board board = new Board(8, 8);
     }
 }
