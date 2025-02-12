@@ -21,7 +21,7 @@ public class Piece implements Serializable {
         position = null;
     }
 
-    public Board getBoard() {
+    protected Board getBoard() {
         return board;
     }
 }

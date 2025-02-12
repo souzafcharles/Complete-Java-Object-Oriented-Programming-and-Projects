@@ -11,7 +11,7 @@ import com.souza.charles.boardgame.Piece;
 
 import java.io.Serializable;
 
-public class ChessPiece extends Piece {
+public class ChessPiece extends Piece implements Serializable{
 
     private Color color;
 
