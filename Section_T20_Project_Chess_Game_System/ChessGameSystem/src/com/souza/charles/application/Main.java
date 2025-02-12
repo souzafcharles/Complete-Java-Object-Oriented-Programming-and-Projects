@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("♟\uFE0F Chess Game System ♟\uFE0F");
+        System.out.println("\n♟\uFE0F Chess Game System ♟\uFE0F\n");
         ChessMatch chessMatch = new ChessMatch();
         UI.printBoard(chessMatch.getPieces());
     }
