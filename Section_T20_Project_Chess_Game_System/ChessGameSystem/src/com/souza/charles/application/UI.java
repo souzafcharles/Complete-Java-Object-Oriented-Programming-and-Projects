@@ -1,4 +1,10 @@
 package com.souza.charles.application;
+/*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 13, 2025
+*/
 
 import com.souza.charles.chessgame.ChessPiece;
 import com.souza.charles.chessgame.ChessPosition;
@@ -8,6 +14,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UI {
+
+    // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -28,9 +36,15 @@ public class UI {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    public static ChessPosition readChessPosition(Scanner scanner) {
+    // https://stackoverflow.com/questions/2979383/java-clear-the-console
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static ChessPosition readChessPosition(Scanner sc) {
         try {
-            String s = scanner.nextLine();
+            String s = sc.nextLine();
             char column = s.charAt(0);
             int row = Integer.parseInt(s.substring(1));
             return new ChessPosition(column, row);
@@ -40,31 +54,26 @@ public class UI {
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
-        // Print the numbers (rows)
         for (int i = 0; i < pieces.length; i++) {
-            System.out.print((8 - i) + " "); // Correctly print row numbers
+            System.out.print((8 - i) + " ");
             for (int j = 0; j < pieces.length; j++) {
-                printPiece(pieces[i][j], i, j);
+                printPiece(pieces[i][j]);
             }
             System.out.println();
         }
-        System.out.println("   a b c d e f g h");
+        System.out.println("  a b c d e f g h");
     }
 
-    private static void printPiece(ChessPiece piece, int row, int col) {
+    private static void printPiece(ChessPiece piece) {
         if (piece == null) {
-            if ((row + col) % 2 == 0) {
-                System.out.print("◻ " +
-                        "");
-            } else {
-                System.out.print("◼ ");
-            }
+            System.out.print("-");
         } else {
-            if (piece.getColor() == Color.RED) {
-                System.out.print(ANSI_RED + piece + ANSI_RESET + " ");
+            if (piece.getColor() == Color.WHITE) {
+                System.out.print(ANSI_WHITE + piece + ANSI_RESET);
             } else {
-                System.out.print(ANSI_BLUE + piece + ANSI_RESET + " ");
+                System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
             }
         }
+        System.out.print(" ");
     }
 }

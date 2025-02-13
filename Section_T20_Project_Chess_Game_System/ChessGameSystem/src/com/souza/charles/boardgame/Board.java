@@ -8,7 +8,7 @@ package com.souza.charles.boardgame;
 
 import java.io.Serializable;
 
-public class Board implements Serializable {
+public class Board {
 
     private int rows;
     private int columns;
@@ -60,10 +60,10 @@ public class Board implements Serializable {
         if (piece(position) == null) {
             return null;
         }
-        Piece auxiliary = piece(position);
-        auxiliary.position = null;
+        Piece aux = piece(position);
+        aux.position = null;
         pieces[position.getRow()][position.getColumn()] = null;
-        return auxiliary;
+        return aux;
     }
 
     private boolean positionExists(int row, int column) {

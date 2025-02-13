@@ -7,6 +7,6 @@ package com.souza.charles.chessgame;
 */
 
 public enum Color {
-    BLUE,
-    RED;
+    BLACK,
+    WHITE;
 }

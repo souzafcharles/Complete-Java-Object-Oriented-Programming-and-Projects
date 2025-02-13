@@ -10,7 +10,7 @@ import com.souza.charles.boardgame.Position;
 
 import java.io.Serializable;
 
-public class ChessPosition implements Serializable {
+public class ChessPosition {
 
     private char column;
     private int row;

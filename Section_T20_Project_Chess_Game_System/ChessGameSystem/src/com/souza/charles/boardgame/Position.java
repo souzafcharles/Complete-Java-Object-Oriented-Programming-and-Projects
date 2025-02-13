@@ -8,7 +8,7 @@ package com.souza.charles.boardgame;
 
 import java.io.Serializable;
 
-public class Position implements Serializable {
+public class Position {
 
     private int row;
     private int column;

@@ -1,4 +1,10 @@
 package com.souza.charles.chessgame;
+/*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 13, 2025
+*/
 
 import com.souza.charles.boardgame.Board;
 import com.souza.charles.boardgame.Piece;
@@ -8,7 +14,7 @@ import com.souza.charles.chessgame.pieces.Rook;
 
 import java.io.Serializable;
 
-public class ChessMatch implements Serializable {
+public class ChessMatch {
 
     private Board board;
 
@@ -53,18 +59,18 @@ public class ChessMatch implements Serializable {
     }
 
     private void initialSetup() {
-        placeNewPiece('c', 1, new Rook(board, Color.RED));
-        placeNewPiece('c', 2, new Rook(board, Color.RED));
-        placeNewPiece('d', 2, new Rook(board, Color.RED));
-        placeNewPiece('e', 2, new Rook(board, Color.RED));
-        placeNewPiece('e', 1, new Rook(board, Color.RED));
-        placeNewPiece('d', 1, new King(board, Color.RED));
+        placeNewPiece('c', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('c', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 2, new Rook(board, Color.WHITE));
+        placeNewPiece('e', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('d', 1, new King(board, Color.WHITE));
 
-        placeNewPiece('c', 7, new Rook(board, Color.BLUE));
-        placeNewPiece('c', 8, new Rook(board, Color.BLUE));
-        placeNewPiece('d', 7, new Rook(board, Color.BLUE));
-        placeNewPiece('e', 7, new Rook(board, Color.BLUE));
-        placeNewPiece('e', 8, new Rook(board, Color.BLUE));
-        placeNewPiece('d', 8, new King(board, Color.BLUE));
+        placeNewPiece('c', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('c', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 7, new Rook(board, Color.BLACK));
+        placeNewPiece('e', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('d', 8, new King(board, Color.BLACK));
     }
 }
