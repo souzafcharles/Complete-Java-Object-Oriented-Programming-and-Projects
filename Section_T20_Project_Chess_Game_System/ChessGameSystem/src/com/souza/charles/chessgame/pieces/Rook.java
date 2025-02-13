@@ -14,11 +14,6 @@ public class Rook extends ChessPiece implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "♜";
-    }
-
-    @Override
     public boolean[][] possibleMoves() {
         boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
@@ -65,5 +60,10 @@ public class Rook extends ChessPiece implements Serializable {
         }
 
         return mat;
+    }
+
+    @Override
+    public String toString() {
+        return "♖";
     }
 }
