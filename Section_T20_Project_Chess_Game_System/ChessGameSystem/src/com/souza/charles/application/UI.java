@@ -6,6 +6,7 @@ package com.souza.charles.application;
   Date: February 13, 2025
 */
 
+import com.souza.charles.chessgame.ChessMatch;
 import com.souza.charles.chessgame.ChessPiece;
 import com.souza.charles.chessgame.ChessPosition;
 import com.souza.charles.chessgame.Color;
@@ -52,6 +53,13 @@ public class UI {
         catch (RuntimeException e) {
             throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
         }
+    }
+
+    public static void printMatch(ChessMatch chessMatch) {
+        printBoard(chessMatch.getPieces());
+        System.out.println();
+        System.out.println("Turn : " + chessMatch.getTurn());
+        System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
