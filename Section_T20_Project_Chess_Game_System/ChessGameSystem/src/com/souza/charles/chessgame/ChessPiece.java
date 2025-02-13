@@ -9,9 +9,7 @@ package com.souza.charles.chessgame;
 import com.souza.charles.boardgame.Board;
 import com.souza.charles.boardgame.Piece;
 
-import java.io.Serializable;
-
-public class ChessPiece extends Piece {
+public abstract class ChessPiece extends Piece {
 
     private Color color;
 

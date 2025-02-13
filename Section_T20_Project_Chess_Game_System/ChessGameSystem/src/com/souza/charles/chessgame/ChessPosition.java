@@ -8,8 +8,6 @@ package com.souza.charles.chessgame;
 
 import com.souza.charles.boardgame.Position;
 
-import java.io.Serializable;
-
 public class ChessPosition {
 
     private char column;
