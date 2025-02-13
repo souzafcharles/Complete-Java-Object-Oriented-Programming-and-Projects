@@ -14,6 +14,6 @@ public class Rook extends ChessPiece implements Serializable {
 
     @Override
     public String toString() {
-        return "R";
+        return "♜";
     }
 }

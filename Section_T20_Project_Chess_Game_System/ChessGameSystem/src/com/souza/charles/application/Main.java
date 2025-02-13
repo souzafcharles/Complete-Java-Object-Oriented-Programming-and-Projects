@@ -1,21 +1,37 @@
 package com.souza.charles.application;
-/*
- Course title: Complete Java - Object-Oriented Programming + Projects
- Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
- Project done by: Charles Fernandes de Souza
- Date: February 12, 2025
-*/
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 12, 2025
+ */
 
 import com.souza.charles.boardgame.Board;
 import com.souza.charles.boardgame.Position;
 import com.souza.charles.chessgame.ChessMatch;
+import com.souza.charles.chessgame.ChessPiece;
+import com.souza.charles.chessgame.ChessPosition;
+
+import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
 
         System.out.println("\n♟\uFE0F Chess Game System ♟\uFE0F\n");
+        Scanner scanner = new Scanner(System.in);
         ChessMatch chessMatch = new ChessMatch();
-        UI.printBoard(chessMatch.getPieces());
+
+        while (true) {
+            UI.printBoard(chessMatch.getPieces());
+            System.out.println();
+            System.out.print("Source: ");
+            ChessPosition source = UI.readChessPosition(scanner);
+
+            System.out.println();
+            System.out.print("Target: ");
+            ChessPosition target = UI.readChessPosition(scanner);
+
+            ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+        }
     }
 }

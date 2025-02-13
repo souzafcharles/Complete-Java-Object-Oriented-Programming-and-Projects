@@ -14,6 +14,6 @@ public class King extends ChessPiece implements Serializable {
 
     @Override
     public String toString() {
-        return "K";
+        return "♚";
     }
 }
