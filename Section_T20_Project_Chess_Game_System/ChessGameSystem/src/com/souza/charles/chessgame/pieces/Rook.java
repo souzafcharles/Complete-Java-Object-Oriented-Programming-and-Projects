@@ -11,12 +11,15 @@ import com.souza.charles.boardgame.Position;
 import com.souza.charles.chessgame.ChessPiece;
 import com.souza.charles.chessgame.Color;
 
-import java.io.Serializable;
-
-public class Rook extends ChessPiece implements Serializable {
+public class Rook extends ChessPiece {
 
     public Rook(Board board, Color color) {
         super(board, color);
+    }
+
+    @Override
+    public String toString() {
+        return "R";
     }
 
     @Override
@@ -66,10 +69,5 @@ public class Rook extends ChessPiece implements Serializable {
         }
 
         return mat;
-    }
-
-    @Override
-    public String toString() {
-        return "♖";
     }
 }

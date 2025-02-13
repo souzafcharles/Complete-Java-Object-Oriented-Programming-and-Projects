@@ -6,8 +6,6 @@ package com.souza.charles.boardgame;
   Date: February 12, 2025
  */
 
-import java.io.Serializable;
-
 public class Board {
 
     private int rows;
