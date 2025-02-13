@@ -11,10 +11,10 @@ import com.souza.charles.chessgame.ChessPiece;
 import com.souza.charles.chessgame.ChessPosition;
 import com.souza.charles.chessgame.ChessException;
 
-import java.util.InputMismatchException; // Importing InputMismatchException
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.List; // Importing List
-import java.util.ArrayList; // Importing ArrayList
+import java.util.List;
+import java.util.ArrayList;
 
 public class Program {
 
@@ -24,7 +24,7 @@ public class Program {
         ChessMatch chessMatch = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<>();
 
-        while (true) {
+        while (!chessMatch.getCheckMate()) {
             try {
                 UI.clearScreen();
                 UI.printMatch(chessMatch, captured);
@@ -54,5 +54,7 @@ public class Program {
                 sc.nextLine();
             }
         }
+        UI.clearScreen();
+        UI.printMatch(chessMatch, captured);
     }
 }
