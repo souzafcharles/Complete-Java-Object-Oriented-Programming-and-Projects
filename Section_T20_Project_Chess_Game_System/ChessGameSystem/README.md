@@ -10,31 +10,31 @@ to manage the game's state and logic.
 
 Key highlights of the system include:
 
-- **Position Class**: This class represents a position on the chessboard, encapsulating the coordinates in a
+- [x] **Position Class**: This class represents a position on the chessboard, encapsulating the coordinates in a
   straightforward manner.
 
-- **Board and Piece Classes**: These classes define the structure of the chessboard and the pieces placed on it,
+- [x] **Board and Piece Classes**: These classes define the structure of the chessboard and the pieces placed on it,
   leveraging encapsulation and access modifiers to maintain the integrity of the game state.
 
-- **Chess Layer**: This layer manages the printing of the board and the visual representation of the game's state,
+- [x] **Chess Layer**: This layer manages the printing of the board and the visual representation of the game's state,
   ensuring that players can see the current setup and plan their moves accordingly.
 
-- **Piece Placement**: The system includes methods for placing pieces on the board, ensuring that the initial setup
+- [x] **Piece Placement**: The system includes methods for placing pieces on the board, ensuring that the initial setup
   adheres to standard chess rules.
 
-- **Exception Handling**: Custom exception classes like `BoardException` and `ChessException` are implemented to handle
+- [x] **Exception Handling**: Custom exception classes like `BoardException` and `ChessException` are implemented to handle
   errors and invalid moves gracefully, enhancing the robustness of the application.
 
-- **Chess-Specific Classes**: The system encompasses a variety of chess pieces, including the `Rook`, `King`, `Bishop`,
+- [x] **Chess-Specific Classes**: The system encompasses a variety of chess pieces, including the `Rook`, `King`, `Bishop`,
   `Knight`, `Queen`, and `Pawn`, each with its unique movement logic and characteristics.
 
-- **Special Moves**: The application supports special moves such as castling, en passant, and pawn promotion, adhering
+- [x] **Special Moves**: The application supports special moves such as castling, en passant, and pawn promotion, adhering
   to the official rules of chess.
 
-- **Game Mechanics**: Classes like `ChessMatch` manage the overall game flow, including turn management, move
+- [x] **Game Mechanics**: Classes like `ChessMatch` manage the overall game flow, including turn management, move
   validation, check, and checkmate logic, ensuring a comprehensive chess-playing experience.
 
-- **User Interface**: The `UI` class handles the interaction with the players, printing the board, reading moves, and
+- [x] **User Interface**: The `UI` class handles the interaction with the players, printing the board, reading moves, and
   displaying game status, leveraging ANSI color codes for an enhanced visual experience.
 
 Overall, this system provides a comprehensive simulating a chess game, adhering to object-oriented principles and
