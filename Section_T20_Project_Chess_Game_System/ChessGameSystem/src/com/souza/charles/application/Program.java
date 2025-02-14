@@ -22,7 +22,7 @@ public class Program {
         List<ChessPiece> captured = new ArrayList<>();
 
         while (!chessMatch.getCheckMate()) {
-            System.out.println("\n♟\uFE0F Chess Game System ♟\uFE0F\n");
+            System.out.println("\n♟️ Chess Game System ♟️\n");
             try {
                 UI.clearScreen();
                 UI.printMatch(chessMatch, captured);
@@ -52,10 +52,7 @@ public class Program {
                     }
                     chessMatch.replacePromotedPiece(type);
                 }
-            } catch (ChessException e) {
-                System.out.println(e.getMessage());
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
+            } catch (ChessException | InputMismatchException e) {
                 System.out.println(e.getMessage());
                 scanner.nextLine();
             }
