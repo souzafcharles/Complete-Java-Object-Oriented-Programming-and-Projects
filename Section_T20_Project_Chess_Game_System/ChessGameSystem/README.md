@@ -43,7 +43,7 @@ component are meticulously outlined to facilitate understanding and further deve
 
 ### 1. Printing the Board:
 
-![Chess Game System ](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_T20_Project_Chess_Game_System/ChessGameSystem/src/com/souza/charles/src/resources/static/img/ChessGameSystem.png)
+![Chess Game System ](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_T20_Project_Chess_Game_System/ChessGameSystem/src/com/souza/charles/resources/static/img/ChessGameSystem.png)
 
 ***
 
