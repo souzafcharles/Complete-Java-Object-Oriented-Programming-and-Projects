@@ -8,19 +8,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.souza.charles.graphicalapp.controller.ViewController">
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
    <children>
-      <Label layoutX="27.0" layoutY="27.0" text="Calculate Sum" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-      <VBox spacing="10" layoutX="20" layoutY="60">
-         <TextField fx:id="txtNumber1" promptText="First number:" style="-fx-padding: 5; -fx-border-color: #ccc; -fx-border-radius: 5;"/>
-         <TextField fx:id="txtNumber2" promptText="Second number:" style="-fx-padding: 5; -fx-border-color: #ccc; -fx-border-radius: 5;"/>
-         <Button fx:id="btSum" mnemonicParsing="false" onAction="#onBtSumClick" text="Sum" style="-fx-padding: 8 15; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-border-radius: 5;"/>
-      </VBox>
-      <HBox spacing="5" layoutX="20" layoutY="200" alignment="CENTER_LEFT">
-         <Label text="Result:" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-         <Label fx:id="labelResult" prefWidth="100.0" style="-fx-padding: 5; -fx-border-color: #007bff; -fx-border-width: 1; -fx-border-radius: 3; -fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #007bff;"/>
-      </HBox>
+      <ComboBox fx:id="comboBoxPerson" layoutX="31.0" layoutY="27.0" onAction="#onComboBoxPersonAction" prefWidth="150.0" promptText="Select a person..." />
+      <Button fx:id="btAll" layoutX="239.0" layoutY="27.0" mnemonicParsing="false" onAction="#onBtAllAction" text="All" />
    </children>
 </AnchorPane>

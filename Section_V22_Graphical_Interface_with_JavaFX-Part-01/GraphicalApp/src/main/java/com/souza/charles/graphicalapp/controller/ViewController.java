@@ -3,54 +3,64 @@ package com.souza.charles.graphicalapp.controller;
   Course title: Complete Java - Object-Oriented Programming + Projects
   Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
   Project done by: Charles Fernandes de Souza
-  Date: February 14, 2025
+  Date: February 15, 2025
  */
 
-import com.souza.charles.graphicalapp.view.util.Alerts;
-import com.souza.charles.graphicalapp.view.util.Constraints;
+import com.souza.charles.graphicalapp.model.entities.Person;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ViewController implements Initializable {
 
     @FXML
-    private TextField txtNumber1;
+    private ComboBox<Person> comboBoxPerson;
 
     @FXML
-    private TextField txtNumber2;
+    private Button btAll;
+
+    private ObservableList<Person> observableList;
 
     @FXML
-    private Label labelResult;
+    public void onComboBoxPersonAction() {
+        Person person = comboBoxPerson.getSelectionModel().getSelectedItem();
+        System.out.println(person);
+    }
 
     @FXML
-    private Button btSum;
-
-    @FXML
-    public void onBtSumClick() {
-        try {
-            Locale.setDefault(Locale.UK);
-            double height = Double.parseDouble(txtNumber1.getText());
-            double width = Double.parseDouble(txtNumber2.getText());
-            double sum = height + width;
-            labelResult.setText(String.format("%.2f", sum));
-        } catch (NumberFormatException e) {
-            Alerts.showAlert("Input Error", "Invalid Input", "Please enter valid numbers in both fields.", Alert.AlertType.ERROR);
+    public void onBtAllAction() {
+        for (Person person : comboBoxPerson.getItems()) {
+            System.out.println(person);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Constraints.setTextFieldDouble(txtNumber1);
-        Constraints.setTextFieldMaxLength(txtNumber1, 14);
-        Constraints.setTextFieldDouble(txtNumber2);
-        Constraints.setTextFieldMaxLength(txtNumber2, 14);
+        List<Person> list = new ArrayList<>();
+        list.add(new Person(1, "Balthazar de Bigode", "balthazar@email.com"));
+        list.add(new Person(2, "Ophelia Birrenta", "ophelia@email.com"));
+        list.add(new Person(3, "Theodorico Vitalino", "tehodorico@email.com"));
+
+        observableList = FXCollections.observableArrayList(list);
+        comboBoxPerson.setItems(observableList);
+
+        Callback<ListView<Person>, ListCell<Person>> factory = lv -> new ListCell<Person>() {
+            @Override
+            protected void updateItem(Person item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+        };
+
+        comboBoxPerson.setCellFactory(factory);
+        comboBoxPerson.setButtonCell(factory.call(null));
     }
 }
