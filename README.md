@@ -36,7 +36,7 @@
 - Section 19 | [Project: Web Services with Spring Boot and JPA/Hibernate](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices)
 - Section 20 | [Project: Chess Game System](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_T20_Project_Chess_Game_System/ChessGameSystem)
 - Section 21 | [Spring Boot Project and MongoDB Database (Web Services + NoSQL)](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_U21_SpringMongoDB_NoSQL_WebServices/mongoDBSpringBoot)
-- Section 22 | Graphical Interface with JavaFX
+- Section 22 | Graphical Interface with JavaFX: [Part 01](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_V22_Graphical_Interface_with_JavaFX-Part-01/GraphicalApp) and [Part 02](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_V22_Graphical_Interface_with_JavaFX-Part-02/GraphicalApp)
 
 
 ### :link: [Course Access](https://www.udemy.com/course/java-curso-completo/)
