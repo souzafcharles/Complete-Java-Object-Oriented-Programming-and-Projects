@@ -7,15 +7,19 @@ package com.souza.charles.graphicalapp.controller;
  */
 
 import com.souza.charles.graphicalapp.view.util.Alerts;
+import com.souza.charles.graphicalapp.view.util.Constraints;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class ViewController {
+public class ViewController implements Initializable {
 
     @FXML
     private TextField txtNumber1;
@@ -40,5 +44,13 @@ public class ViewController {
         } catch (NumberFormatException e) {
             Alerts.showAlert("Input Error", "Invalid Input", "Please enter valid numbers in both fields.", Alert.AlertType.ERROR);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Constraints.setTextFieldDouble(txtNumber1);
+        Constraints.setTextFieldMaxLength(txtNumber1, 14);
+        Constraints.setTextFieldDouble(txtNumber2);
+        Constraints.setTextFieldMaxLength(txtNumber2, 14);
     }
 }
