@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.souza.charles.graphicalapp.controller.ViewController">
    <children>
-      <Button layoutX="175.0" layoutY="135.0" mnemonicParsing="false" text="Start" />
+      <Button fx:id="btTest" layoutX="175.0" layoutY="135.0" mnemonicParsing="false" onAction="#onBtTestAction" text="Start" />
       <Label layoutX="166.0" layoutY="87.0" text="Click here!" />
    </children>
 </AnchorPane>
