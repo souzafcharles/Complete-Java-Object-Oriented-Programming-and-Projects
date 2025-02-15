@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.souza.charles.graphicalapp.controller.ViewController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.souza.charles.graphicalapp.controller.ViewController">
    <children>
-      <ComboBox fx:id="comboBoxPerson" layoutX="31.0" layoutY="27.0" onAction="#onComboBoxPersonAction" prefWidth="150.0" promptText="Select a person..." />
-      <Button fx:id="btAll" layoutX="239.0" layoutY="27.0" mnemonicParsing="false" onAction="#onBtAllAction" text="All" />
+      <ComboBox fx:id="comboBoxPerson" layoutX="31.0" layoutY="15.0" onAction="#onComboBoxPersonAction" prefHeight="31.0" prefWidth="235.0" promptText="Select a person..." AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+      <Button fx:id="btAll" layoutX="314.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBtAllAction" prefHeight="31.0" prefWidth="55.0" text="All" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

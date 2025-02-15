@@ -43,7 +43,7 @@ public class ViewController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Person> list = new ArrayList<>();
         list.add(new Person(1, "Balthazar de Bigode", "balthazar@email.com"));
         list.add(new Person(2, "Ophelia Birrenta", "ophelia@email.com"));
