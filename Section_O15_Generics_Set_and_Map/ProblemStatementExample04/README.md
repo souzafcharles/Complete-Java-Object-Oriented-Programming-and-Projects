@@ -6,7 +6,7 @@
 
 ### PrintService Model
 
-![Print Service Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample04/print-service-model.png)
+![Print Service Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_O15_Generics_Set_and_Map/ProblemStatementExample04/print-service-model.png)
 
 ### Example Inputs and Outputs
 
