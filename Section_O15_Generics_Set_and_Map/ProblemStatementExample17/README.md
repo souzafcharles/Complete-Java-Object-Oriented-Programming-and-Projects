@@ -4,7 +4,7 @@
 
 ### Product Model
 
-![Product Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample17/product-model.png)
+![Product Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_O15_Generics_Set_and_Map/ProblemStatementExample17/product-model.png)
 
 ### Example Inputs and Outputs
 
