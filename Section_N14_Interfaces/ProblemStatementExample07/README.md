@@ -5,7 +5,7 @@ a list, sort the list, and display the sorted names on the console. Note: the fi
 
 ### Device Model
 
-![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample07/employee-model.png)
+![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample07/employee-model.png)
 
 ### Example Inputs and Outputs
 
