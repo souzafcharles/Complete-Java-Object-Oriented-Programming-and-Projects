@@ -1,4 +1,6 @@
-# Introduction:
+# Project Chess Game System
+
+## Introduction:
 
 This system is designed to simulate a full-fledged chess game using object-oriented programming principles. The
 application comprises several classes and components, each responsible for different aspects of the game, from the board
