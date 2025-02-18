@@ -7,7 +7,7 @@ per month.
 
 ### Interest Model
 
-![Interest Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample09/interest-model.png)
+![Interest Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample09/interest-model.png)
 
 ### Example Inputs and Outputs
 
@@ -36,4 +36,3 @@ Calculation:
 Payment = 200 * 1.01 * 1.01 * 1.01 = 200 * 1.013 = 206.0602
 Payment = amount * (1 + interestRate / 100)^N
 ```
-
