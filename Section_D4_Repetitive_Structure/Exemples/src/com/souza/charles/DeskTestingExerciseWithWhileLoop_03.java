@@ -1,4 +1,4 @@
-package src.com.souza.charles;
+package com.souza.charles;
 
 /**
  * Course title: Complete Java - Object-Oriented Programming + Projects
@@ -6,17 +6,18 @@ package src.com.souza.charles;
  * Exercise done by: Charles Fernandes de Souza 
  * Date: April 10, 2024
 */
-public class DeskTestingExerciseWithWhileLoop_02 {
+public class DeskTestingExerciseWithWhileLoop_03 {
 
 	public static void main(String[] args) {
 
-		int x = 2;
-		int y = 10;
-		System.out.println("Hello");
-		while (x < y) {
-			System.out.println(x + "-" + y);
-			x = x * 2;
-			y = y + 1;
+		int x = 4;
+		int y = 0;
+		int i = 0;
+		while (i < x) {
+			i = i + 1;
+			y = y + i;
+			System.out.print(i);
+			System.out.println(y);
 		}
 
 	}
