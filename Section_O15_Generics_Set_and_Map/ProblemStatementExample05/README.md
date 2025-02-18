@@ -6,7 +6,7 @@ products from a file, as in the example, and then shows the most expensive one.
 
 ### CalculationService
 
-![Calculation Service](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExample05/calculation-service-model.png)
+![Calculation Service](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_O15_Generics_Set_and_Map/ProblemStatementExample05/calculation-service-model.png)
 
 ### Example Inputs and Outputs
 
