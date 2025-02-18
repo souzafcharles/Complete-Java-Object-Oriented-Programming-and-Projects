@@ -5,7 +5,7 @@ these shapes in the same order they were entered.
 
 ### Shape Model
 
-![Shape Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Exercise03/shape-model.png)
+![Shape Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_K11_Inheritance_and_Polymorphism/Exercise03/shape-model.png)
 
 ### Example Inputs and Outputs
 
