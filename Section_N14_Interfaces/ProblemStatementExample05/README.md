@@ -4,7 +4,7 @@
 
 ### Device Model
 
-![Device Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample05/device-model.png)
+![Device Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample05/device-model.png)
 
 ### Example Inputs and Outputs
 
