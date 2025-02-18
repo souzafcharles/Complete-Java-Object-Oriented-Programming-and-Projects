@@ -4,14 +4,36 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects)
 
 
-# :coffee: Course: Complete Java | Object-Oriented Programming + Projects
+# ☕ Course: Complete Java | Object-Oriented Programming + Projects
 
-:triangular_flag_on_post: Prof. Dr. Nelio Alves - [Udemy, Inc.](https://www.udemy.com/)
+▶️ Project developed based on tutorials by **Prof. Dr. Nelio Alves** - [Udemy, Inc.](https://www.udemy.com/)
 
-:black_nib: IDE used: `IntelliJ IDEA`
+## Project Stack:
+| Technology                | Version   | Description                                                                                     |
+|---------------------------|-----------|-------------------------------------------------------------------------------------------------|
+| 📐 IntelliJ IDEA          | `2024.3`  | Integrated Development Environment (IDE)                                                        |
+| ☕ Java                   | `21`      | Backend programming language                                                                    |
+| 🐬 MySQL Community Server | `9.2.0`   | Open-source relational database management system                                               |
+| 🐦 Maven                  | `3.9.9`   | Build automation and dependency management                                                      |
+| 🗃️ H2 Database            | `2.3.232` | In-memory relational database for testing                                                       |
+| 🍃 MongoDB                | `8.0`     | NoSQL document-oriented database                                                                |
+| 🌱 Spring Boot            | `3.4.2`   | Framework for creating Spring applications                                                      |
+| 👩‍🚀 Postman                | `11.19`   | API testing and development tool                                                                |
+| 🎨 JavaFX                 | `23.0.2`  | Platform for building rich internet applications with a lightweight user interface (UI) toolkit |
+| 👆 Scene Builder          | `23.0.1`  | Visual layout tool for designing JavaFX application user interfaces                              |
 
-:coffee: Java | version: `21`
+***
 
+## Drivers and Dependencies:
+| Dependency               | Category        | Description                                                                                                                                  |
+|--------------------------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 🗄️ JDBC                  | Driver          | Java Database Connectivity, standard Java API for database-independent connectivity                                                          |
+| 🖌️ JavaFX FXML          | GUI             | Markup language used to define the user interface of JavaFX applications                                                                     |
+| 🛠️ Spring Boot DevTools | Developer Tools | Provides fast application restarts, LiveReload, and configurations for enhanced development experience                                       |
+| 🌐 Spring Web           | Web             | Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container                            |
+| 💾 Spring Data JPA      | SQL             | Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate                                                         |
+| 🗃️ H2 Database Engine   | SQL             | Provides a fast in-memory database that supports JDBC API and R2DBC access, with a small (2mb) footprint                                     |
+| 🗝️ dotenv-java          | Configuration   | Loads environment variables from a `.env` file into the application, aiding in secure configuration management                               |
 
 ## Course Sections
 
@@ -38,4 +60,4 @@
 - Section 21 | [Spring Boot Project and MongoDB Database (Web Services + NoSQL)](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_U21_SpringMongoDB_NoSQL_WebServices/mongoDBSpringBoot)
 - Section 22 | Graphical Interface with JavaFX: [Part 01](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_V22_Graphical_Interface_with_JavaFX-Part-01/GraphicalApp) and [Part 02](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/tree/main/Section_V22_Graphical_Interface_with_JavaFX-Part-02/GraphicalApp)
 
-### :link: [Course Access](https://www.udemy.com/course/java-curso-completo/)
+## 🔗 [Course Access](https://www.udemy.com/course/java-curso-completo/)
