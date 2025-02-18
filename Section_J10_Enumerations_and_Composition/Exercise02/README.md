@@ -2,7 +2,7 @@
 **Instructions**: Manually instantiate (hardcode) the objects shown below and display them on the terminal screen, as per the example.
 
 ### Post Model and Objects in Memory:
-![Post Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_J10_Enumerations_and_Composition/Exercise02/post-model.png)
+![Post Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_J10_Enumerations_and_Composition/Exercise02/post-model.png)
 
 
 | **Console output**                                                                                                                                                                                                                                                                                                          |
