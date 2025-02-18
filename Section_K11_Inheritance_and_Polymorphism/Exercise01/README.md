@@ -9,7 +9,7 @@ order they were entered. Build the program according to the project on the bello
 
 ### Employee Model
 
-![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Exercise01/employee-model.png)
+![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_K11_Inheritance_and_Polymorphism/Exercise01/employee-model.png)
 
 ### Example Inputs and Outputs
 
