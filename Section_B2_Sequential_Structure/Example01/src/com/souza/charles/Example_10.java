@@ -1,4 +1,4 @@
-package src.com.souza.charles;
+package com.souza.charles;
 
 /**
  * Course title: Complete Java - Object-Oriented Programming + Projects
