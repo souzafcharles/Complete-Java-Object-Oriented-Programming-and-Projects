@@ -14,7 +14,7 @@ two months after the contract, and so on. Show the installment data on the scree
 
 ### Contract Model
 
-![Contract Rental Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExercise01/contract-model.png)
+![Contract Rental Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExercise01/contract-model.png)
 
 ### Example Inputs and Outputs
 
@@ -44,8 +44,8 @@ Installment #3:
 
 ### Objects in Memory
 
-![Objects in Memory Contract](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExercise01/objects-in-memory-contract.png)
+![Objects in Memory Contract](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExercise01/objects-in-memory-contract.png)
 
 ### Service Layer Design
 
-![Service Layer Design Contract](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExercise01/service-layer-design-contract.png)
+![Service Layer Design Contract](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExercise01/service-layer-design-contract.png)
