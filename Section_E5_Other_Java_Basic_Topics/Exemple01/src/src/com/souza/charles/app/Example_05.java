@@ -1,4 +1,4 @@
-package com.souza.charles.app;
+package src.com.souza.charles.app;
 /**
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
@@ -16,7 +16,7 @@ public class Example_05 {
         Locale.setDefault(Locale.UK);
         Scanner scanner = new Scanner(System.in);
         double a, b, c, delta;
-        System.out.println("Enter the coefficient values:");
+        System.out.println("Enter the coefficient values: ");
         a = scanner.nextDouble();
         b = scanner.nextDouble();
         c = scanner.nextDouble();
