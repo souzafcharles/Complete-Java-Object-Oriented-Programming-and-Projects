@@ -6,7 +6,7 @@ The file path can be directly specified within the code.
 
 ### Device Model
 
-![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample08/employee-model.png)
+![Employee Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample08/employee-model.png)
 
 ### Example Inputs and Outputs
 
