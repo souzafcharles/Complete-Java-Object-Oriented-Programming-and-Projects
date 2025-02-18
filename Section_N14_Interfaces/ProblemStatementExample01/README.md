@@ -8,7 +8,7 @@ payment invoice displaying the rental cost, tax amount, and total payment. Refer
 
 ### CarRental Model
 
-![Car Rental Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample01/car-rental-model.png)
+![Car Rental Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample01/car-rental-model.png)
 
 ### Example Inputs and Outputs 01
 
@@ -48,10 +48,8 @@ Tax = 390 × 15% = 390 × 0.15 = 58.50
 
 ### Objects in Memory
 
-![Objects in Memory Car Rental](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample01/objects-in-memory-car-rental.png)
+![Objects in Memory Car Rental](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample01/objects-in-memory-car-rental.png)
 
 ### Service Layer Design (no Interface)
 
-![Service Layer Design Car Rental](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample01/service-layer-design-car-rental.png)
-
-
+![Service Layer Design Car Rental](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample01/service-layer-design-car-rental.png)
