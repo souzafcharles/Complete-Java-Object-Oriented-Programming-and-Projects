@@ -75,7 +75,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd" version="2.1">
 ### 4. Entity Class:
 - Create the `Person`class:
 
-![Person Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/person-entity.png)
+![Person Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/person-entity.png)
 - Attributes;
 - Constructors;
 - Getters/Setters;
@@ -120,7 +120,7 @@ System.out.println("Transaction committed!");
 ```
 ***
 #### Database Result:
-![Database Result](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/database.png)
+![Database Result](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_R18_Java_EE_Object_Relational_Mapping_with_JPA_Hibernate/JPAClass/img/database.png)
 ***
 ### 6.2 `findById` - Implement the search by `ID`:
 #### Main Class:
@@ -152,4 +152,3 @@ entityManager.remove(personToDelete);
 entityManager.getTransaction().commit();
 System.out.println("Transaction committed!");
 ``` 
-
