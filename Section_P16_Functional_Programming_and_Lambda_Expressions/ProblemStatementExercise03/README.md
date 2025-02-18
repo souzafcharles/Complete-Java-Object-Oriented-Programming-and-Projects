@@ -8,19 +8,19 @@ Also, display the sum of the salaries of employees whose name starts with the le
 ````java
 package com.souza.charles.model.entities;
 ````
-![Employee Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employee-entities.png)
+![Employee Entities](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employee-entities.png)
 
 ### EmployeeFile Class
 ````java
 package com.souza.charles.model.utils;
 ````
-![EmployeeFile Utils](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employeeFile-utils.png)
+![EmployeeFile Utils](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employeeFile-utils.png)
 
 ### EmployeeService Class
 ````java
 package com.souza.charles.model.services;
 ````
-![EmployeeFile Services](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employeeService-services.png)
+![EmployeeFile Services](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise03/employeeService-services.png)
 
 ### Example Inputs and Outputs:
 
@@ -33,4 +33,3 @@ package com.souza.charles.model.services;
 | `Abigail,abigail@gmail.com,2800.00`         | Sum of salary of people whose name starts with 'B': `$4900.00` |
 | `Enter full file path: C:\tmp\in.txt`       |                                                                |
 | `Enter salary: 2000.00`                     |                                                                |
-
