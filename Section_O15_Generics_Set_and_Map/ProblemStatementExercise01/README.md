@@ -6,7 +6,7 @@ program that reads the access log from a file and then reports how many distinct
 
 ### LogAccess Model
 
-![LogAccess Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_O15_Generics_Set_and_Map/ProblemStatementExercise01/logAccess-model.png)
+![LogAccess Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_O15_Generics_Set_and_Map/ProblemStatementExercise01/logAccess-model.png)
 
 ### Example Inputs and Outputs
 
