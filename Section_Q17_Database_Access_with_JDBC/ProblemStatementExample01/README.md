@@ -16,8 +16,8 @@
 
 ```sql
 user=developer
-password=1234567
-dburl=jdbc:mysql://localhost:3306/coursejdbc
+password=*******
+dburl=jdbc:mysql://localhost:3306/store
 useSSL=false
 ```
 

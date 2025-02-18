@@ -4,7 +4,98 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55f7ab5b-5afe-4983-831f-6a3565e8ece5" name="Changes" comment="" />
+    <list default="true" id="7337b7bc-3e59-4428-8188-e5c75dca69f6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/com/souza/charles/model/db/DB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/com/souza/charles/model/db/DbException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/com/souza/charles/view/application/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/bin/com/souza/charles/model/db/DB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/bin/com/souza/charles/model/db/DbException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/bin/com/souza/charles/view/application/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/src/com/souza/charles/model/db/DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/src/com/souza/charles/model/db/DbException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample02/src/com/souza/charles/view/application/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/bin/com/souza/charles/model/db/DB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/bin/com/souza/charles/model/db/DbException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/bin/com/souza/charles/view/application/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/database-result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/src/com/souza/charles/model/db/DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/src/com/souza/charles/model/db/DbException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample03/src/com/souza/charles/view/application/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/bin/com/souza/charles/model/db/DB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/bin/com/souza/charles/model/db/DbException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/bin/com/souza/charles/view/application/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/database-preliminary.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/database-result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/src/com/souza/charles/model/db/DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/src/com/souza/charles/model/db/DbException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample04/src/com/souza/charles/view/application/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/bin/com/souza/charles/model/db/DB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/bin/com/souza/charles/model/db/DbException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/bin/com/souza/charles/model/db/DbIntegrityException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/bin/com/souza/charles/view/application/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/database-preliminary.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/database-result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/src/com/souza/charles/model/db/DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/src/com/souza/charles/model/db/DbException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/src/com/souza/charles/model/db/DbIntegrityException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample05/src/com/souza/charles/view/application/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/bin/com/souza/charles/model/db/DB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/bin/com/souza/charles/model/db/DbException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/bin/com/souza/charles/model/db/DbIntegrityException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/bin/com/souza/charles/view/application/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/database-preliminary.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/database-result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/database.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/db.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/src/com/souza/charles/model/db/DB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/src/com/souza/charles/model/db/DbException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/src/com/souza/charles/model/db/DbIntegrityException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProblemStatementExample06/src/com/souza/charles/view/application/App.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,31 +104,41 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2rPRO5I3y0nVIXNzT50OJCi9hYa" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2tC8TCPmWiigMCPzxHLbOlTczYr" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.App.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Charles/OneDrive/Documentos/Cursos_Livres/Udemy/Udemy-JAVA-Language/Section_Q17 _Database_Access_with_JDBC/ProblemStatementExample02"
+    "last_opened_file_path": "C:/java-libs/jdbc-connectors/mysql-connector-j-9.1.0.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Charles\OneDrive\Documentos\Cursos_Livres\Udemy\Udemy-JAVA-Language\Section_Q17_Database_Access_with_JDBC\ProblemStatementExample01" />
+      <recent name="C:\Users\Charles\OneDrive\Documentos\Cursos_Livres\Udemy\Udemy-JAVA-Language\Section_Q17_Database_Access_with_JDBC\ProblemStatementExample01\src" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="55f7ab5b-5afe-4983-831f-6a3565e8ece5" name="Changes" comment="" />
-      <created>1736458688364</created>
+      <changelist id="7337b7bc-3e59-4428-8188-e5c75dca69f6" name="Changes" comment="" />
+      <created>1739844706486</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1736458688364</updated>
+      <updated>1739844706486</updated>
     </task>
     <servers />
   </component>
