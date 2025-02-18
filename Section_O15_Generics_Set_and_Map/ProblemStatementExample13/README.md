@@ -1,4 +1,4 @@
-# Problem Statement Example 12
+# Problem Statement Example 13
 
 **Instructions**: Make a program that reads the integer elements A: `0, 2, 4, 5, 6, 8, 10` and integer elements B:
 `5, 6, 7, 8, 9, 10` and performs `TreeSet` operations with union, intersection and difference.
