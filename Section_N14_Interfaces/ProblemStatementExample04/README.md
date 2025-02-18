@@ -4,7 +4,7 @@
 
 ### Shape Model
 
-![Shape Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_N14_Interfaces/ProblemStatementExample04/shape-model.png)
+![Shape Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_N14_Interfaces/ProblemStatementExample04/shape-model.png)
 
 ### Example Inputs and Outputs
 
