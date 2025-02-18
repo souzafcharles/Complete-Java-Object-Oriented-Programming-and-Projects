@@ -795,6 +795,8 @@ SellerDao sellerDao = DaoFactory.createSellerDao();
 DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 ```
 
+#### 5.2. **findById -** Implement the search by `ID`:
+
 #### ResultSet Table:
 
 ![ResultSet Table](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercisePractices/img/resultSet-table.png)
@@ -802,9 +804,6 @@ DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 #### Associated Objects:
 
 ![Seller Associated Objects](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_Q17_Database_Access_with_JDBC/ProblemStatementExercisePractices/img/seller-associated-objects.png)
-
-
-#### 5.2. **findById -** Implement the search by `ID`:
 
 #### App Class:
 
@@ -834,7 +833,6 @@ SELECT *
 FROM department 
 WHERE Id = ?
 ```
-
 
 #### 5.3. **findByDepartment -** Implement the search by Department:
 
