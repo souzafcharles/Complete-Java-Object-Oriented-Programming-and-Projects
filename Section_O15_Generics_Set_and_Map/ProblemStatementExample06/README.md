@@ -1,4 +1,4 @@
-# Problem Statement Example 05
+# Problem Statement Example 06
 
 **Instructions**: A consulting company wants to evaluate the performance of products, employees, among other things. One
 of the calculations they need is to find the largest among a set of elements. Make a program that reads a set of
