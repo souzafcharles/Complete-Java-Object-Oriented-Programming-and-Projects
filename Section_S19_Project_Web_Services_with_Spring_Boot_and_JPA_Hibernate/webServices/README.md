@@ -6,7 +6,7 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
 </p>
 
 ### Logical Layers:
-![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/src/main/resources/static/img/logical-layers.png)
+![Logical Layers](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/src/main/resources/static/img/logical-layers.png)
 ***
 ## Steps to Follow and Documentation:
 ### 1. Project Created:
@@ -17,7 +17,7 @@ Develop a Java application using the <code>Spring Boot</code> framework to imple
     - Packing JAR;
     - Dependencies: Spring Web.
 ##### 1.2. Domain Model Entity:
-![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/src/main/resources/static/img/domain-model.png)
+![Domain Model Entity](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/src/main/resources/static/img/domain-model.png)
 ***
 ### 2. User Entity and Resource Class:
 #### 2.1. Entity Class Requirements for User:
@@ -1058,7 +1058,7 @@ http://localhost:8080/orders/10
 }
  ```
 ### Object Relational:
-![Order Object–Relational](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/src/main/resources/static/img/order-object–relational.png)
+![Order Object–Relational](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_S19_Project_Web_Services_with_Spring_Boot_and_JPA_Hibernate/webServices/src/main/resources/static/img/order-object–relational.png)
 ***
 ### 14. Subtotal & Total Methods:
 #### 14.1. SubTotal Method:
