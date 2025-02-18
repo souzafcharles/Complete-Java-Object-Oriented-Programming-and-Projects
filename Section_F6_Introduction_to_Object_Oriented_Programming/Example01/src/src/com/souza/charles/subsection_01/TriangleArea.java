@@ -1,4 +1,4 @@
-package com.souza.charles.subsection_01;
+package src.com.souza.charles.subsection_01;
 /**
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
