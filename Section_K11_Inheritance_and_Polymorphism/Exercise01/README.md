@@ -35,6 +35,6 @@ order they were entered. Build the program according to the project on the bello
 
 ### Employee Local Memory Management:
 
-![Employee Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_K11_Inheritance_and_Polymorphism/Exercise01/employee-local-memory-management.png)
+![Employee Local Memory Management](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_K11_Inheritance_and_Polymorphism/Exercise01/employee-local-memory-management.png)
 
 
