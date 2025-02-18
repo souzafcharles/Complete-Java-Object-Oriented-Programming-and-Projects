@@ -12,7 +12,7 @@ invalid data for the reservation, according to the following rules:
 
 ### Reservation Model
 
-![Reservation Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_L12_Handling_Exceptions/Exercise04/reservation-model.png)
+![Reservation Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_L12_Handling_Exceptions/Exercise04/reservation-model.png)
 
 ---
 
