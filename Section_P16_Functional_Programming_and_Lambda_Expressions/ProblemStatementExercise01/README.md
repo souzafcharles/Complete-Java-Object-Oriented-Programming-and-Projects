@@ -4,7 +4,7 @@
 
 ### Product Model
 
-![Product Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise01/product-model.png)
+![Product Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_P16_Functional_Programming_and_Lambda_Expressions/ProblemStatementExercise01/product-model.png)
 
 ### Example Inputs and Outputs:
 
@@ -16,4 +16,3 @@
 | `HD Case,80.90`       | Mouse                               |
 | `Computer,850.00`     | Monitor                             |
 | `Monitor,290.00`      | HD Case                             |
-
