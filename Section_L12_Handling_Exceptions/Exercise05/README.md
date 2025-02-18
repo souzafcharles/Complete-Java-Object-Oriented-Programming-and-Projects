@@ -9,7 +9,7 @@ below.
 
 ### Account Model
 
-![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_L12_Handling_Exceptions/Exercise05/account-model.png)
+![Account Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_L12_Handling_Exceptions/Exercise05/account-model.png)
 
 ---
 
