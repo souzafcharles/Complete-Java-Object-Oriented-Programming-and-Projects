@@ -2,7 +2,7 @@
 **Instructions**: Read the data of a worker with N contracts (N provided by the user). Then, prompt the user for a month and display the worker's salary for that month, as shown in the example.
 
 ### Worker Model
-![Worker Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_J10_Enumerations_and_Composition/Exercise01/worker-model.png)
+![Worker Model](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_J10_Enumerations_and_Composition/Exercise01/worker-model.png)
 
 
 ### Example Inputs and Outputs
@@ -31,9 +31,9 @@
 
 
 ### Objects in memory:
-![Objects in Memory Department](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_J10_Enumerations_and_Composition/Exercise01/objects-in-memory-department.png)
+![Objects in Memory Department](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_J10_Enumerations_and_Composition/Exercise01/objects-in-memory-department.png)
 
 
 ### Objects in memory:
-![Objects in Memory Hour Contract](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/master/Section_J10_Enumerations_and_Composition/Exercise01/objects-in-memory-hour-contract.png)
+![Objects in Memory Hour Contract](https://github.com/souzafcharles/Complete-Java-Object-Oriented-Programming-and-Projects/blob/main/Section_J10_Enumerations_and_Composition/Exercise01/objects-in-memory-hour-contract.png)
 
