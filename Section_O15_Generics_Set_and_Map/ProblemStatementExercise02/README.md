@@ -1,4 +1,4 @@
-# Problem Statement Exercise 01
+# Problem Statement Exercise 02
 
 **Instructions**: In an online course portal, each user has a unique code, represented by an integer.
 Each instructor in the portal can have multiple courses, and the same student can enroll in as many courses as they
