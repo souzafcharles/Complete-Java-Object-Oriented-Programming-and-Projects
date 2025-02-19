@@ -5,6 +5,7 @@ package com.souza.charles.application;
  Exercise done by: Charles Fernandes de Souza
  Date: November 09, 2024
  */
+
 import com.souza.charles.entities.Account;
 import java.util.Scanner;
 
@@ -20,13 +21,15 @@ public class App {
         String response = scanner.nextLine().trim().toLowerCase();
         boolean hasInitialDeposit = response.equals("y");
         Account account;
-        if (hasInitialDeposit) {
+        
+     if (hasInitialDeposit) {
             System.out.print("Enter initial deposit value: ");
             double initialDeposit = scanner.nextDouble();
             account = new Account(number, holder, initialDeposit);
         } else {
             account = new Account(number, holder, null);
         }
+     
         System.out.println("\nAccount data:");
         System.out.println(account);
         System.out.print("\nEnter a deposit value: ");
