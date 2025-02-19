@@ -6,6 +6,7 @@ package com.souza.charles.graphicalapp.controller;
   Date: February 19, 2025
  */
 
+import com.souza.charles.graphicalapp.model.services.DepartmentService;
 import com.souza.charles.graphicalapp.view.util.Alerts;
 import com.souza.charles.graphicalapp.view.Main;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class MainViewController implements Initializable {
 
@@ -40,19 +42,22 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemDepartmentAction() {
-        System.out.println("onMenuItemDepartmentAction");
+        loadView("/com/souza/charles/graphicalapp/DepartmentList.fxml", (DepartmentListController controller) -> {
+            controller.setDepartmentService(new DepartmentService());
+            controller.updateTableView();
+        });
     }
 
     @FXML
     public void onMenuItemAboutAction() {
-        loadView("/com/souza/charles/graphicalapp/About.fxml");
+        loadView("/com/souza/charles/graphicalapp/About.fxml", x -> {});
     }
 
     @Override
     public void initialize(URL uri, ResourceBundle rb) {
     }
 
-    private synchronized void loadView(String absoluteName) {
+    private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             VBox newVBox = loader.load();
@@ -64,10 +69,12 @@ public class MainViewController implements Initializable {
             mainVBox.getChildren().clear();
             mainVBox.getChildren().add(mainMenu);
             mainVBox.getChildren().addAll(newVBox.getChildren());
+
+            T controller = loader.getController();
+            initializingAction.accept(controller);
         }
         catch (IOException e) {
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-
 }
