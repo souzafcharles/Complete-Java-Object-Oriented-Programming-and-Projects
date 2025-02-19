@@ -5,6 +5,7 @@ package com.souza.charles;
  Exercise done by: Charles Fernandes de Souza
  Date: November 19, 2024
  */
+
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -15,8 +16,8 @@ public class Example04 {
 
     public static void main(String[] args) {
         LocalDate date04 = LocalDate.parse("2024-11-19");
-        LocalDateTime date05 = LocalDateTime.parse("2024-11-19T01:30:26");
-        Instant date06 = Instant.parse("2024-11-19T01:30:26Z");
+        LocalDateTime date05 = LocalDateTime.parse("2024-11-19T09:14:11");
+        Instant date06 = Instant.parse("2024-11-20T10:45:26Z");
         LocalDate pastWeekDate = date04.minusDays(7);
         LocalDate nextWeekDate = date04.plusDays(7);
         LocalDateTime pastWeekLocalDate = date05.minusDays(7);
