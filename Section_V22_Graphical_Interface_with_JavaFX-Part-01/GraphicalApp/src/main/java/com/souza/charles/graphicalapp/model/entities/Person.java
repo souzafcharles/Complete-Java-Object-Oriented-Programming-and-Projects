@@ -49,6 +49,6 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("ID= %d, Name= %s, Email= %S", id, name, email);
+        return String.format("%d, %s, %s", id, name, email);
     }
 }
