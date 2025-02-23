@@ -1,23 +1,19 @@
 package com.souza.charles.graphicalapp.model.dao.impl;
-/*
-Course title: Complete Java - Object-Oriented Programming + Projects
-Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
-Exercise done by: Charles Fernandes de Souza
-Date: February 17, 2025
-*/
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+ /*
+  Course title: Complete Java - Object-Oriented Programming + Projects
+  Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
+  Project done by: Charles Fernandes de Souza
+  Date: February 23, 2025
+ */
 
 import com.souza.charles.graphicalapp.model.dao.DepartmentDao;
-import com.souza.charles.model.db.DB;
-import com.souza.charles.model.db.DbException;
-import com.souza.charles.model.entities.Department;
+import com.souza.charles.graphicalapp.model.db.DB;
+import com.souza.charles.graphicalapp.model.db.DbException;
+import com.souza.charles.graphicalapp.model.entities.Department;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DepartmentDaoJDBC implements DepartmentDao {
 

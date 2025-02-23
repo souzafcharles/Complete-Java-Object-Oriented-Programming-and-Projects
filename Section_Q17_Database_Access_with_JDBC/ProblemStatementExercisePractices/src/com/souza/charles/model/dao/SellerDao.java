@@ -1,4 +1,4 @@
-package com.souza.charles.model.dao;
+package com.souza.charles.graphicalapp.model.dao;
 /*
 Course title: Complete Java - Object-Oriented Programming + Projects
 Instructor: Prof. Dr. Nelio Alves - Udemy, Inc.
