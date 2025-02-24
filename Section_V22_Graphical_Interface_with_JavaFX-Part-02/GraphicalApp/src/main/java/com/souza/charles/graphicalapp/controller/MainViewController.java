@@ -7,6 +7,7 @@ package com.souza.charles.graphicalapp.controller;
  */
 
 import com.souza.charles.graphicalapp.model.services.DepartmentService;
+import com.souza.charles.graphicalapp.model.services.SellerService;
 import com.souza.charles.graphicalapp.view.Main;
 import com.souza.charles.graphicalapp.view.utils.Alerts;
 import javafx.fxml.FXML;
@@ -37,7 +38,10 @@ public class MainViewController implements Initializable {
 
     @FXML
     public void onMenuItemSellerAction() {
-        System.out.println("onMenuItemSellerAction");
+        loadView("/com/souza/charles/graphicalapp/SellerList.fxml", (SellerListController controller) -> {
+            controller.setSellerService(new SellerService());
+            controller.updateTableView();
+        });
     }
 
     @FXML
